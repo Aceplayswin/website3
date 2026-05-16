@@ -11,7 +11,7 @@ export const SiteProvider = ({ children }) => {
   // 2. Build initial state from defaults + local session + cached data
   const INITIAL_ACCOUNT_INFO = {
     service_site_name: "Velplay365",
-    service_site_logo: "/image.png",
+    service_site_logo: "",
     service_tagline: "PLAY · WIN · REPEAT",
     service_marquee: "Welcome to Velplay365! Experience world-class betting and gaming. Sign up now to get exclusive bonuses and daily rewards. Minimum deposit ₹100. Fast 24/7 withdrawals.",
     service_app_download_url: "https://velplay.cc/Velplay.apk",
@@ -22,15 +22,11 @@ export const SiteProvider = ({ children }) => {
   };
 
   const DEFAULT_HERO_BANNERS = [
-    { image_path: "/banner/photo_6316855436321165721_y.jpg", action_url: "#" },
-    { image_path: "/banner/photo_6316855436321165722_y.jpg", action_url: "#" },
-    { image_path: "/banner/photo_6316855436321165723_y.jpg", action_url: "#" },
-    { image_path: "/banner/photo_6316855436321165724_y.jpg", action_url: "#" }
+
   ];
 
   const DEFAULT_PROMO_BANNERS = [
-    { image_path: "/banner/photo_6316855436321165721_y.jpg", action_url: "#" },
-    { image_path: "/banner/photo_6316855436321165722_y.jpg", action_url: "#" }
+  
   ];
 
   // Try to load from cache on initialization to prevent flicker
@@ -132,7 +128,6 @@ export const SiteProvider = ({ children }) => {
             ...prev, 
             ...cleanServerData, 
             service_site_name: "Velplay365", 
-            service_site_logo: "/image.png",
             service_marquee: "Welcome to Velplay365! Experience world-class betting and gaming. Sign up now to get exclusive bonuses and daily rewards. Minimum deposit ₹100. Fast 24/7 withdrawals."
           };
           
@@ -150,13 +145,31 @@ export const SiteProvider = ({ children }) => {
           return finalInfo;
         });
 
-        // Normalize and Update Banners with Caching
-        // Ignore server-side banners as requested, strictly use local defaults
-        console.log("🚀 [SiteContext] Forcing local banners:", DEFAULT_HERO_BANNERS);
-        setPromoBanners(DEFAULT_PROMO_BANNERS);
-        setHeroBanners(DEFAULT_HERO_BANNERS);
-        localStorage.removeItem("cached_promo_banners");
-        localStorage.removeItem("cached_hero_banners");
+        // Merge Backend Banners with Frontend Defaults
+        const BASE_URL = API_URL.replace("/api", "");
+        
+        // Process Hero Banners (slideShowList)
+        const backendHero = Array.isArray(result.slideShowList) ? result.slideShowList.map(b => ({
+          image_path: b.slider_img,
+          action_url: b.slider_action || "#"
+        })) : [];
+
+        // Process Promo Banners (promo_banners)
+        const backendPromo = Array.isArray(result.promo_banners) ? result.promo_banners.map(b => ({
+          image_path: b.image,
+          action_url: b.action || "#"
+        })) : [];
+
+        // Combine: Backend first, then Frontend defaults
+        // This ensures admin-uploaded banners appear first
+        const combinedHero = [...backendHero, ...DEFAULT_HERO_BANNERS].filter((v, i, a) => a.findIndex(t => t.image_path === v.image_path) === i);
+        const combinedPromo = [...backendPromo, ...DEFAULT_PROMO_BANNERS].filter((v, i, a) => a.findIndex(t => t.image_path === v.image_path) === i);
+
+        setHeroBanners(combinedHero);
+        setPromoBanners(combinedPromo);
+
+        localStorage.setItem("cached_hero_banners", JSON.stringify(combinedHero));
+        localStorage.setItem("cached_promo_banners", JSON.stringify(combinedPromo));
 
         // Handle System Notices
         if (result.noticeArr && result.noticeArr.length >= 2) {

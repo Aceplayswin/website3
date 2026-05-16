@@ -56,10 +56,10 @@
               <div className="flex items-center gap-3">
                 <div className="p-1.5 bg-gray-100 dark:bg-white/5 rounded-xl border border-black/10 dark:border-white/10">
                   <img 
-                    src={accountInfo?.service_site_logo?.startsWith('http') ? accountInfo.service_site_logo : (!accountInfo?.service_site_logo ? "/image.png" : `${BASE_URL}${accountInfo?.service_site_logo}`)} 
+                    src={accountInfo?.service_site_logo?.startsWith('http') ? accountInfo.service_site_logo : (!accountInfo?.service_site_logo ? "/banner/image.png" : `${BASE_URL}${accountInfo?.service_site_logo}`)} 
                     alt={accountInfo?.service_site_name || 'Site'} 
                     className="h-8 w-auto px-1" 
-                    onError={(e) => { e.target.src = "/image.png"; }}
+                    onError={(e) => { e.target.src = "/banner/image.png"; }}
                   />
                 </div>
                 <div className="flex flex-col">

@@ -15,7 +15,7 @@ const AppInstallHero = ({ accountInfo }) => {
     ? (accountInfo.service_site_logo.startsWith('http')
       ? accountInfo.service_site_logo
       : `${BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL}${accountInfo.service_site_logo.startsWith('/') ? accountInfo.service_site_logo : '/' + accountInfo.service_site_logo}`)
-    : "/favicon.png";
+    : "/app_logo/app_logo.png";
 
   const handleInstall = () => {
     if (platform === 'android' && !isInstalled) {
@@ -134,7 +134,7 @@ const AppInstallHero = ({ accountInfo }) => {
                     src={siteLogo} 
                     alt={siteName}
                     className="w-full h-full object-contain p-1"
-                    onError={(e) => { e.target.src = "/favicon.png"; }}
+                    onError={(e) => { e.target.src = "/app_logo/app_logo.png"; }}
                   />
                 </div>
                 <div className="flex flex-col">

@@ -231,34 +231,22 @@ const BrandManager = () => {
           theme_color: "#E49C16",
           icons: [
             {
-              src: logoUrl,
+              src: window.location.origin + "/pwa-192x192.png",
               sizes: "192x192",
               type: "image/png",
               purpose: "any"
             },
             {
-              src: logoUrl,
+              src: window.location.origin + "/pwa-512x512.png",
               sizes: "512x512",
               type: "image/png",
               purpose: "any"
             },
             {
-              src: logoUrl,
+              src: window.location.origin + "/pwa-512x512.png",
               sizes: "512x512",
               type: "image/png",
               purpose: "maskable"
-            },
-            {
-              src: "/pwa-192x192.png",
-              sizes: "192x192",
-              type: "image/png",
-              purpose: "any"
-            },
-            {
-              src: "/pwa-512x512.png",
-              sizes: "512x512",
-              type: "image/png",
-              purpose: "any"
             }
           ]
         };

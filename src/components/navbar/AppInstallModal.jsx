@@ -12,7 +12,7 @@ const AppInstallModal = ({ isOpen, onClose, isInstallable, installApp, isInstall
 
   const siteName = accountInfo?.service_site_name || "Velplay365 Official Platform";
   const getSafeLogoUrl = (logoPath) => {
-    if (!logoPath || logoPath === "/favicon.png" || logoPath.includes('favicon.png')) return "/favicon.png";
+    if (!logoPath || logoPath === "/favicon.png" || logoPath.includes('favicon.png')) return "/app_logo/app_logo.png";
     if (logoPath.startsWith('http') || logoPath.startsWith('data:')) return logoPath;
 
     // If it's a relative path from the backend, prepend BASE_URL
@@ -67,7 +67,7 @@ const AppInstallModal = ({ isOpen, onClose, isInstallable, installApp, isInstall
 
           {/* Close Button (Desktop Only) */}
           {!isAndroid && !isIOS && (
-            <button 
+            <button
               onClick={onClose}
               className="absolute top-6 right-6 p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors z-[110]"
             >
@@ -79,11 +79,11 @@ const AppInstallModal = ({ isOpen, onClose, isInstallable, installApp, isInstall
             {/* App Profile Header */}
             <div className={`flex ${isAndroid || isIOS ? 'items-center' : 'flex-col items-center text-center'} gap-5`}>
               <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-[1.5rem] overflow-hidden shadow-2xl border-4 border-white dark:border-white/5 flex-shrink-0 bg-gray-100 dark:bg-white/5">
-                <img 
-                  src={siteLogo} 
+                <img
+                  src={siteLogo}
                   alt={siteName}
                   className="w-full h-full object-contain p-2"
-                  onError={(e) => { e.target.src = "/favicon.png"; }}
+                  onError={(e) => { e.target.src = "/app_logo/app_logo.png"; }}
                 />
               </div>
               <div className="flex flex-col">
@@ -126,7 +126,7 @@ const AppInstallModal = ({ isOpen, onClose, isInstallable, installApp, isInstall
                     Install for a faster, full-screen gaming experience. No browser tabs, immediate access from your home screen.
                   </p>
                 </div>
-                <button 
+                <button
                   onClick={handleInstall}
                   className="w-full py-5 rounded-2xl bg-brand text-black font-black text-lg shadow-xl shadow-brand/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3"
                   style={{ background: COLORS.brandGradient }}
@@ -139,16 +139,16 @@ const AppInstallModal = ({ isOpen, onClose, isInstallable, installApp, isInstall
               /* Desktop Presentation */
               <div className="space-y-6">
 
-                
+
                 <div className="flex flex-col gap-3">
-                  <button 
+                  <button
                     onClick={handleInstall}
                     className="w-full py-4 rounded-xl bg-brand text-black font-black text-sm tracking-widest uppercase shadow-xl shadow-brand/10 hover:brightness-105 active:scale-95 transition-all"
                     style={{ background: COLORS.brandGradient }}
                   >
                     Install Application
                   </button>
-                  <button 
+                  <button
                     onClick={onClose}
                     className="w-full py-4 rounded-xl bg-transparent text-black/40 dark:text-white/40 font-black text-sm tracking-widest uppercase hover:text-black dark:hover:text-white transition-all"
                   >

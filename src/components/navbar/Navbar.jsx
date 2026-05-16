@@ -88,7 +88,7 @@ function Navbar() {
 
   // Logo URL Helper
   const getSafeLogoUrl = (logoPath) => {
-    if (!logoPath || logoPath === "/favicon.png" || logoPath.includes('favicon.png')) return "/image.png";
+    if (!logoPath || logoPath === "/favicon.png" || logoPath.includes('favicon.png')) return "/banner/image.png";
     if (logoPath.startsWith('http') || logoPath.startsWith('data:')) return logoPath;
 
     // If it's a relative path from the backend, prepend BASE_URL

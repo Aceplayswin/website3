@@ -35,14 +35,14 @@ function FrontScrollableCard({ banners = [] }) {
           dynamicBullets: true,
         }}
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
-        autoHeight={true}
+        autoHeight={false}
         className="w-full h-auto"
       >
         {banners.map((slide, index) => (
           <SwiperSlide key={index} className="overflow-hidden">
-            <div className="relative w-full h-auto" data-swiper-parallax="20%">
+            <div className="relative w-full h-[180px] sm:h-[280px] md:h-[380px] lg:h-[450px]" data-swiper-parallax="20%">
               <img
-                className="w-full h-auto block transform transition-transform duration-[6000ms] hover:scale-105"
+                className="w-full h-full object-fill block transform transition-transform duration-[6000ms] hover:scale-105"
                 src={slide.image_path?.startsWith('http') ? slide.image_path : (slide.image_path?.startsWith('/') ? window.location.origin + slide.image_path : `${BASE_URL}${slide.image_path}`)}
                 alt={`Banner ${index + 1}`}
                 loading={index === 0 ? "eager" : "lazy"}

@@ -11,7 +11,7 @@ export default defineConfig({
       devOptions: {
         enabled: true
       },
-      includeAssets: ['favicon.png', 'pwa-192x192.png', 'pwa-512x512.png', 'screenshots/*.png', 'logo192.png', 'logo512.png'],
+      includeAssets: ['favicon.png', 'app_logo/app_logo_192.png', 'app_logo/app_logo_512.png', 'screenshots/*.png', 'logo192.png', 'logo512.png'],
       manifest: {
         name: 'Velplay365 Official Platform',
         short_name: 'Velplay365',
@@ -23,19 +23,19 @@ export default defineConfig({
         categories: ['games', 'entertainment', 'finance'],
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: '/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: 'pwa-512x512.png',
+            src: '/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: 'pwa-512x512.png',
+            src: '/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
@@ -46,12 +46,12 @@ export default defineConfig({
           {
             name: 'Quick Deposit',
             url: '/deposit',
-            icons: [{ src: 'pwa-192x192.png', sizes: '192x192' }]
+            icons: [{ src: '/pwa-192x192.png', sizes: '192x192', type: 'image/png' }]
           },
           {
             name: 'Active Promotions',
             url: '/promotion',
-            icons: [{ src: 'pwa-192x192.png', sizes: '192x192' }]
+            icons: [{ src: '/pwa-192x192.png', sizes: '192x192', type: 'image/png' }]
           }
         ],
         prefer_related_applications: false,
