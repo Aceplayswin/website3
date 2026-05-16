@@ -583,10 +583,21 @@ const GameSection = ({ title, games, id }) => {
 
 const Live = () => {
   const { live } = useGames();
+
+  const excludeProviders = [
+    'MAC88', '18Peaches', 'Veliplay', 'aviatrix', 'InOut Minigames', 
+    'Galaxsys', 'Smartsoft', '2J', 'turbogamesasia', 'Aura Gaming', 'India Lotto'
+  ];
+
+  const filteredLive = live?.filter(game => {
+    const provider = game["Game Provider"] || game["provider"];
+    return !excludeProviders.includes(provider);
+  }) || [];
+
   return (
     <div className="games-display space-y-6 overflow-hidden">
       {" "}
-      <GameSection id="live" title="⚽ Live Sports" games={live} />
+      <GameSection id="live" title="⚽ Live Sports" games={filteredLive} />
     </div>
   )
 }

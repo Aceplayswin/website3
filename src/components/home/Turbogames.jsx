@@ -589,10 +589,21 @@ const GameSection = ({ title, games }) => {
 
 const Turbogames = () => {
   const { turbo } = useGames();
+
+  const excludeProviders = [
+    'MAC88', '18Peaches', 'Veliplay', 'aviatrix', 'InOut Minigames', 
+    'Galaxsys', 'Smartsoft', '2J', 'turbogamesasia', 'Aura Gaming', 'India Lotto'
+  ];
+
+  const filteredTurbo = turbo?.filter(game => {
+    const provider = game["Game Provider"] || game["provider"];
+    return !excludeProviders.includes(provider);
+  }) || [];
+
   return (
     <div className="games-display space-y-3 mt-3">
       {" "}
-      <GameSection title="🚀 Turbo Games" games={turbo} />
+      <GameSection title="🚀 Turbo Games" games={filteredTurbo} />
     </div>
   )
 }
