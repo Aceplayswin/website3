@@ -19,6 +19,7 @@ export const SiteProvider = ({ children }) => {
     account_id: initialUserId !== "guest" ? initialUserId : "guest",
     account_username: initialUserId !== "guest" ? "User" : "Guest",
     account_balance: initialUserId !== "guest" ? "0.00" : "0.00",
+    account_exposure: "0.00",
   };
 
   const DEFAULT_HERO_BANNERS = [

@@ -106,6 +106,8 @@ const RoundDetailsModal = ({ isOpen, onClose, transaction }) => {
               <SectionTitle title="Bet Details" icon={Receipt} />
               <div className="bg-black/10 dark:bg-black/40 rounded-2xl p-5">
                 <DetailItem label="Choice / Selection" value={transaction.r_selection} icon={Hash} />
+                {transaction.r_bet_type && <DetailItem label="Bet Type" value={transaction.r_bet_type} icon={Shield} />}
+                {transaction.r_odds && <DetailItem label="Odds" value={transaction.r_odds} icon={Info} />}
                 <DetailItem label="Stake" value={`₹${transaction.r_match_bet || transaction.r_match_amount}`} icon={Receipt} />
                 <DetailItem label="Payout" value={`₹${transaction.r_match_profit || '0'}`} icon={Trophy} />
                 <DetailItem label="Bet Time" value={`${transaction.r_date} ${transaction.r_time}`} icon={Calendar} />
@@ -144,7 +146,7 @@ const RoundDetailsModal = ({ isOpen, onClose, transaction }) => {
                 ) : (
                   <div className="mt-10 pt-8 border-t border-black/10 dark:border-white/10 text-center">
                     <div className={`inline-flex items-center gap-4 px-8 py-4 rounded-full font-black uppercase tracking-[0.2em] text-[10px] ${netProfit < 0 ? 'bg-rose-500/10 text-rose-500 border border-rose-500/20' :
-                      'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
+                        'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
                       }`}>
                       {netProfit < 0 ? 'Net Loss' : 'Net Profit'}:
                       <span className="text-xl" style={{ fontFamily: FONTS.head }}>₹{Math.abs(netProfit || 0).toFixed(2)}</span>

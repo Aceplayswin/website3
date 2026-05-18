@@ -8,7 +8,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { FaArrowLeft, FaWallet, FaExpand, FaCompress, FaTrophy, FaTimesCircle, FaPlus } from "react-icons/fa"
+import { FaArrowLeft, FaWallet, FaExpand, FaCompress, FaTrophy, FaTimesCircle, FaPlus, FaLock } from "react-icons/fa"
 import { useParams, useNavigate, useSearchParams } from "react-router-dom"
 import { API_URL } from "@/utils/constants"
 import { useColors } from '../hooks/useColors'
@@ -183,10 +183,10 @@ const GameplayComponent = () => {
     `;
     document.head.appendChild(style);
 
-    // Refresh balance every 10 seconds while playing (in addition to result-based refreshes)
+    // Refresh balance every 2 seconds while playing (in addition to result-based refreshes)
     const balanceInterval = setInterval(() => {
       refreshSiteData();
-    }, 10000);
+    }, 2000);
 
     const resetTimer = () => {
       clearTimeout(timeout)
@@ -249,6 +249,19 @@ const GameplayComponent = () => {
 
         {/* Right Side: Balance and Controls */}
         <div className="flex items-center gap-2 md:gap-4 ml-2">
+          {/* Exposure Display */}
+          <div className="flex items-center border border-[var(--bg4)] rounded-2xl px-2 py-1 md:px-4 md:py-2 gap-2 md:gap-3 shadow-inner" style={{ backgroundColor: 'var(--bg3)' }}>
+            <div className="flex flex-col items-end">
+              <span className="text-[7px] md:text-[9px] font-black uppercase tracking-widest leading-none text-rose-500/80">Exposure</span>
+              <span className="text-[10px] md:text-sm font-black tracking-tighter text-rose-500 animate-pulse" style={{ fontFamily: FONTS.ui }}>
+                ₹{parseFloat(accountInfo?.account_exposure || 0).toLocaleString('en-IN')}
+              </span>
+            </div>
+            <div className="hidden xs:flex w-6 h-6 md:w-8 md:h-8 rounded-lg bg-rose-500/10 border border-rose-500/20 items-center justify-center">
+              <FaLock className="text-rose-500 text-[10px] md:text-sm" />
+            </div>
+          </div>
+
           {/* Balance Display (Optimized for all screens) */}
           <div className="flex items-center border border-[var(--bg4)] rounded-2xl px-2 py-1 md:px-4 md:py-2 gap-2 md:gap-3 shadow-inner" style={{ backgroundColor: 'var(--bg3)' }}>
             <div className="flex flex-col items-end">

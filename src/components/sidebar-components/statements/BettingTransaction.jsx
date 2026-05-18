@@ -222,7 +222,11 @@ const BettingTransactionPage = () => {
                     const isTie = status === "tie" || status === "draw";
                     const isLoss = status === "loss";
                     const isProfit = status === "profit" || status === "win";
-                    const isSports = (transaction.r_match_name || "").toLowerCase().includes("sports") || transaction.r_provider?.toLowerCase().includes("saba");
+                    const isSports = (transaction.r_match_name || "").toLowerCase().includes("sports") || 
+                                     (transaction.r_provider || "").toLowerCase().includes("saba") ||
+                                     (transaction.r_provider || "").toLowerCase().includes("luck") ||
+                                     !!transaction.r_bet_type ||
+                                     !!transaction.r_odds;
 
                     return (
                       <tr
@@ -249,8 +253,17 @@ const BettingTransactionPage = () => {
                               >
                                 {transaction.r_match_name}
                               </button>
-                              <span className="text-[9px] font-bold text-black/40 dark:text-white/20 uppercase tracking-widest truncate max-w-[150px]">
-                                {isSports ? (transaction.r_match_details || "Match Details") : (transaction.r_selection ? `Choice: ${transaction.r_selection}` : transaction.r_match_details || "Bet Details")}
+                              <span className="text-[9px] font-bold text-black/40 dark:text-white/20 uppercase tracking-widest truncate max-w-[400px]">
+                                {isSports ? (
+                                  <>
+                                    {transaction.r_match_details || "Match Details"}{" "}
+                                    {transaction.r_selection && `| ${transaction.r_selection}`}{" "}
+                                    {transaction.r_bet_type && `| ${transaction.r_bet_type}`}{" "}
+                                    {transaction.r_odds && `@ ${transaction.r_odds}`}
+                                  </>
+                                ) : (
+                                  transaction.r_selection ? `Choice: ${transaction.r_selection}` : transaction.r_match_details || "Bet Details"
+                                )}
                               </span>
                             </div>
                           </div>
@@ -273,9 +286,9 @@ const BettingTransactionPage = () => {
                           </div>
                         </td>
                         <td className="px-4 py-3">
-                          <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-[8.5px] font-black uppercase tracking-widest ${isProfit ? "bg-emerald-500/10 border border-emerald-500/10 text-emerald-400" :
+                          <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-[8.5px] font-black uppercase tracking-widest ${isProfit ? "bg-emerald-500/10 border border-emerald-500/10 text-emerald-400" : 
                             isLoss ? "bg-rose-500/10 border border-rose-500/10 text-rose-400" :
-                              isCashout ? "bg-[#9966FF]/10 border border-[#9966FF]/10 text-[#9966FF]" : "bg-white/5 border border-white/10 text-white/40"
+                            isCashout ? "bg-[#9966FF]/10 border border-[#9966FF]/10 text-[#9966FF]" : "bg-white/5 border border-white/10 text-white/40"
                             }`}>
                             {transaction.r_match_status}
                           </div>
@@ -301,6 +314,11 @@ const BettingTransactionPage = () => {
                 const isWait = status === "wait" || status === "pending";
                 const isLoss = status === "loss";
                 const isProfit = status === "profit" || status === "win";
+                const isSports = (transaction.r_match_name || "").toLowerCase().includes("sports") || 
+                                 (transaction.r_provider || "").toLowerCase().includes("saba") ||
+                                 (transaction.r_provider || "").toLowerCase().includes("luck") ||
+                                 !!transaction.r_bet_type ||
+                                 !!transaction.r_odds;
 
                 return (
                   <div
@@ -317,7 +335,16 @@ const BettingTransactionPage = () => {
                           {transaction.r_match_name}
                         </h4>
                         <span className="text-[8.5px] font-bold text-black/30 dark:text-white/20 uppercase truncate max-w-[200px]">
-                          {transaction.r_match_details || "Match Detail"}
+                          {isSports ? (
+                            <>
+                              {transaction.r_match_details || "Match Details"}{" "}
+                              {transaction.r_selection && `| ${transaction.r_selection}`}{" "}
+                              {transaction.r_bet_type && `| ${transaction.r_bet_type}`}{" "}
+                              {transaction.r_odds && `@ ${transaction.r_odds}`}
+                            </>
+                          ) : (
+                            transaction.r_match_details || "Match Detail"
+                          )}
                         </span>
                       </div>
                       <div className={`px-2 py-0.5 rounded-md text-[8.5px] font-black uppercase tracking-tight ${isProfit ? "bg-emerald-500/10 text-emerald-400" :

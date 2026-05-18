@@ -30,7 +30,6 @@ function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedGame, setSelectedGame] = useState(null)
-  const [showAppInstallModal, setShowAppInstallModal] = useState(false)
   const navigate = useNavigate()
   const [toast, setToast] = useState(null)
   const [trendingMatches, setTrendingMatches] = useState([])
@@ -201,9 +200,9 @@ function Navbar() {
       setShowLogin(true);
       return;
     }
-    
+
     setSearchOpen(false);
-    
+
     try {
       const response = await fetch(`${API_URL}?Route=route-play-games&AuthToken=${encodeURIComponent(authSecretKey)}&USER_ID=${encodeURIComponent(userId)}`, {
         method: "POST",
@@ -391,7 +390,7 @@ function Navbar() {
             <div className="flex items-center gap-2 md:gap-4 whitespace-nowrap h-full">
               <div className="topbar-item shrink-0"><span style={{ color: COLORS.brand }}>🕐</span> IST {new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false, hour: '2-digit', minute: '2-digit' })}</div>
               <div className="live-badge shrink-0" style={{ backgroundColor: COLORS.red }}>LIVE</div>
-              
+
               <div className="overflow-hidden flex-1 relative h-full flex items-center">
                 <div className="flex items-center gap-8 animate-marquee whitespace-nowrap hover:pause-marquee cursor-default">
                   {trendingMatches.length > 0 ? (
@@ -992,18 +991,6 @@ function Navbar() {
           />
         </div>
       )}
-
-      {/* App Install Modal */}
-      <AppInstallModal
-        isOpen={showAppInstallModal}
-        onClose={() => setShowAppInstallModal(false)}
-        isInstallable={isInstallable}
-        installApp={installApp}
-        isInstalled={isInstalled}
-        currentPlatform={currentDevice}
-        apkUrl={accountInfo?.service_apk_url}
-        accountInfo={accountInfo}
-      />
 
       {/* Toast Notification */}
       {toast && (
