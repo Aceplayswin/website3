@@ -101,11 +101,11 @@ const FooterNav = () => {
   };
 
   const navItems = [
-    { label: "Sport", icon: sportImage, active: false, action: () => navigate("/?show_all=live") },
-    { label: "E-Sport", icon: esport, active: false, action: handleESportClick },
+    { label: "Sport", icon: sportImage, active: location.pathname === "/" && location.hash === "#live", action: () => scrollToSection("live") },
+    { label: "Slots", icon: esport, active: location.pathname === "/" && location.hash === "#slots", action: () => scrollToSection("slots") },
     { label: "Home", icon: homeImage, isCenter: true, action: goToHome },
-    { label: "Casino", icon: cusinoImage, active: false, action: () => scrollToSection("casino-lobby") },
-    { label: "Promo", icon: promotionImage, active: isActive("/promotion"), action: () => scrollToSection("promotions") },
+    { label: "Casino", icon: cusinoImage, active: isActive("/casino"), action: () => navigate("/casino") },
+    { label: "Promo", icon: promotionImage, active: isActive("/promotion"), action: () => navigate("/promotion") },
   ];
 
   return (

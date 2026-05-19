@@ -226,19 +226,19 @@ const GameplayComponent = () => {
         }}
       >
         {/* Left Side: Back & Branding */}
-        <div className="flex items-center gap-2 md:gap-5 flex-1 min-w-0">
+        <div className="flex items-center gap-1.5 md:gap-5 flex-1 min-w-0">
           <button
             onClick={handleBack}
-            className="group relative flex items-center justify-center hover:opacity-80 w-9 h-9 md:w-11 md:h-11 rounded-xl border border-[var(--bg4)] transition-all duration-300 active:scale-95 flex-shrink-0"
+            className="group relative flex items-center justify-center hover:opacity-80 w-8 h-8 md:w-11 md:h-11 rounded-lg md:rounded-xl border border-[var(--bg4)] transition-all duration-300 active:scale-95 flex-shrink-0"
             title="Back to games"
             style={{ backgroundColor: 'var(--bg3)' }}
           >
-            <FaArrowLeft className="transition-colors text-sm md:text-base" style={{ color: 'var(--text)' }} />
+            <FaArrowLeft className="transition-colors text-xs md:text-base" style={{ color: 'var(--text)' }} />
           </button>
 
           <div className="flex flex-col min-w-0">
             <h1
-              className="text-sm md:text-lg font-black uppercase tracking-wider truncate"
+              className="text-xs xs:text-sm md:text-lg font-black uppercase tracking-wider truncate"
               style={{ fontFamily: FONTS.head, color: 'var(--text)' }}
             >
               {decodeURIComponent(gameName)}
@@ -250,13 +250,13 @@ const GameplayComponent = () => {
         </div>
 
         {/* Right Side: Balance and Controls */}
-        <div className="flex items-center gap-2 md:gap-4 ml-2">
+        <div className="flex items-center gap-1.5 md:gap-4 ml-1.5 flex-shrink-0">
           {/* Exposure Display - Only for Sports */}
           {isSportsGame && (
-            <div className="flex items-center border border-[var(--bg4)] rounded-2xl px-2 py-1 md:px-4 md:py-2 gap-2 md:gap-3 shadow-inner" style={{ backgroundColor: 'var(--bg3)' }}>
+            <div className="flex items-center border border-[var(--bg4)] rounded-lg md:rounded-2xl px-1.5 py-0.5 md:px-4 md:py-2 gap-1 md:gap-3 shadow-inner flex-shrink-0" style={{ backgroundColor: 'var(--bg3)' }}>
               <div className="flex flex-col items-end">
-                <span className="text-[7px] md:text-[9px] font-black uppercase tracking-widest leading-none text-rose-500/80">Exposure</span>
-                <span className="text-[10px] md:text-sm font-black tracking-tighter text-rose-500 animate-pulse" style={{ fontFamily: FONTS.ui }}>
+                <span className="text-[6px] md:text-[9px] font-black uppercase tracking-widest leading-none text-rose-500/80">Exposure</span>
+                <span className="text-[9px] xs:text-[10px] md:text-sm font-black tracking-tighter text-rose-500 animate-pulse" style={{ fontFamily: FONTS.ui }}>
                   ₹{parseFloat(accountInfo?.account_exposure || 0).toLocaleString('en-IN')}
                 </span>
               </div>
@@ -267,10 +267,10 @@ const GameplayComponent = () => {
           )}
 
           {/* Balance Display (Optimized for all screens) */}
-          <div className="flex items-center border border-[var(--bg4)] rounded-2xl px-2 py-1 md:px-4 md:py-2 gap-2 md:gap-3 shadow-inner" style={{ backgroundColor: 'var(--bg3)' }}>
+          <div className="flex items-center border border-[var(--bg4)] rounded-lg md:rounded-2xl px-1.5 py-0.5 md:px-4 md:py-2 gap-1 md:gap-3 shadow-inner flex-shrink-0" style={{ backgroundColor: 'var(--bg3)' }}>
             <div className="flex flex-col items-end">
-              <span className="text-[7px] md:text-[9px] font-black uppercase tracking-widest leading-none" style={{ color: 'var(--muted)' }}>Balance</span>
-              <span className="text-[10px] md:text-sm font-black tracking-tighter" style={{ fontFamily: FONTS.ui, color: 'var(--text)' }}>
+              <span className="text-[6px] md:text-[9px] font-black uppercase tracking-widest leading-none" style={{ color: 'var(--muted)' }}>Balance</span>
+              <span className="text-[9px] xs:text-[10px] md:text-sm font-black tracking-tighter" style={{ fontFamily: FONTS.ui, color: 'var(--text)' }}>
                 ₹{parseFloat(accountInfo?.account_balance || 0).toLocaleString('en-IN')}
               </span>
             </div>
@@ -279,24 +279,24 @@ const GameplayComponent = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-1 md:gap-2">
+          <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
             <button
               onClick={handleDeposit}
-              className="relative group flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-5 md:py-2.5 rounded-xl font-black uppercase text-[10px] md:text-xs tracking-wider transition-all duration-500 shadow-lg active:scale-95 overflow-hidden"
+              className="relative group flex items-center justify-center gap-1 md:gap-2 w-8 h-8 md:w-auto md:px-5 md:py-2.5 rounded-lg md:rounded-xl font-black uppercase text-[10px] md:text-xs tracking-wider transition-all duration-500 shadow-lg active:scale-95 overflow-hidden flex-shrink-0"
               style={{ background: 'var(--brand-gradient)', color: 'white' }}
             >
               <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <FaPlus className="text-[10px] md:text-xs" />
-              <span className="whitespace-nowrap">Deposit</span>
+              <span className="hidden md:inline whitespace-nowrap">Deposit</span>
             </button>
 
             <button
               onClick={toggleFullscreen}
-              className="flex items-center justify-center hover:opacity-80 w-9 h-9 md:w-11 md:h-11 rounded-xl border border-[var(--bg4)] transition-all duration-300 active:scale-95"
+              className="flex items-center justify-center hover:opacity-80 w-8 h-8 md:w-11 md:h-11 rounded-lg md:rounded-xl border border-[var(--bg4)] transition-all duration-300 active:scale-95 flex-shrink-0"
               title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
               style={{ backgroundColor: 'var(--bg3)', color: 'var(--text)' }}
             >
-              {isFullscreen ? <FaCompress size={14} className="md:size-4" /> : <FaExpand size={14} className="md:size-4" />}
+              {isFullscreen ? <FaCompress size={12} className="md:size-4" /> : <FaExpand size={12} className="md:size-4" />}
             </button>
           </div>
         </div>

@@ -566,9 +566,9 @@ const GameSection = ({ title, games, id, layout = "slider" }) => {
       )}
 
       {confirmLoading && createPortal(
-        <div className="fixed inset-0 bg-black/10 dark:bg-black/40 backdrop-blur-2xl z-[100000] flex flex-col items-center justify-center transition-all duration-700 animate-fadeIn">
+        <div className="fixed inset-0 bg-black/25 dark:bg-black/60 backdrop-blur-2xl z-[100000] flex flex-col items-center justify-center transition-all duration-700 animate-fadeIn p-4 overflow-y-auto">
           <div
-            className="w-full max-w-md px-8 py-10 rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] border border-black/10 dark:border-white/10 relative overflow-hidden text-center"
+            className="w-[90%] max-w-[340px] md:max-w-md px-5 py-6 md:px-8 md:py-10 rounded-[2rem] md:rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] border border-black/10 dark:border-white/10 relative overflow-hidden text-center max-h-[92vh] overflow-y-auto scrollbar-none"
             style={{
               backgroundColor: `${COLORS.bg2}F2`,
               backgroundImage: 'radial-gradient(circle at top right, rgba(230, 160, 0, 0.05), transparent 40%)'
@@ -576,12 +576,12 @@ const GameSection = ({ title, games, id, layout = "slider" }) => {
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"></div>
 
-            <div className="relative z-10 mb-8">
+            <div className="relative z-10 mb-6 md:mb-8">
               {confirmPopup.game && (
                 <div className="flex flex-col items-center">
-                  <div className="relative mb-6 group">
+                  <div className="relative mb-4 md:mb-6 group">
                     <div className="absolute -inset-4 bg-brand/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    <div className="relative w-28 h-28 rounded-2xl overflow-hidden border-2 border-black/10 dark:border-white/10 shadow-2xl transform transition-transform duration-700 hover:scale-105">
+                    <div className="relative w-20 h-20 md:w-28 md:h-28 rounded-2xl overflow-hidden border-2 border-black/10 dark:border-white/10 shadow-2xl transform transition-transform duration-700 hover:scale-105">
                       <img
                         src={confirmPopup.game.icon || "/placeholder.svg"}
                         alt={confirmPopup.game["Game Name"]}
@@ -591,7 +591,7 @@ const GameSection = ({ title, games, id, layout = "slider" }) => {
                     </div>
                   </div>
                   <h3
-                    className="text-2xl font-black text-black dark:text-white mb-2 tracking-wider uppercase"
+                    className="text-xl md:text-2xl font-black text-black dark:text-white mb-1.5 md:mb-2 tracking-wider uppercase"
                     style={{ fontFamily: FONTS.head }}
                   >
                     {confirmPopup.game["Game Name"]}
@@ -604,7 +604,7 @@ const GameSection = ({ title, games, id, layout = "slider" }) => {
               )}
             </div>
 
-            <div className="relative z-10 px-4 mb-10">
+            <div className="relative z-10 px-2 md:px-4 mb-6 md:mb-10">
               <div className="w-full bg-gray-100 dark:bg-white/5 rounded-full h-1 overflow-hidden backdrop-blur-sm border border-black/5 dark:border-white/5">
                 <div
                   className="h-full rounded-full transition-all duration-300 ease-out relative"

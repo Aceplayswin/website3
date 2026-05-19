@@ -123,16 +123,15 @@ function Navbar() {
   // Game Categories with icons matching the neon design
   // Game Categories for the sub-navbar
   const games = [
+    { name: "Lottery", icon: "🎟️" },
     { name: "Crash Games", icon: "🚀" },
     { name: "Roulette", icon: "🎡" },
     { name: "Blackjack", icon: "🃏" },
     { name: "Baccarat", icon: "💎" },
     { name: "Dragon Tiger", icon: "🐯" },
     { name: "Teen Patti", icon: "🎴" },
-    { name: "Sic Bo", icon: "🎲" },
     { name: "Poker", icon: "♠️" },
     { name: "Game Shows", icon: "📺" },
-    { name: "Mega Wheel", icon: "🎡" },
     { name: "Andar Bahar", icon: "🃏" },
   ]
   const [sportsLoading, setSportsLoading] = useState(false);
@@ -142,8 +141,10 @@ function Navbar() {
     const game = games[index];
     if (game.name === "Roulette") {
       navigate("/roulette");
+    } else if (game.name === "Lottery") {
+      navigate("/lottery");
     } else if (game.name === "Crash Games") {
-      scrollToSection("aviator");
+      navigate("/crash-games");
     } else {
       navigate("/casino");
     }
@@ -383,6 +384,20 @@ function Navbar() {
     window.open(url, "_blank", "noopener,noreferrer")
   }
 
+  const getActiveTabIndex = () => {
+    if (location.pathname === "/lottery") {
+      return games.findIndex(g => g.name === "Lottery");
+    }
+    if (location.pathname === "/crash-games") {
+      return games.findIndex(g => g.name === "Crash Games");
+    }
+    if (location.pathname === "/roulette") {
+      return games.findIndex(g => g.name === "Roulette");
+    }
+    return selectedGame;
+  };
+  const activeIndex = getActiveTabIndex();
+
   return (
     <>
       <div className="fixed top-0 left-0 w-full z-[100] custom-header-wrapper shadow-lg">
@@ -607,10 +622,10 @@ function Navbar() {
                   key={index}
                   onClick={() => handleGameSelect(index)}
                   disabled={sportsLoading}
-                  className={`sport-tab ${selectedGame === index ? "active" : ""} ${sportsLoading ? "opacity-60 cursor-wait" : ""}`}
+                  className={`sport-tab ${activeIndex === index ? "active" : ""} ${sportsLoading ? "opacity-60 cursor-wait" : ""}`}
                   style={{
                     fontFamily: FONTS.head,
-                    color: selectedGame === index ? COLORS.brand : '',
+                    color: activeIndex === index ? COLORS.brand : '',
                     borderRight: `1px solid ${COLORS.bg4}`
                   }}
                 >
@@ -618,7 +633,7 @@ function Navbar() {
                     .sport-tab.active::after { background: ${COLORS.brand}; transform: scaleX(1); }
                     .sport-tab:hover::after { background: ${COLORS.brand}; }
                   `}</style>
-                  {sportsLoading && selectedGame === index ? (
+                  {sportsLoading && activeIndex === index ? (
                     <span className="tab-icon animate-spin">⏳</span>
                   ) : (
                     <span className="tab-icon">{game.icon}</span>

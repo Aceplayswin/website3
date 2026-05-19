@@ -6,27 +6,43 @@ import { useColors } from "../../hooks/useColors"
 import { FONTS } from "../../constants/theme"
 import GameSection from "../home/GameSection"
 
-function RoulettePage() {
+function CrashGamesPage() {
   const COLORS = useColors()
   const games = useGames()
   const loading = games.loading
-  const [rouletteGames, setRouletteGames] = useState([])
+  const [crashGames, setCrashGames] = useState([])
 
   useEffect(() => {
     if (!loading) {
-      // Flatten all categories into a single list to check for the flag
+      // Flatten all categories into a single list to check
       const allGames = Object.values(games).filter(Array.isArray).flat()
       
-      const filtered = allGames.filter((game) => 
-        // 1. Check for manual flag from admin
-        game.is_roulette === 1 || 
-        // 2. Fallback: Check name for "roulette"
-        game["Game Name"]?.toLowerCase().includes("roulette")
-      )
+      const filtered = allGames.filter((game) => {
+        const provider = (game["Game Provider"] || game["provider"] || "").toLowerCase()
+        const gameName = (game["Game Name"] || "").toLowerCase()
+        
+        // Match user's providers: aviatrix, galaxsys, aura gaming, veliplay
+        const matchesProvider = 
+          provider === "aviatrix" || 
+          provider === "galaxsys" || 
+          provider === "aura gaming" || 
+          provider === "veliplay"
+          
+        // Fallback checks for crash-type games
+        const matchesName = 
+          gameName.includes("crash") || 
+          gameName.includes("aviator") || 
+          gameName.includes("spaceman") || 
+          gameName.includes("jetx") || 
+          gameName.includes("aviatrix") ||
+          gameName.includes("zeppelin")
+          
+        return matchesProvider || matchesName
+      })
       
       // Remove duplicates (by Game UID)
       const uniqueGames = Array.from(new Map(filtered.map(item => [item["Game UID"], item])).values())
-      setRouletteGames(uniqueGames)
+      setCrashGames(uniqueGames)
     }
   }, [games, loading])
 
@@ -52,7 +68,7 @@ function RoulettePage() {
                 textShadow: `0 0 15px ${COLORS.brand}33`
               }}
             >
-              Exclusive <span style={{ color: COLORS.brand }}>Roulette</span>
+              Exclusive <span style={{ color: COLORS.brand }}>Crash Games</span>
             </h1>
           </div>
         </div>
@@ -66,15 +82,15 @@ function RoulettePage() {
           ) : (
             <div className="animate-fadeIn">
               <GameSection 
-                title="🎰 Roulette Games" 
-                games={rouletteGames} 
-                id="roulette-collection"
+                title="🚀 Crash Games" 
+                games={crashGames} 
+                id="crash-collection"
                 layout="grid"
               />
               
-              {rouletteGames.length === 0 && (
+              {crashGames.length === 0 && (
                 <div className="text-center py-20 bg-white/5 rounded-3xl border border-white/5">
-                  <p className="text-white/20 text-lg font-medium">No roulette games found.</p>
+                  <p className="text-white/20 text-lg font-medium">No crash games found.</p>
                   <p className="text-white/10 text-sm">Add games from the admin panel to see them here!</p>
                 </div>
               )}
@@ -88,4 +104,4 @@ function RoulettePage() {
   )
 }
 
-export default RoulettePage
+export default CrashGamesPage

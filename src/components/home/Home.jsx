@@ -21,11 +21,13 @@ import ProviderSelection from "./ProviderSelection"
 import { useColors } from '../../hooks/useColors'
 import { FONTS } from '../../constants/theme'
 import { useSite } from "../../context/SiteContext"
+import { useGames } from "../../context/GameContext"
 import { URL as BASE_URL } from "../../utils/constants"
 
 function Home() {
   const COLORS = useColors()
   const { accountInfo, promoBanners, heroBanners, loading } = useSite()
+  const { loading: gamesLoading } = useGames() || {}
 
   const [showToast, setShowToast] = useState(false)
   const [showSuccessToast, setShowSuccessToast] = useState(false)
@@ -115,7 +117,7 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    if (window.location.hash && window.location.hash !== "#top") {
+    if (!gamesLoading && window.location.hash && window.location.hash !== "#top") {
       const id = window.location.hash.substring(1)
       const element = document.getElementById(id)
       if (element) {
@@ -131,10 +133,10 @@ function Home() {
             top: offsetPosition,
             behavior: "smooth"
           })
-        }, 500)
+        }, 100)
       }
     }
-  }, [])
+  }, [gamesLoading])
 
   return (
     <div className="flex flex-col min-h-screen relative">

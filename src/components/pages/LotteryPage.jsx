@@ -6,27 +6,31 @@ import { useColors } from "../../hooks/useColors"
 import { FONTS } from "../../constants/theme"
 import GameSection from "../home/GameSection"
 
-function RoulettePage() {
+function LotteryPage() {
   const COLORS = useColors()
   const games = useGames()
   const loading = games.loading
-  const [rouletteGames, setRouletteGames] = useState([])
+  const [lotteryGames, setLotteryGames] = useState([])
 
   useEffect(() => {
     if (!loading) {
-      // Flatten all categories into a single list to check for the flag
+      // Flatten all categories into a single list to check
       const allGames = Object.values(games).filter(Array.isArray).flat()
       
-      const filtered = allGames.filter((game) => 
-        // 1. Check for manual flag from admin
-        game.is_roulette === 1 || 
-        // 2. Fallback: Check name for "roulette"
-        game["Game Name"]?.toLowerCase().includes("roulette")
-      )
+      const filtered = allGames.filter((game) => {
+        const provider = (game["Game Provider"] || game["provider"] || "").toLowerCase()
+        const gameName = (game["Game Name"] || "").toLowerCase()
+        return (
+          provider === "india lotto" || 
+          provider === "indialotto" ||
+          gameName.includes("lotto") ||
+          gameName.includes("lottery")
+        )
+      })
       
       // Remove duplicates (by Game UID)
       const uniqueGames = Array.from(new Map(filtered.map(item => [item["Game UID"], item])).values())
-      setRouletteGames(uniqueGames)
+      setLotteryGames(uniqueGames)
     }
   }, [games, loading])
 
@@ -52,7 +56,7 @@ function RoulettePage() {
                 textShadow: `0 0 15px ${COLORS.brand}33`
               }}
             >
-              Exclusive <span style={{ color: COLORS.brand }}>Roulette</span>
+              Exclusive <span style={{ color: COLORS.brand }}>Lottery</span>
             </h1>
           </div>
         </div>
@@ -66,15 +70,15 @@ function RoulettePage() {
           ) : (
             <div className="animate-fadeIn">
               <GameSection 
-                title="🎰 Roulette Games" 
-                games={rouletteGames} 
-                id="roulette-collection"
+                title="🎟️ Lottery Games" 
+                games={lotteryGames} 
+                id="lottery-collection"
                 layout="grid"
               />
               
-              {rouletteGames.length === 0 && (
+              {lotteryGames.length === 0 && (
                 <div className="text-center py-20 bg-white/5 rounded-3xl border border-white/5">
-                  <p className="text-white/20 text-lg font-medium">No roulette games found.</p>
+                  <p className="text-white/20 text-lg font-medium">No lottery games found.</p>
                   <p className="text-white/10 text-sm">Add games from the admin panel to see them here!</p>
                 </div>
               )}
@@ -88,4 +92,4 @@ function RoulettePage() {
   )
 }
 
-export default RoulettePage
+export default LotteryPage

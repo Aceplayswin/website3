@@ -4,7 +4,7 @@
   Contact: @devkilla (Telegram)
 */
 
-import { createBrowserRouter, RouterProvider, Outlet, ScrollRestoration } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
 import Home from './components/home/Home';
 import GameplayComponent from './components/GamePlayComponent';
 import Transaction from './components/pages/Transaction';
@@ -26,6 +26,8 @@ import ActiveBonusPage from './components/pages/ActiveBonusPage';
 import BonusPage from './components/pages/BonusPage';
 import NotificationsPage from './components/pages/NotificationsPage';
 import RoulettePage from './components/pages/RoulettePage';
+import LotteryPage from './components/pages/LotteryPage';
+import CrashGamesPage from './components/pages/CrashGamesPage';
 import CasinoPage from './components/pages/CasinoPage';
 import NotFound from './components/pages/NotFound';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -35,13 +37,19 @@ import { useSite, SiteProvider } from './context/SiteContext';
 import { GameProvider } from './context/GameContext';
 import { URL as BASE_URL } from './utils/constants';
 import BroadcastModal from './components/common/BroadcastModal';
+import MobileFooterNav from './components/navbar/MobileFooterNav';
 
 const RootLayout = () => {
+  const location = useLocation();
+  const excludedPaths = ['/', '/withdraw', '/deposit', '/transaction', '/betting-profit-loss'];
+  const showFooterNav = !excludedPaths.includes(location.pathname) && !location.pathname.startsWith('/game');
+
   return (
     <>
       <ScrollRestoration />
       <BroadcastModal />
       <Outlet />
+      {showFooterNav && <MobileFooterNav />}
     </>
   );
 };
@@ -186,6 +194,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/roulette",
         element: <RoulettePage />,
+      },
+      {
+        path: "/lottery",
+        element: <LotteryPage />,
+      },
+      {
+        path: "/crash-games",
+        element: <CrashGamesPage />,
       },
       {
         path: "/casino",

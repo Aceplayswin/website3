@@ -59,6 +59,10 @@ const CasinoPage = () => {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
 
+  // Performance: Infinite Scroll
+  const [displayLimit, setDisplayLimit] = useState(48);
+  const observerTarget = useRef(null);
+
   // Drag to scroll functionality for the Game Types Bar
   const scrollRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -87,41 +91,75 @@ const CasinoPage = () => {
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  const allGames = useMemo(() => {
+  // PERFORMANCE CRITICAL: Pre-compute unique games, types, and provider counts in ONE pass.
+  // This prevents running millions of iterations on every render.
+  const { allGames, providerCounts } = useMemo(() => {
     const combined = [
-      ...(casino_lobby || []), 
-      ...(casino || []), 
-      ...(turbo || []), 
+      ...(casino_lobby || []),
+      ...(casino || []),
+      ...(turbo || []),
       ...(live || []),
       ...(slots || []),
       ...(fishing || []),
       ...(poker || [])
     ];
+
     const uniqueGamesMap = new Map();
-    combined.forEach(g => {
+    const counts = {};
+
+    for (let i = 0; i < combined.length; i++) {
+      const g = combined[i];
       if (g && g["Game UID"] && !uniqueGamesMap.has(g["Game UID"])) {
-        uniqueGamesMap.set(g["Game UID"], g);
+        const computedType = getGameType(g);
+        const providerName = g["Game Provider"] || g.provider || "Unknown";
+
+        uniqueGamesMap.set(g["Game UID"], { ...g, computedType, providerName });
+        counts[providerName] = (counts[providerName] || 0) + 1;
       }
-    });
-    return Array.from(uniqueGamesMap.values());
+    }
+
+    return {
+      allGames: Array.from(uniqueGamesMap.values()),
+      providerCounts: counts
+    };
   }, [casino_lobby, casino, turbo, live, slots, fishing, poker]);
 
   const providers = useMemo(() => {
-    const provSet = new Set();
-    allGames.forEach(g => {
-      const p = g["Game Provider"] || g.provider;
-      if (p) provSet.add(p);
-    });
-    return Array.from(provSet).sort();
-  }, [allGames]);
+    return Object.keys(providerCounts).sort();
+  }, [providerCounts]);
 
   const filteredGames = useMemo(() => {
+    if (activeType === 'all' && activeProvider === 'all') return allGames;
+
     return allGames.filter(g => {
-      const typeMatch = activeType === 'all' || getGameType(g) === activeType;
-      const provMatch = activeProvider === 'all' || (g["Game Provider"] || g.provider) === activeProvider;
+      const typeMatch = activeType === 'all' || g.computedType === activeType;
+      const provMatch = activeProvider === 'all' || g.providerName === activeProvider;
       return typeMatch && provMatch;
     });
   }, [allGames, activeType, activeProvider]);
+
+  // Performance: Reset display limit when filters change
+  useEffect(() => {
+    setDisplayLimit(48);
+  }, [activeType, activeProvider]);
+
+  // Performance: Intersection Observer for Infinite Scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          setDisplayLimit(prev => prev + 48);
+        }
+      },
+      { threshold: 0.1, rootMargin: "600px" } // Load 600px before reaching the bottom
+    );
+
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
+    }
+
+    return () => observer.disconnect();
+  }, [filteredGames.length]);
 
   // Loading simulation effect
   useEffect(() => {
@@ -199,12 +237,12 @@ const CasinoPage = () => {
   }
 
   return (
-    <div className="w-full flex flex-col bg-gray-50 dark:bg-transparent overflow-hidden" style={{ height: '100dvh' }}>
+    <div className="w-full flex flex-col bg-gray-50 dark:bg-transparent min-h-screen md:h-[100dvh] overflow-y-auto md:overflow-hidden">
       <Navbar />
-      <div className="flex-1 max-w-[1920px] mx-auto w-full px-4 pt-2 pb-20 md:pb-6 flex flex-col md:flex-row gap-4 md:gap-6 min-h-0">
-        
+      <div className="flex-1 max-w-[1920px] mx-auto w-full px-4 pt-2 pb-24 md:pb-6 flex flex-col md:flex-row gap-4 md:gap-6 min-h-0">
+
         {/* Sidebar for Providers */}
-        <div className="hidden md:flex flex-col w-[260px] shrink-0 rounded-2xl border border-black/10 dark:border-white/10 overflow-hidden shadow-lg h-full" style={{ backgroundColor: `${COLORS.bg2}EE`, backdropFilter: "blur(10px)" }}>
+        <div className="hidden md:flex flex-col w-[260px] shrink-0 rounded-2xl border border-black/10 dark:border-white/10 overflow-hidden shadow-lg h-full" style={{ backgroundColor: `${COLORS.bg2}` }}>
           <style>{`
             .sidebar-scroll::-webkit-scrollbar { width: 4px; }
             .sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
@@ -214,18 +252,18 @@ const CasinoPage = () => {
           <div className="p-5 border-b border-black/10 dark:border-white/10">
             <h3 className="text-xs font-black uppercase tracking-widest text-black/50 dark:text-white/50 mb-4" style={{ fontFamily: FONTS.head }}>Providers</h3>
             <div className="relative">
-              <input 
-                type="text" 
-                placeholder="Search Providers..." 
-                value={providerSearch} 
-                onChange={e => setProviderSearch(e.target.value)} 
+              <input
+                type="text"
+                placeholder="Search Providers..."
+                value={providerSearch}
+                onChange={e => setProviderSearch(e.target.value)}
                 className="w-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl py-3 px-4 pl-10 text-xs font-medium outline-none focus:border-brand transition-colors text-black dark:text-white"
               />
-              <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-black/40 dark:text-white/40" size={14}/>
+              <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-black/40 dark:text-white/40" size={14} />
             </div>
           </div>
           <div className="flex-1 overflow-y-auto sidebar-scroll p-3 space-y-1">
-            <button 
+            <button
               onClick={() => setActiveProvider('all')}
               className={`w-full flex items-center justify-between p-3.5 rounded-xl text-xs font-bold transition-all duration-300 ${activeProvider === 'all' ? 'bg-brand/10 text-brand shadow-[inset_2px_0_0_0_var(--tw-shadow-color)] shadow-brand' : 'text-black/70 dark:text-white/70 hover:bg-black/5 dark:hover:bg-white/5'}`}
             >
@@ -236,9 +274,9 @@ const CasinoPage = () => {
               <span className="text-[10px] bg-black/5 dark:bg-white/5 px-2.5 py-1 rounded-full font-bold">{allGames.length}</span>
             </button>
             {providers.filter(p => p.toLowerCase().includes(providerSearch.toLowerCase())).map(p => {
-              const count = allGames.filter(g => (g["Game Provider"] || g.provider) === p).length;
+              const count = providerCounts[p];
               return (
-                <button 
+                <button
                   key={p}
                   onClick={() => setActiveProvider(p)}
                   className={`w-full flex items-center justify-between p-3.5 rounded-xl text-xs font-bold transition-all duration-300 ${activeProvider === p ? 'bg-brand/10 text-brand shadow-[inset_2px_0_0_0_var(--tw-shadow-color)] shadow-brand' : 'text-black/70 dark:text-white/70 hover:bg-black/5 dark:hover:bg-white/5'}`}
@@ -255,10 +293,10 @@ const CasinoPage = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col min-w-0 h-full overflow-y-auto custom-scrollbar pr-1 md:pr-2">
-          
+        <div className="flex-1 flex flex-col min-w-0 h-auto md:h-full overflow-visible md:overflow-hidden">
+
           {/* Premium Segmented Game Types Bar */}
-          <div className="relative mb-5 md:mb-6 w-full max-w-full">
+          <div className="shrink-0 relative mb-5 md:mb-6 w-full max-w-full">
             <style>{`
               .game-tabs-scroll::-webkit-scrollbar { height: 3px; }
               .game-tabs-scroll::-webkit-scrollbar-track { background: transparent; margin: 0 16px; }
@@ -266,14 +304,14 @@ const CasinoPage = () => {
               .game-tabs-scroll:hover::-webkit-scrollbar-thumb { background: rgba(230, 160, 0, 0.8); }
               .game-tabs-scroll { scrollbar-width: none; } /* Hide native firefox to use only webkit/custom */
             `}</style>
-            <div 
+            <div
               ref={scrollRef}
               onMouseDown={handleMouseDown}
               onMouseLeave={handleMouseLeave}
               onMouseUp={handleMouseUp}
               onMouseMove={handleMouseMove}
-              className={`flex items-center p-1 overflow-x-auto w-full rounded-[16px] bg-[#1a1a1a] dark:bg-white/[0.02] border border-black/10 dark:border-white/5 shadow-inner game-tabs-scroll ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-              style={{ 
+              className={`flex items-center p-0.5 md:p-1 overflow-x-auto overflow-y-hidden w-full rounded-[12px] md:rounded-[16px] bg-[#1a1a1a] dark:bg-white/[0.02] border border-black/10 dark:border-white/5 shadow-inner game-tabs-scroll ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+              style={{
                 WebkitOverflowScrolling: "touch",
                 userSelect: "none"
               }}
@@ -284,18 +322,17 @@ const CasinoPage = () => {
                   <button
                     key={type.id}
                     onClick={() => !isDragging && setActiveType(type.id)}
-                    className={`shrink-0 relative flex items-center gap-2 whitespace-nowrap px-4 py-2.5 rounded-[12px] font-bold transition-all duration-300 z-10 select-none ${
-                      isActive 
-                        ? 'text-black shadow-[0_8px_20px_rgba(230,160,0,0.3)] scale-[1.02] mx-1' 
+                    className={`shrink-0 relative flex items-center gap-1.5 md:gap-2 whitespace-nowrap px-3 py-1.5 md:px-4 md:py-2.5 rounded-[9px] md:rounded-[12px] font-bold transition-all duration-300 z-10 select-none ${isActive
+                        ? 'text-black shadow-[0_6px_15px_rgba(230,160,0,0.25)] scale-[1.01] mx-0.5 md:mx-1'
                         : 'text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'
-                    }`}
+                      }`}
                     style={{ fontFamily: FONTS.ui }}
                   >
                     {isActive && (
-                      <div className="absolute inset-0 bg-brand rounded-[12px] -z-10 border border-white/20"></div>
+                      <div className="absolute inset-0 bg-brand rounded-[9px] md:rounded-[12px] -z-10 border border-white/20"></div>
                     )}
-                    <span className={`text-[16px] transition-transform duration-300 ${isActive ? 'text-black scale-110' : 'text-brand grayscale-[20%]'}`}>{type.icon}</span>
-                    <span className="tracking-widest uppercase text-[11px] sm:text-[12px]">{type.label}</span>
+                    <span className={`text-[13px] md:text-[16px] transition-transform duration-300 ${isActive ? 'text-black scale-105' : 'text-brand grayscale-[20%]'}`}>{type.icon}</span>
+                    <span className="tracking-widest uppercase text-[9px] md:text-[11px] sm:text-[12px]">{type.label}</span>
                   </button>
                 );
               })}
@@ -303,73 +340,83 @@ const CasinoPage = () => {
           </div>
 
           {/* Mobile Providers Selector (hidden on desktop) */}
-          <div className="md:hidden mb-6 relative">
-            <select 
+          <div className="shrink-0 md:hidden mb-4 relative">
+            <select
               value={activeProvider}
               onChange={(e) => setActiveProvider(e.target.value)}
-              className="w-full bg-white dark:bg-[#14141E] border border-black/10 dark:border-white/10 rounded-xl py-4 px-5 text-sm font-bold appearance-none outline-none text-black dark:text-white shadow-sm"
-              style={{ fontFamily: FONTS.ui }}
+              className="w-full bg-white dark:bg-[#14141E] border border-black/10 dark:border-white/10 rounded-[10px] py-2.5 pl-4 pr-10 text-xs font-bold appearance-none bg-none outline-none text-black dark:text-white shadow-sm"
+              style={{ fontFamily: FONTS.ui, backgroundImage: 'none' }}
             >
               <option value="all">All Providers ({allGames.length})</option>
               {providers.map(p => (
-                <option key={p} value={p}>{p} ({allGames.filter(g => (g["Game Provider"] || g.provider) === p).length})</option>
+                <option key={p} value={p}>{p} ({providerCounts[p]})</option>
               ))}
             </select>
-            <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-brand">▼</div>
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-brand text-[10px]">▼</div>
           </div>
 
           {/* Result Bar */}
-          <div className="flex items-center justify-between mb-5 px-2">
+          <div className="shrink-0 flex items-center justify-between mb-4 px-2">
             <span className="text-[13px] text-black/60 dark:text-white/60 font-medium" style={{ fontFamily: FONTS.ui }}>
               Showing <strong className="text-black dark:text-white font-black">{filteredGames.length}</strong> games for <strong className="text-brand font-bold">{activeProvider === 'all' ? 'All Providers' : activeProvider}</strong>
             </span>
           </div>
 
           {/* Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 md:gap-5 pb-10">
-            {filteredGames.length === 0 ? (
-              <div className="col-span-full py-32 flex flex-col items-center justify-center text-center">
-                <FaGamepad className="text-6xl text-black/10 dark:text-white/10 mb-6" />
-                <h3 className="text-xl font-black text-black/80 dark:text-white/80 uppercase tracking-widest mb-2" style={{ fontFamily: FONTS.head }}>No Games Found</h3>
-                <p className="text-sm text-black/50 dark:text-white/50 max-w-md">Try selecting a different provider or game category to see available games.</p>
-                <button 
-                  onClick={() => { setActiveType('all'); setActiveProvider('all'); }}
-                  className="mt-6 px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-[10px] transition-all bg-brand/10 text-brand hover:bg-brand hover:text-black"
-                >
-                  Reset Filters
-                </button>
-              </div>
-            ) : (
-              filteredGames.map((game, idx) => (
-                <div key={idx} className="flex flex-col group cursor-pointer" onClick={() => handleGameClick(game)}>
-                  <div className="relative aspect-[4/5] rounded-xl overflow-hidden p-[1px] bg-gradient-to-br from-black/10 via-transparent to-black/5 dark:from-white/10 dark:via-transparent dark:to-white/5 transition-all duration-500 group-hover:from-brand/50 group-hover:to-brand/20 group-hover:shadow-[0_0_30px_rgba(230,160,0,0.4)] group-hover:-translate-y-1">
-                    <div className="relative w-full h-full rounded-[11px] overflow-hidden bg-gray-100 dark:bg-white/5">
-                      <img
-                        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${loadingForGames === game["Game UID"] ? "opacity-30 blur-sm" : ""}`}
-                        src={game.icon || "/placeholder.svg"}
-                        alt={game["Game Name"]}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div
-                          className="p-3.5 rounded-full shadow-2xl transform scale-50 group-hover:scale-100 transition-all duration-500 hover:scale-110"
-                          style={{ background: COLORS.brandGradient }}
-                        >
-                          <FaPlay className="text-black dark:text-white ml-0.5" size={14} />
+          <div className="flex-1 overflow-y-visible md:overflow-y-auto custom-scrollbar pr-1 md:pr-2 pb-28 md:pb-10 relative">
+            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-4 md:gap-5">
+              {filteredGames.length === 0 ? (
+                <div className="col-span-full py-32 flex flex-col items-center justify-center text-center">
+                  <FaGamepad className="text-6xl text-black/10 dark:text-white/10 mb-6" />
+                  <h3 className="text-xl font-black text-black/80 dark:text-white/80 uppercase tracking-widest mb-2" style={{ fontFamily: FONTS.head }}>No Games Found</h3>
+                  <p className="text-sm text-black/50 dark:text-white/50 max-w-md">Try selecting a different provider or game category to see available games.</p>
+                  <button
+                    onClick={() => { setActiveType('all'); setActiveProvider('all'); }}
+                    className="mt-6 px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-[10px] transition-all bg-brand/10 text-brand hover:bg-brand hover:text-black"
+                  >
+                    Reset Filters
+                  </button>
+                </div>
+              ) : (
+                filteredGames.slice(0, displayLimit).map((game, idx) => (
+                  <div key={`${game["Game UID"]}-${idx}`} className="flex flex-col group cursor-pointer" onClick={() => handleGameClick(game)}>
+                    <div className="relative aspect-[4/5] rounded-xl overflow-hidden p-[1px] bg-gradient-to-br from-black/10 via-transparent to-black/5 dark:from-white/10 dark:via-transparent dark:to-white/5 transition-all duration-300 group-hover:from-brand/50 group-hover:to-brand/20 group-hover:-translate-y-1">
+                      <div className="relative w-full h-full rounded-[11px] overflow-hidden bg-gray-100 dark:bg-[#1a1a1a]">
+                        <img
+                          loading="lazy"
+                          className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-110 ${loadingForGames === game["Game UID"] ? "opacity-30 blur-sm" : ""}`}
+                          src={game.icon || "/placeholder.svg"}
+                          alt={game["Game Name"]}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div
+                            className="p-3.5 rounded-full shadow-2xl transform scale-50 group-hover:scale-100 transition-all duration-300 hover:scale-110"
+                            style={{ background: COLORS.brandGradient }}
+                          >
+                            <FaPlay className="text-black dark:text-white ml-0.5" size={14} />
+                          </div>
                         </div>
-                      </div>
-                      <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                        <div className="backdrop-blur-md bg-white/90 dark:bg-black/60 rounded-lg p-2 border border-black/10 dark:border-white/10 text-center shadow-xl">
-                          <p className="text-[10px] sm:text-xs font-black text-black dark:text-white truncate uppercase tracking-tighter" style={{ fontFamily: FONTS.head }}>
-                            {game["Game Name"]}
-                          </p>
-                          <p className="text-[8px] sm:text-[9px] text-brand uppercase font-bold mt-0.5 opacity-80">{game["Game Provider"] || game.provider || "Casino"}</p>
+                        <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                          <div className="bg-white/95 dark:bg-black/80 rounded-lg p-2 border border-black/10 dark:border-white/10 text-center shadow-xl">
+                            <p className="text-[10px] sm:text-xs font-black text-black dark:text-white truncate uppercase tracking-tighter" style={{ fontFamily: FONTS.head }}>
+                              {game["Game Name"]}
+                            </p>
+                            <p className="text-[8px] sm:text-[9px] text-brand uppercase font-bold mt-0.5 opacity-80 truncate">{game["Game Provider"] || game.provider || "Casino"}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))
+                ))
+              )}
+            </div>
+
+            {/* Infinite Scroll Loading Trigger */}
+            {filteredGames.length > displayLimit && (
+              <div ref={observerTarget} className="w-full flex items-center justify-center py-10">
+                <div className="w-8 h-8 border-4 border-brand border-t-transparent rounded-full animate-spin"></div>
+              </div>
             )}
           </div>
         </div>
@@ -471,9 +518,9 @@ const CasinoPage = () => {
 
       {/* Loading Modal */}
       {confirmLoading && createPortal(
-        <div className="fixed inset-0 bg-black/20 dark:bg-black/60 backdrop-blur-2xl z-[100000] flex flex-col items-center justify-center transition-all duration-700 animate-fadeIn">
+        <div className="fixed inset-0 bg-black/25 dark:bg-black/60 backdrop-blur-2xl z-[100000] flex flex-col items-center justify-center transition-all duration-700 animate-fadeIn p-4 overflow-y-auto">
           <div
-            className="w-full max-w-md px-8 py-10 rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] border border-black/10 dark:border-white/10 relative overflow-hidden text-center"
+            className="w-[90%] max-w-[340px] md:max-w-md px-5 py-6 md:px-8 md:py-10 rounded-[2rem] md:rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] border border-black/10 dark:border-white/10 relative overflow-hidden text-center max-h-[92vh] overflow-y-auto scrollbar-none"
             style={{
               backgroundColor: `${COLORS.bg2}F2`,
               backgroundImage: 'radial-gradient(circle at top right, rgba(230, 160, 0, 0.05), transparent 40%)'
@@ -481,12 +528,12 @@ const CasinoPage = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"></div>
 
-            <div className="relative z-10 mb-8">
+            <div className="relative z-10 mb-6 md:mb-8">
               {confirmPopup.game && (
                 <div className="flex flex-col items-center">
-                  <div className="relative mb-6 group">
+                  <div className="relative mb-4 md:mb-6 group">
                     <div className="absolute -inset-4 bg-brand/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    <div className="relative w-28 h-28 rounded-2xl overflow-hidden border-2 border-black/10 dark:border-white/10 shadow-2xl transform transition-transform duration-700 hover:scale-105">
+                    <div className="relative w-20 h-20 md:w-28 md:h-28 rounded-2xl overflow-hidden border-2 border-black/10 dark:border-white/10 shadow-2xl transform transition-transform duration-700 hover:scale-105">
                       <img
                         src={confirmPopup.game.icon || "/placeholder.svg"}
                         alt={confirmPopup.game["Game Name"]}
@@ -495,19 +542,19 @@ const CasinoPage = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     </div>
                   </div>
-                  <h3 className="text-2xl font-black text-black dark:text-white mb-2 tracking-wider uppercase" style={{ fontFamily: FONTS.head }}>
+                  <h3 className="text-xl md:text-2xl font-black text-black dark:text-white mb-1.5 md:mb-2 tracking-wider uppercase" style={{ fontFamily: FONTS.head }}>
                     {confirmPopup.game["Game Name"]}
                   </h3>
                   <div className="flex items-center gap-2 text-brand font-bold text-xs uppercase tracking-[0.2em] animate-pulse">
                     <span className="w-2 h-2 rounded-full bg-brand shadow-[0_0_10px_rgba(230,160,0,1)]"></span>
-                    Initializing Game
+                    Initializing Elite Experience
                   </div>
                 </div>
               )}
             </div>
 
-            <div className="relative z-10 px-4 mb-10">
-              <div className="w-full bg-gray-200 dark:bg-white/5 rounded-full h-1.5 overflow-hidden backdrop-blur-sm border border-black/5 dark:border-white/5">
+            <div className="relative z-10 px-2 md:px-4 mb-6 md:mb-10">
+              <div className="w-full bg-gray-200 dark:bg-white/5 rounded-full h-1 overflow-hidden backdrop-blur-sm border border-black/5 dark:border-white/5">
                 <div
                   className="h-full rounded-full transition-all duration-300 ease-out relative"
                   style={{
@@ -520,10 +567,53 @@ const CasinoPage = () => {
                 </div>
               </div>
               <div className="flex justify-between mt-3 px-1">
-                <span className="text-[10px] text-black/40 dark:text-white/40 font-bold uppercase tracking-widest">Loading assets</span>
+                <span className="text-[10px] text-black/40 dark:text-white/40 font-bold uppercase tracking-widest">Connection Status</span>
                 <span className="text-[10px] text-brand font-black italic">{Math.round(loadingProgress)}%</span>
               </div>
             </div>
+
+            {/* Checklist steps */}
+            <div className="relative z-10 space-y-4 px-2 mb-6 md:mb-10 text-left">
+              {[
+                { label: "Establishing Connection", threshold: 30 },
+                { label: "Syncing Game Assets", threshold: 60 },
+                { label: "Optimizing Performance", threshold: 85 }
+              ].map((step, i) => (
+                <div key={i} className="flex justify-between items-center group">
+                  <span className={`text-xs transition-colors duration-500 ${loadingProgress > step.threshold ? "text-black/80 dark:text-white/80" : "text-black/20 dark:text-white/20"}`} style={{ fontFamily: FONTS.ui }}>
+                    {step.label}
+                  </span>
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center border transition-all duration-700 ${loadingProgress > step.threshold
+                    ? "border-brand/40 bg-brand/10 text-brand scale-110 shadow-[0_0_15px_rgba(230,160,0,0.2)]"
+                    : "border-black/5 dark:border-white/5 bg-gray-100 dark:bg-white/2"
+                    }`}>
+                    {loadingProgress > step.threshold ? (
+                      <span className="text-[10px] font-bold">✓</span>
+                    ) : (
+                      <div className="w-1 h-1 bg-gray-100 dark:bg-white/10 rounded-full animate-ping"></div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Pro Tip Card */}
+            <div className="relative z-10 py-4 px-6 rounded-2xl bg-gray-100 dark:bg-white/5 border border-black/5 dark:border-white/5 backdrop-blur-md group hover:bg-white/[0.08] transition-all duration-500">
+              <div className="flex items-center gap-3 mb-1">
+                <div className="w-5 h-[1px] bg-brand/50"></div>
+                <span className="text-[10px] text-brand/80 font-black uppercase tracking-widest">Pro Tip</span>
+              </div>
+              <p className="text-xs text-black/60 dark:text-white/60 leading-relaxed font-medium italic">
+                "Enable high performance mode in settings for the smoothest gameplay experience."
+              </p>
+            </div>
+          </div>
+
+          {/* Site Elite Signature at bottom of modal page */}
+          <div className="mt-8 flex items-center gap-4 opacity-30 relative z-10">
+            <div className="h-px w-10 bg-gradient-to-r from-transparent to-white/50"></div>
+            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black dark:text-white">{accountInfo?.service_site_name || 'Site'} Elite</span>
+            <div className="h-px w-10 bg-gradient-to-l from-transparent to-white/50"></div>
           </div>
         </div>,
         document.body
