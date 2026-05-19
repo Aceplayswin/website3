@@ -26,6 +26,7 @@ import ActiveBonusPage from './components/pages/ActiveBonusPage';
 import BonusPage from './components/pages/BonusPage';
 import NotificationsPage from './components/pages/NotificationsPage';
 import RoulettePage from './components/pages/RoulettePage';
+import CasinoPage from './components/pages/CasinoPage';
 import NotFound from './components/pages/NotFound';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import ThemeSynchronizer from './constants/ThemeSynchronizer';
@@ -185,6 +186,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/roulette",
         element: <RoulettePage />,
+      },
+      {
+        path: "/casino",
+        element: <CasinoPage />,
       },
       {
         path: "*",

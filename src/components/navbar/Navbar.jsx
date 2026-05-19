@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons"
 import Login from "../auth/Login"
 import Register from "../auth/Register"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import AccountInfo from "./AccountInfo"
 import { allsport } from "../jsondata/sport"
 import { liveSport } from "../jsondata/live"
@@ -31,6 +31,8 @@ function Navbar() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedGame, setSelectedGame] = useState(null)
   const navigate = useNavigate()
+  const location = useLocation()
+  const isCasinoPage = location.pathname === '/casino'
   const [toast, setToast] = useState(null)
   const [trendingMatches, setTrendingMatches] = useState([])
   const { theme, toggleTheme } = useTheme()
@@ -143,7 +145,7 @@ function Navbar() {
     } else if (game.name === "Crash Games") {
       scrollToSection("aviator");
     } else {
-      scrollToSection("casino-lobby");
+      navigate("/casino");
     }
   };
 
@@ -472,7 +474,7 @@ function Navbar() {
 
             <nav className="main-nav">
               <button className="nav-link" onClick={() => scrollToSection("live")} style={{ fontFamily: FONTS.head, background: 'none', border: 'none', cursor: 'pointer' }}>Sports</button>
-              <button className="nav-link" onClick={() => scrollToSection("casino-lobby")} style={{ fontFamily: FONTS.head, background: 'none', border: 'none', cursor: 'pointer' }}>Casino</button>
+              <button className="nav-link" onClick={() => { setMenuOpen(false); navigate("/casino"); }} style={{ fontFamily: FONTS.head, background: 'none', border: 'none', cursor: 'pointer' }}>Casino</button>
               <button className="nav-link" onClick={() => scrollToSection("slots")} style={{ fontFamily: FONTS.head, background: 'none', border: 'none', cursor: 'pointer' }}>Slots</button>
               <button className="nav-link" onClick={() => scrollToSection("fantasy-games")} style={{ fontFamily: FONTS.head, background: 'none', border: 'none', cursor: 'pointer' }}>Fantasy Games</button>
               <button className="nav-link" onClick={handlePromotion} style={{ fontFamily: FONTS.head, background: 'none', border: 'none', cursor: 'pointer' }}>Promotions</button>
@@ -597,38 +599,40 @@ function Navbar() {
         </header>
 
         {/* 4. SPORT TABS (TAGS) - MOVED TO BOTTOM OF STICKY */}
-        <div className="sport-tabs-bar" style={{ backgroundColor: COLORS.bg2, borderBottom: `1px solid ${COLORS.bg4}` }}>
-          <div className="sport-tabs-inner">
-            {games.map((game, index) => (
-              <button
-                key={index}
-                onClick={() => handleGameSelect(index)}
-                disabled={sportsLoading}
-                className={`sport-tab ${selectedGame === index ? "active" : ""} ${sportsLoading ? "opacity-60 cursor-wait" : ""}`}
-                style={{
-                  fontFamily: FONTS.head,
-                  color: selectedGame === index ? COLORS.brand : '',
-                  borderRight: `1px solid ${COLORS.bg4}`
-                }}
-              >
-                <style>{`
-                  .sport-tab.active::after { background: ${COLORS.brand}; transform: scaleX(1); }
-                  .sport-tab:hover::after { background: ${COLORS.brand}; }
-                `}</style>
-                {sportsLoading && selectedGame === index ? (
-                  <span className="tab-icon animate-spin">⏳</span>
-                ) : (
-                  <span className="tab-icon">{game.icon}</span>
-                )}
-                {" "}{game.name}
-              </button>
-            ))}
+        {!isCasinoPage && (
+          <div className="sport-tabs-bar" style={{ backgroundColor: COLORS.bg2, borderBottom: `1px solid ${COLORS.bg4}` }}>
+            <div className="sport-tabs-inner">
+              {games.map((game, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleGameSelect(index)}
+                  disabled={sportsLoading}
+                  className={`sport-tab ${selectedGame === index ? "active" : ""} ${sportsLoading ? "opacity-60 cursor-wait" : ""}`}
+                  style={{
+                    fontFamily: FONTS.head,
+                    color: selectedGame === index ? COLORS.brand : '',
+                    borderRight: `1px solid ${COLORS.bg4}`
+                  }}
+                >
+                  <style>{`
+                    .sport-tab.active::after { background: ${COLORS.brand}; transform: scaleX(1); }
+                    .sport-tab:hover::after { background: ${COLORS.brand}; }
+                  `}</style>
+                  {sportsLoading && selectedGame === index ? (
+                    <span className="tab-icon animate-spin">⏳</span>
+                  ) : (
+                    <span className="tab-icon">{game.icon}</span>
+                  )}
+                  {" "}{game.name}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
       </div>
       {/* Navbar Layout Spacer (Ensures content starts below the fixed navbar with a slight gap on ALL pages) */}
-      <div className="h-[95px] md:h-[135px] relative w-full"></div>
+      <div className={`relative w-full ${isCasinoPage ? 'h-[55px] md:h-[95px]' : 'h-[95px] md:h-[135px]'}`}></div>
 
 
       {/* Background Overlay with Blur Effect */}
