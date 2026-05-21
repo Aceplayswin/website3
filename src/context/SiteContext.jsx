@@ -5,8 +5,8 @@ const SiteContext = createContext();
 
 export const SiteProvider = ({ children }) => {
   // 1. Get initial auth tokens from storage immediately
-  const initialUserId = (typeof window !== 'undefined' && localStorage.getItem("account_id")) || "guest";
-  const initialAuthToken = (typeof window !== 'undefined' && localStorage.getItem("auth_secret_key")) || "guest";
+  const initialUserId = (typeof window !== 'undefined' && localStorage.getItem("account_id")) || null;
+  const initialAuthToken = (typeof window !== 'undefined' && localStorage.getItem("auth_secret_key")) || null;
 
   // 2. Build initial state from defaults + local session + cached data
   const INITIAL_ACCOUNT_INFO = {
@@ -16,9 +16,9 @@ export const SiteProvider = ({ children }) => {
     service_marquee: "Welcome to Velplay365! Experience world-class betting and gaming. Sign up now to get exclusive bonuses and daily rewards. Minimum deposit ₹100. Fast 24/7 withdrawals.",
     service_app_download_url: "https://velplay.cc/Velplay.apk",
     service_support_url: "https://t.me/velplay_support",
-    account_id: initialUserId !== "guest" ? initialUserId : "guest",
-    account_username: initialUserId !== "guest" ? "User" : "Guest",
-    account_balance: initialUserId !== "guest" ? "0.00" : "0.00",
+    account_id: initialUserId || "",
+    account_username: initialUserId === "guest" ? "Guest" : (initialUserId ? "User" : ""),
+    account_balance: "0.00",
     account_exposure: "0.00",
   };
 
@@ -72,6 +72,13 @@ export const SiteProvider = ({ children }) => {
   const [showRegister, setShowRegister] = useState(false);
   const [notice, setNotice] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const activateDemoMode = () => {
+    localStorage.setItem("auth_secret_key", "guest");
+    localStorage.setItem("account_id", "guest");
+    fetchSiteData();
+    window.dispatchEvent(new Event('site-data-refresh'));
+  };
 
   const logout = () => {
     console.warn("Logging out user...");
@@ -174,10 +181,16 @@ export const SiteProvider = ({ children }) => {
         if (result.noticeArr && result.noticeArr.length >= 2) {
           const nTitle = result.noticeArr[0];
           const nMsg = result.noticeArr[1];
-          const nHash = btoa(nTitle + nMsg).substring(0, 32);
+          let nHash;
+          try {
+            nHash = btoa(unescape(encodeURIComponent(nTitle + nMsg))).substring(0, 32);
+          } catch (e) {
+            nHash = "hash_" + String(nTitle + nMsg).length + "_" + Date.now();
+          }
           const acknowledgedNotices = JSON.parse(localStorage.getItem("acknowledged_notices") || "[]");
           const shownToasts = JSON.parse(localStorage.getItem("shown_toasts") || "[]");
-          if (!acknowledgedNotices.includes(nHash) && !shownToasts.includes(nHash)) {
+          const isRejectionNotice = nTitle.toLowerCase().includes("bet rejected");
+          if (isRejectionNotice || (!acknowledgedNotices.includes(nHash) && !shownToasts.includes(nHash))) {
             setNotice({ id: nHash, title: nTitle, message: nMsg });
           }
         }
@@ -227,6 +240,7 @@ export const SiteProvider = ({ children }) => {
       setNotice,
       refreshSiteData: fetchSiteData,
       logout,
+      activateDemoMode,
       showLogin,
       setShowLogin,
       showRegister,

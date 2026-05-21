@@ -19,19 +19,31 @@ const GameplayComponent = () => {
   const { gameUrl: encodedUrl, gameName } = useParams()
   const navigate = useNavigate()
   const COLORS = useColors()
-  const { accountInfo, refreshSiteData, notice, setNotice } = useSite()
+  const { accountInfo, refreshSiteData, notice, setNotice, deactivateDemoMode } = useSite()
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
   const [mouseIdle, setMouseIdle] = useState(false)
   const [showExitConfirm, setShowExitConfirm] = useState(false)
 
+  const authSecretKey = localStorage.getItem("auth_secret_key");
+  const userId = localStorage.getItem("account_id");
+
+  // Deactivate Demo Mode when leaving the game screen or closing the tab
+  useEffect(() => {
+    const handleUnload = () => {
+      if (userId === "guest" && deactivateDemoMode) deactivateDemoMode();
+    };
+    window.addEventListener('beforeunload', handleUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleUnload);
+      if (userId === "guest" && deactivateDemoMode) deactivateDemoMode();
+    };
+  }, [userId, deactivateDemoMode]);
+
   // Real-time Win/Loss Notifications
   const [lastProcessedId, setLastProcessedId] = useState(null)
   const [showResultPop, setShowResultPop] = useState(false)
   const [lastResult, setLastResult] = useState(null)
-
-  const authSecretKey = localStorage.getItem("auth_secret_key");
-  const userId = localStorage.getItem("account_id");
 
   const isWin = lastResult?.r_match_status === "profit" || lastResult?.r_match_status === "cashout";
   const isRejected = lastResult?.r_match_status === "rejected";
@@ -67,11 +79,6 @@ const GameplayComponent = () => {
           setLastResult(latestNotification);
           setShowResultPop(false);
           setTimeout(() => setShowResultPop(true), 50);
-
-          // Auto-hide only for non-rejections
-          if (latestNotification.r_match_status !== "rejected") {
-            setTimeout(() => setShowResultPop(false), 5000);
-          }
         }
       } catch (err) {
         console.error("Notification poller error:", err);
@@ -79,18 +86,27 @@ const GameplayComponent = () => {
     };
 
     const interval = setInterval(() => {
-      // Only poll if no notification is currently showing to prevent overlaps
-      if (!showResultPop) {
-        pollNotifications();
-      }
-    }, 5000);
+      pollNotifications();
+    }, 4000);
     pollNotifications(); // Check immediately on mount
     return () => clearInterval(interval);
-  }, [userId, authSecretKey, refreshSiteData, showResultPop]);
+  }, [userId, authSecretKey, refreshSiteData]);
+
+  // Unified Auto-Hide for Result/Rejection Popups
+  useEffect(() => {
+    if (showResultPop && lastResult) {
+      const duration = lastResult.r_match_status === "rejected" ? 8000 : 5000;
+      const timer = setTimeout(() => {
+        setShowResultPop(false);
+        setNotice(null);
+      }, duration);
+      return () => clearTimeout(timer);
+    }
+  }, [showResultPop, lastResult, setNotice]);
 
   // Handle System Notices (like Bet Rejection) inside Gameplay
   useEffect(() => {
-    if (notice && notice.title === "Bet Rejected") {
+    if (notice && (notice.title === "Bet Rejected" || notice.title.includes("Bet Rejected"))) {
       setLastResult({
         r_match_name: "System",
         r_match_status: "rejected",
@@ -99,17 +115,8 @@ const GameplayComponent = () => {
       });
       setShowResultPop(false);
       setTimeout(() => setShowResultPop(true), 50);
-      
-      // Rejections should NOT auto-hide, they need manual dismissal
-      if (!isRejected) {
-        const timer = setTimeout(() => {
-          setShowResultPop(false);
-          setNotice(null);
-        }, 7000);
-        return () => clearTimeout(timer);
-      }
     }
-  }, [notice, setNotice, isRejected]);
+  }, [notice]);
 
   // Decode URL from Base64 if it's encoded, otherwise use as is
   const getDecodedUrl = (str) => {
@@ -128,13 +135,21 @@ const GameplayComponent = () => {
   const isSportsGame = /sport|saba|wicket|esport/i.test(decodedGameName);
 
   const handleBack = () => setShowExitConfirm(true)
-  const confirmExit = () => navigate(-1)
+  const confirmExit = () => navigate('/')
   const cancelExit = () => setShowExitConfirm(false)
 
 
 
   // Handle deposit button click
   const handleDeposit = () => {
+    if (userId === "guest") {
+      setNotice({
+        id: "deposit_guest_reject_" + Date.now(),
+        title: "Bet Rejected",
+        message: "Demo Mode. Logged-in users can only deposit and play for real money. Please register or log in!"
+      });
+      return;
+    }
     navigate("/deposit")
   }
 
@@ -269,7 +284,9 @@ const GameplayComponent = () => {
           {/* Balance Display (Optimized for all screens) */}
           <div className="flex items-center border border-[var(--bg4)] rounded-lg md:rounded-2xl px-1.5 py-0.5 md:px-4 md:py-2 gap-1 md:gap-3 shadow-inner flex-shrink-0" style={{ backgroundColor: 'var(--bg3)' }}>
             <div className="flex flex-col items-end">
-              <span className="text-[6px] md:text-[9px] font-black uppercase tracking-widest leading-none" style={{ color: 'var(--muted)' }}>Balance</span>
+              <span className="text-[6px] md:text-[9px] font-black uppercase tracking-widest leading-none" style={{ color: 'var(--muted)' }}>
+                {userId === "guest" ? "Demo Balance" : "Balance"}
+              </span>
               <span className="text-[9px] xs:text-[10px] md:text-sm font-black tracking-tighter" style={{ fontFamily: FONTS.ui, color: 'var(--text)' }}>
                 ₹{parseFloat(accountInfo?.account_balance || 0).toLocaleString('en-IN')}
               </span>

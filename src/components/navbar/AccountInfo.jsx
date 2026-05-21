@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { FaWallet, FaMoneyBillWave, FaCoins } from "react-icons/fa";
 import { useColors } from '../../hooks/useColors';
 import { FONTS } from '../../constants/theme';
+import { useSite } from "../../context/SiteContext";
 
 const AccountInfo = ({ accountInfo }) => {
   const COLORS = useColors();
   const navigate = useNavigate();
+  const { setShowLogin } = useSite() || {};
+  const isGuest = accountInfo?.account_id === "guest" || localStorage.getItem("auth_secret_key") === "guest";
 
   // Premium initials-based avatar (inclusive for both male and female)
   const avatarUrl = `https://api.dicebear.com/7.x/initials/svg?seed=${accountInfo.account_username}&backgroundColor=ffad33&fontSize=45&bold=true`;
@@ -28,11 +31,27 @@ const AccountInfo = ({ accountInfo }) => {
     : 0;
 
   const balanceData = [
-    { label: "Real Balance", value: parseFloat(accountInfo.account_balance || 0).toLocaleString('en-IN'), isCurrency: true, active: true },
+    { label: isGuest ? "Demo Balance" : "Real Balance", value: parseFloat(accountInfo.account_balance || 0).toLocaleString('en-IN'), isCurrency: true, active: true },
     { label: "Casino Bonus", value: parseFloat(accountInfo.account_casino_bonus || 0).toLocaleString('en-IN'), isCurrency: true, active: true, locked: isWagering && casinoBonus > 0 },
     { label: "Sports Bonus", value: parseFloat(accountInfo.account_sports_bonus || 0).toLocaleString('en-IN'), isCurrency: true, active: true, locked: isWagering && sportsBonus > 0 },
     { label: "Total Balance", value: parseFloat(accountInfo.account_total_balance || 0).toLocaleString('en-IN'), isCurrency: true, active: true },
   ];
+
+  const handleDepositClick = () => {
+    if (isGuest) {
+      if (setShowLogin) setShowLogin(true);
+      return;
+    }
+    navigate("/deposit");
+  };
+
+  const handleWithdrawClick = () => {
+    if (isGuest) {
+      if (setShowLogin) setShowLogin(true);
+      return;
+    }
+    navigate("/withdraw");
+  };
 
   return (
     <div className="w-full bg-white/[0.02] rounded-[2.5rem] flex flex-col p-6 border border-black/5 dark:border-white/5 shadow-2xl backdrop-blur-xl relative overflow-hidden group">
@@ -140,7 +159,7 @@ const AccountInfo = ({ accountInfo }) => {
       {/* Quick Actions */}
       <div className="grid grid-cols-2 gap-3 relative z-10 mb-6">
         <button
-          onClick={() => navigate("/deposit")}
+          onClick={handleDepositClick}
           className="group flex flex-col items-center justify-center gap-1 bg-gray-100 dark:bg-white/5 hover:bg-black/5 dark:hover:bg-white/10 text-black dark:text-white font-black py-2 rounded-xl transition-all duration-300 border border-black/5 dark:border-white/5 uppercase text-[7px] tracking-[0.2em] active:scale-95"
           style={{ fontFamily: FONTS.ui }}
         >
@@ -150,7 +169,7 @@ const AccountInfo = ({ accountInfo }) => {
           Deposit
         </button>
         <button
-          onClick={() => navigate("/withdraw")}
+          onClick={handleWithdrawClick}
           className="group flex flex-col items-center justify-center gap-1 bg-gray-100 dark:bg-white/5 hover:bg-brand/20 dark:hover:bg-brand/10 text-black dark:text-white font-black py-2 rounded-xl transition-all duration-500 border border-black/5 dark:border-white/5 uppercase text-[7px] tracking-[0.2em] active:scale-95 shadow-lg group-hover:shadow-brand/20 group-hover:border-brand"
           style={{ fontFamily: FONTS.ui }}
         >

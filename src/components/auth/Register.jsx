@@ -7,9 +7,12 @@ import { HiCheck, HiX } from "react-icons/hi";
 import { API_URL } from "@/utils/constants";
 import { useColors } from '../../hooks/useColors';
 import { FONTS } from '../../constants/theme';
+import { useSite } from "../../context/SiteContext";
+import { FaGem, FaArrowRight } from "react-icons/fa";
 
 const Register = ({ onSwitchToLogin, onClose }) => {
   const COLORS = useColors();
+  const { activateDemoMode } = useSite();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [username, setUsername] = useState("");
   const [otp, setOtp] = useState("");
@@ -22,6 +25,11 @@ const Register = ({ onSwitchToLogin, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [successView, setSuccessView] = useState(false);
   const [toast, setToast] = useState(null);
+
+  const handleDemoClick = () => {
+    activateDemoMode();
+    if (onClose) onClose();
+  };
 
   const showToast = (type, message) => {
     setToast({ type, message });
@@ -374,8 +382,8 @@ const Register = ({ onSwitchToLogin, onClose }) => {
                 )}
               </div>
 
-              <div className="mt-6 text-center border-t border-black/5 dark:border-white/5 pt-4">
-                <p className="text-[10px]" style={{ color: COLORS.muted, fontFamily: FONTS.ui }}>
+              <div className="mt-4 pt-4 border-t border-black/5 dark:border-white/5 space-y-3">
+                <p className="text-[10px] text-center" style={{ color: COLORS.muted, fontFamily: FONTS.ui }}>
                   Already registered?{" "}
                   <button 
                     onClick={onSwitchToLogin} 

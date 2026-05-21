@@ -20,9 +20,9 @@ import { usePWAInstall } from "../../hooks/usePWAInstall"
 import AppInstallModal from "./AppInstallModal"
 
 function Navbar() {
-  const { accountInfo, showLogin, setShowLogin, showRegister, setShowRegister, refreshSiteData } = useSite();
+  const { accountInfo, showLogin, setShowLogin, showRegister, setShowRegister, refreshSiteData, activateDemoMode } = useSite();
   const { slots, casino, fishing, poker, turbo, live, casino_lobby, topslot } = useGames() || {};
-  const isLoggedIn = !!(accountInfo?.account_id && localStorage.getItem("auth_secret_key"));
+  const isLoggedIn = !!(accountInfo?.account_id && accountInfo.account_id !== "guest" && localStorage.getItem("auth_secret_key") && localStorage.getItem("auth_secret_key") !== "guest");
   const authSecretKey = localStorage.getItem("auth_secret_key");
   const userId = localStorage.getItem("account_id");
   const [menuOpen, setMenuOpen] = useState(false)
@@ -498,6 +498,28 @@ function Navbar() {
             <div className="header-cta">
               {!isLoggedIn ? (
                 <>
+                  {authSecretKey === "guest" ? (
+                    <div className="hidden md:flex items-center border border-emerald-500/20 rounded-xl px-3 py-1.5 gap-2 bg-emerald-500/5 shadow-inner backdrop-blur-md mr-1 select-none">
+                      <div className="flex flex-col items-end">
+                        <span className="text-[7px] font-black uppercase tracking-widest leading-none text-emerald-500/70">Demo Balance</span>
+                        <span className="text-[11px] font-black text-emerald-400" style={{ fontFamily: FONTS.ui }}>
+                          ₹0.00
+                        </span>
+                      </div>
+                      <div className="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+                        <FaWallet size={12} />
+                      </div>
+                    </div>
+                  ) : (
+                    <button
+                      className="btn-outline header-btn border-emerald-500/20 hover:border-emerald-500/40 bg-emerald-500/5 text-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 mr-1 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold"
+                      onClick={activateDemoMode}
+                      style={{ fontFamily: FONTS.head }}
+                    >
+                      <FaGem size={10} className="animate-pulse" />
+                      <span>Demo Play</span>
+                    </button>
+                  )}
                   <button className="btn-outline header-btn" onClick={handleLoginClick} style={{ fontFamily: FONTS.head, borderColor: COLORS.bg4 }}>Log In</button>
                   <button className="btn-primary header-btn" onClick={handleRegisterClick} style={{ background: COLORS.brandGradient, color: '#000', fontFamily: FONTS.head }}>Register</button>
                 </>
@@ -583,7 +605,7 @@ function Navbar() {
               )}
 
               {/* Profile Toggle */}
-              {isLoggedIn && (
+              {(isLoggedIn || authSecretKey === "guest") && (
                 <button
                   className={`p-1.5 md:p-2 rounded-xl transition-all duration-300 ${profileOpen ? 'bg-brand/20' : 'bg-gray-100 dark:bg-white/5'}`}
                   onClick={() => {
@@ -667,7 +689,7 @@ function Navbar() {
       )}
 
       {/* Profile Sidebar (Side Pop-up) */}
-      {isLoggedIn && profileOpen && (
+      {(isLoggedIn || authSecretKey === "guest") && profileOpen && (
         <div
           className={`fixed top-0 right-0 h-full w-[85%] md:w-[350px] backdrop-blur-3xl transform ${profileOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] z-[200] border-l border-black/5 dark:border-white/5 flex flex-col shadow-2xl`}
           style={{ backgroundColor: `${COLORS.bg2}FB` }}
@@ -702,6 +724,12 @@ function Navbar() {
               <h3 className="text-sm font-black uppercase tracking-tight" style={{ fontFamily: FONTS.head, color: COLORS.text }}>
                 {accountInfo?.account_username || "Guest User"}
               </h3>
+              {authSecretKey === "guest" && (
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[9px] font-black uppercase tracking-widest mt-2 select-none">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  Demo Mode
+                </div>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -719,24 +747,50 @@ function Navbar() {
 
               {/* Inlined Actions */}
               <div className="pt-4 space-y-2">
-                <button
-                  onClick={() => { setProfileOpen(false); navigate("/support"); }}
-                  className="w-full py-2.5 rounded-xl border border-black/10 dark:border-white/10 text-[9px] font-black uppercase tracking-widest text-black/40 dark:text-white/40 hover:text-black dark:text-white hover:bg-gray-100 dark:bg-white/5 transition-all text-center"
-                >
-                  My Tickets
-                </button>
-                <button
-                  onClick={() => { setProfileOpen(false); navigate("/change-password"); }}
-                  className="w-full py-2.5 rounded-xl border border-black/10 dark:border-white/10 text-[9px] font-black uppercase tracking-widest text-black/40 dark:text-white/40 hover:text-black dark:text-white hover:bg-gray-100 dark:bg-white/5 transition-all text-center"
-                >
-                  Change Password
-                </button>
-                <button
-                  onClick={handleSignOut}
-                  className="w-full py-2.5 rounded-xl bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white transition-all text-[9px] font-black uppercase tracking-[0.2em] border border-red-500/20"
-                >
-                  Sign Out
-                </button>
+                {authSecretKey === "guest" ? (
+                  <>
+                    <button
+                      onClick={() => { setProfileOpen(false); handleLoginClick(); }}
+                      className="w-full py-2.5 rounded-xl text-[9px] font-black uppercase tracking-widest hover:brightness-110 transition-all text-center text-black"
+                      style={{ background: COLORS.brandGradient }}
+                    >
+                      Log In
+                    </button>
+                    <button
+                      onClick={() => { setProfileOpen(false); handleRegisterClick(); }}
+                      className="w-full py-2.5 rounded-xl border border-brand/30 text-brand text-[9px] font-black uppercase tracking-widest hover:bg-brand/10 transition-all text-center bg-transparent"
+                    >
+                      Register Account
+                    </button>
+                    <button
+                      onClick={handleSignOut}
+                      className="w-full py-2.5 rounded-xl bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white transition-all text-[9px] font-black uppercase tracking-[0.2em] border border-red-500/20"
+                    >
+                      Exit Demo
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => { setProfileOpen(false); navigate("/support"); }}
+                      className="w-full py-2.5 rounded-xl border border-black/10 dark:border-white/10 text-[9px] font-black uppercase tracking-widest text-black/40 dark:text-white/40 hover:text-black dark:text-white hover:bg-gray-100 dark:bg-white/5 transition-all text-center"
+                    >
+                      My Tickets
+                    </button>
+                    <button
+                      onClick={() => { setProfileOpen(false); navigate("/change-password"); }}
+                      className="w-full py-2.5 rounded-xl border border-black/10 dark:border-white/10 text-[9px] font-black uppercase tracking-widest text-black/40 dark:text-white/40 hover:text-black dark:text-white hover:bg-gray-100 dark:bg-white/5 transition-all text-center"
+                    >
+                      Change Password
+                    </button>
+                    <button
+                      onClick={handleSignOut}
+                      className="w-full py-2.5 rounded-xl bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white transition-all text-[9px] font-black uppercase tracking-[0.2em] border border-red-500/20"
+                    >
+                      Sign Out
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -764,9 +818,65 @@ function Navbar() {
 
         {/* Sidebar Content */}
         <div className="flex-1 overflow-y-auto custom-scrollbar p-4 lg:p-6 pb-32 lg:pb-6 space-y-6">
+          {/* Guest Sidebar Card */}
+          {!isLoggedIn && authSecretKey !== "guest" && (
+            <div 
+              className="p-5 rounded-3xl border border-white/5 space-y-4 shadow-xl backdrop-blur-md relative overflow-hidden"
+              style={{ backgroundColor: `${COLORS.bg3}99` }}
+            >
+              {/* Decorative radial background light */}
+              <div className="absolute -top-12 -right-12 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl pointer-events-none"></div>
+              
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                  <FaGem size={14} className="animate-pulse" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-black uppercase tracking-wider text-white" style={{ fontFamily: FONTS.head }}>Guest Mode</h4>
+                  <p className="text-[9px] text-white/50 font-bold uppercase tracking-tight">Explore with ₹0.00</p>
+                </div>
+              </div>
+
+              <div className="space-y-2 pt-2">
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    activateDemoMode();
+                  }}
+                  className="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-black uppercase text-[10px] tracking-widest rounded-2xl transition-all duration-300 shadow-[0_10px_20px_rgba(16,185,129,0.2)] active:scale-95 flex items-center justify-center gap-2"
+                >
+                  <FaGem size={12} className="animate-bounce" />
+                  <span>Explore Free Play</span>
+                </button>
+                
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={handleLoginClick}
+                    className="py-3 bg-white/5 hover:bg-white/10 text-white font-black uppercase text-[9px] tracking-widest rounded-2xl transition-all duration-300 border border-white/10 active:scale-95"
+                  >
+                    Log In
+                  </button>
+                  <button
+                    onClick={handleRegisterClick}
+                    className="py-3 text-black font-black uppercase text-[9px] tracking-widest rounded-2xl transition-all duration-300 active:scale-95"
+                    style={{ background: COLORS.brandGradient }}
+                  >
+                    Register
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Account Info Card */}
-          {isLoggedIn && (
-            <div className="group transition-all duration-500">
+          {(isLoggedIn || authSecretKey === "guest") && (
+            <div className="group transition-all duration-500 relative">
+              {authSecretKey === "guest" && (
+                <div className="absolute top-3 right-3 z-20 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500 text-black text-[8px] font-black uppercase tracking-widest shadow-lg select-none">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                  Demo Mode
+                </div>
+              )}
               <AccountInfo accountInfo={accountInfo} />
             </div>
           )}

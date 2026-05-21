@@ -8,20 +8,25 @@ const ProtectedRoute = ({ children }) => {
   
   // Use same logic as Navbar: require both memory state and localStorage token
   const authSecretKey = localStorage.getItem("auth_secret_key");
-  const isLoggedIn = !!(accountInfo?.account_id && authSecretKey);
+  const isGuest = authSecretKey === "guest";
+  const isRealUser = !!(accountInfo?.account_id && accountInfo.account_id !== "guest" && authSecretKey && authSecretKey !== "guest");
+  
+  // Allow guest only for game routes
+  const isGameRoute = location.pathname.startsWith('/game');
+  const isAuthorized = isRealUser || (isGuest && isGameRoute);
 
   useEffect(() => {
-    // If not logged in and not currently loading initial site data
-    if (!loading && !isLoggedIn) {
+    // If not authorized and not currently loading initial site data
+    if (!loading && !isAuthorized) {
       setShowLogin(true);
     }
-  }, [isLoggedIn, setShowLogin, loading]);
+  }, [isAuthorized, setShowLogin, loading]);
 
   if (loading) {
     return null; // Or a loader component
   }
 
-  if (!isLoggedIn) {
+  if (!isAuthorized) {
     return <Navigate to="/" state={{ from: location }} replace />;
   }
   
