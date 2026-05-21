@@ -29,6 +29,7 @@ import RoulettePage from './components/pages/RoulettePage';
 import LotteryPage from './components/pages/LotteryPage';
 import CrashGamesPage from './components/pages/CrashGamesPage';
 import CasinoPage from './components/pages/CasinoPage';
+import CategoryGamesPage from './components/pages/CategoryGamesPage';
 import NotFound from './components/pages/NotFound';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import ThemeSynchronizer from './constants/ThemeSynchronizer';
@@ -206,6 +207,102 @@ const appRouter = createBrowserRouter([
       {
         path: "/casino",
         element: <CasinoPage />,
+      },
+      {
+        path: "/blackjack",
+        element: <CategoryGamesPage
+          title="Blackjack"
+          icon="🃏"
+          sectionId="blackjack-collection"
+          filterFn={(g) => {
+            const n = (g["Game Name"] || "").toLowerCase();
+            const t = (g.type || "").toLowerCase();
+            return n.includes("blackjack") || t.includes("blackjack");
+          }}
+        />,
+      },
+      {
+        path: "/baccarat",
+        element: <CategoryGamesPage
+          title="Baccarat"
+          icon="💎"
+          sectionId="baccarat-collection"
+          filterFn={(g) => {
+            const n = (g["Game Name"] || "").toLowerCase();
+            const t = (g.type || "").toLowerCase();
+            return n.includes("baccarat") || t.includes("baccarat");
+          }}
+        />,
+      },
+      {
+        path: "/dragon-tiger",
+        element: <CategoryGamesPage
+          title="Dragon Tiger"
+          icon="🐯"
+          sectionId="dragon-tiger-collection"
+          filterFn={(g) => {
+            const n = (g["Game Name"] || "").toLowerCase();
+            const t = (g.type || "").toLowerCase();
+            const c = n + " " + t;
+            return c.includes("dragon") && c.includes("tiger");
+          }}
+        />,
+      },
+      {
+        path: "/teen-patti",
+        element: <CategoryGamesPage
+          title="Teen Patti"
+          icon="🎴"
+          sectionId="teen-patti-collection"
+          filterFn={(g) => {
+            const n = (g["Game Name"] || "").toLowerCase();
+            const t = (g.type || "").toLowerCase();
+            const c = n + " " + t;
+            return c.includes("teen patti") || c.includes("teenpatti");
+          }}
+        />,
+      },
+      {
+        path: "/poker",
+        element: <CategoryGamesPage
+          title="Poker"
+          icon="♠️"
+          sectionId="poker-collection"
+          filterFn={(g) => {
+            const n = (g["Game Name"] || "").toLowerCase();
+            const t = (g.type || "").toLowerCase();
+            const c = n + " " + t;
+            return c.includes("poker") || c.includes("holdem") || c.includes("hold em");
+          }}
+        />,
+      },
+      {
+        path: "/game-shows",
+        element: <CategoryGamesPage
+          title="Game Shows"
+          icon="📺"
+          sectionId="game-shows-collection"
+          filterFn={(g) => {
+            const n = (g["Game Name"] || "").toLowerCase();
+            const t = (g.type || "").toLowerCase();
+            const c = n + " " + t;
+            return c.includes("show") || c.includes("crazy time") || c.includes("monopoly") || c.includes("deal or no deal");
+          }}
+        />,
+      },
+      {
+        path: "/andar-bahar",
+        element: <CategoryGamesPage
+          title="Andar Bahar"
+          icon="🃏"
+          sectionId="andar-bahar-collection"
+          filterFn={(g) => {
+            const n = (g["Game Name"] || "").toLowerCase();
+            const t = (g.type || "").toLowerCase();
+            const c = n + " " + t;
+            return c.includes("andar") && c.includes("bahar");
+          }}
+        />,
       },
       {
         path: "*",

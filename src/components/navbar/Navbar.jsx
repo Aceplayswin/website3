@@ -145,6 +145,20 @@ function Navbar() {
       navigate("/lottery");
     } else if (game.name === "Crash Games") {
       navigate("/crash-games");
+    } else if (game.name === "Blackjack") {
+      navigate("/blackjack");
+    } else if (game.name === "Baccarat") {
+      navigate("/baccarat");
+    } else if (game.name === "Dragon Tiger") {
+      navigate("/dragon-tiger");
+    } else if (game.name === "Teen Patti") {
+      navigate("/teen-patti");
+    } else if (game.name === "Poker") {
+      navigate("/poker");
+    } else if (game.name === "Game Shows") {
+      navigate("/game-shows");
+    } else if (game.name === "Andar Bahar") {
+      navigate("/andar-bahar");
     } else {
       navigate("/casino");
     }
@@ -385,14 +399,21 @@ function Navbar() {
   }
 
   const getActiveTabIndex = () => {
-    if (location.pathname === "/lottery") {
-      return games.findIndex(g => g.name === "Lottery");
-    }
-    if (location.pathname === "/crash-games") {
-      return games.findIndex(g => g.name === "Crash Games");
-    }
-    if (location.pathname === "/roulette") {
-      return games.findIndex(g => g.name === "Roulette");
+    const pathMap = {
+      "/lottery": "Lottery",
+      "/crash-games": "Crash Games",
+      "/roulette": "Roulette",
+      "/blackjack": "Blackjack",
+      "/baccarat": "Baccarat",
+      "/dragon-tiger": "Dragon Tiger",
+      "/teen-patti": "Teen Patti",
+      "/poker": "Poker",
+      "/game-shows": "Game Shows",
+      "/andar-bahar": "Andar Bahar",
+    };
+    const gameName = pathMap[location.pathname];
+    if (gameName) {
+      return games.findIndex(g => g.name === gameName);
     }
     return selectedGame;
   };
@@ -488,7 +509,14 @@ function Navbar() {
             </div>
 
             <nav className="main-nav">
-              <button className="nav-link" onClick={() => scrollToSection("live")} style={{ fontFamily: FONTS.head, background: 'none', border: 'none', cursor: 'pointer' }}>Sports</button>
+              <button className="nav-link" onClick={() => {
+                const luckSports = liveSport?.find(g => g["Game Name"] === "Luck Sports");
+                if (luckSports) {
+                  handleLiveSportSelect(luckSports);
+                } else {
+                  scrollToSection("live");
+                }
+              }} style={{ fontFamily: FONTS.head, background: 'none', border: 'none', cursor: 'pointer' }}>Sports</button>
               <button className="nav-link" onClick={() => { setMenuOpen(false); navigate("/casino"); }} style={{ fontFamily: FONTS.head, background: 'none', border: 'none', cursor: 'pointer' }}>Casino</button>
               <button className="nav-link" onClick={() => scrollToSection("slots")} style={{ fontFamily: FONTS.head, background: 'none', border: 'none', cursor: 'pointer' }}>Slots</button>
               <button className="nav-link" onClick={() => scrollToSection("fantasy-games")} style={{ fontFamily: FONTS.head, background: 'none', border: 'none', cursor: 'pointer' }}>Fantasy Games</button>
