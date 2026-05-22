@@ -131,8 +131,6 @@ const GameplayComponent = () => {
   };
 
   const gameUrl = getDecodedUrl(encodedUrl);
-  const decodedGameName = decodeURIComponent(gameName);
-  const isSportsGame = /sport|saba|wicket|esport/i.test(decodedGameName);
 
   const handleBack = () => setShowExitConfirm(true)
   const confirmExit = () => navigate('/')
@@ -266,12 +264,12 @@ const GameplayComponent = () => {
 
         {/* Right Side: Balance and Controls */}
         <div className="flex items-center gap-1.5 md:gap-4 ml-1.5 flex-shrink-0">
-          {/* Exposure Display - Only for Sports */}
-          {isSportsGame && (
-            <div className="flex items-center border border-[var(--bg4)] rounded-lg md:rounded-2xl px-1.5 py-0.5 md:px-4 md:py-2 gap-1 md:gap-3 shadow-inner flex-shrink-0" style={{ backgroundColor: 'var(--bg3)' }}>
+          {/* Total exposure across all open bets (sports + casino + live) */}
+          {userId !== "guest" && (
+            <div className="flex items-center border border-[var(--bg4)] rounded-lg md:rounded-2xl px-1.5 py-0.5 md:px-4 md:py-2 gap-1 md:gap-3 shadow-inner flex-shrink-0" style={{ backgroundColor: 'var(--bg3)' }} title="Total exposure from all open bets">
               <div className="flex flex-col items-end">
-                <span className="text-[6px] md:text-[9px] font-black uppercase tracking-widest leading-none text-rose-500/80">Exposure</span>
-                <span className="text-[9px] xs:text-[10px] md:text-sm font-black tracking-tighter text-rose-500 animate-pulse" style={{ fontFamily: FONTS.ui }}>
+                <span className="text-[6px] md:text-[9px] font-black uppercase tracking-widest leading-none text-rose-500/80">Total Exp</span>
+                <span className="text-[9px] xs:text-[10px] md:text-sm font-black tracking-tighter text-rose-500" style={{ fontFamily: FONTS.ui }}>
                   ₹{parseFloat(accountInfo?.account_exposure || 0).toLocaleString('en-IN')}
                 </span>
               </div>
@@ -337,6 +335,11 @@ const GameplayComponent = () => {
       </div>
 
       {/* Result Notification (Toast for Win/Loss, Modal for Rejection) */}
+      {/*
+        Win/Loss toast is commented out to temporarily disable popups for match outcomes.
+        To re-enable, remove the commented block below and restore the original conditional.
+      */}
+      {/*
       {!isRejected ? (
         <div
           className={`fixed top-20 left-1/2 -translate-x-1/2 z-[150] transition-all duration-700 pointer-events-none ${showResultPop ? "translate-y-0 opacity-100" : "-translate-y-20 opacity-0"
@@ -369,7 +372,7 @@ const GameplayComponent = () => {
           <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-black/85 backdrop-blur-xl animate-in fade-in duration-300" onClick={() => setShowResultPop(false)} />
             <div className="relative bg-[#1a1a1a] border-2 border-rose-500/50 p-8 rounded-[2.5rem] max-w-sm w-full text-center shadow-[0_0_100px_rgba(244,63,94,0.3)] animate-in zoom-in-95 duration-300 overflow-hidden">
-               {/* Decorative Glow */}
+               
                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-rose-500 shadow-[0_0_20px_#f43f5e]" />
                
                <div className="w-20 h-20 bg-rose-500/10 border border-rose-500/20 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-inner">
@@ -395,6 +398,34 @@ const GameplayComponent = () => {
             </div>
           </div>
         )
+      )
+      */}
+      {/* Rejection modal still rendered when a bet is rejected */}
+      {isRejected && showResultPop && (
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/85 backdrop-blur-xl animate-in fade-in duration-300" onClick={() => setShowResultPop(false)} />
+          <div className="relative bg-[#1a1a1a] border-2 border-rose-500/50 p-8 rounded-[2.5rem] max-w-sm w-full text-center shadow-[0_0_100px_rgba(244,63,94,0.3)] animate-in zoom-in-95 duration-300 overflow-hidden">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-rose-500 shadow-[0_0_20px_#f43f5e]" />
+            <div className="w-20 h-20 bg-rose-500/10 border border-rose-500/20 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-inner">
+              <FaTimesCircle className="text-4xl text-rose-500 animate-pulse" />
+            </div>
+            <h2 className="text-2xl font-black text-white mb-3 uppercase tracking-tighter" style={{ fontFamily: FONTS.head }}>
+              Bet Rejected
+            </h2>
+            <p className="text-white/70 font-semibold mb-8 leading-relaxed">
+              {lastResult?.message}
+            </p>
+            <button
+              onClick={() => {
+                setShowResultPop(false);
+                setNotice(null);
+              }}
+              className="w-full py-4 bg-rose-500 hover:bg-rose-600 text-white font-black uppercase text-xs tracking-[0.2em] rounded-2xl transition-all duration-300 shadow-[0_10px_30px_rgba(244,63,94,0.4)] active:scale-95"
+            >
+              Understood
+            </button>
+          </div>
+        </div>
       )}
 
       {/* Exit Confirmation Modal */}

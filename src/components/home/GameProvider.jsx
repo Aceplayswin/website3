@@ -35,29 +35,31 @@ import yesgaming from './providers/yesgaming.png';
 import rubyplay from './providers/RubyPlay.png';
 
 const providersData = [
-  { logo: bf, name: "BF Games" },
-  { logo: bggaming, name: "BG Gaming" },
-  { logo: bigtiminggaming, name: "BTG" },
-  { logo: boominggames, name: "Booming" },
-  { logo: booongo, name: "Booongo" },
+  // { logo: bf, name: "BF Games" },
+  // { logo: bggaming, name: "BG Gaming" },
+  // { logo: bigtiminggaming, name: "BTG" },
+  // { logo: boominggames, name: "Booming" },
+  // { logo: booongo, name: "Booongo" },
   { logo: caleta, name: "Caleta" },
   { logo: cq9, name: "CQ9" },
   { logo: endorphina, name: "Endorphina" },
   { logo: evolution, name: "Evolution" },
   { logo: evoplay, name: "Evoplay" },
-  { logo: gameart, name: "GameArt" },
+  // { logo: gameart, name: "GameArt" },
   { logo: pgsoft, name: "PG Soft" },
-  { logo: playngo, name: "Play'n GO" },
-  { logo: playson, name: "Playson" },
-  { logo: playtech, name: "Playtech" },
+  // { logo: playngo, name: "Play'n GO" },
+  // { logo: playson, name: "Playson" },
+  // { logo: playtech, name: "Playtech" },
   { logo: pragmaticplay, name: "Pragmatic" },
-  { logo: relaxgaming, name: "Relax" },
-  { logo: redtiger, name: "Red Tiger" },
+  // { logo: relaxgaming, name: "Relax" },
+  // { logo: redtiger, name: "Red Tiger" },
   { logo: saba, name: "Saba" },
-  { logo: skywind, name: "Skywind" },
-  { logo: v8, name: "V8" },
-  { logo: yesgaming, name: "Yes Gaming" },
-  { logo: rubyplay, name: "Ruby Play" }
+  // { logo: skywind, name: "Skywind" },
+  // { logo: v8, name: "V8" },
+  // // { logo: yesgaming, name: "Yes Gaming" },
+  // // { logo: rubyplay, name: "Ruby Play" },
+  { logo: "src/components/home/providers/luck_sports.png", name: "luck sports" },
+
 ];
 
 const GameProvider = () => {
@@ -73,12 +75,12 @@ const GameProvider = () => {
         {/* Elite Header */}
         <div className="flex flex-col md:flex-row justify-between md:items-end gap-5 md:gap-0 mb-8 md:mb-10 pb-6 border-b border-black/5 dark:border-white/5">
           <div className="flex items-center gap-4 md:gap-6">
-            <div 
+            <div
               className="h-5 md:h-6 w-1.5 rounded-full"
               style={{ background: COLORS.brandGradient }}
             ></div>
             <div>
-              <h2 
+              <h2
                 className="text-base sm:text-lg md:text-xl font-black text-black dark:text-white tracking-[0.1em] md:tracking-[0.2em] uppercase leading-none"
                 style={{ fontFamily: FONTS.head }}
               >
@@ -151,11 +153,11 @@ const ProviderCard = ({ logo, name }) => {
       <div className="w-full h-full rounded-[15px] bg-white dark:bg-[#121212] flex flex-col items-center justify-center p-4 overflow-hidden relative border border-black/5 dark:border-white/5">
         {/* Stronger Pure White Backing for Black Logos */}
         <div className="absolute inset-0 bg-white opacity-[0.03] group-hover:opacity-[0.05] transition-opacity duration-500"></div>
-        <div 
+        <div
           className="absolute w-3/4 h-3/4 rounded-full blur-2xl opacity-60 pointer-events-none"
           style={{ background: 'radial-gradient(circle, white 0%, transparent 70%)' }}
         ></div>
-        
+
         <img
           src={logo}
           alt={name}
@@ -165,7 +167,7 @@ const ProviderCard = ({ logo, name }) => {
             e.target.src = "https://via.placeholder.com/150?text=Logo";
           }}
         />
-        
+
         {/* Subtle Brand Tag */}
         <span className="absolute bottom-2 sm:bottom-3 text-[5px] sm:text-[7px] font-black uppercase tracking-[0.1em] sm:tracking-[0.3em] text-black/20 dark:text-white/20 group-hover:text-brand transition-all duration-300 whitespace-nowrap">
           Official Partner
