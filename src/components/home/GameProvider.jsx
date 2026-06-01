@@ -1,40 +1,17 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation } from 'swiper/modules';
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { Autoplay } from 'swiper/modules';
 import { useColors } from '../../hooks/useColors';
 import { FONTS } from '../../constants/theme';
-
-// Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/navigation';
 
-// Import all provider images
-import bf from './providers/bf.png';
-import bggaming from './providers/bggaming.png';
-import bigtiminggaming from './providers/bigtiminggaming.png';
+// Provider images
 import caleta from './providers/Caleta.png';
-import boominggames from './providers/boominggames.png';
-import booongo from './providers/Booongo.png';
 import cq9 from './providers/CQ9.png';
-import endorphina from './providers/endorphina.png';
-import evolution from './providers/Evolution.png';
 import evoplay from './providers/Evoplay.png';
-import gameart from './providers/gameart.png';
-import pgsoft from './providers/PGSOFT.png';
-import playngo from './providers/PlayNGo.png';
-import playson from './providers/playson.png';
-import playtech from './providers/PlayTech.png';
 import pragmaticplay from './providers/PragmaticPlay.png';
-import relaxgaming from './providers/relaxgaming.png';
-import redtiger from './providers/redtiger.png';
 import saba from './providers/sabalogo.png';
-import skywind from './providers/Skywind.png';
-import v8 from './providers/V8.png';
-import yesgaming from './providers/yesgaming.png';
-import rubyplay from './providers/RubyPlay.png';
-
-// New Providers
+import pgsoft from './providers/PGSOFT.png';
 import mac88 from './providers/mac88.png';
 import eighteenpeaches from './providers/18-preaches.png';
 import veliplay from './providers/veliplay.png';
@@ -48,170 +25,158 @@ import auragaming from './providers/aura-gaming.png';
 import indialotto from './providers/india-lotto.png';
 import ongaming from './providers/ongaming.png';
 import ezugi1 from './providers/ezugi1.png';
-import evelution from './providers/evelution.png';
 import evolution2 from './providers/Evolution2.png';
 import luckysports from './providers/lucky-sports.png';
+import playngo from './providers/PlayNGo.png';
+import redtiger from './providers/redtiger.png';
+import relaxgaming from './providers/relaxgaming.png';
 
-const providersData = [
-  { logo: ezugi1, name: "Ezugi" },
-   { logo: evolution2, name: "Evolution2" },
-  // { logo: evelution, name: "Evolution" },
-  // { logo: bf, name: "BF Games" },
-  // { logo: bggaming, name: "BG Gaming" },
-  // { logo: bigtiminggaming, name: "BTG" },
-  // { logo: boominggames, name: "Booming" },
-  // { logo: booongo, name: "Booongo" },
-  { logo: caleta, name: "Caleta" },
-  { logo: cq9, name: "CQ9" },
-  // { logo: endorphina, name: "Endorphina" },
-  // { logo: evolution, name: "Evolution" },
-  { logo: evoplay, name: "Evoplay" },
-  // { logo: gameart, name: "GameArt" },
-  // { logo: pgsoft, name: "PG Soft" },
-  // { logo: playngo, name: "Play'n GO" },
-  // { logo: playson, name: "Playson" },
-  // { logo: playtech, name: "Playtech" },
-  { logo: pragmaticplay, name: "Pragmatic" },
-  // { logo: relaxgaming, name: "Relax" },
-  // { logo: redtiger, name: "Red Tiger" },
-  { logo: saba, name: "Saba" },
-  // { logo: skywind, name: "Skywind" },
-  // { logo: v8, name: "V8" },
-  // // { logo: yesgaming, name: "Yes Gaming" },
-  // // { logo: rubyplay, name: "Ruby Play" },
-  { logo: luckysports, name: "Lucky Sports" },
-
-  // Game Providers List
-  { logo: mac88, name: "MAC88" },
+const providers = [
+  { logo: ezugi1,          name: "Ezugi" },
+  { logo: evolution2,      name: "Evolution" },
+  { logo: caleta,          name: "Caleta" },
+  { logo: cq9,             name: "CQ9" },
+  { logo: evoplay,         name: "Evoplay" },
+  { logo: pragmaticplay,   name: "Pragmatic" },
+  { logo: saba,            name: "Saba" },
+  { logo: luckysports,     name: "Lucky Sports" },
+  { logo: mac88,           name: "MAC88" },
   { logo: eighteenpeaches, name: "18Peaches" },
-  { logo: veliplay, name: "VeliPlay" },
-  { logo: aviatrix, name: "Aviatrix" },
-  { logo: inout, name: "InOut Minigames" },
-  { logo: galaxsys, name: "Galaxsys" },
-  { logo: smartsoft, name: "Smartsoft" },
-  { logo: twoJ, name: "2J" },
-  { logo: turbogames, name: "Turbogames World" },
-  { logo: auragaming, name: "Aura Gaming" },
-  { logo: indialotto, name: "India Lotto" },
-  { logo: pgsoft, name: "PgsGaming" },
-  { logo: ongaming, name: "Odin Cockfighting" },
-  { logo: evolution2, name: "Evolution2" },
-  { logo: luckysports, name: "Lucky Sports" },
-  
+  { logo: veliplay,        name: "VeliPlay" },
+  { logo: aviatrix,        name: "Aviatrix" },
+  { logo: inout,           name: "InOut" },
+  { logo: galaxsys,        name: "Galaxsys" },
+  { logo: smartsoft,       name: "Smartsoft" },
+  { logo: twoJ,            name: "2J" },
+  { logo: turbogames,      name: "Turbogames" },
+  { logo: auragaming,      name: "Aura Gaming" },
+  { logo: indialotto,      name: "India Lotto" },
+  { logo: pgsoft,          name: "PG Soft" },
+  { logo: ongaming,        name: "ON Gaming" },
+  { logo: playngo,         name: "Play'n GO" },
+  { logo: redtiger,        name: "Red Tiger" },
+  { logo: relaxgaming,     name: "Relax" },
 ];
+
+/* ── Pure circular badge — NO text, NO name ── */
+const Circle = ({ logo, name, brand }) => (
+  <div className="group flex items-center justify-center px-1 py-2">
+    <div
+      className="relative rounded-full border border-white/10 flex items-center justify-center overflow-hidden transition-all duration-200 group-hover:border-white/30 group-hover:scale-105 cursor-pointer"
+      style={{
+        width: '80px',
+        height: '80px',
+        background: 'radial-gradient(circle at 35% 30%, #252525, #111111)',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.04)',
+        borderRadius: '50%',
+      }}
+      title={name}
+    >
+      {/* Inner ring */}
+      <div
+        className="absolute rounded-full border border-white/[0.05] pointer-events-none"
+        style={{ inset: '6px', borderRadius: '50%' }}
+      ></div>
+      {/* Hover glow ring */}
+      <div
+        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+        style={{ boxShadow: `inset 0 0 20px ${brand}22`, borderRadius: '50%' }}
+      ></div>
+      {/* Logo */}
+      <img
+        src={logo}
+        alt={name}
+        style={{
+          width: '58%',
+          height: '58%',
+          objectFit: 'contain',
+          opacity: 0.75,
+          position: 'relative',
+          zIndex: 1,
+          transition: 'opacity 0.2s',
+          filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.5))',
+        }}
+        onMouseEnter={e => e.currentTarget.style.opacity = 1}
+        onMouseLeave={e => e.currentTarget.style.opacity = 0.75}
+        onError={e => { e.currentTarget.style.display = 'none'; }}
+      />
+    </div>
+  </div>
+);
 
 const GameProvider = () => {
   const COLORS = useColors();
   const [showAll, setShowAll] = useState(false);
 
   return (
-    <section className="relative py-2 md:py-4 overflow-hidden" style={{ backgroundColor: COLORS.bg }}>
-      {/* Cinematic Background Atmosphere */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl h-64 bg-brand/5 rounded-full blur-[120px] pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Elite Header */}
-        <div className="flex flex-col md:flex-row justify-between md:items-end gap-5 md:gap-0 mb-8 md:mb-10 pb-6 border-b border-black/5 dark:border-white/5">
-          <div className="flex items-center gap-4 md:gap-6">
-            <div
-              className="h-5 md:h-6 w-1.5 rounded-full"
-              style={{ background: COLORS.brandGradient }}
-            ></div>
-            <div>
-              <h2
-                className="text-base sm:text-lg md:text-xl font-black text-black dark:text-white tracking-[0.1em] md:tracking-[0.2em] uppercase leading-none"
-                style={{ fontFamily: FONTS.head }}
-              >
-                Game <span style={{ color: COLORS.brand }}>Providers</span>
-              </h2>
-              <p className="text-[8px] sm:text-[9px] md:text-[10px] text-black/30 dark:text-white/30 font-bold uppercase tracking-[0.2em] md:tracking-[0.4em] mt-2 md:mt-3">Worldwide Partnerships</p>
-            </div>
-          </div>
-
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="w-full md:w-auto px-4 md:px-6 py-3 md:py-2 rounded-xl border border-black/10 dark:border-white/10 text-[10px] font-black uppercase tracking-[0.2em] text-black/60 dark:text-white/60 hover:text-black dark:text-white hover:border-brand/40 transition-all duration-300 backdrop-blur-md text-center"
+    <section className="mt-7 px-4 md:px-0 max-w-[1400px] mx-auto w-full">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-5">
+        <div className="flex flex-col gap-0.5">
+          <div
+            className="flex items-center gap-2 text-xl tracking-[1.5px] text-white"
+            style={{ fontFamily: FONTS.head || "'Bebas Neue', sans-serif" }}
           >
-            {showAll ? "Switch to Carousel" : "View All Partners"}
-          </button>
+            <div className="w-1 h-5 rounded-sm" style={{ background: COLORS.brand }}></div>
+            Game Providers
+          </div>
+          <div
+            className="text-[10px] font-bold uppercase tracking-[1.5px] pl-3 text-white/50"
+            style={{ fontFamily: "'Rajdhani', sans-serif" }}
+          >
+            Worldwide Partnerships
+          </div>
         </div>
 
-        {/* Dynamic Display Area */}
-        {showAll ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 gap-3 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            {providersData.map((provider, index) => (
-              <ProviderCard key={index} logo={provider.logo} name={provider.name} />
-            ))}
-          </div>
-        ) : (
-          <div className="relative">
-            <Swiper
-              modules={[Autoplay, Navigation]}
-              spaceBetween={8}
-              slidesPerView={3}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              navigation={{
-                prevEl: '.provider-prev',
-                nextEl: '.provider-next',
-              }}
-              breakpoints={{
-                640: { slidesPerView: 3 },
-                1024: { slidesPerView: 6 },
-                1280: { slidesPerView: 8 },
-              }}
-              className="w-full"
-            >
-              {providersData.map((provider, index) => (
-                <SwiperSlide key={index}>
-                  <ProviderCard logo={provider.logo} name={provider.name} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-
-            {/* Custom Navigation Controls - Re-positioned inside to avoid cutting */}
-            <button className="provider-prev absolute left-0 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/10 dark:bg-black/60 border border-black/10 dark:border-white/10 flex items-center justify-center text-black/40 dark:text-white/40 hover:text-brand hover:border-brand/50 transition-all opacity-0 group-hover/swiper:opacity-100 backdrop-blur-md">
-              <FaChevronLeft size={12} />
-            </button>
-            <button className="provider-next absolute right-0 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/10 dark:bg-black/60 border border-black/10 dark:border-white/10 flex items-center justify-center text-black/40 dark:text-white/40 hover:text-brand hover:border-brand/50 transition-all opacity-0 group-hover/swiper:opacity-100 backdrop-blur-md">
-              <FaChevronRight size={12} />
-            </button>
-          </div>
-        )}
-      </div>
-    </section>
-  );
-};
-
-const ProviderCard = ({ logo, name }) => {
-  return (
-    <div className="group relative w-full aspect-[3/2] rounded-2xl p-[1px] bg-gradient-to-br from-white/20 to-transparent transition-all duration-500 hover:from-brand/50 shadow-xl">
-      <div className="w-full h-full rounded-[15px] bg-white dark:bg-[#121212] flex flex-col items-center justify-center p-4 overflow-hidden relative border border-black/5 dark:border-white/5">
-        {/* Stronger Pure White Backing for Black Logos */}
-        <div className="absolute inset-0 bg-white opacity-[0.03] group-hover:opacity-[0.05] transition-opacity duration-500"></div>
-        <div
-          className="absolute w-3/4 h-3/4 rounded-full blur-2xl opacity-60 pointer-events-none"
-          style={{ background: 'radial-gradient(circle, white 0%, transparent 70%)' }}
-        ></div>
-
-        <img
-          src={logo}
-          alt={name}
-          className="relative z-10 max-w-[85%] max-h-[70%] object-contain transition-all duration-500 scale-100 group-hover:scale-110"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = "https://via.placeholder.com/150?text=Logo";
+        <button
+          onClick={() => setShowAll(!showAll)}
+          className="text-[10px] font-black uppercase tracking-[1px] px-4 py-[6px] rounded border transition-all duration-200 cursor-pointer"
+          style={{
+            fontFamily: "'Rajdhani', sans-serif",
+            color: showAll ? '#000' : COLORS.brand,
+            background: showAll ? COLORS.brand : 'transparent',
+            borderColor: COLORS.brand,
           }}
-        />
-
-        {/* Subtle Brand Tag */}
-        <span className="absolute bottom-2 sm:bottom-3 text-[5px] sm:text-[7px] font-black uppercase tracking-[0.1em] sm:tracking-[0.3em] text-black/20 dark:text-white/20 group-hover:text-brand transition-all duration-300 whitespace-nowrap">
-          Official Partner
-        </span>
+        >
+          {showAll ? 'Close ✕' : 'View All Partners'}
+        </button>
       </div>
-    </div>
+
+      {/* Infinite scroll carousel */}
+      {!showAll && (
+        <Swiper
+          modules={[Autoplay]}
+          spaceBetween={0}
+          slidesPerView={5}
+          loop={true}
+          speed={4000}
+          autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true }}
+          breakpoints={{
+            480:  { slidesPerView: 6 },
+            640:  { slidesPerView: 7 },
+            768:  { slidesPerView: 8 },
+            1024: { slidesPerView: 10 },
+            1280: { slidesPerView: 12 },
+          }}
+          className="w-full"
+        >
+          {[...providers, ...providers].map((p, i) => (
+            <SwiperSlide key={i} style={{ display: 'flex', justifyContent: 'center' }}>
+              <Circle logo={p.logo} name={p.name} brand={COLORS.brand} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
+
+      {/* Expanded full grid — circles only, no names */}
+      {showAll && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'flex-start' }}>
+          {providers.map((p, i) => (
+            <Circle key={i} logo={p.logo} name={p.name} brand={COLORS.brand} />
+          ))}
+        </div>
+      )}
+    </section>
   );
 };
 

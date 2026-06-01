@@ -11,12 +11,18 @@ import Live from '../Live';
 import CasinoLobby from '../CasinoLobby';
 import GamesDisplay from '../GameDisplay';
 import Turbogames from '../Turbogames';
+import GameProvider from '../GameProvider';
+import FeaturesSection from '../FeaturesSection';
+import Faq from '../Faq';
+import { FONTS } from '../../../constants/theme';
+import { useColors } from '../../../hooks/useColors';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
 const RanaMainContent = () => {
-  const { heroBanners, accountInfo, setShowLogin, setShowRegister } = useSite();
+  const COLORS = useColors();
+  const { heroBanners, accountInfo, promoBanners, setShowLogin, setShowRegister } = useSite();
   const { casino } = useGames() || {};
   const navigate = useNavigate();
   const getSafeLogoUrl = (path) => {
@@ -136,35 +142,70 @@ const RanaMainContent = () => {
       <GamesDisplay section="fishing" />
 
       {/* Elite Offers Section */}
-      <div className="elite-offers-section">
-        <div className="section-header">
-          <div className="section-title">💎 Elite Offers</div>
-        </div>
-        <div className="promo-banners-grid">
-          <div className="promo-banner-card promo-card-1">
-            <div className="promo-banner-badge">Exclusive</div>
-            <div className="promo-banner-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <section className="mt-7 px-4 md:px-0 max-w-[1400px] mx-auto w-full">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-col gap-0.5">
+            <div className="flex items-center gap-2 text-xl tracking-[1.5px] text-white" style={{ fontFamily: FONTS.head || "'Bebas Neue', sans-serif" }}>
+              <div className="w-1 h-5 rounded-sm" style={{ background: COLORS.brand }}></div>
+              Exclusive Elite Offers
             </div>
-            <div className="promo-banner-content">
-              <div className="promo-banner-tag">VIP Bonus</div>
-              <div className="promo-banner-title">100% Match on<br/>Crypto Deposits</div>
-              <div className="promo-banner-desc">Use any cryptocurrency to fund your account and get double your deposit instantly. No maximum limit.</div>
+            <div className="text-[10px] font-bold uppercase tracking-[1.5px] pl-3 text-white/50" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+              Current Promotions & Rewards
             </div>
           </div>
-          <div className="promo-banner-card promo-card-2">
-            <div className="promo-banner-badge">Limited Time</div>
-            <div className="promo-banner-icon">
-              <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            </div>
-            <div className="promo-banner-content">
-              <div className="promo-banner-tag">Cashback</div>
-              <div className="promo-banner-title">20% Weekend<br/>Cashback</div>
-              <div className="promo-banner-desc">Play your favorite slots this weekend and get 20% of your net losses back on Monday.</div>
-            </div>
-          </div>
+          <a href="#" className="text-[10px] font-bold uppercase tracking-[1px] text-white/40 hover:text-brand transition-colors no-underline" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+            View All →
+          </a>
         </div>
-      </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+          {promoBanners && promoBanners.length > 0 ? (
+            promoBanners.slice(0, 2).map((promo, index) => (
+              <div key={index} className="relative bg-[#141414] border border-white/5 rounded-xl overflow-hidden group hover:border-brand/25 transition-all duration-200 aspect-[21/9] flex items-center cursor-pointer">
+                <img src={promo.image_path?.startsWith('http') ? promo.image_path : (promo.image_path?.startsWith('/') ? window.location.origin + promo.image_path : `${BASE_URL}${promo.image_path}`)} alt={promo.title || "Promotion"}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 z-0"
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
+                {/* Subtle overlay for contrast */}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-0"></div>
+                <div className="absolute top-0 left-0 w-[3px] h-full z-10" style={{ background: COLORS.brand }}></div>
+              </div>
+            ))
+          ) : (
+            <>
+              {[
+                { color: COLORS.brand },
+                { color: '#22d3ee' },
+              ].map((card, i) => (
+                <div key={i} className="relative bg-[#141414] border border-white/5 rounded-xl overflow-hidden group transition-all duration-200 aspect-[21/9] flex items-center justify-center cursor-pointer"
+                  style={{ '--hc': card.color }}
+                >
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-xl"
+                    style={{ background: `radial-gradient(ellipse at center, ${card.color}15 0%, transparent 60%)` }}
+                  ></div>
+                  <div className="absolute top-0 left-0 w-[3px] h-full z-10 opacity-60 group-hover:opacity-100 transition-opacity duration-200"
+                    style={{ background: card.color }}
+                  ></div>
+                  <div className="relative z-10 text-white/20 uppercase font-black tracking-widest text-[10px]" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                    PROMOTION BANNER
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* Game Providers Section */}
+      <GameProvider />
+
+      {/* Why Choose Us Section */}
+      <FeaturesSection />
+
+      {/* Frequently Asked Questions (FAQ) Section */}
+      <Faq />
+
       <RanaFooter />
     </main>
   );
