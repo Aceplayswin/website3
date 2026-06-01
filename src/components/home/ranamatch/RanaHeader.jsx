@@ -2,6 +2,13 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSite } from "../../../context/SiteContext";
 import { URL as BASE_URL } from "../../../utils/constants";
+import {
+  FaUserCircle,
+  FaBell,
+  FaMoon,
+  FaSun
+} from "react-icons/fa";
+import { useState } from "react";
 
 const RanaHeader = () => {
   const { accountInfo, setShowLogin, setShowRegister } = useSite();
@@ -32,7 +39,7 @@ const RanaHeader = () => {
             <span>🏆 <span className="win">Raj***singh</span> won ₹24,500 on Cricket</span>
             <span>🎰 <span className="win">Anon***87</span> won ₹8,200 on Teen Patti</span>
             <span>⚽ <span className="win">Mukesh***K</span> won ₹41,000 on IPL Match</span>
-            <span>🃏 <span className="win">Priya***N</span> won ₹5,600 on Roulette</span>
+            <span>🃏 <span className="win">Priya***N</span> won ₹5,600 on Roulette</span> 
             <span>🏏 <span className="win">Vijay***35</span> won ₹18,000 on T20 Live</span>
           </div>
         </div>
@@ -56,12 +63,10 @@ const RanaHeader = () => {
           </Link>
           <nav>
             <Link to="/" className="active">🏠 Home</Link>
-            <Link to="#">🏏 Cricket</Link>
-            <Link to="#">⚽ Sports</Link>
+            <Link to="#" onClick={(e) => { e.preventDefault(); }}>⚽ Sports</Link>
             <Link to="/casino">🎰 Casino</Link>
-            <Link to="#">🃏 Live Casino</Link>
-            <Link to="/teen-patti">🎯 Teen Patti</Link>
-            <Link to="/lottery">🎲 Lottery</Link>
+            <Link to="/#slots">🎰 Slots</Link>
+            <Link to="/#fantasy-games">🎮 Fantasy Games</Link>
             <Link to="/promotion">💰 Promotions</Link>
           </nav>
           <div className="header-cta">
@@ -72,7 +77,7 @@ const RanaHeader = () => {
               </>
             ) : (
               <>
-                <button className="btn btn-outline" onClick={() => setShowLogin(true)}>Log In</button>
+                <button className="btn btn-outline" onClick={() => setShowLogin(true)}>Demo play</button>
                 <button className="btn btn-brand" onClick={() => setShowRegister(true)}>Join Now</button>
               </>
             )}
@@ -84,50 +89,42 @@ const RanaHeader = () => {
       <div className="cat-nav">
         <div className="cat-nav-inner">
           <a href="#" className="cat-item active">
-            <span className="cat-icon">🔥</span>
-            <span className="cat-label">Popular</span>
+            <span className="cat-icon">🎟️</span>
+            <span className="cat-label">Lottery</span>
           </a>
-          <a href="#" className="cat-item">
-            <span className="cat-icon">🏏</span>
-            <span className="cat-label">Cricket</span>
+          <a href="#" className="cat-item" onClick={() => navigate('/crash-games')}>
+            <span className="cat-icon">🚀</span>
+            <span className="cat-label">Crash Games</span>
           </a>
-          <a href="#" className="cat-item">
-            <span className="cat-icon">⚽</span>
-            <span className="cat-label">Football</span>
-          </a>
-          <a href="#" className="cat-item">
-            <span className="cat-icon">🎰</span>
-            <span className="cat-label">Slots</span>
-          </a>
-          <a href="#" className="cat-item">
-            <span className="cat-icon">🃏</span>
-            <span className="cat-label">Live Casino</span>
-          </a>
-          <a href="#" className="cat-item">
-            <span className="cat-icon">🎯</span>
-            <span className="cat-label">Teen Patti</span>
-          </a>
-          <a href="#" className="cat-item">
-            <span className="cat-icon">🎲</span>
+          <a href="#" className="cat-item" onClick={() => navigate('/roulette')}>
+            <span className="cat-icon">🎡</span>
             <span className="cat-label">Roulette</span>
           </a>
-          <a href="#" className="cat-item">
-            <span className="cat-icon">🤑</span>
-            <span className="cat-label">Crash</span>
+          <a href="#" className="cat-item" onClick={() => navigate('/blackjack')}>
+            <span className="cat-icon">🃏</span>
+            <span className="cat-label">Blackjack</span>
           </a>
-          <a href="#" className="cat-item">
-            <span className="cat-icon">🏆</span>
-            <span className="cat-label">Tournaments</span>
-          </a>
-          <a href="#" className="cat-item">
+          <a href="#" className="cat-item" onClick={() => navigate('/baccarat')}>
             <span className="cat-icon">💎</span>
-            <span className="cat-label">VIP</span>
+            <span className="cat-label">Baccarat</span>
           </a>
-          <a href="#" className="cat-item">
-            <span className="cat-icon">🎁</span>
-            <span className="cat-label">Bonus</span>
+          <a href="#" className="cat-item" onClick={() => navigate('/dragon-tiger')}>
+            <span className="cat-icon">🐯</span>
+            <span className="cat-label">Dragon Tiger</span>
           </a>
-          <a href="#" className="cat-item">
+          <a href="#" className="cat-item" onClick={() => navigate('/teen-patti')}>
+            <span className="cat-icon">🎴</span>
+            <span className="cat-label">Teen Patti</span>
+          </a>
+          <a href="#" className="cat-item" onClick={() => navigate('/poker')}>
+            <span className="cat-icon">♠️</span>
+            <span className="cat-label">Poker</span>
+          </a>
+          <a href="#" className="cat-item" onClick={() => navigate('/game-shows')}>
+            <span className="cat-icon">📺</span>
+            <span className="cat-label">Game Shows</span>
+          </a>
+          <a href="#" className="cat-item" onClick={() => navigate('/andar-bahar')}>
             <span className="cat-icon">🃏</span>
             <span className="cat-label">Andar Bahar</span>
           </a>

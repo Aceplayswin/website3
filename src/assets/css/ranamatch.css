@@ -1,42 +1,44 @@
 :root {
-    --bg-deep: #0D0D0D;
-    --bg-card: #141414;
-    --bg-nav: #080808;
-    --bg-panel: #1A1A1A;
-    --brand: #E6A000;
-    --brand-dark: #B37D00;
-    --brand-glow: rgba(230, 160, 0, 0.35);
-    --brand-gradient: linear-gradient(135deg, #E6A000 0%, #CC5A00 100%);
-    --gold: #FFD700;
-    --gold-light: #F2C200;
-    --blue-acc: #1565ff;
-    --blue-light: #3d8bff;
-    --text: #FFFFFF;
-    --text-muted: #7A7A7A;
-    --border: rgba(255, 255, 255, 0.07);
-    --border-brand: rgba(230, 160, 0, 0.3);
+    --bg-deep: #1a1a1a;
+    --bg-card: #252525;
+    --bg-nav: #1f1f1f;
+    --bg-panel: #252525;
+    --brand: #4a9eff;
+    --brand-dark: #2e5f9e;
+    --brand-glow: rgba(74, 158, 255, 0.2);
+    --brand-gradient: linear-gradient(135deg, #4a9eff 0%, #2e5f9e 100%);
+    --gold: #ffc107;
+    --gold-light: #ffed4e;
+    --blue-acc: #4a9eff;
+    --blue-light: #6db3ff;
+    --text: #ffffff;
+    --text-muted: #999999;
+    --border: rgba(255, 255, 255, 0.1);
+    --border-brand: rgba(74, 158, 255, 0.2);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; height: 100%; }
   body {
     background: var(--bg-deep);
     color: var(--text);
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    font-size: 16px;
     overflow-x: hidden;
+    height: 100%;
+    min-height: 100vh;
   }
 
   /* ── TOP BAR ── */
   .top-bar {
-    background: #030810;
+    background: #141414;
     border-bottom: 1px solid var(--border);
-    padding: 4px 20px; /* Reduced padding */
+    padding: 4px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 11px; /* Smaller font */
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
     color: var(--text-muted);
   }
   .top-bar .marquee-wrap { flex: 1; overflow: hidden; margin: 0 20px; }
@@ -60,16 +62,16 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+    box-shadow: 0 4px 24px rgba(74, 158, 255, 0.15);
   }
   .header-inner {
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
     padding: 0 20px;
-    height: 48px; /* Further reduced height */
+    height: 48px;
     display: flex;
     align-items: center;
-    gap: 16px; /* Reduced gap */
+    gap: 16px;
   }
   .logo {
     display: flex;
@@ -82,7 +84,7 @@
     height: 32px;
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 8px rgba(230, 160, 0, 0.25));
+    filter: drop-shadow(0 0 12px rgba(74, 158, 255, 0.3));
     transition: transform 0.3s ease;
   }
   .logo:hover .logo-img {
@@ -91,32 +93,32 @@
 
   nav { flex: 1; display: flex; gap: 4px; }
   nav a {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 12px; /* Smaller font */
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: var(--text-muted);
     text-decoration: none;
-    padding: 4px 8px; /* Reduced padding */
+    padding: 4px 8px;
     border-radius: 4px;
     transition: all 0.2s;
     white-space: nowrap;
   }
   nav a:hover, nav a.active {
     color: #fff;
-    background: rgba(255,255,255,0.06);
+    background: rgba(217, 70, 239, 0.08);
   }
   nav a.active { color: var(--brand); border-bottom: 2px solid var(--brand); border-radius: 4px 4px 0 0; }
 
   .header-cta { display: flex; gap: 10px; margin-left: auto; flex-shrink: 0; }
   .btn {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 12px; /* Smaller font */
+    font-size: 14px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    padding: 5px 14px; /* Reduced padding */
+    padding: 5px 14px;
     border-radius: 4px;
     border: none;
     cursor: pointer;
@@ -128,16 +130,17 @@
   }
   .btn-outline {
     background: transparent;
-    border: 1.5px solid rgba(255,255,255,0.2);
+    border: 1.5px solid rgba(74, 158, 255, 0.4);
     color: #fff;
   }
-  .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+  .btn-outline:hover { border-color: var(--brand); background: rgba(74, 158, 255, 0.1); }
   .btn-brand {
     background: var(--brand);
-    color: #fff;
-    box-shadow: 0 0 16px var(--brand-glow);
+    color: #1a1a1a;
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+    font-weight: 800;
   }
-  .btn-brand:hover { background: #f2c200; box-shadow: 0 0 24px rgba(230, 160, 0, 0.5); }
+  .btn-brand:hover { background: #6db3ff; box-shadow: 0 0 30px rgba(74, 158, 255, 0.4); }
 
   /* ── CATEGORY NAV ── */
   .cat-nav {
@@ -169,26 +172,34 @@
     color: var(--text-muted);
   }
   .cat-item:hover, .cat-item.active {
-    color: #fff;
+    color: var(--gold);
     border-bottom-color: var(--brand);
   }
   .cat-item .cat-icon { font-size: 18px; } /* Smaller icon */
   .cat-item .cat-label {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 10px; /* Smaller font */
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.3px;
   }
 
   /* ── MAIN LAYOUT ── */
   .page-wrap {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 16px 20px;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
     display: grid;
     grid-template-columns: 220px 1fr 260px;
     gap: 16px;
+    min-height: calc(100vh - 100px);
+  }
+
+  .rana-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
   }
 
   /* ── SIDEBAR LEFT ── */
@@ -201,16 +212,17 @@
     overflow: hidden;
   }
   .side-title {
-    background: linear-gradient(90deg, var(--brand) 0%, #8b0010 100%);
+    background: linear-gradient(90deg, var(--brand) 0%, #A020F0 100%);
     padding: 9px 14px;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
     display: flex;
     align-items: center;
     gap: 8px;
+    color: #FFFFFF;
   }
   .side-list { padding: 6px 0; }
   .side-list a {
@@ -225,8 +237,8 @@
     border-left: 2px solid transparent;
   }
   .side-list a:hover {
-    color: #fff;
-    background: rgba(255,255,255,0.04);
+    color: var(--gold);
+    background: rgba(217, 70, 239, 0.08);
     border-left-color: var(--brand);
     padding-left: 18px;
   }
@@ -241,11 +253,11 @@
     margin-left: auto;
     background: var(--brand);
     color: #fff;
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 700;
     padding: 1px 5px;
     border-radius: 3px;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     letter-spacing: 0.5px;
     animation: pulse-badge 1.5s ease-in-out infinite;
   }
@@ -260,14 +272,14 @@
     border-radius: 10px;
     overflow: hidden;
     height: 260px;
-    background: linear-gradient(135deg, #050a1e 0%, #0d1d3e 40%, #1a0a0a 100%);
+    background: linear-gradient(135deg, #1a2a3a 0%, #203a4a 40%, #1a2530 100%);
     border: 1px solid var(--border);
   }
   .hero-bg-pattern {
     position: absolute; inset: 0;
     background-image:
-      radial-gradient(circle at 20% 50%, rgba(230, 160, 0, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 30%, rgba(21,101,255,0.12) 0%, transparent 50%);
+      radial-gradient(circle at 20% 50%, rgba(74, 158, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 30%, rgba(74, 158, 255, 0.08) 0%, transparent 50%);
   }
   .hero-grid-lines {
     position: absolute; inset: 0;
@@ -291,9 +303,9 @@
     gap: 6px;
     background: var(--brand);
     color: #fff;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 1px;
     text-transform: uppercase;
     padding: 4px 10px;
@@ -302,8 +314,9 @@
     width: fit-content;
   }
   .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 64px;
     line-height: 1;
     letter-spacing: 2px;
     margin-bottom: 10px;
@@ -311,7 +324,7 @@
   .hero-title .accent { color: var(--brand); }
   .hero-title .gold { color: var(--gold); }
   .hero-sub {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-muted);
     margin-bottom: 20px;
     line-height: 1.5;
@@ -356,7 +369,7 @@
   }
   .promo-card:hover {
     border-color: var(--brand);
-    background: rgba(230, 160, 0, 0.06);
+    background: rgba(74, 158, 239, 0.08);
     transform: translateY(-2px);
   }
   .promo-icon {
@@ -368,16 +381,17 @@
     display: flex; align-items: center; justify-content: center;
   }
   .promo-info .promo-label {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: var(--text-muted);
   }
   .promo-info .promo-val {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
     letter-spacing: 1px;
     color: var(--gold);
     line-height: 1.1;
@@ -392,8 +406,9 @@
     margin-bottom: 12px;
   }
   .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
     letter-spacing: 1.5px;
     display: flex;
     align-items: center;
@@ -407,9 +422,9 @@
     border-radius: 2px;
   }
   .see-all {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: var(--text-muted);
@@ -453,9 +468,9 @@
     position: absolute; top: 6px; right: 6px;
     background: var(--brand);
     color: #fff;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 9px;
+    font-size: 10px;
     text-transform: uppercase;
     padding: 2px 6px;
     border-radius: 3px;
@@ -465,25 +480,25 @@
     position: absolute; top: 6px; right: 6px;
     background: var(--gold);
     color: #000;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 9px;
+    font-size: 10px;
     text-transform: uppercase;
     padding: 2px 6px;
     border-radius: 3px;
   }
   .game-info { padding: 8px 10px 10px; }
   .game-name {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 15px;
     color: #fff;
     margin-bottom: 3px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .game-provider { font-size: 11px; color: var(--text-muted); }
+  .game-provider { font-size: 13px; color: var(--text-muted); }
 
   /* BG colors for game thumbs */
   .gt-1 { background: linear-gradient(135deg,#1a0a2e,#380060); }
@@ -521,9 +536,9 @@
   }
   .match-body { min-width: 0; }
   .match-teams {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 16px;
     color: #fff;
     margin-bottom: 3px;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -535,9 +550,9 @@
   .live-dot {
     display: flex; align-items: center; gap: 4px;
     color: var(--brand);
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 11px;
+    font-size: 13px;
   }
   .live-dot::before {
     content: '';
@@ -553,14 +568,14 @@
     border-radius: 4px;
     padding: 6px 10px;
     text-align: center;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     cursor: pointer;
     transition: all 0.15s;
     min-width: 52px;
   }
   .odd-btn:hover { background: var(--brand); border-color: var(--brand); }
-  .odd-btn .odd-label { font-size: 10px; color: var(--text-muted); font-weight: 600; display: block; }
-  .odd-btn .odd-val { font-size: 14px; font-weight: 700; color: var(--gold); display: block; line-height: 1.2; }
+  .odd-btn .odd-label { font-size: 11px; color: var(--text-muted); font-weight: 600; display: block; }
+  .odd-btn .odd-val { font-size: 16px; font-weight: 700; color: var(--gold); display: block; line-height: 1.2; }
   .odd-btn:hover .odd-label { color: rgba(255,255,255,0.8); }
   .odd-btn:hover .odd-val { color: #fff; }
 
@@ -582,9 +597,9 @@
   .auth-tab {
     padding: 11px;
     text-align: center;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     cursor: pointer;
@@ -592,14 +607,14 @@
     transition: all 0.2s;
     color: var(--text-muted);
   }
-  .auth-tab.active { color: #fff; border-bottom-color: var(--brand); background: rgba(230, 160, 0, 0.08); }
+  .auth-tab.active { color: #fff; border-bottom-color: var(--brand); background: rgba(217, 70, 239, 0.1); }
   .auth-body { padding: 16px; }
   .form-group { margin-bottom: 10px; }
   .form-label {
     display: block;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 11px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: var(--text-muted);
@@ -612,12 +627,12 @@
     border-radius: 5px;
     padding: 9px 12px;
     color: #fff;
-    font-family: 'Nunito', sans-serif;
-    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
     outline: none;
     transition: border-color 0.2s;
   }
-  .form-input:focus { border-color: var(--brand); background: rgba(230, 160, 0, 0.04); }
+  .form-input:focus { border-color: var(--brand); background: rgba(74, 158, 255, 0.08); }
   .form-input::placeholder { color: rgba(255,255,255,0.2); }
   .btn-full { width: 100%; justify-content: center; padding: 10px; font-size: 14px; border-radius: 5px; }
   .auth-divider {
@@ -644,9 +659,9 @@
     border-radius: 5px;
     padding: 8px;
     color: var(--text-muted);
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 13px;
     cursor: pointer;
     display: flex; align-items: center; gap: 6px; justify-content: center;
     transition: all 0.2s;
@@ -674,23 +689,23 @@
   }
   .win-info { flex: 1; min-width: 0; }
   .win-user {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 15px;
     color: #fff;
   }
-  .win-game { font-size: 11px; color: var(--text-muted); }
+  .win-game { font-size: 13px; color: var(--text-muted); }
   .win-amount {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--gold);
     flex-shrink: 0;
   }
 
   /* App Download */
   .app-banner {
-    background: linear-gradient(135deg, #0e1b30, #1a0508);
+    background: linear-gradient(135deg, #1a2a3a, #1a1f2e);
     border: 1px solid var(--border-brand);
     border-radius: 8px;
     padding: 16px;
@@ -698,12 +713,13 @@
   }
   .app-banner .app-icon { font-size: 36px; margin-bottom: 8px; }
   .app-banner h4 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
     letter-spacing: 1px;
     margin-bottom: 4px;
   }
-  .app-banner p { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.4; }
+  .app-banner p { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.4; }
   .app-btns { display: flex; flex-direction: column; gap: 7px; }
   .app-btn {
     background: rgba(255,255,255,0.07);
@@ -716,12 +732,12 @@
   }
   .app-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
   .app-btn span:first-child { font-size: 18px; }
-  .app-btn-text .sub { font-size: 9px; color: var(--text-muted); display: block; text-transform: uppercase; letter-spacing: 0.5px; }
-  .app-btn-text .name { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 13px; }
+  .app-btn-text .sub { font-size: 10px; color: var(--text-muted); display: block; text-transform: uppercase; letter-spacing: 0.5px; }
+  .app-btn-text .name { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; }
 
   /* ── FOOTER ── */
   footer {
-    background: #030810;
+    background: #141414;
     border-top: 2px solid var(--brand);
     margin-top: 32px;
     padding: 32px 20px 20px;
@@ -746,11 +762,11 @@
     font-size: 14px;
     transition: all 0.2s;
   }
-  .footer-social a:hover { border-color: var(--brand); color: #fff; background: rgba(230, 160, 0, 0.1); }
+  .footer-social a:hover { border-color: var(--brand); color: #fff; background: rgba(74, 158, 255, 0.1); }
   .footer-col h5 {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #fff;
@@ -760,7 +776,7 @@
   .footer-col ul li a {
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 12px;
+    font-size: 14px;
     transition: color 0.15s;
   }
   .footer-col ul li a:hover { color: var(--brand); }
@@ -773,15 +789,15 @@
     flex-wrap: wrap;
     gap: 12px;
   }
-  .footer-bottom p { font-size: 11px; color: var(--text-muted); }
+  .footer-bottom p { font-size: 13px; color: var(--text-muted); }
   .payment-icons { display: flex; gap: 8px; align-items: center; }
   .pay-icon {
     background: rgba(255,255,255,0.06);
     border: 1px solid var(--border);
     border-radius: 4px;
     padding: 4px 8px;
-    font-size: 10px;
-    font-family: 'Rajdhani', sans-serif;
+    font-size: 11px;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     letter-spacing: 0.5px;
     color: var(--text-muted);
@@ -789,8 +805,9 @@
   .age-badge {
     background: var(--brand);
     color: #fff;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
     padding: 3px 8px;
     border-radius: 4px;
   }
@@ -819,16 +836,16 @@
     padding: 16px;
   }
   .promo-card-1 {
-    background: linear-gradient(135deg, #1f1300 0%, #0d0d0d 100%);
-    box-shadow: inset 0 0 40px rgba(230, 160, 0, 0.15);
+    background: linear-gradient(135deg, #1a2a3a 0%, #1a1a2e 100%);
+    box-shadow: inset 0 0 40px rgba(74, 158, 255, 0.1);
     --card-glow-color: var(--brand);
-    --card-shadow-color: rgba(230, 160, 0, 0.2);
+    --card-shadow-color: rgba(74, 158, 255, 0.15);
   }
   .promo-card-2 {
-    background: linear-gradient(135deg, #051630 0%, #0d0d0d 100%);
-    box-shadow: inset 0 0 40px rgba(21, 101, 255, 0.15);
-    --card-glow-color: var(--blue-acc);
-    --card-shadow-color: rgba(21, 101, 255, 0.25);
+    background: linear-gradient(135deg, #1a2a3a 0%, #1a1a1a 100%);
+    box-shadow: inset 0 0 40px rgba(74, 158, 255, 0.08);
+    --card-glow-color: var(--blue-light);
+    --card-shadow-color: rgba(74, 158, 255, 0.15);
   }
   .promo-banner-card::before {
     content: '';
@@ -855,9 +872,9 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     color: var(--text-muted);
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 10px;
+    font-size: 11px;
     text-transform: uppercase;
     padding: 3px 8px;
     border-radius: 4px;
@@ -875,9 +892,9 @@
     z-index: 3;
   }
   .promo-banner-tag {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 8px;
+    font-size: 10px;
     text-transform: uppercase;
     color: var(--card-glow-color, var(--brand));
     letter-spacing: 2.5px;
@@ -894,9 +911,9 @@
     border-radius: 1px;
   }
   .promo-banner-title {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 800;
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: 0.5px;
     color: #fff;
     text-transform: uppercase;
