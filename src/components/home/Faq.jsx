@@ -26,7 +26,7 @@ const Item = ({ q, a, open, onToggle, idx }) => {
         <span
           className="text-[10px] font-black shrink-0 w-5 h-5 rounded flex items-center justify-center transition-all duration-200"
           style={{
-            fontFamily: "'Rajdhani', sans-serif",
+            fontFamily: FONTS.ui,
             background: open ? COLORS.brand : 'rgba(255,255,255,0.05)',
             color: open ? '#000' : '#555',
             boxShadow: open ? `0 0 10px ${COLORS.brand}60` : 'none',
@@ -38,7 +38,7 @@ const Item = ({ q, a, open, onToggle, idx }) => {
         {/* Question */}
         <span
           className="flex-1 text-[11.5px] font-bold uppercase tracking-[0.5px] transition-colors duration-200 leading-snug"
-          style={{ fontFamily: "'Rajdhani', sans-serif", color: open ? '#fff' : '#888' }}
+          style={{ fontFamily: FONTS.ui, color: open ? '#fff' : '#888' }}
         >
           {q}
         </span>
@@ -65,7 +65,7 @@ const Item = ({ q, a, open, onToggle, idx }) => {
           ></div>
           <p
             className="text-[11px] text-white/50 leading-relaxed"
-            style={{ fontFamily: "'Rajdhani', sans-serif" }}
+            style={{ fontFamily: FONTS.ui }}
           >
             {a}
           </p>
@@ -86,14 +86,14 @@ const Faq = () => {
         <div className="flex flex-col gap-0.5">
           <div
             className="flex items-center gap-2 text-xl tracking-[1.5px] text-white"
-            style={{ fontFamily: FONTS.head || "'Bebas Neue', sans-serif" }}
+            style={{ fontFamily: FONTS.head }}
           >
             <div className="w-1 h-5 rounded-sm" style={{ background: COLORS.brand }}></div>
             Frequently Asked Questions
           </div>
           <div
             className="text-[10px] font-bold uppercase tracking-[1.5px] pl-3 text-white/50"
-            style={{ fontFamily: "'Rajdhani', sans-serif" }}
+            style={{ fontFamily: FONTS.ui }}
           >
             Knowledge Base & FAQ
           </div>
@@ -101,7 +101,7 @@ const Faq = () => {
         <span
           className="text-[9px] font-black uppercase tracking-[1px] px-2.5 py-1 rounded border"
           style={{
-            fontFamily: "'Rajdhani', sans-serif",
+            fontFamily: FONTS.ui,
             color: COLORS.brand,
             background: `${COLORS.brand}10`,
             borderColor: `${COLORS.brand}30`,

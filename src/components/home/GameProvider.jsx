@@ -115,14 +115,14 @@ const GameProvider = () => {
         <div className="flex flex-col gap-0.5">
           <div
             className="flex items-center gap-2 text-xl tracking-[1.5px] text-white"
-            style={{ fontFamily: FONTS.head || "'Bebas Neue', sans-serif" }}
+            style={{ fontFamily: FONTS.head }}
           >
             <div className="w-1 h-5 rounded-sm" style={{ background: COLORS.brand }}></div>
             Game Providers
           </div>
           <div
             className="text-[10px] font-bold uppercase tracking-[1.5px] pl-3 text-white/50"
-            style={{ fontFamily: "'Rajdhani', sans-serif" }}
+            style={{ fontFamily: FONTS.ui }}
           >
             Worldwide Partnerships
           </div>
@@ -132,7 +132,7 @@ const GameProvider = () => {
           onClick={() => setShowAll(!showAll)}
           className="text-[10px] font-black uppercase tracking-[1px] px-4 py-[6px] rounded border transition-all duration-200 cursor-pointer"
           style={{
-            fontFamily: "'Rajdhani', sans-serif",
+            fontFamily: FONTS.ui,
             color: showAll ? '#000' : COLORS.brand,
             background: showAll ? COLORS.brand : 'transparent',
             borderColor: COLORS.brand,

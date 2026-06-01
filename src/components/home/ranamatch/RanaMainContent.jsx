@@ -146,15 +146,15 @@ const RanaMainContent = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex flex-col gap-0.5">
-            <div className="flex items-center gap-2 text-xl tracking-[1.5px] text-white" style={{ fontFamily: FONTS.head || "'Bebas Neue', sans-serif" }}>
+            <div className="flex items-center gap-2 text-xl tracking-[1.5px] text-white" style={{ fontFamily: FONTS.head }}>
               <div className="w-1 h-5 rounded-sm" style={{ background: COLORS.brand }}></div>
               Exclusive Elite Offers
             </div>
-            <div className="text-[10px] font-bold uppercase tracking-[1.5px] pl-3 text-white/50" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+            <div className="text-[10px] font-bold uppercase tracking-[1.5px] pl-3 text-white/50" style={{ fontFamily: FONTS.ui }}>
               Current Promotions & Rewards
             </div>
           </div>
-          <a href="#" className="text-[10px] font-bold uppercase tracking-[1px] text-white/40 hover:text-brand transition-colors no-underline" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+          <a href="#" className="text-[10px] font-bold uppercase tracking-[1px] text-white/40 hover:text-brand transition-colors no-underline" style={{ fontFamily: FONTS.ui }}>
             View All →
           </a>
         </div>
@@ -187,7 +187,7 @@ const RanaMainContent = () => {
                   <div className="absolute top-0 left-0 w-[3px] h-full z-10 opacity-60 group-hover:opacity-100 transition-opacity duration-200"
                     style={{ background: card.color }}
                   ></div>
-                  <div className="relative z-10 text-white/20 uppercase font-black tracking-widest text-[10px]" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+                  <div className="relative z-10 text-white/20 uppercase font-black tracking-widest text-[10px]" style={{ fontFamily: FONTS.ui }}>
                     PROMOTION BANNER
                   </div>
                 </div>

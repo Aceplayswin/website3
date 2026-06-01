@@ -39,11 +39,11 @@ const FeaturesSection = () => {
       {/* Header aligned with other sections */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex flex-col gap-0.5">
-          <div className="flex items-center gap-2 text-xl tracking-[1.5px] text-white" style={{ fontFamily: FONTS.head || "'Bebas Neue', sans-serif" }}>
+          <div className="flex items-center gap-2 text-xl tracking-[1.5px] text-white" style={{ fontFamily: FONTS.head }}>
             <div className="w-1 h-5 rounded-sm" style={{ background: COLORS.brand }}></div>
             Why Choose {accountInfo?.service_site_name || 'velplay365'}?
           </div>
-          <div className="text-[10px] font-bold uppercase tracking-[1.5px] pl-3 text-white/50" style={{ fontFamily: "'Rajdhani', sans-serif" }}>
+          <div className="text-[10px] font-bold uppercase tracking-[1.5px] pl-3 text-white/50" style={{ fontFamily: FONTS.ui }}>
             Why We're Different
           </div>
         </div>
@@ -65,13 +65,13 @@ const FeaturesSection = () => {
             <div className="flex flex-col gap-1 relative z-10">
               <span 
                 className="text-3xl font-black opacity-20 group-hover:opacity-100 transition-opacity duration-300 leading-none tracking-tighter"
-                style={{ fontFamily: FONTS.head || "'Bebas Neue', sans-serif", color: f.color }}
+                style={{ fontFamily: FONTS.head, color: f.color }}
               >
                 {f.num}
               </span>
               <h3 
                 className="text-sm font-bold uppercase tracking-[1px] text-white/80 group-hover:text-white transition-colors duration-300"
-                style={{ fontFamily: "'Rajdhani', sans-serif" }}
+                style={{ fontFamily: FONTS.ui }}
               >
                 {f.title}
               </h3>
