@@ -1,11 +1,21 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSite } from "../../../context/SiteContext";
+import { URL as BASE_URL } from "../../../utils/constants";
 
 const RanaHeader = () => {
   const { accountInfo, setShowLogin, setShowRegister } = useSite();
   const navigate = useNavigate();
   const isLoggedIn = !!(accountInfo?.account_id && accountInfo.account_id !== "guest" && localStorage.getItem("auth_secret_key") && localStorage.getItem("auth_secret_key") !== "guest");
+
+  // Logo URL Helper - resolve backend relative paths
+  const getSafeLogoUrl = (logoPath) => {
+    if (!logoPath || logoPath === "/favicon.png" || logoPath.includes('favicon.png')) return "/banner/image.png";
+    if (logoPath.startsWith('http') || logoPath.startsWith('data:')) return logoPath;
+    const base = BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL;
+    const path = logoPath.startsWith('/') ? logoPath : `/${logoPath}`;
+    return `${base}${path}`;
+  };
 
   return (
     <>
@@ -37,7 +47,12 @@ const RanaHeader = () => {
       <header>
         <div className="header-inner">
           <Link to="/" className="logo">
-            <span className="v">R</span><span className="rest">ANA</span><span className="v">MATCH</span>
+            <img
+              src={getSafeLogoUrl(accountInfo?.service_site_logo)}
+              className="logo-img"
+              alt={accountInfo?.service_site_name || "Logo"}
+              onError={(e) => { e.target.src = "/banner/image.png"; }}
+            />
           </Link>
           <nav>
             <Link to="/" className="active">🏠 Home</Link>

@@ -197,7 +197,7 @@ const GameSection = ({ title, games, id, layout = "slider" }) => {
             style={{ background: COLORS.brandGradient }}
           ></div>
           <h2
-            className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-black dark:text-white tracking-[0.02em] uppercase leading-none whitespace-nowrap truncate drop-shadow-sm"
+            className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-black dark:text-white tracking-[0.02em] uppercase leading-none whitespace-nowrap truncate drop-shadow-sm"
             style={{ fontFamily: FONTS.head }}
           >
             {title}

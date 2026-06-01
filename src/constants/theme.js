@@ -37,7 +37,7 @@ export const lightTheme = {
 };
 
 export const FONTS = {
-  display: "'Anton', sans-serif",
-  ui: "'Rajdhani', sans-serif",
-  head: "'Oswald', sans-serif"
+  display: "'Outfit', sans-serif",
+  ui: "'Inter', sans-serif",
+  head: "'Outfit', sans-serif"
 };
