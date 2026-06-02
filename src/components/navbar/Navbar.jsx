@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from "react-router-dom"
 import AccountInfo from "./AccountInfo"
 import { allsport } from "../jsondata/sport"
 import { liveSport } from "../jsondata/live"
-import { FaSignInAlt, FaUserPlus, FaMoneyCheckAlt, FaWallet, FaHeadset, FaDownload, FaExchangeAlt, FaHistory, FaGavel, FaShieldAlt, FaLock, FaUserShield, FaGift, FaStar, FaShareAlt, FaKey, FaSignOutAlt, FaWhatsapp, FaTelegramPlane, FaInstagram, FaFacebookF, FaTwitter, FaEnvelope, FaTabletAlt, FaMobileAlt, FaArrowRight, FaClock, FaTrophy, FaGem, FaTicketAlt, FaSearch } from "react-icons/fa"
+import { FaSignInAlt, FaUserPlus, FaMoneyCheckAlt, FaWallet, FaHeadset, FaDownload, FaExchangeAlt, FaHistory, FaGavel, FaShieldAlt, FaLock, FaUserShield, FaGift, FaStar, FaShareAlt, FaKey, FaSignOutAlt, FaWhatsapp, FaTelegramPlane, FaInstagram, FaFacebookF, FaTwitter, FaEnvelope, FaTabletAlt, FaMobileAlt, FaArrowRight, FaClock, FaTrophy, FaGem, FaTicketAlt, FaSearch, FaBell, FaUserCircle, FaSun, FaMoon } from "react-icons/fa"
 import { useSite } from "../../context/SiteContext"
 import { useGames } from "../../context/GameContext"
 import { useColors } from '../../hooks/useColors';
@@ -379,6 +379,11 @@ function Navbar() {
     navigate("/")
   }
 
+  const quickBalance = Number(accountInfo?.account_balance || 0).toLocaleString("en-IN", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+
   function handleInviteAndEarn() {
     setMenuOpen(false)
     navigate("/inviteandearn")
@@ -534,7 +539,7 @@ function Navbar() {
               <button className={`nav-link ${activeMainTab === 'promotions' ? 'active' : ''}`} onClick={handlePromotion} style={{ fontFamily: FONTS.head, background: 'none', border: 'none', cursor: 'pointer' }}>Promotions</button>
             </nav>
 
-            <div className="header-cta">
+            <div className="header-cta relative overflow-visible">
               {!isLoggedIn ? (
                 <>
                   {authSecretKey === "guest" ? (
@@ -563,7 +568,19 @@ function Navbar() {
               ) : (
                 <>
                   <button className="btn-outline header-btn" onClick={() => navigate("/deposit")} style={{ fontFamily: FONTS.head, borderColor: COLORS.bg4 }}>Deposit</button>
-                  <button className="btn-primary header-btn" onClick={() => navigate("/withdraw")} style={{ background: COLORS.brandGradient, color: '#000', fontFamily: FONTS.head }}>Withdraw</button>
+                  <button
+                    className="btn-primary header-btn"
+                    onClick={() => navigate("/withdraw")}
+                    style={{
+                      background: "linear-gradient(180deg, #1b2233 0%, #121827 100%)",
+                      color: "#ffffff",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04), 0 8px 18px rgba(8,15,28,0.35)",
+                      fontFamily: FONTS.head,
+                    }}
+                  >
+                    Withdraw
+                  </button>
                 </>
               )}
 
@@ -592,19 +609,104 @@ function Navbar() {
 
 
               {/* Mobile Menu Toggle */}
-              <button
-                className={`mobile-menu-btn p-1 md:p-1.5 rounded-xl transition-all duration-300 ${menuOpen ? 'bg-gray-100 dark:bg-white/10 rotate-90' : 'bg-gray-100 dark:bg-white/5'}`}
-                onClick={() => {
-                  setMenuOpen(!menuOpen)
-                  setProfileOpen(false)
-                }}
-              >
-                {menuOpen ? (
-                  <FaTimes className="text-base md:text-lg" style={{ color: COLORS.brand }} />
-                ) : (
-                  <FaBars className="text-base md:text-lg text-black/70 dark:text-white/70" />
-                )}
-              </button>
+              <div className="hidden md:flex items-center gap-2 ml-2 flex-none">
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  className="w-9 h-9 rounded-full border border-white/5 bg-[#151b29] hover:bg-brand/15 hover:border-brand/30 text-white/80 hover:text-white transition-all duration-300 flex items-center justify-center shadow-[0_6px_16px_rgba(0,0,0,0.25)]"
+                  title="Theme"
+                  aria-label="Toggle theme"
+                >
+                  {theme === "light" ? <FaMoon size={13} /> : <FaSun size={13} />}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => navigate("/notifications")}
+                  className="w-9 h-9 rounded-full border border-white/5 bg-[#151b29] hover:bg-brand/15 hover:border-brand/30 text-white/80 hover:text-white transition-all duration-300 flex items-center justify-center shadow-[0_6px_16px_rgba(0,0,0,0.25)]"
+                  title="Notifications"
+                  aria-label="Notifications"
+                >
+                  <FaBell size={13} />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (!isLoggedIn) {
+                      setShowLogin(true)
+                      return
+                    }
+                    setProfileOpen((prev) => !prev)
+                    setMenuOpen(false)
+                  }}
+                  className="w-9 h-9 rounded-full border border-white/5 bg-[#151b29] hover:bg-brand/15 hover:border-brand/30 text-white/80 hover:text-white transition-all duration-300 flex items-center justify-center shadow-[0_6px_16px_rgba(0,0,0,0.25)]"
+                  title="Profile"
+                  aria-label="Profile"
+                >
+                  <FaUserCircle size={14} />
+                </button>
+
+                <button
+                  type="button"
+                  className={`w-9 h-9 rounded-full transition-all duration-300 flex items-center justify-center ${menuOpen ? 'bg-white/10 rotate-90' : 'bg-[#151b29]'}`}
+                  onClick={() => {
+                    setMenuOpen(!menuOpen)
+                    setProfileOpen(false)
+                  }}
+                  title="Menu"
+                  aria-label="Menu"
+                >
+                  {menuOpen ? (
+                    <FaTimes className="text-base md:text-lg" style={{ color: COLORS.brand }} />
+                  ) : (
+                    <FaBars className="text-base md:text-lg text-white/80" />
+                  )}
+                </button>
+              </div>
+
+              {profileOpen && isLoggedIn && (
+                <div className="hidden md:block absolute right-0 top-full mt-3 w-72 rounded-3xl border border-white/10 bg-[#10131d]/95 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.45)] overflow-hidden z-[250]">
+                  <div className="p-4 border-b border-white/5">
+                    <p className="text-[9px] uppercase tracking-[0.28em] text-white/40 font-black">My Profile</p>
+                    <div className="mt-2 flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-2xl bg-brand/15 border border-brand/20 flex items-center justify-center text-brand">
+                        <FaUserCircle size={20} />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-black text-white truncate">{accountInfo?.account_username || "User"}</p>
+                        <p className="text-[11px] text-white/40 font-semibold">Balance: ₹{quickBalance}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-3 grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => { setProfileOpen(false); navigate("/deposit"); }}
+                      className="rounded-2xl bg-brand text-black font-black uppercase text-[10px] py-2.5 transition-all hover:brightness-110"
+                    >
+                      Deposit
+                    </button>
+                    <button
+                      onClick={() => { setProfileOpen(false); navigate("/withdraw"); }}
+                      className="rounded-2xl bg-[#1b2233] text-white border border-white/10 font-black uppercase text-[10px] py-2.5 transition-all hover:bg-[#222b40]"
+                    >
+                      Withdraw
+                    </button>
+                    <button
+                      onClick={() => { setProfileOpen(false); navigate("/notifications"); }}
+                      className="col-span-2 rounded-2xl bg-white/5 text-white/80 font-black uppercase text-[10px] py-2.5 transition-all hover:bg-white/10"
+                    >
+                      Notifications
+                    </button>
+                    <button
+                      onClick={() => { setProfileOpen(false); handleSignOut(); }}
+                      className="col-span-2 rounded-2xl bg-white/5 text-white/80 font-black uppercase text-[10px] py-2.5 transition-all hover:bg-red-500/15 hover:text-red-300"
+                    >
+                      Log Out
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </header>

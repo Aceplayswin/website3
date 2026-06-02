@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSite } from "../../../context/SiteContext";
 import { URL as BASE_URL } from "../../../utils/constants";
-import { FaGem } from "react-icons/fa";
+import { FaBars, FaBell, FaGem, FaMoon, FaSun, FaTimes, FaUserCircle } from "react-icons/fa";
+import { useTheme } from "../../../context/ThemeContext";
 
 const RanaHeader = () => {
   const { accountInfo, activateDemoMode } = useSite();
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const isLoggedIn = !!(accountInfo?.account_id && accountInfo.account_id !== "guest" && localStorage.getItem("auth_secret_key") && localStorage.getItem("auth_secret_key") !== "guest");
+  const latestNewsItems = [
+    "New Live Casino Games launching in 7 days",
+    "Mega Slots Tournament starts in 10 days",
+    "Weekly Cashback update version 2.0 releasing soon",
+    "New Bonus System upgrade in 15 days",
+  ];
 
   // Logo URL Helper - resolve backend relative paths
   const getSafeLogoUrl = (logoPath) => {
@@ -22,19 +32,35 @@ const RanaHeader = () => {
     <>
       {/* TOP BAR */}
       <div className="top-bar">
-        <span>🔴 LIVE: 342 Active Players</span>
+        <span
+          style={{
+            background: 'linear-gradient(135deg, #1d4ed8 0%, #172033 100%)',
+            color: '#ffffff',
+            padding: '4px 10px',
+            borderRadius: '999px',
+            fontSize: '10px',
+            fontWeight: 800,
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          Latest News
+        </span>
         <div className="marquee-wrap">
           <div className="marquee-inner">
-            <span>🏆 <span className="win">Raj***singh</span> won ₹24,500 on Cricket</span>
-            <span>🎰 <span className="win">Anon***87</span> won ₹8,200 on Teen Patti</span>
-            <span>⚽ <span className="win">Mukesh***K</span> won ₹41,000 on IPL Match</span>
-            <span>🃏 <span className="win">Priya***N</span> won ₹5,600 on Roulette</span>
-            <span>🏏 <span className="win">Vijay***35</span> won ₹18,000 on T20 Live</span>
-            <span>🏆 <span className="win">Raj***singh</span> won ₹24,500 on Cricket</span>
-            <span>🎰 <span className="win">Anon***87</span> won ₹8,200 on Teen Patti</span>
-            <span>⚽ <span className="win">Mukesh***K</span> won ₹41,000 on IPL Match</span>
-            <span>🃏 <span className="win">Priya***N</span> won ₹5,600 on Roulette</span> 
-            <span>🏏 <span className="win">Vijay***35</span> won ₹18,000 on T20 Live</span>
+            {latestNewsItems.map((item, index) => (
+              <React.Fragment key={index}>
+                <span><span className="win">{item}</span></span>
+                <span>|</span>
+              </React.Fragment>
+            ))}
+            {latestNewsItems.map((item, index) => (
+              <React.Fragment key={`dup-${index}`}>
+                <span><span className="win">{item}</span></span>
+                <span>|</span>
+              </React.Fragment>
+            ))}
           </div>
         </div>
         <div className="top-bar-right">
@@ -65,10 +91,78 @@ const RanaHeader = () => {
           </nav>
           <div className="header-cta">
             {isLoggedIn ? (
-              <>
-                <button className="btn btn-outline" onClick={() => navigate("/deposit")}>Deposit</button>
-                <button className="btn btn-brand" onClick={() => navigate("/withdraw")}>Withdraw</button>
-              </>
+              <div className="header-cta-group">
+                <div className="header-primary-actions">
+                  <button className="btn btn-outline" onClick={() => navigate("/deposit")}>Deposit</button>
+                  <button className="btn btn-brand" onClick={() => navigate("/withdraw")}>Withdraw</button>
+                </div>
+                <div className="header-utility-actions">
+                  <button
+                    type="button"
+                    className="header-icon-btn"
+                    onClick={toggleTheme}
+                    aria-label="Toggle theme"
+                    title="Toggle theme"
+                  >
+                    {theme === "dark" ? <FaSun /> : <FaMoon />}
+                  </button>
+                  <button
+                    type="button"
+                    className="header-icon-btn"
+                    aria-label="Notifications"
+                    title="Notifications"
+                  >
+                    <FaBell />
+                  </button>
+                  <div className="header-profile-wrap">
+                    <button
+                      type="button"
+                      className="header-icon-btn"
+                      onClick={() => setProfileOpen((prev) => !prev)}
+                      aria-label="Profile"
+                      title="Profile"
+                    >
+                      <FaUserCircle />
+                    </button>
+                    {profileOpen && (
+                      <div className="header-mini-popover">
+                        <button type="button" className="header-mini-close" onClick={() => setProfileOpen(false)} aria-label="Close profile menu">
+                          <FaTimes />
+                        </button>
+                        <div className="header-mini-name">{accountInfo?.account_username || "User"}</div>
+                        <div className="header-mini-sub">My Profile</div>
+                        <div className="header-mini-actions">
+                          <button type="button" onClick={() => { setProfileOpen(false); navigate("/deposit"); }}>Deposit</button>
+                          <button type="button" onClick={() => { setProfileOpen(false); navigate("/withdraw"); }}>Withdraw</button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="header-profile-wrap">
+                    <button
+                      type="button"
+                      className="header-icon-btn"
+                      onClick={() => setMenuOpen((prev) => !prev)}
+                      aria-label="Menu"
+                      title="Menu"
+                    >
+                      <FaBars />
+                    </button>
+                    {menuOpen && (
+                      <div className="header-mini-popover header-menu-popover">
+                        <button type="button" className="header-mini-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">
+                          <FaTimes />
+                        </button>
+                        <div className="header-mini-actions header-menu-actions">
+                          <button type="button" onClick={() => { setMenuOpen(false); navigate("/"); }}>Home</button>
+                          <button type="button" onClick={() => { setMenuOpen(false); navigate("/casino"); }}>Casino</button>
+                          <button type="button" onClick={() => { setMenuOpen(false); navigate("/promotion"); }}>Promotions</button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             ) : (
               <button
                 className="btn-demo-play"
