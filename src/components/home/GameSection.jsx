@@ -190,19 +190,10 @@ const GameSection = ({ title, games, id, layout = "slider" }) => {
       id={sectionId}
       className="game-section relative w-full py-4 md:py-6 scroll-mt-24 md:scroll-mt-32"
     >
-      <div className="flex justify-between items-end mb-4 md:mb-5 px-1 md:px-2">
-        <div className="flex items-center gap-2 md:gap-3 min-w-0">
-          <div
-            className="h-4 md:h-5 w-1 rounded-full flex-shrink-0 shadow-[0_0_10px_rgba(230,160,0,0.5)]"
-            style={{ background: COLORS.brandGradient }}
-          ></div>
-          <h2
-            className="text-[13px] sm:text-sm md:text-[15px] lg:text-base font-bold text-black dark:text-white tracking-[0.02em] uppercase leading-none whitespace-nowrap truncate drop-shadow-sm"
-            style={{ fontFamily: FONTS.head }}
-          >
-            {title}
-          </h2>
-        </div>
+      <div className="flex justify-between items-center gap-3 mb-4 md:mb-5 px-1 md:px-2">
+        <h2 className="section-banner max-w-full" style={{ fontFamily: FONTS.head }}>
+          <span>{title}</span>
+        </h2>
         {layout !== "grid" && (
           <div className="flex items-center space-x-2 sm:space-x-4">
             <div className="hidden md:flex items-center gap-1">

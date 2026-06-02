@@ -43,8 +43,8 @@ const RanaSidebarRight = () => {
             <div className="auth-body">
               <div style={{ textAlign: 'center', marginBottom: '16px' }}>
                 <div style={{ fontSize: '32px', marginBottom: '8px' }}>👤</div>
-                <h3 style={{ fontFamily: "'Rajdhani', sans-serif", fontSize: '18px', color: '#fff', margin: 0 }}>{accountInfo?.account_username}</h3>
-                <p style={{ color: 'var(--brand)', fontFamily: "'Rajdhani', sans-serif", fontSize: '14px', fontWeight: 'bold' }}>₹{accountInfo?.account_balance || '0.00'}</p>
+                <h3 style={{ fontFamily: "var(--font-display)", fontSize: '18px', color: '#fff', margin: 0 }}>{accountInfo?.account_username}</h3>
+                <p style={{ color: 'var(--brand)', fontFamily: "var(--font-display)", fontSize: '14px', fontWeight: 'bold' }}>₹{accountInfo?.account_balance || '0.00'}</p>
               </div>
               <button className="btn btn-outline btn-full" onClick={() => {
                 localStorage.removeItem("auth_secret_key");

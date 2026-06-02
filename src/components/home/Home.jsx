@@ -15,7 +15,7 @@ function Home() {
   useEffect(() => {
     document.body.style.backgroundColor = '#0f0a1a';
     document.body.style.color = '#FFFFFF';
-    document.body.style.fontFamily = "'Poppins', 'Segoe UI', sans-serif";
+    document.body.style.fontFamily = "var(--font-ui)";
     document.documentElement.style.height = '100%';
     document.body.style.height = '100%';
     document.body.style.margin = '0';

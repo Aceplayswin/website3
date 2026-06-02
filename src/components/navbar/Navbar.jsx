@@ -559,7 +559,6 @@ function Navbar() {
                       <span>Demo Play</span>
                     </button>
                   )}
-                  <button className="btn-outline header-btn" onClick={handleLoginClick} style={{ fontFamily: FONTS.head, borderColor: COLORS.bg4 }}>Log In</button>
                 </>
               ) : (
                 <>

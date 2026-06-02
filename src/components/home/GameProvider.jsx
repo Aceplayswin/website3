@@ -111,19 +111,10 @@ const GameProvider = () => {
   return (
     <section className="mt-7 px-4 md:px-0 max-w-[1400px] mx-auto w-full">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4 px-1 md:px-2">
-        <div className="flex items-center gap-2 md:gap-3 min-w-0">
-          <div
-            className="h-4 md:h-5 w-1 rounded-full flex-shrink-0 shadow-[0_0_10px_rgba(230,160,0,0.5)]"
-            style={{ background: COLORS.brandGradient || COLORS.brand }}
-          ></div>
-          <h2
-            className="text-[13px] sm:text-sm md:text-[15px] lg:text-base font-bold text-black dark:text-white tracking-[0.02em] uppercase leading-none whitespace-nowrap truncate drop-shadow-sm"
-            style={{ fontFamily: FONTS.head }}
-          >
-            Game Providers
-          </h2>
-        </div>
+      <div className="flex items-center justify-between gap-3 mb-4 px-1 md:px-2">
+        <h2 className="section-banner max-w-full" style={{ fontFamily: FONTS.head }}>
+          <span>Game Providers</span>
+        </h2>
 
         <button
           onClick={() => setShowAll(!showAll)}

@@ -32,7 +32,7 @@ const Footer = () => {
 
   return (
     <footer className="pt-4 pb-28 md:pb-4 px-4 md:px-8 border-t border-black/10 dark:border-white/10 relative overflow-hidden"
-      style={{ backgroundColor: COLORS.bg2, color: 'white', fontFamily: COLORS.fontUi || 'Rajdhani' }}>
+      style={{ backgroundColor: COLORS.bg2, color: 'white', fontFamily: COLORS.fontUi || 'var(--font-ui)' }}>
       {/* Visual Depth Accents */}
       <div
         className="absolute top-0 left-0 w-full h-[1px] z-10"

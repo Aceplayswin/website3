@@ -1,9 +1,9 @@
 export const COLORS = {
-  brand: "#4a9eff",
-  brandLight: "#6db3ff",
-  brandDark: "#2e5f9e",
-  brandGradient: "linear-gradient(135deg, #4a9eff 0%, #2e5f9e 100%)",
-  accentGlow: "rgba(74, 158, 255, 0.1)",
+  brand: "#1d4ed8",
+  brandLight: "#60a5fa",
+  brandDark: "#1e3a8a",
+  brandGradient: "linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%)",
+  accentGlow: "rgba(29, 78, 216, 0.1)",
   yellow: "#ffc107",
   red: "#ff6b6b",
   bg: "#1a1a1a",
@@ -18,11 +18,11 @@ export const COLORS = {
 };
 
 export const lightTheme = {
-  brand: "#4a9eff",
-  brandLight: "#6db3ff",
-  brandDark: "#2e5f9e",
-  brandGradient: "linear-gradient(135deg, #4a9eff 0%, #2e5f9e 100%)",
-  accentGlow: "rgba(74, 158, 255, 0.1)",
+  brand: "#1d4ed8",
+  brandLight: "#60a5fa",
+  brandDark: "#1e3a8a",
+  brandGradient: "linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%)",
+  accentGlow: "rgba(29, 78, 216, 0.1)",
   yellow: "#ffc107",
   red: "#ff6b6b",
   bg: "#f5f5f5",
@@ -37,7 +37,8 @@ export const lightTheme = {
 };
 
 export const FONTS = {
-  display: "'Poppins', sans-serif",
-  ui: "'Poppins', sans-serif",
-  head: "'Poppins', sans-serif"
+  display: "'Sora', sans-serif",
+  ui: "'Inter', sans-serif",
+  head: "'Space Grotesk', sans-serif"
 };
+

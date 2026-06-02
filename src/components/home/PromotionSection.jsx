@@ -74,23 +74,17 @@ function PromotionSection({ banners = [] }) {
 
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Elite Header */}
-        <div className="flex flex-col md:flex-row justify-between md:items-end gap-5 md:gap-0 mb-8 md:mb-10 pb-6 border-b border-black/5 dark:border-white/5">
-          <div className="flex items-center gap-4 md:gap-6">
-            <div
-              className="h-6 md:h-8 w-1.5 rounded-full"
-              style={{ background: COLORS.brandGradient }}
-            ></div>
-            <div>
-              <h2
-                className="text-base sm:text-lg md:text-xl font-black text-black dark:text-white tracking-[0.1em] md:tracking-[0.2em] uppercase leading-none"
-                style={{ fontFamily: FONTS.head }}
-              >
-                Exclusive <span style={{ color: COLORS.brand }}>Elite Offers</span>
-              </h2>
-              <div className="flex items-center gap-2 md:gap-3 mt-2 md:mt-3">
-                <div className="h-px w-8 md:w-12 bg-gray-100 dark:bg-white/20"></div>
-                <span className="text-[8px] md:text-[10px] text-black/40 dark:text-white/40 font-bold uppercase tracking-[0.2em] md:tracking-[0.4em]">Current Promotions & Rewards</span>
-              </div>
+        <div className="flex flex-col md:flex-row justify-between md:items-end gap-4 md:gap-0 mb-8 md:mb-10 pb-6 border-b border-black/5 dark:border-white/5">
+          <div className="space-y-2">
+            <h2
+              className="section-banner max-w-full"
+              style={{ fontFamily: FONTS.head }}
+            >
+              <span>Exclusive Elite Offers</span>
+            </h2>
+            <div className="flex items-center gap-2 md:gap-3 pl-1">
+              <div className="h-px w-8 md:w-12 bg-gray-100 dark:bg-white/20"></div>
+              <span className="text-[8px] md:text-[10px] text-black/40 dark:text-white/40 font-bold uppercase tracking-[0.2em] md:tracking-[0.4em]">Current Promotions & Rewards</span>
             </div>
           </div>
 

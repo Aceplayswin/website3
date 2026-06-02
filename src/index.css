@@ -424,10 +424,10 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   padding: 0;
   color: #fff;
   background:
-    radial-gradient(circle at 72% 8%, rgba(74, 158, 255, 0.18), transparent 34%),
+    radial-gradient(circle at 72% 8%, rgba(29, 78, 216, 0.18), transparent 34%),
     linear-gradient(145deg, rgba(31, 31, 35, 0.99), rgba(9, 9, 11, 0.99));
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.66), 0 0 0 1px rgba(74, 158, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.66), 0 0 0 1px rgba(29, 78, 216, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
 }
 
@@ -451,7 +451,7 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   padding: 22px 20px;
   background:
     radial-gradient(circle at 22% 18%, rgba(255, 193, 7, 0.2), transparent 32%),
-    radial-gradient(circle at 78% 12%, rgba(74, 158, 255, 0.32), transparent 34%),
+    radial-gradient(circle at 78% 12%, rgba(29, 78, 216, 0.32), transparent 34%),
     linear-gradient(160deg, rgba(26, 46, 86, 0.96), rgba(9, 13, 24, 0.96) 58%, rgba(18, 18, 18, 0.98));
   border-right: 1px solid rgba(255, 255, 255, 0.09);
 }
@@ -482,8 +482,8 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   margin-bottom: 16px;
   border-radius: 14px;
   color: #0b1220;
-  background: linear-gradient(135deg, #ffd76a, #4a9eff);
-  box-shadow: 0 16px 36px rgba(74, 158, 255, 0.28);
+  background: linear-gradient(135deg, #ffd76a, #1d4ed8);
+  box-shadow: 0 16px 36px rgba(29, 78, 216, 0.28);
   font-family: var(--font-head);
   font-weight: 900;
   font-size: 15px;
@@ -554,7 +554,7 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   inset: 16px;
   border-radius: 18px;
   background:
-    radial-gradient(circle at top right, rgba(74, 158, 255, 0.1), transparent 45%),
+    radial-gradient(circle at top right, rgba(29, 78, 216, 0.1), transparent 45%),
     radial-gradient(circle at bottom left, rgba(255, 215, 106, 0.08), transparent 38%);
   pointer-events: none;
 }
@@ -595,8 +595,8 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   padding: 5px 9px;
   border-radius: 999px;
   color: #9ecbff;
-  background: rgba(74, 158, 255, 0.12);
-  border: 1px solid rgba(74, 158, 255, 0.22);
+  background: rgba(29, 78, 216, 0.12);
+  border: 1px solid rgba(29, 78, 216, 0.22);
   font-family: var(--font-head);
   font-size: 9px;
   font-weight: 900;
@@ -616,8 +616,8 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
 }
 
 .auth-title span {
-  color: #4a9eff;
-  text-shadow: 0 0 28px rgba(74, 158, 255, 0.55);
+  color: #1d4ed8;
+  text-shadow: 0 0 28px rgba(29, 78, 216, 0.55);
 }
 
 .auth-subtitle {
@@ -655,8 +655,8 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
 
 .auth-switcher-btn.is-active {
   color: #fff;
-  background: linear-gradient(135deg, #4a9eff 0%, #2e5f9e 100%);
-  box-shadow: 0 10px 28px rgba(74, 158, 255, 0.34);
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
+  box-shadow: 0 10px 28px rgba(29, 78, 216, 0.34);
 }
 
 .auth-form {
@@ -733,13 +733,13 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   border-color: rgba(255, 255, 255, 0.16);
   box-shadow:
     inset 0 1px 10px rgba(0, 0, 0, 0.34),
-    0 0 0 1px rgba(74, 158, 255, 0.04);
+    0 0 0 1px rgba(29, 78, 216, 0.04);
 }
 
 .auth-input:focus {
-  border-color: rgba(74, 158, 255, 0.86);
+  border-color: rgba(29, 78, 216, 0.86);
   background: rgba(14, 20, 34, 0.98);
-  box-shadow: 0 0 0 4px rgba(74, 158, 255, 0.12), inset 0 1px 8px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.12), inset 0 1px 8px rgba(0, 0, 0, 0.22);
 }
 
 .auth-input:-webkit-autofill,
@@ -760,7 +760,7 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   border-radius: 18px;
   background:
     radial-gradient(circle at 18% 20%, rgba(255, 215, 106, 0.2), transparent 36%),
-    radial-gradient(circle at 82% 0%, rgba(74, 158, 255, 0.22), transparent 28%),
+    radial-gradient(circle at 82% 0%, rgba(29, 78, 216, 0.22), transparent 28%),
     linear-gradient(145deg, rgba(20, 28, 44, 0.96), rgba(9, 12, 18, 0.96));
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -772,7 +772,7 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   margin-bottom: 10px;
   padding: 4px 8px;
   border-radius: 999px;
-  background: rgba(74, 158, 255, 0.12);
+  background: rgba(29, 78, 216, 0.12);
   color: #9ecbff;
   font-size: 9px;
   font-weight: 900;
@@ -823,8 +823,8 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   height: 44px;
   border-radius: 15px;
   color: #fff;
-  background: linear-gradient(135deg, #59a8ff 0%, #2e5f9e 100%);
-  box-shadow: 0 12px 28px rgba(74, 158, 255, 0.28);
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);
+  box-shadow: 0 12px 28px rgba(29, 78, 216, 0.28);
   font-size: 9px;
 }
 
@@ -834,15 +834,15 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   margin-top: 2px;
   border-radius: 16px;
   color: #fff;
-  background: linear-gradient(135deg, #4a9eff 0%, #2461b5 55%, #123a79 100%);
-  box-shadow: 0 16px 38px rgba(74, 158, 255, 0.32);
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 55%, #0f2a63 100%);
+  box-shadow: 0 16px 38px rgba(29, 78, 216, 0.32);
   font-size: 11px;
 }
 
 .auth-secondary-btn:hover,
 .auth-submit-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 18px 42px rgba(74, 158, 255, 0.42);
+  box-shadow: 0 18px 42px rgba(29, 78, 216, 0.42);
 }
 
 .auth-secondary-btn:disabled,
@@ -1519,7 +1519,7 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
 
 /* Individual game button gradients with varied animation speeds */
 .game-btn-cricket {
-  background-image: linear-gradient(45deg, #1e40af, #3b82f6, #1e40af);
+  background-image: linear-gradient(45deg, #1e3a8a, #2563eb, #1e3a8a);
   animation: gradientShift 2s ease infinite;
 }
 
@@ -2160,3 +2160,4 @@ body.menu-open .es-chat-iconButton {
   visibility: hidden !important;
   pointer-events: none !important;
 }
+
