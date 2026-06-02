@@ -68,10 +68,26 @@ export const SiteProvider = ({ children }) => {
     return DEFAULT_HERO_BANNERS;
   });
 
-  const [showLogin, setShowLogin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLoginState] = useState(false);
+  const [showRegister, setShowRegisterState] = useState(false);
   const [notice, setNotice] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const setShowLogin = (value) => {
+    setShowLoginState((current) => {
+      const next = typeof value === "function" ? value(current) : value;
+      if (next) setShowRegisterState(false);
+      return next;
+    });
+  };
+
+  const setShowRegister = (value) => {
+    setShowRegisterState((current) => {
+      const next = typeof value === "function" ? value(current) : value;
+      if (next) setShowLoginState(false);
+      return next;
+    });
+  };
 
   const activateDemoMode = () => {
     localStorage.setItem("auth_secret_key", "guest");

@@ -82,21 +82,18 @@ const Faq = () => {
   return (
     <section className="mt-7 mb-6 px-4 md:px-0 max-w-[1400px] mx-auto w-full">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex flex-col gap-0.5">
+      <div className="flex items-center justify-between mb-4 px-1 md:px-2">
+        <div className="flex items-center gap-2 md:gap-3 min-w-0">
           <div
-            className="flex items-center gap-2 text-xl tracking-[1.5px] text-white"
+            className="h-4 md:h-5 w-1 rounded-full flex-shrink-0 shadow-[0_0_10px_rgba(230,160,0,0.5)]"
+            style={{ background: COLORS.brandGradient || COLORS.brand }}
+          ></div>
+          <h2
+            className="text-[13px] sm:text-sm md:text-[15px] lg:text-base font-bold text-black dark:text-white tracking-[0.02em] uppercase leading-none whitespace-nowrap truncate drop-shadow-sm"
             style={{ fontFamily: FONTS.head }}
           >
-            <div className="w-1 h-5 rounded-sm" style={{ background: COLORS.brand }}></div>
             Frequently Asked Questions
-          </div>
-          <div
-            className="text-[10px] font-bold uppercase tracking-[1.5px] pl-3 text-white/50"
-            style={{ fontFamily: FONTS.ui }}
-          >
-            Knowledge Base & FAQ
-          </div>
+          </h2>
         </div>
         <span
           className="text-[9px] font-black uppercase tracking-[1px] px-2.5 py-1 rounded border"

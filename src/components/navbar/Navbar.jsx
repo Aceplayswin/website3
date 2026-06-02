@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from "react-router-dom"
 import AccountInfo from "./AccountInfo"
 import { allsport } from "../jsondata/sport"
 import { liveSport } from "../jsondata/live"
-import { FaSignInAlt, FaUserPlus, FaMoneyCheckAlt, FaWallet, FaHeadset, FaDownload, FaExchangeAlt, FaHistory, FaGavel, FaShieldAlt, FaLock, FaUserShield, FaGift, FaStar, FaShareAlt, FaKey, FaSignOutAlt, FaWhatsapp, FaTelegramPlane, FaInstagram, FaFacebookF, FaTwitter, FaBars, FaTimes, FaUserCircle, FaSun, FaMoon, FaEnvelope, FaTabletAlt, FaMobileAlt, FaArrowRight, FaClock, FaTrophy, FaGem, FaBell, FaTicketAlt, FaSearch } from "react-icons/fa"
+import { FaSignInAlt, FaUserPlus, FaMoneyCheckAlt, FaWallet, FaHeadset, FaDownload, FaExchangeAlt, FaHistory, FaGavel, FaShieldAlt, FaLock, FaUserShield, FaGift, FaStar, FaShareAlt, FaKey, FaSignOutAlt, FaWhatsapp, FaTelegramPlane, FaInstagram, FaFacebookF, FaTwitter, FaEnvelope, FaTabletAlt, FaMobileAlt, FaArrowRight, FaClock, FaTrophy, FaGem, FaTicketAlt, FaSearch } from "react-icons/fa"
 import { useSite } from "../../context/SiteContext"
 import { useGames } from "../../context/GameContext"
 import { useColors } from '../../hooks/useColors';
@@ -510,7 +510,7 @@ function Navbar() {
             <div className="custom-logo" onClick={handleLogoClick}>
               <img
                 src={getSafeLogoUrl(accountInfo?.service_site_logo)}
-                className="h-8 md:h-12 w-auto object-contain drop-shadow-[0_0_12px_rgba(230,160,0,0.3)] hover:scale-105 transition-transform duration-300"
+                className="h-5 md:h-8 w-auto object-contain drop-shadow-[0_0_12px_rgba(230,160,0,0.3)] hover:scale-105 transition-transform duration-300"
                 alt="Logo"
                 onError={(e) => { e.target.src = "/image.png"; }}
               />
@@ -540,27 +540,26 @@ function Navbar() {
                   {authSecretKey === "guest" ? (
                     <div className="hidden md:flex items-center border border-emerald-500/20 rounded-xl px-3 py-1.5 gap-2 bg-emerald-500/5 shadow-inner backdrop-blur-md mr-1 select-none">
                       <div className="flex flex-col items-end">
-                        <span className="text-[7px] font-black uppercase tracking-widest leading-none text-emerald-500/70">Demo Balance</span>
-                        <span className="text-[11px] font-black text-emerald-400" style={{ fontFamily: FONTS.ui }}>
+                        <span className="text-[6px] font-black uppercase tracking-widest leading-none text-emerald-500/70">Demo Balance</span>
+                        <span className="text-[9px] font-black text-emerald-400" style={{ fontFamily: FONTS.ui }}>
                           ₹0.00
                         </span>
                       </div>
-                      <div className="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
-                        <FaWallet size={12} />
+                      <div className="w-5 h-5 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+                        <FaWallet size={10} />
                       </div>
                     </div>
                   ) : (
                     <button
-                      className="btn-outline header-btn border-emerald-500/20 hover:border-emerald-500/40 bg-emerald-500/5 text-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 mr-1 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold"
+                      className="btn-outline header-btn border-emerald-500/20 hover:border-emerald-500/40 bg-emerald-500/5 text-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 mr-1 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[9px] font-semibold"
                       onClick={activateDemoMode}
                       style={{ fontFamily: FONTS.head }}
                     >
-                      <FaGem size={10} className="animate-pulse" />
+                      <FaGem size={8} className="animate-pulse" />
                       <span>Demo Play</span>
                     </button>
                   )}
                   <button className="btn-outline header-btn" onClick={handleLoginClick} style={{ fontFamily: FONTS.head, borderColor: COLORS.bg4 }}>Log In</button>
-                  <button className="btn-primary header-btn" onClick={handleRegisterClick} style={{ background: COLORS.brandGradient, color: '#000', fontFamily: FONTS.head }}>Register</button>
                 </>
               ) : (
                 <>
@@ -591,83 +590,20 @@ function Navbar() {
                   <FaGift className="text-amber-500 text-[10px] animate-bounce" />
                 </div>
               )}
-              <button
-                className={`flex p-1.5 md:p-2 rounded-xl transition-all duration-300 bg-gray-100 dark:bg-white/5 hover:bg-gray-100 dark:bg-white/10`}
-                onClick={toggleTheme}
-                title="Toggle Light/Dark Theme"
-              >
-                {theme === 'dark' ? (
-                  <FaSun className="text-lg md:text-xl text-yellow-500" />
-                ) : (
-                  <FaMoon className="text-lg md:text-xl text-black/90 dark:text-white/90" />
-                )}
-              </button>
 
-              {/* Native-style App Launcher (mimicking browser search bar button) */}
-              {isInstalled && (
-                <button
-                  onClick={() => {
-                    // With launch_handler in manifest, opening the app URL 
-                    // will focus/launch the installed standalone PWA window
-                    window.open(window.location.origin, '_blank');
-                  }}
-                  className="hidden lg:flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1A1A1A] border border-white/10 text-white hover:bg-white/10 transition-all shadow-lg group relative overflow-hidden"
-                  style={{ border: '1px solid rgba(255,255,255,0.1)' }}
-                >
-                  <div className="w-5 h-5 rounded bg-white flex items-center justify-center overflow-hidden transition-colors">
-                    <img
-                      src={getSafeLogoUrl(accountInfo?.service_site_logo)}
-                      className="w-full h-full object-contain p-0.5"
-                      alt="Logo"
-                      onError={(e) => { e.target.src = "/image.png"; }}
-                    />
-                  </div>
-                  <span className="text-[11px] font-medium tracking-wide">Open in app</span>
-                </button>
-              )}
-
-              {/* Notification Button */}
-              {isLoggedIn && (
-                <button
-                  className={`p-1.5 md:p-2 rounded-xl transition-all duration-300 bg-gray-100 dark:bg-white/5 hover:bg-gray-100 dark:bg-white/10 relative`}
-                  onClick={() => navigate('/notifications')}
-                  title="Notifications"
-                >
-                  <FaBell className="text-lg md:text-xl text-black/90 dark:text-white/90" />
-                  {(() => {
-                    const history = JSON.parse(localStorage.getItem("notifications_history") || "[]");
-                    const acknowledged = JSON.parse(localStorage.getItem("acknowledged_notices") || "[]");
-                    const hasUnread = history.some(n => !acknowledged.includes(n.id));
-                    return hasUnread ? <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white dark:border-black animate-pulse"></span> : null;
-                  })()}
-                </button>
-              )}
-
-              {/* Profile Toggle */}
-              {(isLoggedIn || authSecretKey === "guest") && (
-                <button
-                  className={`p-1.5 md:p-2 rounded-xl transition-all duration-300 ${profileOpen ? 'bg-brand/20' : 'bg-gray-100 dark:bg-white/5'}`}
-                  onClick={() => {
-                    setProfileOpen(!profileOpen)
-                    setMenuOpen(false)
-                  }}
-                >
-                  <FaUserCircle className="text-lg md:text-xl" style={{ color: profileOpen ? COLORS.brand : COLORS.text }} />
-                </button>
-              )}
 
               {/* Mobile Menu Toggle */}
               <button
-                className={`mobile-menu-btn p-1.5 md:p-2 rounded-xl transition-all duration-300 ${menuOpen ? 'bg-gray-100 dark:bg-white/10 rotate-90' : 'bg-gray-100 dark:bg-white/5'}`}
+                className={`mobile-menu-btn p-1 md:p-1.5 rounded-xl transition-all duration-300 ${menuOpen ? 'bg-gray-100 dark:bg-white/10 rotate-90' : 'bg-gray-100 dark:bg-white/5'}`}
                 onClick={() => {
                   setMenuOpen(!menuOpen)
                   setProfileOpen(false)
                 }}
               >
                 {menuOpen ? (
-                  <FaTimes className="text-lg md:text-xl" style={{ color: COLORS.brand }} />
+                  <FaTimes className="text-base md:text-lg" style={{ color: COLORS.brand }} />
                 ) : (
-                  <FaBars className="text-lg md:text-xl text-black/70 dark:text-white/70" />
+                  <FaBars className="text-base md:text-lg text-black/70 dark:text-white/70" />
                 )}
               </button>
             </div>
@@ -708,7 +644,7 @@ function Navbar() {
 
       </div>
       {/* Navbar Layout Spacer (Ensures content starts below the fixed navbar with a slight gap on ALL pages) */}
-      <div className={`relative w-full ${isCasinoPage ? 'h-[55px] md:h-[95px]' : 'h-[95px] md:h-[135px]'}`}></div>
+      <div className={`relative w-full ${isCasinoPage ? 'h-[35px] md:h-[60px]' : 'h-[60px] md:h-[90px]'}`}></div>
 
 
       {/* Background Overlay with Blur Effect */}
@@ -719,126 +655,10 @@ function Navbar() {
         ></div>
       )}
 
-      {/* Profile Sidebar Backdrop */}
-      {profileOpen && (
-        <div
-          className="fixed inset-0 bg-black/10 dark:bg-black/50 backdrop-blur-sm transition-all duration-300 z-[190]"
-          onClick={() => setProfileOpen(false)}
-        ></div>
-      )}
-
-      {/* Profile Sidebar (Side Pop-up) */}
-      {(isLoggedIn || authSecretKey === "guest") && profileOpen && (
-        <div
-          className={`fixed top-0 right-0 h-full w-[85%] md:w-[350px] backdrop-blur-3xl transform ${profileOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] z-[200] border-l border-black/5 dark:border-white/5 flex flex-col shadow-2xl`}
-          style={{ backgroundColor: `${COLORS.bg2}FB` }}
-        >
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-black/5 dark:border-white/5 bg-white/[0.02]">
-            <div className="flex items-center gap-3">
-              <div className="w-1.5 h-6 rounded-full" style={{ background: COLORS.brandGradient }}></div>
-              <h2 className="text-black dark:text-white font-black uppercase tracking-widest text-sm" style={{ fontFamily: FONTS.head }}>Account Details</h2>
-            </div>
-            <button
-              onClick={() => setProfileOpen(false)}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-gray-100 dark:bg-white/10 text-black/50 dark:text-white/50 transition-all"
-            >
-              <FaTimes className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* User Details */}
-          <div className="flex-1 p-6 space-y-6">
-            <div className="text-center relative">
-              <div className="w-16 h-16 rounded-2xl mx-auto mb-3 border-2 border-brand/20 p-1 relative">
-                <div className="w-full h-full rounded-xl overflow-hidden bg-brand/10 flex items-center justify-center">
-                  <img
-                    src={`https://api.dicebear.com/7.x/initials/svg?seed=${accountInfo?.account_username || 'User'}&backgroundColor=ffad33&bold=true`}
-                    className="w-full h-full object-cover"
-                    alt="Avatar"
-                  />
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-green-500 border-2 border-[#111111]"></div>
-              </div>
-              <h3 className="text-sm font-black uppercase tracking-tight" style={{ fontFamily: FONTS.head, color: COLORS.text }}>
-                {accountInfo?.account_username || "Guest User"}
-              </h3>
-              {authSecretKey === "guest" && (
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[9px] font-black uppercase tracking-widest mt-2 select-none">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                  Demo Mode
-                </div>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              {[
-                { label: "User ID", value: accountInfo?.account_id || "—" },
-                { label: "Username", value: accountInfo?.account_username || "—" },
-                { label: "Email", value: accountInfo?.account_email || "—" },
-                { label: "Mobile", value: accountInfo?.account_mobile || "—" },
-              ].map((detail, idx) => (
-                <div key={idx} className="flex items-center justify-between p-2.5 rounded-xl transition-all" style={{ backgroundColor: COLORS.bg4, border: `1px solid ${COLORS.bg3}` }}>
-                  <p className="text-[9px] font-black uppercase tracking-widest opacity-40" style={{ color: COLORS.text }}>{detail.label}</p>
-                  <p className="text-[10px] font-bold truncate max-w-[150px]" style={{ color: COLORS.text }}>{detail.value}</p>
-                </div>
-              ))}
-
-              {/* Inlined Actions */}
-              <div className="pt-4 space-y-2">
-                {authSecretKey === "guest" ? (
-                  <>
-                    <button
-                      onClick={() => { setProfileOpen(false); handleLoginClick(); }}
-                      className="w-full py-2.5 rounded-xl text-[9px] font-black uppercase tracking-widest hover:brightness-110 transition-all text-center text-black"
-                      style={{ background: COLORS.brandGradient }}
-                    >
-                      Log In
-                    </button>
-                    <button
-                      onClick={() => { setProfileOpen(false); handleRegisterClick(); }}
-                      className="w-full py-2.5 rounded-xl border border-brand/30 text-brand text-[9px] font-black uppercase tracking-widest hover:bg-brand/10 transition-all text-center bg-transparent"
-                    >
-                      Register Account
-                    </button>
-                    <button
-                      onClick={handleSignOut}
-                      className="w-full py-2.5 rounded-xl bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white transition-all text-[9px] font-black uppercase tracking-[0.2em] border border-red-500/20"
-                    >
-                      Exit Demo
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      onClick={() => { setProfileOpen(false); navigate("/support"); }}
-                      className="w-full py-2.5 rounded-xl border border-black/10 dark:border-white/10 text-[9px] font-black uppercase tracking-widest text-black/40 dark:text-white/40 hover:text-black dark:text-white hover:bg-gray-100 dark:bg-white/5 transition-all text-center"
-                    >
-                      My Tickets
-                    </button>
-                    <button
-                      onClick={() => { setProfileOpen(false); navigate("/change-password"); }}
-                      className="w-full py-2.5 rounded-xl border border-black/10 dark:border-white/10 text-[9px] font-black uppercase tracking-widest text-black/40 dark:text-white/40 hover:text-black dark:text-white hover:bg-gray-100 dark:bg-white/5 transition-all text-center"
-                    >
-                      Change Password
-                    </button>
-                    <button
-                      onClick={handleSignOut}
-                      className="w-full py-2.5 rounded-xl bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white transition-all text-[9px] font-black uppercase tracking-[0.2em] border border-red-500/20"
-                    >
-                      Sign Out
-                    </button>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 right-0 h-full w-4/5 md:w-3/5 lg:w-[22%] backdrop-blur-3xl transform ${menuOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] z-[200] border-l border-black/5 dark:border-white/5 flex flex-col shadow-2xl`}
+        className={`fixed top-0 right-0 h-full w-3/5 md:w-2/5 lg:w-[18%] backdrop-blur-3xl transform ${menuOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] z-[200] border-l border-black/5 dark:border-white/5 flex flex-col shadow-2xl`}
         style={{ backgroundColor: `${COLORS.bg2}E6` }}
       >
         {/* Sidebar Header */}

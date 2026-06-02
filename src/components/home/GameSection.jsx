@@ -193,11 +193,11 @@ const GameSection = ({ title, games, id, layout = "slider" }) => {
       <div className="flex justify-between items-end mb-4 md:mb-5 px-1 md:px-2">
         <div className="flex items-center gap-2 md:gap-3 min-w-0">
           <div
-            className="h-5 md:h-7 w-1.5 rounded-full flex-shrink-0 shadow-[0_0_10px_rgba(230,160,0,0.5)]"
+            className="h-4 md:h-5 w-1 rounded-full flex-shrink-0 shadow-[0_0_10px_rgba(230,160,0,0.5)]"
             style={{ background: COLORS.brandGradient }}
           ></div>
           <h2
-            className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-black dark:text-white tracking-[0.02em] uppercase leading-none whitespace-nowrap truncate drop-shadow-sm"
+            className="text-[13px] sm:text-sm md:text-[15px] lg:text-base font-bold text-black dark:text-white tracking-[0.02em] uppercase leading-none whitespace-nowrap truncate drop-shadow-sm"
             style={{ fontFamily: FONTS.head }}
           >
             {title}

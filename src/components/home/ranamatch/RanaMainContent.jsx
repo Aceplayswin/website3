@@ -144,35 +144,49 @@ const RanaMainContent = () => {
       {/* Elite Offers Section */}
       <section className="mt-7 px-4 md:px-0 max-w-[1400px] mx-auto w-full">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex flex-col gap-0.5">
-            <div className="flex items-center gap-2 text-xl tracking-[1.5px] text-white" style={{ fontFamily: FONTS.head }}>
-              <div className="w-1 h-5 rounded-sm" style={{ background: COLORS.brand }}></div>
+        <div className="flex items-center justify-between mb-4 px-1 md:px-2">
+          <div className="flex items-center gap-2 md:gap-3 min-w-0">
+            <div
+              className="h-4 md:h-5 w-1 rounded-full flex-shrink-0 shadow-[0_0_10px_rgba(230,160,0,0.5)]"
+              style={{ background: COLORS.brandGradient || COLORS.brand }}
+            ></div>
+            <h2
+              className="text-[13px] sm:text-sm md:text-[15px] lg:text-base font-bold text-black dark:text-white tracking-[0.02em] uppercase leading-none whitespace-nowrap truncate drop-shadow-sm"
+              style={{ fontFamily: FONTS.head }}
+            >
               Exclusive Elite Offers
-            </div>
-            <div className="text-[10px] font-bold uppercase tracking-[1.5px] pl-3 text-white/50" style={{ fontFamily: FONTS.ui }}>
-              Current Promotions & Rewards
-            </div>
+            </h2>
           </div>
-          <a href="#" className="text-[10px] font-bold uppercase tracking-[1px] text-white/40 hover:text-brand transition-colors no-underline" style={{ fontFamily: FONTS.ui }}>
+          <a href="#" className="text-[10px] font-bold uppercase tracking-[1px] text-black/40 dark:text-white/40 hover:text-brand transition-colors no-underline" style={{ fontFamily: FONTS.ui }}>
             View All →
           </a>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-          {promoBanners && promoBanners.length > 0 ? (
-            promoBanners.slice(0, 2).map((promo, index) => (
-              <div key={index} className="relative bg-[#141414] border border-white/5 rounded-xl overflow-hidden group hover:border-brand/25 transition-all duration-200 aspect-[21/9] flex items-center cursor-pointer">
-                <img src={promo.image_path?.startsWith('http') ? promo.image_path : (promo.image_path?.startsWith('/') ? window.location.origin + promo.image_path : `${BASE_URL}${promo.image_path}`)} alt={promo.title || "Promotion"}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 z-0"
-                  onError={(e) => { e.target.style.display = 'none'; }}
-                />
-                {/* Subtle overlay for contrast */}
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-0"></div>
-                <div className="absolute top-0 left-0 w-[3px] h-full z-10" style={{ background: COLORS.brand }}></div>
+        {promoBanners && promoBanners.length > 0 ? (
+          promoBanners.slice(0, 2).map((promo, index) => (
+            <div key={index} className="elite-offer-card group">
+              <img
+                src={promo.image_path?.startsWith('http') ? promo.image_path : (promo.image_path?.startsWith('/') ? window.location.origin + promo.image_path : `${BASE_URL}${promo.image_path}`)}
+                alt={promo.title || "Promotion"}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 z-0"
+                onError={(e) => { e.target.style.display = 'none'; }}
+              />
+              {/* Subtle overlay for contrast */}
+              <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors duration-300 z-0"></div>
+              {/* Left accent stripe */}
+              <div className="absolute top-0 left-0 w-[3px] h-full z-10 opacity-70 group-hover:opacity-100 transition-opacity duration-300" style={{ background: COLORS.brand }}></div>
+              {/* CTA Button */}
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2">
+                <button className="elite-offer-btn" onClick={(e) => { e.stopPropagation(); if (!accountInfo?.account_id) { setShowLogin(true); } else { /* TODO: navigate to offer */ } }}>
+                  Explore
+                </button>
               </div>
-            ))
-          ) : (
+              {/* Elite badge */}
+              <div className="elite-offer-badge">ELITE</div>
+            </div>
+          ))
+        ) : (
             <>
               {[
                 { color: COLORS.brand },

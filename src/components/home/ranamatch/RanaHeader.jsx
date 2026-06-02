@@ -2,16 +2,10 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSite } from "../../../context/SiteContext";
 import { URL as BASE_URL } from "../../../utils/constants";
-import {
-  FaUserCircle,
-  FaBell,
-  FaMoon,
-  FaSun
-} from "react-icons/fa";
-import { useState } from "react";
+import { FaGem } from "react-icons/fa";
 
 const RanaHeader = () => {
-  const { accountInfo, setShowLogin, setShowRegister } = useSite();
+  const { accountInfo, activateDemoMode } = useSite();
   const navigate = useNavigate();
   const isLoggedIn = !!(accountInfo?.account_id && accountInfo.account_id !== "guest" && localStorage.getItem("auth_secret_key") && localStorage.getItem("auth_secret_key") !== "guest");
 
@@ -76,10 +70,13 @@ const RanaHeader = () => {
                 <button className="btn btn-brand" onClick={() => navigate("/withdraw")}>Withdraw</button>
               </>
             ) : (
-              <>
-                <button className="btn btn-outline" onClick={() => setShowLogin(true)}>Demo play</button>
-                <button className="btn btn-brand" onClick={() => setShowRegister(true)}>Join Now</button>
-              </>
+              <button
+                className="btn-demo-play"
+                onClick={activateDemoMode}
+              >
+                <FaGem className="demo-icon" />
+                <span>Demo Play</span>
+              </button>
             )}
           </div>
         </div>

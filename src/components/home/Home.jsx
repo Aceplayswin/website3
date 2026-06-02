@@ -6,6 +6,7 @@ import RanaHeader from "./ranamatch/RanaHeader"
 import RanaSidebarLeft from "./ranamatch/RanaSidebarLeft"
 import RanaSidebarRight from "./ranamatch/RanaSidebarRight"
 import RanaMainContent from "./ranamatch/RanaMainContent"
+import AuthModalHost from "../common/AuthModalHost"
 import '../../assets/css/ranamatch.css'
 
 function Home() {
@@ -31,6 +32,7 @@ function Home() {
 
   return (
     <div className="rana-layout">
+      <AuthModalHost />
       <RanaHeader />
       <div className="page-wrap">
         <RanaSidebarLeft />
