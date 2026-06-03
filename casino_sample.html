@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VeluxPlay365 – Live Casino</title>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Rajdhani:wght@400;500;600;700&family=Exo+2:ital,wght@0,300;0,700;0,900;1,900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg0:#06090f;
+  --bg1:#0b1120;
+  --bg2:#0f1929;
+  --bg3:#162035;
+  --gold:#f0b429;
+  --gold2:#c8921a;
+  --gold-a:rgba(240,180,41,.18);
+  --blue:#1a8cff;
+  --blue2:#0e5cb5;
+  --blue-a:rgba(26,140,255,.18);
+  --cyan:#00e5ff;
+  --green:#00e676;
+  --red:#ff1744;
+  --hi:#eef2ff;
+  --mid:#6b7a99;
+  --lo:#2d3a52;
+  --border:rgba(255,255,255,.06);
+}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg0);color:var(--hi);font-family:'Rajdhani',sans-serif;display:flex;flex-direction:column}
+
+/* ─── TICKER ─── */
+.ticker{flex-shrink:0;background:linear-gradient(90deg,var(--bg1),#0c1628,var(--bg1));border-bottom:1px solid rgba(240,180,41,.15);padding:6px 0;overflow:hidden;position:relative}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,var(--bg1),transparent)}
+.ticker::after{right:0;background:linear-gradient(-90deg,var(--bg1),transparent)}
+.ticker-inner{display:flex;gap:48px;animation:tick 28s linear infinite;width:max-content;white-space:nowrap}
+.ticker-inner span{font-family:'Oxanium',sans-serif;font-size:10px;font-weight:600;letter-spacing:.08em;color:var(--mid);display:inline-flex;align-items:center;gap:7px}
+.ticker-inner span b{color:var(--gold);font-weight:700}
+.tdot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ─── NAVBAR ─── */
+nav{flex-shrink:0;background:rgba(6,9,15,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);height:54px;display:flex;align-items:center;padding:0 20px;gap:0;position:relative;z-index:50}
+.logo{font-family:'Oxanium',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--gold);text-decoration:none;margin-right:28px;flex-shrink:0}
+.logo em{color:var(--blue);font-style:normal}
+.nav-tabs{display:flex;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{font-family:'Oxanium',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--mid);padding:7px 13px;border-radius:6px;cursor:pointer;transition:.15s;white-space:nowrap;border:none;background:none;display:flex;align-items:center;gap:6px}
+.nav-tab:hover{color:var(--hi);background:rgba(255,255,255,.04)}
+.nav-tab.on{color:var(--gold);background:rgba(240,180,41,.07);position:relative}
+.nav-tab.on::after{content:'';position:absolute;bottom:-1px;left:10px;right:10px;height:2px;background:var(--gold);border-radius:2px}
+.nav-r{display:flex;gap:8px;margin-left:12px;flex-shrink:0}
+.btn-in{padding:7px 18px;background:none;border:1px solid var(--lo);color:var(--hi);font-family:'Oxanium',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;border-radius:6px;cursor:pointer;transition:.15s}
+.btn-in:hover{border-color:var(--blue);color:var(--blue)}
+.btn-reg{padding:7px 18px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;color:#000;font-family:'Oxanium',sans-serif;font-size:10px;font-weight:800;letter-spacing:.1em;border-radius:6px;cursor:pointer;transition:.15s}
+.btn-reg:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+/* ─── BODY SHELL ─── */
+.shell{flex:1;display:flex;overflow:hidden}
+
+/* ─── SIDEBAR ─── */
+.sidebar{width:200px;flex-shrink:0;background:var(--bg1);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--lo) transparent}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--lo);border-radius:3px}
+.s-head{font-family:'Oxanium',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;color:var(--lo);padding:14px 16px 8px;text-transform:uppercase}
+.s-item{display:flex;align-items:center;gap:9px;padding:8px 16px;cursor:pointer;border-left:2px solid transparent;transition:.15s;position:relative}
+.s-item:hover{background:var(--bg3)}
+.s-item.on{background:rgba(240,180,41,.05);border-left-color:var(--gold)}
+.s-ico{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;background:var(--bg0)}
+.s-name{font-family:'Oxanium',sans-serif;font-size:10px;font-weight:600;letter-spacing:.04em;color:var(--mid);transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.s-item:hover .s-name,.s-item.on .s-name{color:var(--hi)}
+.s-item.on .s-name{color:var(--gold)}
+.s-ct{margin-left:auto;font-family:'Oxanium',sans-serif;font-size:8px;font-weight:700;color:var(--lo);background:var(--bg0);border:1px solid var(--border);padding:2px 5px;border-radius:20px;flex-shrink:0}
+.s-item.on .s-ct{background:rgba(240,180,41,.12);color:var(--gold);border-color:rgba(240,180,41,.25)}
+
+/* ─── MAIN SCROLL AREA ─── */
+.content{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--lo) transparent;padding:18px 20px 24px}
+.content::-webkit-scrollbar{width:4px}
+.content::-webkit-scrollbar-thumb{background:var(--lo);border-radius:3px}
+
+/* ─── HERO ─── */
+.hero{position:relative;border-radius:14px;overflow:hidden;margin-bottom:18px;background:var(--bg1);border:1px solid rgba(240,180,41,.12)}
+.hero-bg{position:absolute;inset:0;overflow:hidden}
+.hero-orb1{position:absolute;top:-80px;right:-80px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(240,180,41,.1) 0%,transparent 65%);pointer-events:none}
+.hero-orb2{position:absolute;bottom:-100px;left:20%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(26,140,255,.08) 0%,transparent 65%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.hero-inner{position:relative;z-index:1;padding:24px 28px;display:flex;align-items:center;gap:32px;justify-content:space-between}
+.hero-left{}
+.hero-tag{font-family:'Oxanium',sans-serif;font-size:9px;font-weight:800;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.reddot{width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px rgba(255,23,68,.2);animation:rpulse 1.4s infinite}
+@keyframes rpulse{0%,100%{box-shadow:0 0 0 3px rgba(255,23,68,.2)}50%{box-shadow:0 0 0 7px rgba(255,23,68,.05)}}
+.hero-title{font-family:'Exo 2',sans-serif;font-size:42px;font-weight:900;line-height:.95;letter-spacing:-.03em;color:var(--hi)}
+.hero-title span{color:var(--gold)}
+.hero-sub{font-size:14px;color:var(--mid);margin-top:8px;font-weight:500;letter-spacing:.02em}
+.hero-btns{display:flex;gap:10px;margin-top:16px}
+.hbtn{padding:10px 22px;font-family:'Oxanium',sans-serif;font-size:11px;font-weight:800;letter-spacing:.1em;border-radius:8px;cursor:pointer;transition:.2s;border:none}
+.hbtn-p{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;box-shadow:0 6px 20px rgba(240,180,41,.3)}
+.hbtn-p:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(240,180,41,.4)}
+.hbtn-s{background:rgba(26,140,255,.1);color:var(--blue);border:1px solid rgba(26,140,255,.25)}
+.hbtn-s:hover{background:rgba(26,140,255,.18)}
+.hero-stats{display:flex;gap:0;flex-shrink:0}
+.hstat{text-align:center;padding:0 22px;position:relative}
+.hstat+.hstat::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:var(--border)}
+.hstat-val{font-family:'Oxanium',sans-serif;font-size:28px;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-.02em}
+.hstat-lbl{font-family:'Rajdhani',sans-serif;font-size:10px;color:var(--mid);letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+
+/* ─── JACKPOT BAR ─── */
+.jp-bar{background:linear-gradient(135deg,#0b1f0e,#142918);border:1px solid rgba(0,230,118,.15);border-radius:12px;padding:14px 22px;margin-bottom:18px;display:flex;align-items:center;gap:16px;position:relative;overflow:hidden}
+.jp-bar::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(0,230,118,.04) 1px,transparent 1px);background-size:20px 20px;pointer-events:none}
+.jp-label{font-family:'Oxanium',sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;color:var(--green);text-transform:uppercase;flex-shrink:0;display:flex;align-items:center;gap:8px}
+.jp-sep{width:1px;background:rgba(0,230,118,.15);align-self:stretch;flex-shrink:0}
+.jp-val{font-family:'Exo 2',sans-serif;font-size:28px;font-weight:900;color:var(--green);letter-spacing:-.02em;flex:1;text-align:center}
+.jp-btn{padding:9px 20px;background:linear-gradient(135deg,var(--green),#00b860);border:none;color:#000;font-family:'Oxanium',sans-serif;font-size:10px;font-weight:800;letter-spacing:.12em;border-radius:7px;cursor:pointer;flex-shrink:0;transition:.2s}
+.jp-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,230,118,.3)}
+
+/* ─── SECTION ROW ─── */
+.sec-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sec-title{font-family:'Oxanium',sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--hi);display:flex;align-items:center;gap:8px}
+.sec-title::before{content:'';display:block;width:3px;height:14px;background:linear-gradient(180deg,var(--gold),var(--gold2));border-radius:2px}
+.sec-more{font-family:'Oxanium',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--blue);cursor:pointer;transition:.15s;display:flex;align-items:center;gap:3px}
+.sec-more:hover{gap:7px}
+
+/* ─── CATEGORY PILLS ─── */
+.cat-row{display:flex;gap:7px;margin-bottom:18px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.cat-row::-webkit-scrollbar{display:none}
+.cat-pill{flex-shrink:0;padding:7px 14px;border-radius:30px;border:1px solid var(--lo);background:none;color:var(--mid);font-family:'Oxanium',sans-serif;font-size:10px;font-weight:700;letter-spacing:.07em;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:6px}
+.cat-pill:hover{border-color:var(--mid);color:var(--hi)}
+.cat-pill.on{background:rgba(240,180,41,.1);border-color:rgba(240,180,41,.4);color:var(--gold)}
+
+/* ─── FEATURED GRID ─── */
+.feat-grid{display:grid;grid-template-columns:1.9fr 1fr 1fr;grid-template-rows:auto;gap:12px;margin-bottom:22px}
+.fcard{border-radius:12px;overflow:hidden;position:relative;cursor:pointer;background:var(--bg1);border:1px solid var(--border);transition:.25s}
+.fcard:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.5);border-color:rgba(240,180,41,.25)}
+.fcard-thumb{position:relative;overflow:hidden}
+.fcard:nth-child(1) .fcard-thumb{height:160px}
+.fcard:nth-child(2) .fcard-thumb,.fcard:nth-child(3) .fcard-thumb{height:160px}
+.fcard-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+.bg-ev{background:linear-gradient(135deg,#0d0820,#2a1060)}
+.bg-pg{background:linear-gradient(135deg,#0a1830,#103060)}
+.bg-cr{background:linear-gradient(135deg,#1a0820,#4a1040)}
+.fcard-big-icon{font-size:48px}
+.fcard-sm-icon{font-size:34px}
+.fcard-sub{font-family:'Oxanium',sans-serif;font-size:9px;font-weight:600;color:rgba(255,255,255,.35);letter-spacing:.1em}
+.fcard-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.1) 55%)}
+.fcard:hover .fcard-big-icon,.fcard:hover .fcard-sm-icon{transform:scale(1.08);transition:.3s}
+.live-badge{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;font-family:'Oxanium',sans-serif;font-size:8px;font-weight:800;letter-spacing:.12em;padding:3px 8px;border-radius:4px;display:flex;align-items:center;gap:4px;z-index:2}
+.live-badge .ld{width:4px;height:4px;border-radius:50%;background:#fff;animation:lblink 1.1s infinite}
+@keyframes lblink{0%,100%{opacity:1}50%{opacity:.3}}
+.player-badge{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);color:var(--hi);font-family:'Oxanium',sans-serif;font-size:9px;font-weight:600;padding:3px 8px;border-radius:20px;border:1px solid var(--border);z-index:2}
+.fcard-info{padding:10px 12px}
+.fcard-name{font-family:'Exo 2',sans-serif;font-size:14px;font-weight:700;color:var(--hi);letter-spacing:-.01em}
+.fcard-prov{font-family:'Rajdhani',sans-serif;font-size:11px;color:var(--mid);margin-top:2px}
+.fcard .play-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:.2s;z-index:3}
+.fcard:hover .play-ov{opacity:1}
+.play-ring{width:46px;height:46px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 20px rgba(240,180,41,.4);transform:scale(.75);transition:.2s}
+.fcard:hover .play-ring{transform:scale(1)}
+
+/* ─── WINS STRIP ─── */
+.wins-bar{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 16px;margin-bottom:18px;display:flex;align-items:center;gap:14px;overflow:hidden}
+.wins-label{font-family:'Oxanium',sans-serif;font-size:9px;font-weight:800;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;flex-shrink:0;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.wins-label::after{content:'';width:1px;height:18px;background:var(--border)}
+.wins-scroll{display:flex;gap:20px;animation:wsroll 22s linear infinite;width:max-content}
+@keyframes wsroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.witem{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.wavatar{width:22px;height:22px;border-radius:50%;background:var(--bg0);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px}
+.wuser{font-family:'Oxanium',sans-serif;font-size:10px;font-weight:600;color:var(--mid)}
+.wgame{font-family:'Rajdhani',sans-serif;font-size:10px;color:var(--lo)}
+.wamt{font-family:'Oxanium',sans-serif;font-size:11px;font-weight:800;color:var(--green)}
+
+/* ─── GAME GRID ─── */
+.game-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:24px}
+.gcard{border-radius:10px;overflow:hidden;position:relative;cursor:pointer;background:var(--bg1);border:1px solid var(--border);transition:.22s;animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.gcard:hover{transform:translateY(-3px);border-color:rgba(240,180,41,.28);box-shadow:0 10px 28px rgba(0,0,0,.4)}
+.gcard:nth-child(1){animation-delay:.04s}.gcard:nth-child(2){animation-delay:.07s}.gcard:nth-child(3){animation-delay:.10s}.gcard:nth-child(4){animation-delay:.13s}.gcard:nth-child(5){animation-delay:.16s}.gcard:nth-child(6){animation-delay:.19s}.gcard:nth-child(7){animation-delay:.22s}.gcard:nth-child(8){animation-delay:.25s}.gcard:nth-child(9){animation-delay:.28s}.gcard:nth-child(10){animation-delay:.31s}.gcard:nth-child(11){animation-delay:.34s}.gcard:nth-child(12){animation-delay:.37s}.gcard:nth-child(13){animation-delay:.40s}.gcard:nth-child(14){animation-delay:.43s}.gcard:nth-child(15){animation-delay:.46s}.gcard:nth-child(16){animation-delay:.49s}
+.gthumb{position:relative;aspect-ratio:4/3;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.gthumb-shade{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.65) 100%);opacity:0;transition:.22s}
+.gcard:hover .gthumb-shade{opacity:1}
+.gplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:.22s}
+.gcard:hover .gplay{opacity:1}
+.gplay-btn{width:38px;height:38px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;transform:scale(.7);transition:.2s}
+.gcard:hover .gplay-btn{transform:scale(1)}
+.gicon{font-size:28px;transition:.3s;pointer-events:none}
+.gcard:hover .gicon{transform:scale(1.1)}
+.gshortname{font-family:'Oxanium',sans-serif;font-size:8px;font-weight:600;color:rgba(255,255,255,.3);letter-spacing:.08em;pointer-events:none}
+.ginfo{padding:8px 10px}
+.gname{font-family:'Oxanium',sans-serif;font-size:11px;font-weight:700;color:var(--hi);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gmeta{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.gprov{font-family:'Rajdhani',sans-serif;font-size:10px;color:var(--mid)}
+.gtag-live{font-family:'Oxanium',sans-serif;font-size:8px;font-weight:800;letter-spacing:.06em;color:var(--red);background:rgba(255,23,68,.1);border:1px solid rgba(255,23,68,.22);padding:2px 5px;border-radius:4px}
+.gtag-hot{font-family:'Oxanium',sans-serif;font-size:8px;font-weight:800;color:var(--gold);background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.22);padding:2px 5px;border-radius:4px}
+.gtag-pop{font-family:'Oxanium',sans-serif;font-size:8px;font-weight:800;color:var(--green);background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);padding:2px 5px;border-radius:4px}
+
+/* ─── BG COLORS ─── */
+.c-ev{background:linear-gradient(150deg,#0c0818 0%,#1e0f4a 100%)}
+.c-pg{background:linear-gradient(150deg,#08122a 0%,#0e2a5c 100%)}
+.c-cr{background:linear-gradient(150deg,#140818 0%,#38083a 100%)}
+.c-ez{background:linear-gradient(150deg,#081410 0%,#0c3022 100%)}
+.c-sa{background:linear-gradient(150deg,#0a1020 0%,#0e2040 100%)}
+.c-rc{background:linear-gradient(150deg,#1a1000 0%,#3a2000 100%)}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span><span class="tdot"></span>Weekly Cashback 2.0 releasing soon</span>
+    <span><span class="tdot"></span>New Bonus System in <b>15 days</b></span>
+    <span><span class="tdot"></span>Live Casino Games launching in <b>7 days</b></span>
+    <span><span class="tdot"></span>Mega Slots Tournament in <b>10 days</b></span>
+    <span><span class="tdot"></span>First Deposit Bonus: <b>100% UP TO ₹20,000</b></span>
+    <span><span class="tdot"></span>Weekly Cashback 2.0 releasing soon</span>
+    <span><span class="tdot"></span>New Bonus System in <b>15 days</b></span>
+    <span><span class="tdot"></span>Live Casino Games launching in <b>7 days</b></span>
+    <span><span class="tdot"></span>Mega Slots Tournament in <b>10 days</b></span>
+    <span><span class="tdot"></span>First Deposit Bonus: <b>100% UP TO ₹20,000</b></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">VELPLAY<em>365</em></a>
+  <div class="nav-tabs">
+    <button class="nav-tab">🏠 HOME</button>
+    <button class="nav-tab">⚽ SPORTS</button>
+    <button class="nav-tab on">🎰 LIVE CASINO</button>
+    <button class="nav-tab">🎮 SLOTS</button>
+    <button class="nav-tab">🏆 FANTASY</button>
+    <button class="nav-tab">🎁 PROMOS</button>
+    <button class="nav-tab">👑 VIP</button>
+  </div>
+  <div class="nav-r">
+    <button class="btn-in">LOG IN</button>
+    <button class="btn-reg">JOIN NOW</button>
+  </div>
+</nav>
+
+<!-- SHELL -->
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="s-head">Providers</div>
+    <div class="s-item on" onclick="setProvider(this)"><div class="s-ico c-sa" style="font-size:11px">ALL</div><span class="s-name">All Providers</span><span class="s-ct">240</span></div>
+    <div class="s-item" onclick="setProvider(this)"><div class="s-ico c-ev">🎯</div><span class="s-name">Evolution</span><span class="s-ct">48</span></div>
+    <div class="s-item" onclick="setProvider(this)"><div class="s-ico c-pg">🌀</div><span class="s-name">Pragmatic Play</span><span class="s-ct">36</span></div>
+    <div class="s-item" onclick="setProvider(this)"><div class="s-ico c-cr">🃏</div><span class="s-name">Ezugi</span><span class="s-ct">28</span></div>
+    <div class="s-item" onclick="setProvider(this)"><div class="s-ico c-ez">♠️</div><span class="s-name">Creedroomz</span><span class="s-ct">22</span></div>
+    <div class="s-item" onclick="setProvider(this)"><div class="s-ico c-rc">🌟</div><span class="s-name">Red Carat</span><span class="s-ct">18</span></div>
+    <div class="s-item" onclick="setProvider(this)"><div class="s-ico c-sa">🎭</div><span class="s-name">Holi</span><span class="s-ct">14</span></div>
+    <div class="s-item" onclick="setProvider(this)"><div class="s-ico c-pg">⚡</div><span class="s-name">JackTop</span><span class="s-ct">12</span></div>
+    <div class="s-item" onclick="setProvider(this)"><div class="s-ico c-ev">🐓</div><span class="s-name">Cockfight</span><span class="s-ct">8</span></div>
+    <div class="s-item" onclick="setProvider(this)"><div class="s-ico c-cr">🎪</div><span class="s-name">Virtual</span><span class="s-ct">16</span></div>
+    <div class="s-item" onclick="setProvider(this)"><div class="s-ico c-rc">🎬</div><span class="s-name">Bollywood</span><span class="s-ct">9</span></div>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-bg">
+        <div class="hero-orb1"></div>
+        <div class="hero-orb2"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-tag"><span class="reddot"></span> LIVE NOW · 12,400+ PLAYERS</div>
+          <div class="hero-title">LIVE<br><span>CASINO</span></div>
+          <div class="hero-sub">Real dealers · Real tables · Real winnings</div>
+          <div class="hero-btns">
+            <button class="hbtn hbtn-p">▶ PLAY NOW</button>
+            <button class="hbtn hbtn-s">DEMO MODE</button>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat"><div class="hstat-val">240+</div><div class="hstat-lbl">Live Games</div></div>
+          <div class="hstat"><div class="hstat-val" id="online-ct">12.4K</div><div class="hstat-lbl">Online Now</div></div>
+          <div class="hstat"><div class="hstat-val">₹2.4Cr</div><div class="hstat-lbl">Paid Today</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JACKPOT -->
+    <div class="jp-bar">
+      <div class="jp-label">🏆 Daily Jackpot</div>
+      <div class="jp-sep"></div>
+      <div class="jp-val" id="jp">₹ 4,82,36,741</div>
+      <button class="jp-btn">SPIN NOW →</button>
+    </div>
+
+    <!-- CATEGORY PILLS -->
+    <div class="cat-row">
+      <button class="cat-pill on" onclick="setCat(this)">🎲 All Games</button>
+      <button class="cat-pill" onclick="setCat(this)">🎡 Roulette</button>
+      <button class="cat-pill" onclick="setCat(this)">🃏 Teen Patti</button>
+      <button class="cat-pill" onclick="setCat(this)">🂡 Poker</button>
+      <button class="cat-pill" onclick="setCat(this)">🀄 Baccarat</button>
+      <button class="cat-pill" onclick="setCat(this)">🐯 Dragon Tiger</button>
+      <button class="cat-pill" onclick="setCat(this)">7️⃣ Lucky 7</button>
+      <button class="cat-pill" onclick="setCat(this)">⚔️ Andar Bahar</button>
+      <button class="cat-pill" onclick="setCat(this)">⚽ Sportsbook</button>
+      <button class="cat-pill" onclick="setCat(this)">👑 Queen</button>
+    </div>
+
+    <!-- FEATURED -->
+    <div class="sec-row">
+      <div class="sec-title">Featured Games</div>
+      <div class="sec-more">ALL FEATURED →</div>
+    </div>
+    <div class="feat-grid">
+      <div class="fcard">
+        <div class="fcard-thumb bg-ev">
+          <div class="fcard-big-icon">🎡</div>
+          <div class="fcard-sub">LIGHTNING ROULETTE</div>
+        </div>
+        <div class="fcard-shade"></div>
+        <div class="live-badge"><span class="ld"></span> LIVE</div>
+        <div class="player-badge">👥 3,482</div>
+        <div class="fcard-info"><div class="fcard-name">Lightning Roulette</div><div class="fcard-prov">Evolution Gaming · European Roulette</div></div>
+        <div class="play-ov"><div class="play-ring">▶</div></div>
+      </div>
+      <div class="fcard">
+        <div class="fcard-thumb bg-pg">
+          <div class="fcard-sm-icon">💰</div>
+          <div class="fcard-sub">CRAZY TIME</div>
+        </div>
+        <div class="fcard-shade"></div>
+        <div class="live-badge"><span class="ld"></span> LIVE</div>
+        <div class="player-badge">👥 8,901</div>
+        <div class="fcard-info"><div class="fcard-name">Crazy Time</div><div class="fcard-prov">Evolution Gaming</div></div>
+        <div class="play-ov"><div class="play-ring">▶</div></div>
+      </div>
+      <div class="fcard">
+        <div class="fcard-thumb bg-cr">
+          <div class="fcard-sm-icon">🃏</div>
+          <div class="fcard-sub">TEEN PATTI LIVE</div>
+        </div>
+        <div class="fcard-shade"></div>
+        <div class="live-badge"><span class="ld"></span> LIVE</div>
+        <div class="player-badge">👥 2,150</div>
+        <div class="fcard-info"><div class="fcard-name">Teen Patti Live</div><div class="fcard-prov">Pragmatic Play</div></div>
+        <div class="play-ov"><div class="play-ring">▶</div></div>
+      </div>
+    </div>
+
+    <!-- WINS -->
+    <div class="wins-bar">
+      <div class="wins-label">🎉 Big Wins</div>
+      <div class="wins-scroll">
+        <div class="witem"><div class="wavatar">🧑</div><span class="wuser">Vikram_99</span><span class="wgame">Crazy Time</span><span class="wamt">+₹45,200</span></div>
+        <div class="witem"><div class="wavatar">👩</div><span class="wuser">Neha_S</span><span class="wgame">Lightning Roulette</span><span class="wamt">+₹18,500</span></div>
+        <div class="witem"><div class="wavatar">🧑</div><span class="wuser">Amit_K</span><span class="wgame">Aviator</span><span class="wamt">+₹1.2L</span></div>
+        <div class="witem"><div class="wavatar">🧔</div><span class="wuser">Rahul_B</span><span class="wgame">Teen Patti Live</span><span class="wamt">+₹32,000</span></div>
+        <div class="witem"><div class="wavatar">👩</div><span class="wuser">Sana_M</span><span class="wgame">Blackjack</span><span class="wamt">+₹24,800</span></div>
+        <div class="witem"><div class="wavatar">🧑</div><span class="wuser">Arjun_P</span><span class="wgame">Dragon Tiger</span><span class="wamt">+₹67,400</span></div>
+        <!-- duplicate -->
+        <div class="witem"><div class="wavatar">🧑</div><span class="wuser">Vikram_99</span><span class="wgame">Crazy Time</span><span class="wamt">+₹45,200</span></div>
+        <div class="witem"><div class="wavatar">👩</div><span class="wuser">Neha_S</span><span class="wgame">Lightning Roulette</span><span class="wamt">+₹18,500</span></div>
+        <div class="witem"><div class="wavatar">🧑</div><span class="wuser">Amit_K</span><span class="wgame">Aviator</span><span class="wamt">+₹1.2L</span></div>
+        <div class="witem"><div class="wavatar">🧔</div><span class="wuser">Rahul_B</span><span class="wgame">Teen Patti Live</span><span class="wamt">+₹32,000</span></div>
+        <div class="witem"><div class="wavatar">👩</div><span class="wuser">Sana_M</span><span class="wgame">Blackjack</span><span class="wamt">+₹24,800</span></div>
+        <div class="witem"><div class="wavatar">🧑</div><span class="wuser">Arjun_P</span><span class="wgame">Dragon Tiger</span><span class="wamt">+₹67,400</span></div>
+      </div>
+    </div>
+
+    <!-- GAME GRID -->
+    <div class="sec-row">
+      <div class="sec-title">All Live Games</div>
+      <div class="sec-more">240 GAMES →</div>
+    </div>
+    <div class="game-grid">
+
+      <div class="gcard"><div class="gthumb c-ev"><div class="gicon">🎡</div><div class="gshortname">GOLDEN ROULETTE</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Golden Roulette</div><div class="gmeta"><span class="gprov">Evolution</span><span class="gtag-live">● LIVE</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-cr"><div class="gicon">🐯</div><div class="gshortname">DRAGON TIGER</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Dragon Tiger</div><div class="gmeta"><span class="gprov">Pragmatic</span><span class="gtag-hot">🔥 HOT</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-pg"><div class="gicon">🃏</div><div class="gshortname">VIP TEEN PATTI</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">VIP Teen Patti 1Day</div><div class="gmeta"><span class="gprov">Creedroomz</span><span class="gtag-live">● LIVE</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-ev"><div class="gicon">🎰</div><div class="gshortname">BACCARAT LIVE</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Baccarat Live</div><div class="gmeta"><span class="gprov">Pragmatic</span><span class="gtag-pop">5.2K Online</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-ez"><div class="gicon">🎭</div><div class="gshortname">ANDAR BAHAR 150</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Andar Bahar 150</div><div class="gmeta"><span class="gprov">Ezugi</span><span class="gtag-live">● LIVE</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-sa"><div class="gicon">⚽</div><div class="gshortname">GOAL LIVE</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Goal</div><div class="gmeta"><span class="gprov">Creedroomz</span><span class="gtag-hot">🔥 HOT</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-cr"><div class="gicon">💣</div><div class="gshortname">POISON TEEN PATTI</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Poison Teen Patti</div><div class="gmeta"><span class="gprov">Creedroomz</span><span class="gtag-live">● LIVE</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-ev"><div class="gicon">🌊</div><div class="gshortname">BEACH ROULETTE</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Beach Roulette</div><div class="gmeta"><span class="gprov">Evolution</span><span class="gtag-pop">1.8K Online</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-pg"><div class="gicon">🎪</div><div class="gshortname">BOLLYWOOD CASINO 2</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Bollywood Casino 2</div><div class="gmeta"><span class="gprov">Pragmatic</span><span class="gtag-hot">🔥 HOT</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-sa"><div class="gicon">🃏</div><div class="gshortname">UNLIMITED JOKER 20-20</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Unlimited Joker 20-20</div><div class="gmeta"><span class="gprov">Creedroomz</span><span class="gtag-live">● LIVE</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-ez"><div class="gicon">🎲</div><div class="gshortname">SIC BO 2</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Sic Bo 2</div><div class="gmeta"><span class="gprov">Ezugi</span><span class="gtag-pop">920 Online</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-rc"><div class="gicon">👑</div><div class="gshortname">QUEEN TOP OPEN</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Queen Top Open TeenPatti</div><div class="gmeta"><span class="gprov">Creedroomz</span><span class="gtag-live">● LIVE</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-ev"><div class="gicon">🧨</div><div class="gshortname">SPEED BACCARAT</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Speed Baccarat A</div><div class="gmeta"><span class="gprov">Evolution</span><span class="gtag-hot">🔥 HOT</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-cr"><div class="gicon">🎯</div><div class="gshortname">DEAL OR NO DEAL</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Deal or No Deal</div><div class="gmeta"><span class="gprov">Evolution</span><span class="gtag-pop">4.1K Online</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-pg"><div class="gicon">🃏</div><div class="gshortname">MEGA FIRE BLAZE</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Mega Fire Blaze</div><div class="gmeta"><span class="gprov">Pragmatic</span><span class="gtag-live">● LIVE</span></div></div></div>
+
+      <div class="gcard"><div class="gthumb c-ez"><div class="gicon">🥊</div><div class="gshortname">SUPER ANDAR BAHAR</div><div class="gthumb-shade"></div><div class="gplay"><div class="gplay-btn">▶</div></div></div><div class="ginfo"><div class="gname">Super Andar Bahar</div><div class="gmeta"><span class="gprov">Ezugi</span><span class="gtag-live">● LIVE</span></div></div></div>
+
+    </div>
+  </div><!-- /content -->
+</div><!-- /shell -->
+
+<script>
+let jp = 482367041;
+setInterval(()=>{jp+=Math.floor(Math.random()*900+200);document.getElementById('jp').textContent='₹ '+jp.toLocaleString('en-IN')},900);
+
+let oc = 12400;
+setInterval(()=>{oc+=Math.floor(Math.random()*6-2);document.getElementById('online-ct').textContent=(oc/1000).toFixed(1)+'K'},3000);
+
+function setCat(el){document.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('on'));el.classList.add('on')}
+function setProvider(el){document.querySelectorAll('.s-item').forEach(b=>b.classList.remove('on'));el.classList.add('on')}
+document.querySelectorAll('.nav-tab').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.nav-tab').forEach(x=>x.classList.remove('on'));t.classList.add('on')}));
+</script>
+</body>
+</html>

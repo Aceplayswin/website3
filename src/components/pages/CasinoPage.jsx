@@ -6,26 +6,24 @@ import { useColors } from "../../hooks/useColors";
 import { FONTS } from "../../constants/theme";
 import { useNavigate } from "react-router-dom";
 import { apiPost } from "@/utils/apiFetch";
-import { FaPlay, FaSearch, FaGamepad, FaRocket, FaDiceD20, FaTv, FaTimes } from "react-icons/fa";
-import { GiCardAceSpades, GiCardJoker, GiPokerHand, GiTigerHead } from "react-icons/gi";
+import { FaPlay, FaSearch, FaTimes } from "react-icons/fa";
 
 import RanaHeader from "../home/ranamatch/RanaHeader";
 import AuthModalHost from "../common/AuthModalHost";
 import '../../assets/css/ranamatch.css';
 
 const GAME_TYPES = [
-  { id: 'all', label: 'All Games', icon: <FaGamepad /> },
-  { id: 'crash', label: 'Crash Games', icon: <FaRocket /> },
-  { id: 'roulette', label: 'Roulette', icon: <FaDiceD20 /> },
-  { id: 'blackjack', label: 'Blackjack', icon: <GiCardAceSpades /> },
-  { id: 'baccarat', label: 'Baccarat', icon: <GiCardJoker /> },
-  { id: 'dragon', label: 'Dragon Tiger', icon: <GiTigerHead /> },
-  { id: 'teenpatti', label: 'Teen Patti', icon: <GiPokerHand /> },
-  { id: 'sicbo', label: 'Sic Bo', icon: <FaDiceD20 /> },
-  { id: 'poker', label: 'Poker', icon: <GiPokerHand /> },
-  { id: 'shows', label: 'Game Shows', icon: <FaTv /> },
-  { id: 'wheel', label: 'Mega Wheel', icon: <FaDiceD20 /> },
-  { id: 'andar', label: 'Andar Bahar', icon: <GiCardJoker /> }
+  { id: 'all', label: 'All Games', icon: '🎲' },
+  { id: 'roulette', label: 'Roulette', icon: '🎡' },
+  { id: 'teenpatti', label: 'Teen Patti', icon: '🃏' },
+  { id: 'poker', label: 'Poker', icon: '🂡' },
+  { id: 'baccarat', label: 'Baccarat', icon: '🀄' },
+  { id: 'dragon', label: 'Dragon Tiger', icon: '🐯' },
+  { id: 'sicbo', label: 'Sic Bo', icon: '🎲' },
+  { id: 'andar', label: 'Andar Bahar', icon: '⚔️' },
+  { id: 'shows', label: 'Game Shows', icon: '🎪' },
+  { id: 'blackjack', label: 'Blackjack', icon: '♠️' },
+  { id: 'crash', label: 'Crash Games', icon: '🚀' },
 ];
 
 const getGameType = (game) => {
@@ -41,10 +39,24 @@ const getGameType = (game) => {
   if (combined.includes('teen patti') || combined.includes('teenpatti')) return 'teenpatti';
   if (combined.includes('sic bo') || combined.includes('sicbo')) return 'sicbo';
   if (combined.includes('poker') || combined.includes('holdem') || combined.includes('hold em')) return 'poker';
-  if (combined.includes('mega wheel')) return 'wheel';
   if (combined.includes('andar') && combined.includes('bahar')) return 'andar';
   if (combined.includes('crazy time') || combined.includes('monopoly') || combined.includes('show')) return 'shows';
   return 'other';
+};
+
+const getProviderIconInfo = (providerName) => {
+  const p = providerName.toLowerCase();
+  if (p.includes('evolution')) return { ico: '🎯', cls: 'c-ev' };
+  if (p.includes('pragmatic')) return { ico: '🌀', cls: 'c-pg' };
+  if (p.includes('ezugi')) return { ico: '🃏', cls: 'c-cr' };
+  if (p.includes('creedroomz')) return { ico: '♠️', cls: 'c-ez' };
+  if (p.includes('red') || p.includes('carat')) return { ico: '🌟', cls: 'c-rc' };
+  if (p.includes('holi')) return { ico: '🎭', cls: 'c-sa' };
+  if (p.includes('jacktop')) return { ico: '⚡', cls: 'c-pg' };
+  if (p.includes('cockfight')) return { ico: '🐓', cls: 'c-ev' };
+  if (p.includes('virtual')) return { ico: '🎪', cls: 'c-cr' };
+  if (p.includes('bollywood')) return { ico: '🎬', cls: 'c-rc' };
+  return { ico: '🎮', cls: 'c-sa' };
 };
 
 const CasinoPage = () => {
@@ -65,6 +77,15 @@ const CasinoPage = () => {
 
   const [displayLimit, setDisplayLimit] = useState(48);
   const observerTarget = useRef(null);
+  
+  const [jpAmount, setJpAmount] = useState(482367041);
+  
+  useEffect(() => {
+    const jpInterval = setInterval(() => {
+      setJpAmount(prev => prev + Math.floor(Math.random() * 900 + 200));
+    }, 900);
+    return () => clearInterval(jpInterval);
+  }, []);
 
   const scrollRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -87,13 +108,18 @@ const CasinoPage = () => {
   };
 
   useEffect(() => {
-    document.body.style.backgroundColor = '#0f0a1a'; // Official ranamatch background
-    document.body.style.color = '#FFFFFF';
-    document.body.style.fontFamily = "var(--font-ui)";
+    document.body.style.backgroundColor = '#06090f';
+    document.body.style.color = '#eef2ff';
+    document.body.style.fontFamily = "'Rajdhani', sans-serif";
     document.documentElement.style.height = '100%';
     document.body.style.height = '100%';
     document.body.style.margin = '0';
     document.body.style.padding = '0';
+
+    const link1 = document.createElement('link');
+    link1.rel = 'stylesheet';
+    link1.href = 'https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Rajdhani:wght@400;500;600;700&family=Exo+2:ital,wght@0,300;0,700;0,900;1,900&display=swap';
+    document.head.appendChild(link1);
 
     return () => {
       document.body.style.backgroundColor = '';
@@ -101,6 +127,7 @@ const CasinoPage = () => {
       document.body.style.fontFamily = '';
       document.documentElement.style.height = '';
       document.body.style.height = '';
+      if(document.head.contains(link1)) document.head.removeChild(link1);
     }
   }, []);
 
@@ -250,425 +277,328 @@ const CasinoPage = () => {
   }
 
   return (
-    <div className="rana-layout" style={{ height: 'auto', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="rana-layout" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
       <AuthModalHost />
       <RanaHeader />
       
-      <div className="page-wrap casino-main-wrap" style={{ padding: '30px', maxWidth: '1800px', margin: '0 auto', width: '100%', flex: 1 }}>
-        <style>{`
-          .casino-main-wrap {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 40px;
-          }
-          @media (max-width: 1024px) {
-            .casino-main-wrap {
-              display: flex;
-              flex-direction: column;
-              padding: 15px;
-            }
-          }
-
-          /* Neo Glass Sidebar */
-          .neo-sidebar {
-            background: rgba(20, 20, 30, 0.4);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-right: 2px solid rgba(29, 78, 216, 0.3);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(29, 78, 216, 0.05);
-          }
-          .neo-side-title {
-            font-family: var(--font-head);
-            font-size: 16px;
-            font-weight: 800;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-          }
-          .neo-side-title::before {
-            content: '';
-            width: 4px;
-            height: 20px;
-            background: var(--gold);
-            border-radius: 4px;
-            box-shadow: 0 0 12px var(--gold);
-          }
-          .neo-search-input {
-            width: 100%;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 12px 16px 12px 40px;
-            color: #fff;
-            font-size: 13px;
-            outline: none;
-            transition: all 0.3s;
-          }
-          .neo-search-input:focus {
-            border-color: var(--brand);
-            box-shadow: 0 0 15px rgba(29, 78, 216, 0.3);
-          }
-          .neo-prov-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 18px;
-            border-radius: 12px;
-            margin-bottom: 8px;
-            background: rgba(255,255,255,0.015);
-            border: 1px solid transparent;
-            color: #999;
-            font-family: var(--font-ui);
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          }
-          .neo-prov-item:hover {
-            background: rgba(29, 78, 216, 0.08);
-            border-color: rgba(29, 78, 216, 0.2);
-            color: #fff;
-            transform: translateX(6px);
-          }
-          .neo-prov-item.active {
-            background: var(--brand-gradient);
-            color: #fff;
-            box-shadow: 0 6px 20px rgba(29, 78, 216, 0.4);
-            border-color: rgba(255,255,255,0.1);
-          }
-
-          /* Neo Top Nav */
-          .neo-type-nav {
-            display: flex;
-            gap: 8px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            margin-bottom: 24px;
-          }
-          .neo-type-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 16px;
-            color: #777;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            font-family: var(--font-head);
-            font-weight: 700;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-          }
-          .neo-type-item:hover {
-            color: #fff;
-            background: rgba(255,255,255,0.03);
-          }
-          .neo-type-item.active {
-            color: var(--gold);
-            background: rgba(34, 211, 238, 0.08);
-          }
-          .neo-type-item.active::after {
-            content: '';
-            position: absolute;
-            bottom: -21px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 3px;
-            border-radius: 3px;
-            background: var(--gold);
-            box-shadow: 0 -2px 15px var(--gold);
-          }
-          .neo-type-icon { font-size: 20px; margin-bottom: 2px; }
-
-          /* Neo Game Cards */
-          .neo-card {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #111;
-            border: 1px solid rgba(255,255,255,0.04);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-          }
-          .neo-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            border-color: var(--gold);
-            box-shadow: 0 15px 40px rgba(34, 211, 238, 0.2), 0 0 20px rgba(34, 211, 238, 0.15) inset;
-          }
-          .neo-card-img-wrap {
-            position: relative;
-            padding-top: 100%;
-            overflow: hidden;
-          }
-          .neo-card-img-wrap img {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s ease;
-          }
-          .neo-card:hover .neo-card-img-wrap img {
-            transform: scale(1.18) rotate(3deg);
-            filter: brightness(1.1);
-          }
-          .neo-card-info {
-            padding: 16px 14px;
-            background: linear-gradient(180deg, rgba(18,15,28,0.95) 0%, rgba(10,5,15,1) 100%);
-            position: relative;
-            z-index: 2;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-          }
-          .neo-card-title {
-            font-family: var(--font-head);
-            color: #fff;
-            font-size: 14px;
-            font-weight: 800;
-            text-transform: uppercase;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            letter-spacing: 1px;
-            width: 100%;
-          }
-          .neo-card-prov {
-            font-family: var(--font-ui);
-            color: var(--brand);
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-top: 6px;
-            letter-spacing: 1.5px;
-            transition: color 0.3s;
-          }
-          .neo-card:hover .neo-card-prov {
-            color: var(--gold);
-          }
-          .neo-play-btn {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%) scale(0.5);
-            width: 56px; height: 56px;
-            border-radius: 50%;
-            background: rgba(29, 78, 216, 0.9);
-            color: #fff;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 30px var(--brand);
-            z-index: 3;
-            border: 2px solid rgba(255,255,255,0.2);
-          }
-          .neo-card:hover .neo-play-btn {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-          }
-
-          .side-list-scroll::-webkit-scrollbar { width: 4px; }
-          .side-list-scroll::-webkit-scrollbar-track { background: transparent; }
-          .side-list-scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
-        `}</style>
+      <style>{`
+        /* Scoped styles based on casino_sample.html */
+        .casino-shell {
+          --bg0:#ffffff;
+          --bg1:#f5f6fa;
+          --bg2:#eef0f7;
+          --bg3:#e8eaf2;
+          --gold:#d49b12;
+          --gold2:#a87608;
+          --gold-a:rgba(212,155,18,.15);
+          --blue:#1a6fff;
+          --blue2:#0e4db5;
+          --blue-a:rgba(26,111,255,.15);
+          --cyan:#007acc;
+          --green:#00a651;
+          --red:#e0143c;
+          --hi:#111827;
+          --mid:#4b5563;
+          --lo:#9ca3af;
+          --border:rgba(0,0,0,.1);
+          
+          flex: 1; display: flex; overflow: hidden; font-family: 'Rajdhani', sans-serif;
+          background: var(--bg0); color: var(--hi);
+        }
         
-        {/* LEFT SIDEBAR */}
-        <div className="hidden lg:flex flex-col">
-          <div className="neo-sidebar flex-1 max-h-[calc(100vh-140px)] flex flex-col sticky top-[100px]">
-            <div className="neo-side-title">
-              Game Providers
-            </div>
-            
-            <div className="relative mb-6">
-              <input
-                type="text"
-                placeholder="Search Providers..."
-                value={providerSearch}
-                onChange={e => setProviderSearch(e.target.value)}
-                className="neo-search-input"
-              />
-              <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40" size={14} />
-            </div>
+ 
 
-            <div className="side-list-scroll flex-1 overflow-y-auto pr-2">
-              <div onClick={() => setActiveProvider('all')} className={`neo-prov-item ${activeProvider === 'all' ? 'active' : ''}`}>
-                <span className="tracking-wide">All Providers</span>
-                <span className="opacity-80 text-[11px] font-bold bg-black/20 px-2 py-0.5 rounded-full">{allGames.length}</span>
+        /* SIDEBAR */
+        .sidebar{width:220px;flex-shrink:0;background:var(--bg1);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--lo) transparent}
+        .sidebar::-webkit-scrollbar{width:3px}
+        .sidebar::-webkit-scrollbar-thumb{background:var(--lo);border-radius:3px}
+        .s-head{font-family:'Oxanium',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--lo);padding:18px 16px 8px;text-transform:uppercase}
+        .s-search{padding: 8px 16px 12px; border-bottom: 1px solid var(--border); margin-bottom: 8px;}
+        .s-search input{width:100%; background:var(--bg0); border:1px solid var(--border); color:var(--hi); padding:8px 12px; border-radius:6px; font-family:'Rajdhani',sans-serif; font-size:12px; outline:none;}
+        .s-search input:focus{border-color:var(--gold);}
+        
+        .s-item{display:flex;align-items:center;gap:9px;padding:8px 16px;cursor:pointer;border-left:2px solid transparent;transition:.15s;position:relative}
+        .s-item:hover{background:var(--bg3)}
+        .s-item.on{background:rgba(240,180,41,.05);border-left-color:var(--gold)}
+        .s-ico{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;background:var(--bg0)}
+        .s-name{font-family:'Oxanium',sans-serif;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--mid);transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .s-item:hover .s-name,.s-item.on .s-name{color:var(--hi)}
+        .s-item.on .s-name{color:var(--gold)}
+        .s-ct{margin-left:auto;font-family:'Oxanium',sans-serif;font-size:9px;font-weight:700;color:var(--lo);background:var(--bg0);border:1px solid var(--border);padding:2px 6px;border-radius:20px;flex-shrink:0}
+        .s-item.on .s-ct{background:rgba(240,180,41,.12);color:var(--gold);border-color:rgba(240,180,41,.25)}
+
+        /* CONTENT */
+        .content{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--lo) transparent;padding:24px 28px}
+        .content::-webkit-scrollbar{width:4px}
+        .content::-webkit-scrollbar-thumb{background:var(--lo);border-radius:3px}
+
+        /* JACKPOT BAR */
+        .jp-bar{background:linear-gradient(135deg,#0b1f0e,#142918);border:1px solid rgba(0,230,118,.15);border-radius:10px;padding:8px 18px;margin-bottom:16px;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden}
+        .jp-bar::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(0,230,118,.04) 1px,transparent 1px);background-size:20px 20px;pointer-events:none}
+        .jp-label{font-family:'Oxanium',sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;color:var(--green) !important;text-transform:uppercase;flex-shrink:0;display:flex;align-items:center;gap:6px}
+        .jp-sep{width:1px;background:rgba(0,230,118,.15);align-self:stretch;flex-shrink:0}
+        .jp-val{font-family:'Exo 2',sans-serif;font-size:22px;font-weight:900;color:var(--green) !important;letter-spacing:-.02em;flex:1;text-align:center}
+        .jp-btn{padding:7px 18px;background:linear-gradient(135deg,var(--green),#00b860);border:none;color:#000 !important;font-family:'Oxanium',sans-serif;font-size:10px;font-weight:800;letter-spacing:.12em;border-radius:6px;cursor:pointer;flex-shrink:0;transition:.2s}
+        .jp-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,230,118,.3)}
+
+        /* CATEGORY PILLS */
+        .cat-row{display:flex;gap:8px;margin-bottom:24px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+        .cat-row::-webkit-scrollbar{display:none}
+        .cat-pill{flex-shrink:0;padding:8px 16px;border-radius:30px;border:1px solid var(--lo);background:none;color:var(--mid) !important;font-family:'Oxanium',sans-serif;font-size:11px;font-weight:700;letter-spacing:.07em;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:8px}
+        .cat-pill:hover{border-color:var(--mid);color:var(--hi) !important;}
+        .cat-pill.on{background:rgba(240,180,41,.1);border-color:rgba(240,180,41,.4);color:var(--gold) !important;}
+
+        /* SECTION ROW */
+        .sec-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+        .sec-title{font-family:'Oxanium',sans-serif;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--hi) !important;display:flex;align-items:center;gap:8px}
+        .sec-title::before{content:'';display:block;width:3px;height:16px;background:linear-gradient(180deg,var(--gold),var(--gold2));border-radius:2px}
+        
+        .search-box{position:relative;}
+        .search-box input{background:var(--bg1); border:1px solid var(--border); color:var(--hi); padding:8px 14px 8px 32px; border-radius:6px; font-family:'Rajdhani',sans-serif; font-size:12px; outline:none; width:200px;}
+        .search-box input:focus{border-color:var(--gold);}
+        .search-box svg{position:absolute; left:10px; top:50%; transform:translateY(-50%); color:var(--mid);}
+
+        /* WINS STRIP */
+        .wins-bar{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 18px;margin-bottom:24px;display:flex;align-items:center;gap:16px;overflow:hidden;position:relative;z-index:0;isolation:isolate;}
+        .wins-bar-inner{flex:1;overflow:hidden;min-width:0;}
+        .wins-label{font-family:'Oxanium',sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;color:var(--gold) !important;text-transform:uppercase;flex-shrink:0;white-space:nowrap;display:flex;align-items:center;gap:8px}
+        .wins-label::after{content:'';width:1px;height:20px;background:var(--border)}
+        .wins-scroll{display:flex;gap:24px;animation:wsroll 22s linear infinite;width:max-content;}
+        @keyframes wsroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+        .witem{display:flex;align-items:center;gap:8px;flex-shrink:0}
+        .wavatar{width:24px;height:24px;border-radius:50%;background:var(--bg0);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px}
+        .wuser{font-family:'Oxanium',sans-serif;font-size:11px;font-weight:600;color:var(--mid) !important;}
+        .wgame{font-family:'Rajdhani',sans-serif;font-size:11px;color:var(--lo) !important;}
+        .wamt{font-family:'Oxanium',sans-serif;font-size:12px;font-weight:800;color:var(--green) !important;}
+
+        /* GAME GRID */
+        .game-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-bottom:32px}
+        .gcard{border-radius:12px;overflow:hidden;position:relative;cursor:pointer;background:var(--bg1);border:1px solid var(--border);transition:.22s;animation:fadeUp .4s ease both}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+        .gcard:hover{transform:translateY(-4px);border-color:rgba(240,180,41,.28);box-shadow:0 12px 30px rgba(0,0,0,.5)}
+        .gthumb{position:relative;aspect-ratio:4/3;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px; background-size: cover; background-position: center;}
+        .gthumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity: 0.9;}
+        .gcard:hover .gthumb img{opacity: 1; transform: scale(1.05); transition: all 0.3s;}
+        .gthumb-shade{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.8) 100%);opacity:0;transition:.22s}
+        .gcard:hover .gthumb-shade{opacity:1}
+        .gplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:.22s}
+        .gcard:hover .gplay{opacity:1}
+        .gplay-btn{width:44px;height:44px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:16px;transform:scale(.7);transition:.2s;color:#000;box-shadow:0 0 15px var(--gold);}
+        .gcard:hover .gplay-btn{transform:scale(1)}
+        .gicon{font-size:32px;transition:.3s;pointer-events:none; z-index:2;}
+        .gcard:hover .gicon{transform:scale(1.1)}
+        .gshortname{font-family:'Oxanium',sans-serif;font-size:9px;font-weight:600;color:rgba(255,255,255,.4);letter-spacing:.08em;pointer-events:none; z-index:2;}
+        .ginfo{padding:10px 12px}
+        .gname{font-family:'Oxanium',sans-serif;font-size:12px;font-weight:700;color:var(--hi);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .gmeta{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
+        .gprov{font-family:'Rajdhani',sans-serif;font-size:11px;color:var(--mid)}
+        .gtag-live{font-family:'Oxanium',sans-serif;font-size:9px;font-weight:800;letter-spacing:.06em;color:var(--red);background:rgba(255,23,68,.1);border:1px solid rgba(255,23,68,.22);padding:3px 6px;border-radius:4px}
+        .gtag-hot{font-family:'Oxanium',sans-serif;font-size:9px;font-weight:800;color:var(--gold);background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.22);padding:3px 6px;border-radius:4px}
+        .gtag-pop{font-family:'Oxanium',sans-serif;font-size:9px;font-weight:800;color:var(--green);background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);padding:3px 6px;border-radius:4px}
+
+        /* BG COLORS */
+        .c-ev{background:linear-gradient(150deg,#0c0818 0%,#1e0f4a 100%)}
+        .c-pg{background:linear-gradient(150deg,#08122a 0%,#0e2a5c 100%)}
+        .c-cr{background:linear-gradient(150deg,#140818 0%,#38083a 100%)}
+        .c-ez{background:linear-gradient(150deg,#081410 0%,#0c3022 100%)}
+        .c-sa{background:linear-gradient(150deg,#0a1020 0%,#0e2040 100%)}
+        .c-rc{background:linear-gradient(150deg,#1a1000 0%,#3a2000 100%)}
+      `}</style>
+
+ 
+
+      <div className="casino-shell">
+        {/* SIDEBAR */}
+        <aside className="sidebar">
+          <div className="s-head">Providers</div>
+          <div className="s-search">
+             <input type="text" placeholder="Search provider..." value={providerSearch} onChange={e => setProviderSearch(e.target.value)} />
+          </div>
+          
+          <div className={`s-item ${activeProvider === 'all' ? 'on' : ''}`} onClick={() => setActiveProvider('all')}>
+            <div className="s-ico c-sa" style={{fontSize: '11px'}}>ALL</div>
+            <span className="s-name">All Providers</span>
+            <span className="s-ct">{allGames.length}</span>
+          </div>
+          
+          {providers.filter(p => p.toLowerCase().includes(providerSearch.toLowerCase())).map(p => {
+             const info = getProviderIconInfo(p);
+             return (
+              <div key={p} className={`s-item ${activeProvider === p ? 'on' : ''}`} onClick={() => setActiveProvider(p)}>
+                <div className={`s-ico ${info.cls}`}>{info.ico}</div>
+                <span className="s-name" title={p}>{p}</span>
+                <span className="s-ct">{providerCounts[p]}</span>
               </div>
-              {providers.filter(p => p.toLowerCase().includes(providerSearch.toLowerCase())).map(p => (
-                <div key={p} onClick={() => setActiveProvider(p)} className={`neo-prov-item ${activeProvider === p ? 'active' : ''}`}>
-                  <span className="truncate max-w-[150px] tracking-wide" title={p}>{p}</span>
-                  <span className="opacity-80 text-[11px] font-bold bg-black/20 px-2 py-0.5 rounded-full">{providerCounts[p]}</span>
-                </div>
-              ))}
+             )
+          })}
+        </aside>
+
+        {/* CONTENT */}
+        <div className="content">
+          
+          {/* JACKPOT BAR */}
+          <div className="jp-bar">
+            <div className="jp-label">🏆 Daily Jackpot</div>
+            <div className="jp-sep"></div>
+            <div className="jp-val">₹ {jpAmount.toLocaleString('en-IN')}</div>
+            <button className="jp-btn">SPIN NOW →</button>
+          </div>
+
+          {/* WINS STRIP */}
+          <div className="wins-bar">
+            <div className="wins-label">🎉 Big Wins</div>
+            <div className="wins-bar-inner">
+              <div className="wins-scroll">
+                <div className="witem"><div className="wavatar">🧑</div><span className="wuser">Vikram_99</span><span className="wgame">Crazy Time</span><span className="wamt">+₹45,200</span></div>
+                <div className="witem"><div className="wavatar">👩</div><span className="wuser">Neha_S</span><span className="wgame">Lightning Roulette</span><span className="wamt">+₹18,500</span></div>
+                <div className="witem"><div className="wavatar">🧑</div><span className="wuser">Amit_K</span><span className="wgame">Aviator</span><span className="wamt">+₹1.2L</span></div>
+                <div className="witem"><div className="wavatar">🧔</div><span className="wuser">Rahul_B</span><span className="wgame">Teen Patti Live</span><span className="wamt">+₹32,000</span></div>
+                <div className="witem"><div className="wavatar">👩</div><span className="wuser">Sana_M</span><span className="wgame">Blackjack</span><span className="wamt">+₹24,800</span></div>
+                <div className="witem"><div className="wavatar">🧑</div><span className="wuser">Arjun_P</span><span className="wgame">Dragon Tiger</span><span className="wamt">+₹67,400</span></div>
+                {/* duplicates for infinite scroll */}
+                <div className="witem"><div className="wavatar">🧑</div><span className="wuser">Vikram_99</span><span className="wgame">Crazy Time</span><span className="wamt">+₹45,200</span></div>
+                <div className="witem"><div className="wavatar">👩</div><span className="wuser">Neha_S</span><span className="wgame">Lightning Roulette</span><span className="wamt">+₹18,500</span></div>
+                <div className="witem"><div className="wavatar">🧑</div><span className="wuser">Amit_K</span><span className="wgame">Aviator</span><span className="wamt">+₹1.2L</span></div>
+                <div className="witem"><div className="wavatar">🧔</div><span className="wuser">Rahul_B</span><span className="wgame">Teen Patti Live</span><span className="wamt">+₹32,000</span></div>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* MAIN CONTENT */}
-        <div className="min-w-0 flex flex-col">
-          
-          {/* Top Categories */}
-          <div
+          {/* CATEGORY PILLS */}
+          <div 
             ref={scrollRef}
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseLeave}
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
-            className={`neo-type-nav overflow-x-auto ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-            style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: "touch", userSelect: "none" }}
+            className={`cat-row ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
           >
-            {GAME_TYPES.map(type => {
-              const isActive = activeType === type.id;
-              return (
-                <div
-                  key={type.id}
-                  onClick={() => !isDragging && setActiveType(type.id)}
-                  className={`neo-type-item ${isActive ? 'active' : ''}`}
-                >
-                  <span className="neo-type-icon">{type.icon}</span>
-                  {type.label}
-                </div>
-              );
-            })}
+            {GAME_TYPES.map(type => (
+              <button 
+                key={type.id} 
+                className={`cat-pill ${activeType === type.id ? 'on' : ''}`}
+                onClick={() => !isDragging && setActiveType(type.id)}
+              >
+                {type.icon} {type.label}
+              </button>
+            ))}
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-             <div className="text-[14px] text-gray-400 font-medium" style={{ fontFamily: 'var(--font-ui)' }}>
-               Showing <strong className="text-white mx-1">{filteredGames.length}</strong> games for <strong className="text-[var(--brand)] ml-1 tracking-wider uppercase text-xs">{activeProvider === 'all' ? 'All Providers' : activeProvider}</strong>
-             </div>
-             
-             {/* Search */}
-             <div className="relative shrink-0 sm:w-72">
-               <input
-                 type="text"
-                 placeholder="Search games..."
-                 value={gameSearch}
-                 onChange={e => setGameSearch(e.target.value)}
-                 className="neo-search-input"
-                 style={{ borderRadius: '20px', paddingLeft: '44px' }}
-               />
-               <FaSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-white/40" size={14} />
-               {gameSearch && (
-                 <button onClick={() => setGameSearch("")} className="absolute right-5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white">
-                   <FaTimes size={14} />
-                 </button>
-               )}
-             </div>
+          <div className="sec-row">
+            <div className="sec-title">All Live Games</div>
+            <div className="search-box">
+               <FaSearch />
+               <input type="text" placeholder="Search games..." value={gameSearch} onChange={e => setGameSearch(e.target.value)} />
+            </div>
           </div>
 
           {/* GAME GRID */}
           {filteredGames.length === 0 ? (
-            <div className="py-24 flex flex-col items-center justify-center text-center bg-[rgba(20,20,30,0.4)] rounded-3xl border border-[rgba(255,255,255,0.05)] backdrop-blur-sm">
-              <FaGamepad className="text-6xl text-white/10 mb-6" />
-              <h3 className="text-2xl font-bold text-white/80 uppercase tracking-widest mb-3" style={{ fontFamily: 'var(--font-head)' }}>No Games Found</h3>
-              <p className="text-[15px] text-white/40 max-w-md">We couldn't find any games matching your current filters.</p>
-              <button
-                onClick={() => { setActiveType('all'); setActiveProvider('all'); setGameSearch(""); }}
-                className="mt-8 px-8 py-3 rounded-xl font-bold uppercase tracking-widest text-[12px] transition-all bg-[var(--brand-gradient)] text-white hover:scale-105 hover:shadow-[0_0_20px_rgba(29,78,216,0.5)]"
-              >
-                Clear All Filters
-              </button>
+            <div className="py-20 flex flex-col items-center justify-center text-center bg-[#0b1120] rounded-xl border border-[rgba(255,255,255,0.06)]">
+              <FaSearch className="text-5xl text-white/10 mb-4" />
+              <h3 className="text-lg font-bold text-white/80 uppercase tracking-widest mb-2" style={{ fontFamily: "'Oxanium', sans-serif" }}>No Games Found</h3>
+              <p className="text-sm text-white/50 max-w-sm">Try adjusting your filters or search query.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-6 sm:gap-8 pb-16">
-              {filteredGames.slice(0, displayLimit).map((game, idx) => (
-                <div key={`${game["Game UID"]}-${idx}`} className="neo-card" onClick={() => handleGameClick(game)}>
-                  <div className="neo-card-img-wrap">
-                    <img
-                      loading="lazy"
-                      src={game.icon || "/placeholder.svg"}
-                      alt={game["Game Name"]}
-                    />
-                    <div className="neo-play-btn">
-                      <FaPlay className="ml-1" size={20} />
+            <div className="game-grid">
+              {filteredGames.slice(0, displayLimit).map((game, idx) => {
+                const info = getProviderIconInfo(game["Game Provider"] || game.provider || "");
+                const isHot = idx % 5 === 0;
+                const isLive = idx % 3 === 0 && !isHot;
+                
+                return (
+                  <div key={`${game["Game UID"]}-${idx}`} className="gcard" onClick={() => handleGameClick(game)}>
+                    <div className={`gthumb ${info.cls}`}>
+                      {game.icon && <img loading="lazy" src={game.icon} alt={game["Game Name"]} />}
+                      {!game.icon && (
+                        <>
+                           <div className="gicon">{info.ico}</div>
+                           <div className="gshortname">{game["Game Name"]}</div>
+                        </>
+                      )}
+                      <div className="gthumb-shade"></div>
+                      <div className="gplay"><div className="gplay-btn"><FaPlay size={12} /></div></div>
+                    </div>
+                    <div className="ginfo">
+                      <div className="gname" title={game["Game Name"]}>{game["Game Name"]}</div>
+                      <div className="gmeta">
+                        <span className="gprov">{game["Game Provider"] || game.provider || "Casino"}</span>
+                        {isHot && <span className="gtag-hot">🔥 HOT</span>}
+                        {isLive && <span className="gtag-live">● LIVE</span>}
+                        {!isHot && !isLive && <span className="gtag-pop">POPULAR</span>}
+                      </div>
                     </div>
                   </div>
-                  <div className="neo-card-info">
-                    <div className="neo-card-title">{game["Game Name"]}</div>
-                    <div className="neo-card-prov">{game["Game Provider"] || game.provider || "Casino"}</div>
-                  </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           )}
 
           {/* Infinite Scroll Trigger */}
           {filteredGames.length > displayLimit && (
-            <div ref={observerTarget} className="w-full flex justify-center py-10">
-              <div className="w-8 h-8 border-4 border-[var(--gold)] border-t-transparent rounded-full animate-spin"></div>
+            <div ref={observerTarget} className="w-full flex justify-center py-8">
+              <div className="w-6 h-6 border-2 border-[#f0b429] border-t-transparent rounded-full animate-spin"></div>
             </div>
           )}
+
         </div>
       </div>
 
       {/* MODALS */}
       {confirmPopup.show && createPortal(
-        <div className="fixed inset-0 flex items-center justify-center bg-black/80 backdrop-blur-xl z-[100000] p-4 transition-all duration-300">
-          <div className="bg-[rgba(20,20,30,0.9)] border border-[rgba(255,255,255,0.1)] p-10 rounded-[2rem] max-w-md w-full text-center shadow-[0_20px_80px_rgba(0,0,0,0.8)] relative overflow-hidden">
-             <div className="absolute top-0 left-0 w-full h-2 bg-[var(--brand-gradient)]"></div>
+        <div className="fixed inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm z-[100000] p-4 font-['Oxanium']">
+          <div className="bg-[#0b1120] border border-[rgba(255,255,255,0.1)] p-8 rounded-xl max-w-sm w-full text-center relative overflow-hidden">
+             <div className="absolute top-0 left-0 w-full h-1 bg-[#f0b429]"></div>
              
-             <div className="w-24 h-24 rounded-2xl overflow-hidden mx-auto mb-6 border-2 border-[var(--brand)] shadow-[0_0_30px_rgba(29,78,216,0.3)]">
+             <div className="w-16 h-16 rounded-xl overflow-hidden mx-auto mb-4 border border-white/10 shadow-lg">
                 <img src={confirmPopup.game?.icon || "/placeholder.svg"} alt="Game" className="w-full h-full object-cover" />
              </div>
 
-             <h3 className="text-2xl font-black text-white uppercase tracking-widest mb-3" style={{ fontFamily: 'var(--font-head)' }}>
+             <h3 className="text-lg font-bold text-white uppercase tracking-wider mb-2">
                {confirmPopup.error === "balance_error" ? "Insufficient Balance" : 
                 confirmPopup.error === "authorization_error" ? "Session Expired" : 
                 confirmPopup.error ? "Game Unavailable" : 
                 "Ready to Play?"}
              </h3>
 
-             <p className="text-[15px] text-gray-400 mb-8 leading-relaxed">
+             <p className="text-sm text-gray-400 mb-6 font-['Rajdhani']">
                {confirmPopup.error === "balance_error" ? "A minimum deposit is required to play this game." :
                 confirmPopup.error === "authorization_error" ? "Please log in again to continue." :
                 confirmPopup.error ? `Error: ${confirmPopup.error}` :
                 `You are about to launch ${confirmPopup.game?.["Game Name"]}.`}
              </p>
 
-             <div className="flex flex-col gap-4">
+             <div className="flex flex-col gap-3">
                 {confirmPopup.error === "balance_error" ? (
-                   <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="bg-[var(--brand-gradient)] text-white font-bold uppercase tracking-widest rounded-xl w-full justify-center py-4 hover:shadow-[0_0_20px_rgba(29,78,216,0.4)] transition-all">Add Funds</button>
+                   <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="bg-gradient-to-br from-[#f0b429] to-[#c8921a] text-black font-bold uppercase rounded-lg w-full justify-center py-2.5">Add Funds</button>
                 ) : confirmPopup.error === "authorization_error" ? (
-                   <button onClick={handleAuthError} className="bg-[var(--brand-gradient)] text-white font-bold uppercase tracking-widest rounded-xl w-full justify-center py-4 hover:shadow-[0_0_20px_rgba(29,78,216,0.4)] transition-all">Log In Again</button>
+                   <button onClick={handleAuthError} className="bg-gradient-to-br from-[#f0b429] to-[#c8921a] text-black font-bold uppercase rounded-lg w-full justify-center py-2.5">Log In Again</button>
                 ) : confirmPopup.error ? (
-                   <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="bg-transparent border-2 border-[var(--brand)] text-[var(--brand)] font-bold uppercase tracking-widest rounded-xl w-full justify-center py-4 hover:bg-[var(--brand)] hover:text-white transition-all">Try Another</button>
+                   <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="bg-transparent border border-[#f0b429] text-[#f0b429] font-bold uppercase rounded-lg w-full justify-center py-2.5">Try Another</button>
                 ) : (
-                   <button onClick={confirmGameOpen} className="bg-[var(--brand-gradient)] text-white font-bold uppercase tracking-widest rounded-xl w-full justify-center py-4 hover:shadow-[0_0_20px_rgba(29,78,216,0.4)] transition-all">Confirm Play</button>
+                   <button onClick={confirmGameOpen} className="bg-gradient-to-br from-[#f0b429] to-[#c8921a] text-black font-bold uppercase rounded-lg w-full justify-center py-2.5">Confirm Play</button>
                 )}
-                <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="text-xs text-gray-500 font-bold uppercase tracking-widest hover:text-white mt-2 transition-colors">Cancel</button>
+                <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="text-xs text-gray-500 font-bold uppercase hover:text-white mt-1 transition-colors">Cancel</button>
              </div>
           </div>
         </div>, document.body
       )}
 
       {confirmLoading && createPortal(
-        <div className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[100000] flex flex-col items-center justify-center p-4">
-           <div className="bg-[rgba(20,20,30,0.8)] border border-[var(--gold)]/30 p-10 rounded-[2rem] max-w-md w-full text-center relative shadow-[0_0_60px_rgba(34,211,238,0.15)]">
-              <div className="mb-8 relative">
-                 <div className="w-24 h-24 rounded-3xl overflow-hidden mx-auto border-2 border-[var(--gold)] relative z-10 shadow-[0_0_30px_rgba(34,211,238,0.3)]">
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-[100000] flex flex-col items-center justify-center p-4 font-['Oxanium']">
+           <div className="bg-[#0b1120] border border-[#f0b429]/30 p-8 rounded-xl max-w-sm w-full text-center relative">
+              <div className="mb-6 relative">
+                 <div className="w-20 h-20 rounded-xl overflow-hidden mx-auto border-2 border-[#f0b429] relative z-10">
                     <img src={confirmPopup.game?.icon || "/placeholder.svg"} alt="Game" className="w-full h-full object-cover" />
                  </div>
-                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[var(--gold)] rounded-full blur-[40px] opacity-20"></div>
+                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-[#f0b429] rounded-full blur-[30px] opacity-20"></div>
               </div>
-              <h3 className="text-2xl font-black text-white mb-8 tracking-widest uppercase" style={{ fontFamily: 'var(--font-head)' }}>Launching...</h3>
+              <h3 className="text-xl font-bold text-white mb-6 tracking-widest uppercase">Launching...</h3>
               
-              <div className="w-full bg-[rgba(255,255,255,0.05)] rounded-full h-2 overflow-hidden mb-3">
-                 <div className="h-full bg-[var(--brand-gradient)] transition-all duration-300 relative" style={{ width: `${loadingProgress}%` }}>
-                    <div className="absolute top-0 right-0 bottom-0 w-10 bg-white/30 blur-sm"></div>
-                 </div>
+              <div className="w-full bg-[#162035] rounded-full h-1.5 overflow-hidden mb-2">
+                 <div className="h-full bg-[#f0b429] transition-all duration-300" style={{ width: `${loadingProgress}%` }}></div>
               </div>
-              <div className="text-[11px] text-[var(--gold)] font-bold tracking-widest uppercase">{Math.round(loadingProgress)}% Loaded</div>
+              <div className="text-[10px] text-[#f0b429] font-bold tracking-widest uppercase">{Math.round(loadingProgress)}% Loaded</div>
            </div>
         </div>, document.body
       )}

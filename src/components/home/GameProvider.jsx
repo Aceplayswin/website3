@@ -62,19 +62,17 @@ const providers = [
 const Circle = ({ logo, name, brand }) => (
   <div className="group flex items-center justify-center px-1 py-2">
     <div
-      className="relative rounded-full border border-white/10 flex items-center justify-center overflow-hidden transition-all duration-200 group-hover:border-white/30 group-hover:scale-105 cursor-pointer"
+      className="provider-circle relative rounded-full flex items-center justify-center overflow-hidden transition-all duration-200 group-hover:scale-105 cursor-pointer"
       style={{
         width: '80px',
         height: '80px',
-        background: 'radial-gradient(circle at 35% 30%, #252525, #111111)',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.04)',
         borderRadius: '50%',
       }}
       title={name}
     >
       {/* Inner ring */}
       <div
-        className="absolute rounded-full border border-white/[0.05] pointer-events-none"
+        className="provider-inner-ring absolute rounded-full pointer-events-none"
         style={{ inset: '6px', borderRadius: '50%' }}
       ></div>
       {/* Hover glow ring */}
@@ -86,18 +84,15 @@ const Circle = ({ logo, name, brand }) => (
       <img
         src={logo}
         alt={name}
+        className="provider-logo"
         style={{
           width: '58%',
           height: '58%',
           objectFit: 'contain',
-          opacity: 0.75,
           position: 'relative',
           zIndex: 1,
-          transition: 'opacity 0.2s',
-          filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.5))',
+          transition: 'all 0.2s',
         }}
-        onMouseEnter={e => e.currentTarget.style.opacity = 1}
-        onMouseLeave={e => e.currentTarget.style.opacity = 0.75}
         onError={e => { e.currentTarget.style.display = 'none'; }}
       />
     </div>
@@ -109,7 +104,7 @@ const GameProvider = () => {
   const [showAll, setShowAll] = useState(false);
 
   return (
-    <section className="mt-7 px-4 md:px-0 max-w-[1400px] mx-auto w-full">
+    <section className="mt-7 px-4 md:px-0 w-full">
       {/* Header */}
       <div className="flex items-center justify-between gap-3 mb-4 px-1 md:px-2">
         <h2 className="section-banner max-w-full" style={{ fontFamily: FONTS.head }}>
@@ -118,13 +113,8 @@ const GameProvider = () => {
 
         <button
           onClick={() => setShowAll(!showAll)}
-          className="text-[10px] font-black uppercase tracking-[1px] px-3 py-[4px] rounded border transition-all duration-200 cursor-pointer"
-          style={{
-            fontFamily: FONTS.ui,
-            color: showAll ? '#000' : COLORS.brand,
-            background: showAll ? COLORS.brand : 'transparent',
-            borderColor: COLORS.brand,
-          }}
+          className={`see-all cursor-pointer ${showAll ? 'bg-blue-600 text-white' : ''}`}
+          style={showAll ? { background: COLORS.brand, color: '#fff' } : {}}
         >
           {showAll ? 'Close ✕' : 'View All'}
         </button>

@@ -142,14 +142,14 @@ const RanaMainContent = () => {
       <GamesDisplay section="fishing" />
 
       {/* Elite Offers Section */}
-      <section className="mt-7 px-4 md:px-0 max-w-[1400px] mx-auto w-full">
+      <section className="mt-7 px-4 md:px-0 w-full">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4 px-1 md:px-2 pb-4 border-b border-black/5 dark:border-white/5">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4 px-1 md:px-2">
           <h2 className="section-banner max-w-full" style={{ fontFamily: FONTS.head }}>
             <span>Exclusive Elite Offers</span>
           </h2>
-          <a href="#" className="text-[10px] font-bold uppercase tracking-[1px] text-black/40 dark:text-white/40 hover:text-brand transition-colors no-underline" style={{ fontFamily: FONTS.ui }}>
-            View All →
+          <a href="#" className="see-all">
+            View All
           </a>
         </div>
 

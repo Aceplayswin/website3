@@ -63,7 +63,7 @@ const RanaSidebarRight = () => {
             <div className="auth-body">
               <div style={{ textAlign: 'center', marginBottom: '14px' }}>
                 <div style={{ fontSize: '32px', marginBottom: '8px' }}>👤</div>
-                <h3 style={{ fontFamily: "var(--font-display)", fontSize: '18px', color: '#fff', margin: 0, lineHeight: 1.15 }}>
+                <h3 style={{ fontFamily: "var(--font-display)", fontSize: '18px', color: '#111827', margin: 0, lineHeight: 1.15 }}>
                   {accountInfo?.account_username}
                 </h3>
                 <p
@@ -92,8 +92,8 @@ const RanaSidebarRight = () => {
                     style={{
                       padding: '10px 10px 9px',
                       borderRadius: '14px',
-                      background: 'rgba(255,255,255,0.04)',
-                      border: '1px solid rgba(255,255,255,0.08)',
+                      background: 'rgba(0,0,0,0.04)',
+                      border: '1px solid rgba(0,0,0,0.08)',
                       minHeight: '68px',
                     }}
                   >
@@ -111,7 +111,7 @@ const RanaSidebarRight = () => {
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', lineHeight: 1 }}>
                       <span style={{ fontSize: '10px', fontWeight: 800, color: 'var(--brand)' }}>₹</span>
-                      <span style={{ fontFamily: "var(--font-display)", fontSize: item.strong ? '14px' : '13px', fontWeight: 900, color: '#fff' }}>
+                      <span style={{ fontFamily: "var(--font-display)", fontSize: item.strong ? '14px' : '13px', fontWeight: 900, color: '#111827' }}>
                         {item.value}
                       </span>
                     </div>

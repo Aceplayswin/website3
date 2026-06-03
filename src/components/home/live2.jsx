@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState, useEffect } from "react"
 import { createPortal } from "react-dom"
@@ -202,17 +202,10 @@ const GameSection = ({ title, games }) => {
 
                 <button
                     onClick={openPopup}
-                    className="flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-[10px] sm:text-xs font-bold uppercase transition-all duration-500 shadow-lg hover:shadow-brand/20 active:scale-95 group overflow-hidden relative"
-                    style={{
-                        background: COLORS.brandGradient,
-                        fontFamily: FONTS.ui,
-                        letterSpacing: "0.05em",
-                    }}
+                    className="see-all"
                     aria-label="See All"
                 >
-                    <div className="absolute inset-0 bg-gray-100 dark:bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <FaEye size={12} className="sm:size-[14px] group-hover:scale-110 transition-transform duration-300" />
-                    <span>See All</span>
+                    See All
                 </button>
             </div>
 

@@ -34,7 +34,7 @@ const RanaHeader = () => {
       <div className="top-bar">
         <span
           style={{
-            background: 'linear-gradient(135deg, #1d4ed8 0%, #172033 100%)',
+            background: 'linear-gradient(90deg, #050812 0%, #081224 100%)',
             color: '#ffffff',
             padding: '4px 10px',
             borderRadius: '999px',

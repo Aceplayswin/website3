@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useColors } from '../../hooks/useColors';
 import { FONTS } from '../../constants/theme';
 import { useSite } from "../../context/SiteContext";
@@ -33,9 +33,17 @@ const features = [
 const FeaturesSection = () => {
   const COLORS = useColors();
   const { accountInfo } = useSite();
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % features.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <section className="mt-7 mb-7 px-4 md:px-0 max-w-[1400px] mx-auto w-full">
+    <section className="mt-7 mb-7 px-4 md:px-0 w-full">
       {/* Header aligned with other sections */}
       <div className="flex items-center justify-between mb-4 px-1 md:px-2">
         <h2 className="section-banner max-w-full" style={{ fontFamily: FONTS.head }}>
@@ -45,39 +53,43 @@ const FeaturesSection = () => {
 
       {/* Grid of clean, horizontal cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {features.map((f, i) => (
-          <div
-            key={i}
-            className="group flex items-center justify-between p-4 rounded-lg bg-[#141414] border border-white/5 hover:border-white/20 transition-all duration-300 overflow-hidden relative cursor-default"
-          >
-            {/* Hover subtle glow */}
-            <div 
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" 
-              style={{ background: `linear-gradient(90deg, transparent, ${f.color}10)` }}
-            ></div>
-            
-            <div className="flex flex-col gap-1 relative z-10">
-              <span 
-                className="text-3xl font-black opacity-20 group-hover:opacity-100 transition-opacity duration-300 leading-none tracking-tighter"
-                style={{ fontFamily: FONTS.head, color: f.color }}
-              >
-                {f.num}
-              </span>
-              <h3 
-                className="text-sm font-bold uppercase tracking-[1px] text-white/80 group-hover:text-white transition-colors duration-300"
-                style={{ fontFamily: FONTS.ui }}
-              >
-                {f.title}
-              </h3>
-            </div>
+        {features.map((f, i) => {
+          const isActive = i === activeIndex;
+          return (
+            <div
+              key={i}
+              className={`feature-card group flex items-center justify-between py-2.5 px-4 rounded-2xl border transition-all duration-300 overflow-hidden relative cursor-default ${isActive ? 'active' : ''}`}
+              onMouseEnter={() => setActiveIndex(i)}
+            >
+              {/* Subtle glow (active state) */}
+              <div 
+                className={`absolute inset-0 transition-opacity duration-300 pointer-events-none ${isActive ? 'opacity-100' : 'opacity-0'}`}
+                style={{ background: `linear-gradient(90deg, transparent, ${f.color}15)` }}
+              ></div>
+              
+              <div className="flex flex-col gap-0.5 relative z-10">
+                <span 
+                  className={`text-2xl font-black transition-opacity duration-300 leading-none tracking-tighter ${isActive ? 'opacity-100' : 'opacity-20'}`}
+                  style={{ fontFamily: FONTS.head, color: f.color }}
+                >
+                  {f.num}
+                </span>
+                <h3 
+                  className="feature-title text-xs font-bold uppercase tracking-[1px] transition-colors duration-300"
+                  style={{ fontFamily: FONTS.ui }}
+                >
+                  {f.title}
+                </h3>
+              </div>
 
-            <div className="relative z-10 w-10 h-10 rounded-full flex items-center justify-center bg-black/40 border border-white/5 group-hover:bg-black/60 group-hover:scale-110 transition-all duration-300 shadow-inner">
-              <svg viewBox="0 0 24 24" className="w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity duration-300" style={{ fill: f.color }}>
-                <path d={f.icon} />
-              </svg>
+              <div className={`feature-icon-wrapper relative z-10 w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 shadow-inner ${isActive ? 'scale-110' : ''}`}>
+                <svg viewBox="0 0 24 24" className={`w-4 h-4 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-50'}`} style={{ fill: f.color }}>
+                  <path d={f.icon} />
+                </svg>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

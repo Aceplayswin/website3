@@ -14,10 +14,11 @@ const Item = ({ q, a, open, onToggle, idx }) => {
   const COLORS = useColors();
   return (
     <div
-      className="border rounded-lg overflow-hidden transition-all duration-200 cursor-pointer"
+      className="faq-card border rounded-xl overflow-hidden transition-all duration-200 cursor-pointer"
       style={{
-        borderColor: open ? `${COLORS.brand}45` : 'rgba(255,255,255,0.05)',
-        background: open ? `${COLORS.brand}08` : '#141414',
+        borderColor: open ? `${COLORS.brand}45` : 'rgba(0,0,0,0.06)',
+        background: open ? `${COLORS.brand}08` : '#ffffff',
+        boxShadow: open ? `0 2px 12px ${COLORS.brand}15` : '0 1px 3px rgba(0,0,0,0.04)',
       }}
       onClick={onToggle}
     >
@@ -27,8 +28,8 @@ const Item = ({ q, a, open, onToggle, idx }) => {
           className="text-[10px] font-black shrink-0 w-5 h-5 rounded flex items-center justify-center transition-all duration-200"
           style={{
             fontFamily: FONTS.ui,
-            background: open ? COLORS.brand : 'rgba(255,255,255,0.05)',
-            color: open ? '#000' : '#555',
+            background: open ? COLORS.brand : 'rgba(29, 78, 216, 0.08)',
+            color: open ? '#fff' : '#1d4ed8',
             boxShadow: open ? `0 0 10px ${COLORS.brand}60` : 'none',
           }}
         >
@@ -38,7 +39,7 @@ const Item = ({ q, a, open, onToggle, idx }) => {
         {/* Question */}
         <span
           className="flex-1 text-[11.5px] font-bold uppercase tracking-[0.5px] transition-colors duration-200 leading-snug"
-          style={{ fontFamily: FONTS.ui, color: open ? '#fff' : '#888' }}
+          style={{ fontFamily: FONTS.ui, color: open ? '#111827' : '#6b7280' }}
         >
           {q}
         </span>
@@ -47,7 +48,7 @@ const Item = ({ q, a, open, onToggle, idx }) => {
         <svg
           viewBox="0 0 24 24"
           className="w-3 h-3 shrink-0 fill-current transition-transform duration-200"
-          style={{ color: open ? COLORS.brand : '#555', transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
+          style={{ color: open ? COLORS.brand : '#9ca3af', transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
         >
           <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
         </svg>
@@ -64,8 +65,8 @@ const Item = ({ q, a, open, onToggle, idx }) => {
             style={{ background: `linear-gradient(90deg, ${COLORS.brand}40, transparent)` }}
           ></div>
           <p
-            className="text-[11px] text-white/50 leading-relaxed"
-            style={{ fontFamily: FONTS.ui }}
+            className="text-[11px] leading-relaxed"
+            style={{ fontFamily: FONTS.ui, color: '#6b7280' }}
           >
             {a}
           </p>
@@ -80,7 +81,7 @@ const Faq = () => {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="mt-7 mb-6 px-4 md:px-0 max-w-[1400px] mx-auto w-full">
+    <section className="mt-7 mb-6 px-4 md:px-0 w-full">
       {/* Header */}
       <div className="flex items-center justify-between mb-4 px-1 md:px-2">
         <h2 className="section-banner max-w-full" style={{ fontFamily: FONTS.head }}>

@@ -13,23 +13,13 @@ function Home() {
   const { accountInfo } = useSite()
 
   useEffect(() => {
-    document.body.style.backgroundColor = '#0f0a1a';
-    document.body.style.color = '#FFFFFF';
-    document.body.style.fontFamily = "var(--font-ui)";
-    document.documentElement.style.height = '100%';
-    document.body.style.height = '100%';
-    document.body.style.margin = '0';
-    document.body.style.padding = '0';
-
+    // Apply light theme globally for the home page
+    document.documentElement.classList.add('light');
+    // Cleanup on unmount
     return () => {
-      document.body.style.backgroundColor = '';
-      document.body.style.color = '';
-      document.body.style.fontFamily = '';
-      document.documentElement.style.height = '';
-      document.body.style.height = '';
-    }
+      document.documentElement.classList.remove('light');
+    };
   }, []);
-
   return (
     <div className="rana-layout">
       <AuthModalHost />

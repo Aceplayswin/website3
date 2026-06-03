@@ -90,7 +90,7 @@ function PromotionSection({ banners = [] }) {
 
           <button
             onClick={() => navigate('/promotion')}
-            className="w-full md:w-auto px-4 md:px-6 py-3 md:py-2 rounded-xl border border-black/10 dark:border-white/10 text-[10px] font-black uppercase tracking-[0.2em] text-black/60 dark:text-white/60 hover:text-black dark:text-white hover:border-brand/40 transition-all duration-300 backdrop-blur-md text-center"
+            className="see-all"
           >
             View All Promotions
           </button>

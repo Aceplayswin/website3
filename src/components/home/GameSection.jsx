@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState, useEffect } from "react"
 import { createPortal } from "react-dom"
@@ -198,12 +198,12 @@ const GameSection = ({ title, games, id, layout = "slider" }) => {
           <div className="flex items-center space-x-2 sm:space-x-4">
             <div className="hidden md:flex items-center gap-1">
               <button
-                className={`nav-button prev-${sectionId} w-8 h-8 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:bg-black/10 dark:hover:bg-white/10 hover:scale-110 transition-all duration-300`}
+                className={`nav-button prev-${sectionId} header-icon-btn !rounded-full !w-8 !h-8 flex items-center justify-center hover:scale-110 transition-all duration-300`}
               >
                 <FaChevronLeft size={12} />
               </button>
               <button
-                className={`nav-button next-${sectionId} w-8 h-8 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:bg-black/10 dark:hover:bg-white/10 hover:scale-110 transition-all duration-300`}
+                className={`nav-button next-${sectionId} header-icon-btn !rounded-full !w-8 !h-8 flex items-center justify-center hover:scale-110 transition-all duration-300`}
               >
                 <FaChevronRight size={12} />
               </button>
@@ -211,14 +211,10 @@ const GameSection = ({ title, games, id, layout = "slider" }) => {
 
             <button
               onClick={openPopup}
-              className="flex items-center gap-1.5 px-3 py-1.5 md:px-5 md:py-2 rounded-full border border-black/10 dark:border-white/10 hover:border-brand/50 bg-transparent hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300 group"
-              style={{
-                fontFamily: FONTS.ui,
-              }}
+              className="see-all"
               aria-label="See All"
             >
-              <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-black/80 dark:text-white/80 group-hover:text-brand transition-colors whitespace-nowrap">See All</span>
-              <FaChevronRight size={10} className="text-black/40 dark:text-white/40 group-hover:text-brand group-hover:translate-x-1 transition-all duration-300" />
+              See All
             </button>
           </div>
         )}

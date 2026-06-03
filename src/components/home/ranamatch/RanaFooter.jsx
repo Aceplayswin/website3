@@ -59,14 +59,14 @@ const RanaFooter = () => {
 
   return (
     <footer
-      className="relative pt-4 pb-4 md:pt-5 md:pb-4 border-t border-white/10 overflow-hidden"
-      style={{ backgroundColor: COLORS.bg2 || '#0b0b0b' }}
+      className="rana-footer relative pt-4 pb-4 md:pt-5 md:pb-4 border-t overflow-hidden"
+      style={{ backgroundColor: '#ffffff', borderColor: 'rgba(0,0,0,0.08)' }}
     >
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        className="absolute inset-0 pointer-events-none opacity-[0.02]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
+            'linear-gradient(rgba(0,0,0,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.3) 1px, transparent 1px)',
           backgroundSize: '20px 20px'
         }}
       ></div>
@@ -79,7 +79,7 @@ const RanaFooter = () => {
         <div className="flex flex-col md:flex-row md:flex-nowrap gap-4 lg:gap-6 items-start">
           <div className="space-y-3 min-w-0 md:basis-[36%] md:shrink-0">
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="p-1 bg-white/5 rounded-xl border border-white/10">
+              <div className="p-1 bg-blue-50 rounded-xl border border-blue-100">
                 <img
                   src={logoUrl}
                   alt={siteName}
@@ -89,8 +89,8 @@ const RanaFooter = () => {
               </div>
               <div className="flex flex-col min-w-0">
                 <span
-                  className="text-white font-black text-base md:text-[17px] tracking-tighter uppercase leading-none truncate"
-                  style={{ fontFamily: FONTS.head }}
+                  className="font-black text-base md:text-[17px] tracking-tighter uppercase leading-none truncate"
+                  style={{ fontFamily: FONTS.head, color: '#111827' }}
                 >
                   {siteName.toUpperCase()}
                 </span>
@@ -105,13 +105,13 @@ const RanaFooter = () => {
               </div>
             </div>
 
-            <p className="text-[10px] md:text-xs leading-relaxed text-white/70 font-medium max-w-[300px]">
-              <strong className="text-white">{siteName}</strong> is the best platform for live and uninterrupted online betting for sports, Live 24hr betting with a wide spectrum of sports such as Cricket, Soccer, Horse Racing, Kabaddi, <strong style={{ color: COLORS.brand }}>Aviator Predictor</strong>, Hockey, Basketball, <strong style={{ color: COLORS.brand }}>Andar Bahar Game</strong> and many more.
+            <p className="text-[10px] md:text-xs leading-relaxed font-medium max-w-[300px]" style={{ color: '#6b7280' }}>
+              <strong style={{ color: '#111827' }}>{siteName}</strong> is the best platform for live and uninterrupted online betting for sports, Live 24hr betting with a wide spectrum of sports such as Cricket, Soccer, Horse Racing, Kabaddi, <strong style={{ color: COLORS.brand }}>Aviator Predictor</strong>, Hockey, Basketball, <strong style={{ color: COLORS.brand }}>Andar Bahar Game</strong> and many more.
             </p>
           </div>
 
           <div className="space-y-2.5 min-w-0 md:basis-[22%] md:shrink-0">
-            <h3 className="text-white font-black text-[10px] md:text-[11px] uppercase tracking-[0.32em] flex items-center gap-2 leading-none">
+            <h3 className="font-black text-[10px] md:text-[11px] uppercase tracking-[0.32em] flex items-center gap-2 leading-none" style={{ color: '#111827' }}>
               <span className="w-2 h-[2px]" style={{ backgroundColor: COLORS.brand }}></span>
               Quick Navigation
             </h3>
@@ -122,7 +122,8 @@ const RanaFooter = () => {
                     <button
                       type="button"
                       onClick={link.onClick}
-                      className="text-left text-[10px] md:text-[11px] font-medium text-white/65 hover:text-white transition-all duration-300 flex items-center gap-2 group cursor-pointer leading-none"
+                      className="text-left text-[10px] md:text-[11px] font-medium transition-all duration-300 flex items-center gap-2 group cursor-pointer leading-none"
+                      style={{ color: '#6b7280' }}
                     >
                       <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                       {link.label}
@@ -132,7 +133,8 @@ const RanaFooter = () => {
                       to={link.href}
                       target={link.external ? '_blank' : undefined}
                       rel={link.external ? 'noopener noreferrer' : undefined}
-                      className="text-[10px] md:text-[11px] font-medium text-white/65 hover:text-white transition-all duration-300 flex items-center gap-2 group cursor-pointer leading-none"
+                      className="text-[10px] md:text-[11px] font-medium transition-all duration-300 flex items-center gap-2 group cursor-pointer leading-none"
+                      style={{ color: '#6b7280' }}
                     >
                       <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                       {link.label}
@@ -145,22 +147,22 @@ const RanaFooter = () => {
 
           <div className="space-y-2.5 lg:text-right flex flex-col items-center lg:items-end min-w-0 md:basis-[42%] md:shrink-0">
             <h2
-              className="text-white font-black text-[10px] md:text-[11px] uppercase tracking-[0.28em] w-full text-center lg:text-right leading-none"
-              style={{ fontFamily: FONTS.head }}
+              className="font-black text-[10px] md:text-[11px] uppercase tracking-[0.28em] w-full text-center lg:text-right leading-none"
+              style={{ fontFamily: FONTS.head, color: '#111827' }}
             >
               Accepted Modes Of Payments
             </h2>
-            <div className="w-full max-w-[360px] bg-white/5 p-2.5 rounded-xl border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.01)] group hover:bg-white/[0.08] transition-all flex items-start justify-center lg:justify-end">
+            <div className="w-full max-w-[360px] bg-gray-50 p-2.5 rounded-xl border border-gray-200 shadow-sm group hover:bg-gray-100 transition-all flex items-start justify-center lg:justify-end">
               <div className="flex flex-col items-center gap-1.5 pt-0.5">
-                <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.22em] text-white/55 leading-none">
+                <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.22em] leading-none" style={{ color: '#6b7280' }}>
                   Payment Options
                 </span>
                 <img
                   src="https://i.postimg.cc/3w5tyBC0/paymentopt1-removebg-preview-1.png"
                   alt="Payment Options"
-                  className="h-8 md:h-10 w-auto object-contain brightness-150 contrast-150 group-hover:scale-105 transition-transform duration-500 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"
+                  className="h-8 md:h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="text-[7px] md:text-[8px] font-medium uppercase tracking-[0.16em] text-white/50 text-center leading-relaxed max-w-[280px]">
+                <div className="text-[7px] md:text-[8px] font-medium uppercase tracking-[0.16em] text-center leading-relaxed max-w-[280px]" style={{ color: '#9ca3af' }}>
                   {payments.join(' / ')}
                 </div>
               </div>
@@ -171,24 +173,24 @@ const RanaFooter = () => {
         <div className="mt-3 grid grid-cols-1 lg:grid-cols-[1.35fr_auto] gap-3 lg:gap-5 items-center">
           <div className="space-y-2.5">
             <h2
-              className="text-white font-black text-[13px] md:text-[14px] uppercase tracking-tight leading-tight"
-              style={{ fontFamily: FONTS.head }}
+              className="font-black text-[13px] md:text-[14px] uppercase tracking-tight leading-tight"
+              style={{ fontFamily: FONTS.head, color: '#111827' }}
             >
               100% Safe & Instant Payments
             </h2>
-            <p className="text-[10px] md:text-[11px] text-white/65 leading-relaxed font-medium">
+            <p className="text-[10px] md:text-[11px] leading-relaxed font-medium" style={{ color: '#6b7280' }}>
               You can make payments and receive earnings instantly via your UPI ID...
             </p>
           </div>
 
           <div className="flex flex-wrap items-center justify-start lg:justify-end gap-1.5">
-            <span className="px-2 py-1 bg-red-500/20 border border-red-500/40 text-red-400 rounded-lg text-[8px] font-black uppercase tracking-widest">
+            <span className="px-2 py-1 bg-red-50 border border-red-200 text-red-500 rounded-lg text-[8px] font-black uppercase tracking-widest">
               18+ Only
             </span>
-            <span className="px-2 py-1 bg-white/5 border border-white/10 text-white/60 rounded-lg text-[8px] font-black uppercase tracking-widest">
+            <span className="px-2 py-1 bg-gray-50 border border-gray-200 rounded-lg text-[8px] font-black uppercase tracking-widest" style={{ color: '#6b7280' }}>
               G
             </span>
-            <span className="px-2 py-1 bg-white/5 border border-white/10 text-white/60 rounded-lg text-[8px] font-black uppercase tracking-widest">
+            <span className="px-2 py-1 bg-gray-50 border border-gray-200 rounded-lg text-[8px] font-black uppercase tracking-widest" style={{ color: '#6b7280' }}>
               GT
             </span>
             <button
@@ -202,9 +204,9 @@ const RanaFooter = () => {
           </div>
         </div>
 
-        <div className="pt-3 border-t border-white/10 space-y-2.5">
+        <div className="pt-3 border-t space-y-2.5" style={{ borderColor: 'rgba(0,0,0,0.06)' }}>
           <div className="flex flex-col md:flex-row items-center justify-center gap-x-8 gap-y-2">
-            <div className="flex items-center gap-1.5 text-white/35 text-[7px] md:text-[8px] uppercase tracking-widest font-medium">
+            <div className="flex items-center gap-1.5 text-[7px] md:text-[8px] uppercase tracking-widest font-medium" style={{ color: '#9ca3af' }}>
               <FaShieldAlt size={10} />
               <span>Copyright 2025 {siteName.toUpperCase()}</span>
             </div>
@@ -218,7 +220,8 @@ const RanaFooter = () => {
                 <a
                   key={i}
                   href="#"
-                  className="text-[8px] font-medium text-white/35 hover:text-white uppercase tracking-[0.18em] transition-colors whitespace-nowrap"
+                  className="text-[8px] font-medium uppercase tracking-[0.18em] transition-colors whitespace-nowrap hover:text-blue-600"
+                  style={{ color: '#9ca3af' }}
                 >
                   {text}
                 </a>
