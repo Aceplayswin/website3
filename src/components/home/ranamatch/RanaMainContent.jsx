@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useSite } from "../../../context/SiteContext";
 import { useGames } from "../../../context/GameContext";
 import { URL as BASE_URL } from "../../../utils/constants";
@@ -16,6 +17,7 @@ import FeaturesSection from '../FeaturesSection';
 import Faq from '../Faq';
 import { FONTS } from '../../../constants/theme';
 import { useColors } from '../../../hooks/useColors';
+import { FaExpandAlt, FaTimes } from 'react-icons/fa';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
@@ -25,12 +27,20 @@ const RanaMainContent = () => {
   const { heroBanners, accountInfo, promoBanners, setShowLogin, setShowRegister } = useSite();
   const { casino } = useGames() || {};
   const navigate = useNavigate();
+  const [activeOffer, setActiveOffer] = useState(null);
   const getSafeLogoUrl = (path) => {
     if (!path) return "/placeholder.svg";
     if (path.startsWith('http') || path.startsWith('data:')) return path;
     const base = BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL;
     return `${base}${path.startsWith('/') ? path : '/' + path}`;
   };
+  const openOfferPreview = (promo) => {
+    setActiveOffer({
+      title: promo?.title || "Exclusive Elite Offer",
+      image: getSafeLogoUrl(promo?.image_path),
+    });
+  };
+  const closeOfferPreview = () => setActiveOffer(null);
 
   return (
     <main className="main-content">
@@ -63,7 +73,7 @@ const RanaMainContent = () => {
                   <img
                     src={getSafeLogoUrl(banner.image_path)}
                     alt={banner.title || `Banner ${idx + 1}`}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    className="hero-banner-img"
                   />
                   {banner.title && (
                     <div className="hero-content" style={{ zIndex: 10, position: 'absolute', left: 0, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -155,9 +165,21 @@ const RanaMainContent = () => {
         <div className="elite-offers-grid">
         {promoBanners && promoBanners.length > 0 ? (
           promoBanners.slice(0, 2).map((promo, index) => (
-            <article key={index} className="elite-offer-card group">
+            <article
+              key={index}
+              className="elite-offer-card group"
+              role="button"
+              tabIndex={0}
+              onClick={() => openOfferPreview(promo)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  openOfferPreview(promo);
+                }
+              }}
+            >
               <img
-                src={promo.image_path?.startsWith('http') ? promo.image_path : (promo.image_path?.startsWith('/') ? window.location.origin + promo.image_path : `${BASE_URL}${promo.image_path}`)}
+                src={getSafeLogoUrl(promo.image_path)}
                 alt={promo.title || "Promotion"}
                 className="elite-offer-img"
                 onError={(e) => { e.target.style.display = 'none'; }}
@@ -165,11 +187,17 @@ const RanaMainContent = () => {
               <div className="elite-offer-overlay"></div>
               <div className="elite-offer-shine"></div>
               <span className="elite-offer-badge">Elite</span>
-              <div className="elite-offer-action">
-                <button className="elite-offer-btn" onClick={(e) => { e.stopPropagation(); if (!accountInfo?.account_id) { setShowLogin(true); } else { /* TODO: navigate to offer */ } }}>
-                  Explore
-                </button>
-              </div>
+              <button
+                type="button"
+                className="elite-offer-fullscreen"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  openOfferPreview(promo);
+                }}
+                aria-label="Open offer fullscreen"
+              >
+                <FaExpandAlt />
+              </button>
             </article>
           ))
         ) : (
@@ -181,17 +209,30 @@ const RanaMainContent = () => {
                 <div key={i} className="elite-offer-card elite-offer-empty" style={{ '--elite-accent': card.color }}>
                   <div className="elite-offer-empty-glow"></div>
                   <span className="elite-offer-badge">Elite</span>
-                  <div className="elite-offer-action">
-                    <button className="elite-offer-btn" onClick={() => !accountInfo?.account_id && setShowLogin(true)}>
-                      Explore
-                    </button>
-                  </div>
+                  <span className="elite-offer-empty-label">Offer coming soon</span>
                 </div>
               ))}
             </>
           )}
         </div>
       </section>
+
+      {activeOffer && createPortal(
+        <div className="elite-offer-viewer" role="dialog" aria-modal="true" aria-label="Promotion preview" onClick={closeOfferPreview}>
+          <div className="elite-offer-viewer-glow"></div>
+          <button type="button" className="elite-offer-viewer-close" onClick={closeOfferPreview} aria-label="Close preview">
+            <FaTimes />
+          </button>
+          <div className="elite-offer-viewer-frame" onClick={(event) => event.stopPropagation()}>
+            <div className="elite-offer-viewer-top">
+              <span>Exclusive Elite Offer</span>
+              <strong>{activeOffer.title}</strong>
+            </div>
+            <img src={activeOffer.image} alt={activeOffer.title} />
+          </div>
+        </div>,
+        document.body
+      )}
 
       {/* Game Providers Section */}
       <GameProvider />

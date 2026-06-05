@@ -157,7 +157,7 @@ const ActiveBonusPage = () => {
         <section className="active-bonus-hero">
           <div className="active-bonus-title">
             <span><FaBolt /> Live Bonus Tracker</span>
-            <h1>{bonusData.title || bonusData.name}</h1>
+            <h1 className="active-bonus-name">{bonusData.title || bonusData.name}</h1>
             <p>Track wagering progress, remaining requirement, bonus balance, and expiry from one focused desk.</p>
           </div>
 

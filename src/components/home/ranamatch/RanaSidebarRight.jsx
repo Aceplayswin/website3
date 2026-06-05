@@ -125,9 +125,9 @@ const RanaSidebarRight = () => {
                     >
                       {item.label}
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', lineHeight: 1 }}>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '3px', lineHeight: 1, whiteSpace: 'nowrap' }}>
                       <span style={{ fontSize: '10px', fontWeight: 800, color: 'var(--brand)' }}>₹</span>
-                      <span style={{ fontFamily: "var(--font-display)", fontSize: item.strong ? '14px' : '13px', fontWeight: 900, color: '#111827' }}>
+                      <span style={{ fontFamily: "var(--font-display)", fontSize: item.strong ? '14px' : '13px', fontWeight: 900, color: '#111827', whiteSpace: 'nowrap' }}>
                         {item.value}
                       </span>
                     </div>

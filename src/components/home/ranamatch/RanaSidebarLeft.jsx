@@ -85,6 +85,7 @@ const RanaSidebarLeft = () => {
           <Link to="/withdraw"><span className="dot"></span>Withdrawal</Link>
           <Link to="/betting-profit-loss"><span className="dot"></span>Bet History</Link>
           <Link to="/promotion"><span className="dot"></span>Promotions</Link>
+          <Link to="/bonus"><span className="dot"></span>Bonus</Link>
           <Link to="#"><span className="dot"></span>VIP Club</Link>
           <Link to="/inviteandearn"><span className="dot"></span>Refer a Friend</Link>
           <Link to="/rules-regulation"><span className="dot"></span>Rules</Link>

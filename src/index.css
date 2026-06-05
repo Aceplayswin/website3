@@ -89,12 +89,18 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
   max-width: 100%;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: auto;
   /* Premium Smooth Scrolling */
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   backface-visibility: hidden;
   perspective: 1000;
+}
+
+#root {
+  width: 100%;
+  min-width: 100%;
+  min-height: 100vh;
 }
 
 /* GPU Acceleration for smooth section transitions */

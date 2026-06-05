@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
-import { FaChevronLeft, FaChevronRight, FaEye, FaArrowLeft, FaPlay } from "react-icons/fa"
+import { FaChevronLeft, FaChevronRight, FaArrowLeft, FaPlay, FaSearch, FaTimes } from "react-icons/fa"
 import { apiPost } from "@/utils/apiFetch"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { useColors } from '../../hooks/useColors'
@@ -27,15 +27,21 @@ const GameSection = ({ title, games, id, layout = "slider", hideHeader = false }
   const [hoveredGame, setHoveredGame] = useState(null)
   const [confirmLoading, setConfirmLoading] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
+  const [popupSearch, setPopupSearch] = useState("")
 
   const popupParam = searchParams.get("show_all")
   const sectionId = id || (title ? title.toLowerCase().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-") : "section")
+  const gameList = Array.isArray(games) ? games : []
+  const filteredPopupGames = gameList.filter((game) =>
+    (game?.["Game Name"] || "").toLowerCase().includes(popupSearch.trim().toLowerCase())
+  )
 
   useEffect(() => {
     if (popupParam === sectionId) {
       setShowPopup(true)
     } else {
       setShowPopup(false)
+      setPopupSearch("")
     }
   }, [popupParam, sectionId])
 
@@ -322,94 +328,74 @@ const GameSection = ({ title, games, id, layout = "slider", hideHeader = false }
 
       {showPopup &&
         createPortal(
-          <div className="fixed inset-0 bg-black z-[99999] overflow-y-auto animate-fadeIn flex flex-col">
-            <div
-              className="fixed inset-0 pointer-events-none opacity-40"
-              style={{
-                backgroundImage: `radial-gradient(circle at 50% -20%, ${COLORS.brand}44, transparent 70%), radial-gradient(circle at 0% 100%, ${COLORS.brand}22, transparent 50%), radial-gradient(circle at 100% 100%, ${COLORS.brand}22, transparent 50%)`,
-              }}
-            ></div>
+          <div className="see-all-overlay">
+            <div className="see-all-panel">
+              <header className="see-all-topbar">
+                <button onClick={closePopup} className="see-all-back" aria-label="Back to home">
+                  <FaArrowLeft />
+                  <span>Back</span>
+                </button>
 
-            <div className="relative flex flex-col min-h-full backdrop-blur-[50px]">
-              <div
-                className="sticky top-0 z-[100] w-full border-b border-black/5 dark:border-white/5 shadow-2xl"
-                style={{ backgroundColor: `${COLORS.bg2}A0` }}
-              >
-                <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between backdrop-blur-md">
-                  <div className="flex items-center gap-6">
-                    <button
-                      onClick={closePopup}
-                      className="flex items-center gap-2 bg-gray-100 dark:bg-white/5 hover:bg-gray-100 dark:bg-white/10 text-black dark:text-white rounded-xl px-4 py-2 transition-all duration-300 border border-black/10 dark:border-white/10 shadow-lg active:scale-95 group"
-                      aria-label="Go Back"
-                    >
-                      <FaArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-                      <span className="text-[10px] font-black uppercase tracking-widest" style={{ fontFamily: FONTS.ui }}>Back</span>
-                    </button>
-                    <div className="h-8 w-1 rounded-full opacity-80" style={{ background: COLORS.brandGradient }}></div>
-                    <div>
-                      <h2
-                        className="text-lg md:text-xl font-black text-black dark:text-white tracking-[0.1em] uppercase leading-tight"
-                        style={{ fontFamily: FONTS.head }}
-                      >
-                        {title}
-                      </h2>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
-                        <span className="text-[8px] md:text-[9px] text-black/40 dark:text-white/40 font-bold uppercase tracking-[0.2em]">
-                          Premium Collection
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-
+                <div className="see-all-title-block">
+                  <span className="see-all-kicker">Premium Game Lobby</span>
+                  <h2 style={{ fontFamily: FONTS.head }}>{title}</h2>
                 </div>
-              </div>
 
-              <div className="flex-1 w-full max-w-[1920px] mx-auto px-4 md:px-6 py-6">
-                <div className="see-all-grid gap-3 md:gap-6 animate-fadeInUp">
-                  {games.map((game, index) => (
-                    <div key={index} className="flex flex-col group cursor-pointer" onClick={() => handleGameClick(game)}>
-                      <div className="relative aspect-[4/5] rounded-xl overflow-hidden p-[1px] bg-gradient-to-br from-white/10 via-transparent to-white/5 transition-all duration-500 group-hover:from-brand/50 group-hover:to-brand/20 group-hover:shadow-[0_0_30px_rgba(29,78,216,0.4)] group-hover:-translate-y-1">
-                        <div className="relative w-full h-full rounded-[11px] overflow-hidden bg-gray-100 dark:bg-white/5">
+                <div className="see-all-searchbox">
+                  <FaSearch />
+                  <input
+                    value={popupSearch}
+                    onChange={(event) => setPopupSearch(event.target.value)}
+                    placeholder="Search games..."
+                    aria-label="Search games"
+                  />
+                  {popupSearch && (
+                    <button type="button" onClick={() => setPopupSearch("")} aria-label="Clear search">
+                      <FaTimes />
+                    </button>
+                  )}
+                </div>
+
+                <div className="see-all-count">
+                  <strong>{filteredPopupGames.length}</strong>
+                  <span>Games</span>
+                </div>
+              </header>
+
+              <main className="see-all-content">
+                {filteredPopupGames.length > 0 ? (
+                  <div className="see-all-lobby-grid">
+                    {filteredPopupGames.map((game, index) => (
+                      <button
+                        key={`${game["Game UID"] || game["Game Name"]}-${index}`}
+                        type="button"
+                        className="see-all-lobby-card"
+                        onClick={() => handleGameClick(game)}
+                      >
+                        <span className="see-all-card-image">
                           <img
-                            className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${loadingForGames === game["Game UID"] ? "opacity-30 blur-sm" : ""
-                              }`}
                             src={game.icon || "/placeholder.svg"}
                             alt={game["Game Name"]}
+                            className={loadingForGames === game["Game UID"] ? "is-loading" : ""}
                           />
-
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-white/5 opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div
-                              className="p-3 rounded-full shadow-2xl transform scale-50 group-hover:scale-100 transition-all duration-500 hover:scale-110"
-                              style={{ background: COLORS.brandGradient }}
-                            >
-                              <FaPlay className="text-black dark:text-white ml-0.5" size={12} />
-                            </div>
-                          </div>
-
-                          <div className="absolute bottom-0 left-0 right-0 p-2 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                            <div className="backdrop-blur-md bg-black/10 dark:bg-black/40 rounded-lg p-1.5 border border-black/10 dark:border-white/10 text-center shadow-xl">
-                              <p className="text-[9px] font-black text-black/90 dark:text-white/90 truncate uppercase tracking-tighter">
-                                {game["Game Name"]}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="py-12 flex flex-col items-center justify-center gap-4 opacity-10">
-                <div className="h-px w-40 bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
-                <span className="text-[10px] font-black uppercase tracking-[0.8em] text-black dark:text-white">
-                  Experience Excellence
-                </span>
-              </div>
+                          <span className="see-all-card-play">
+                            <FaPlay />
+                          </span>
+                        </span>
+                        <span className="see-all-card-info">
+                          <strong>{game["Game Name"]}</strong>
+                          <small>Tap to play</small>
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="see-all-empty">
+                    <strong>No games found</strong>
+                    <span>Try a different search term.</span>
+                  </div>
+                )}
+              </main>
             </div>
           </div>,
           document.body,
