@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import RanaHeader from "../home/ranamatch/RanaHeader";
 import RanaFooter from "../home/ranamatch/RanaFooter";
 import GameSection from "../home/GameSection";
@@ -19,6 +19,16 @@ function GameCategoryLayout({
       .map((game) => game["Game Provider"] || game.provider)
       .filter(Boolean)
   ).size;
+
+  useEffect(() => {
+    document.documentElement.classList.add("category-page-scroll");
+    document.body.classList.add("category-page-scroll");
+
+    return () => {
+      document.documentElement.classList.remove("category-page-scroll");
+      document.body.classList.remove("category-page-scroll");
+    };
+  }, []);
 
   return (
     <div className="rana-layout category-route flex flex-col min-h-screen relative">

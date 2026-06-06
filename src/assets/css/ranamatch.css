@@ -4628,3 +4628,22 @@
   -webkit-text-fill-color: #ffffff !important;
   opacity: 1 !important;
 }
+
+/* Category pages should scroll through the footer on the document, not inside a clipped 100vh panel. */
+.rana-layout.category-route {
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow: visible !important;
+}
+
+html.category-page-scroll,
+body.category-page-scroll {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-y: auto !important;
+}
+
+html.category-page-scroll #root,
+body.category-page-scroll #root {
+  min-height: 100vh !important;
+}
