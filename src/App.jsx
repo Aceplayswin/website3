@@ -23,7 +23,7 @@ import InviteAndEarnPage from './components/pages/InviteAndEarnPage';
 import SupportPage from './components/pages/SupportPage';
 import BonusDetailsPage from './components/pages/BonusDetailsPage';
 import ActiveBonusPage from './components/pages/ActiveBonusPage';
-import BonusPage from './components/pages/BonusPage';
+import BonusPage from './components/pages/BonusPage';   
 import NotificationsPage from './components/pages/NotificationsPage';
 import RoulettePage from './components/pages/RoulettePage';
 import LotteryPage from './components/pages/LotteryPage';

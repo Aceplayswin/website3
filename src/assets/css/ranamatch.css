@@ -4647,3 +4647,463 @@ html.category-page-scroll #root,
 body.category-page-scroll #root {
   min-height: 100vh !important;
 }
+
+/* Home mobile responsiveness */
+@media (max-width: 1100px) {
+  :root {
+    --rana-header-height: 128px;
+  }
+
+  .rana-layout:not(.category-route):not(.bonus-route):not(.finance-route-shell) {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+  }
+
+  .rana-layout:not(.category-route) .page-wrap {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    min-height: 0 !important;
+    padding: 10px 10px 18px !important;
+    overflow: visible !important;
+  }
+
+  .rana-layout:not(.category-route) .main-content {
+    order: 1;
+    width: 100%;
+    overflow: visible !important;
+  }
+
+  .rana-layout:not(.category-route) .sidebar-right {
+    order: 2;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+    width: 100%;
+    overflow: visible !important;
+  }
+
+  .rana-layout:not(.category-route) .sidebar-left {
+    order: 3;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    overflow: visible !important;
+  }
+
+  .rana-layout:not(.category-route) .sidebar-left .side-section,
+  .rana-layout:not(.category-route) .sidebar-right > * {
+    min-width: 0;
+  }
+
+  .rana-layout .header-inner {
+    gap: 10px;
+    height: 46px;
+    padding: 0 10px;
+  }
+
+  .rana-layout nav {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .rana-layout nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rana-layout nav a {
+    padding: 5px 8px;
+    font-size: 10.5px;
+  }
+
+  .rana-layout .header-cta-group {
+    gap: 7px;
+  }
+
+  .rana-layout .header-primary-actions {
+    gap: 6px;
+  }
+
+  .rana-layout .header-primary-actions .btn {
+    min-height: 34px;
+    padding: 0 12px;
+    font-size: 10.5px;
+  }
+
+  .rana-layout .header-icon-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .rana-layout .hero-banner {
+    height: clamp(170px, 28vw, 240px);
+    border-radius: 12px;
+  }
+
+  .rana-layout .promo-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .rana-layout .promo-card {
+    min-width: 0;
+    padding: 10px;
+  }
+
+  .rana-layout .promo-info {
+    min-width: 0;
+  }
+
+  .rana-layout .promo-info .promo-val,
+  .rana-layout .promo-info .promo-label,
+  .rana-layout .promo-info .promo-desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 820px) {
+  :root {
+    --rana-header-height: 126px;
+  }
+
+  html,
+  body {
+    height: auto;
+    min-height: 100%;
+  }
+
+  .rana-layout .top-bar {
+    gap: 8px;
+    min-height: 30px;
+    padding: 4px 10px;
+  }
+
+  .rana-layout .top-bar > span:first-child {
+    padding: 4px 8px !important;
+    font-size: 9px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .rana-layout .top-bar .marquee-wrap {
+    margin: 0;
+  }
+
+  .rana-layout .top-bar-right {
+    display: none !important;
+  }
+
+  .rana-layout header {
+    overflow: visible;
+  }
+
+  .rana-layout .header-inner {
+    height: 48px;
+  }
+
+  .rana-layout .logo .logo-img {
+    height: 30px;
+    max-width: 74px;
+  }
+
+  .rana-layout nav {
+    display: none !important;
+  }
+
+  .rana-layout .header-cta {
+    min-width: 0;
+  }
+
+  .rana-layout .header-cta-group {
+    min-width: 0;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .rana-layout .header-primary-actions .btn {
+    min-width: 82px;
+  }
+
+  .rana-layout .header-utility-actions {
+    gap: 5px;
+  }
+
+  .rana-layout .header-profile-popover {
+    position: fixed;
+    top: calc(var(--rana-header-height) - 3px);
+    right: 10px;
+    left: 10px;
+    width: auto;
+    min-width: 0;
+    max-height: calc(100vh - var(--rana-header-height) - 14px);
+    overflow-y: auto;
+  }
+
+  .rana-layout .cat-nav-inner {
+    max-width: none;
+    padding: 0 8px;
+    justify-content: flex-start;
+  }
+
+  .rana-layout .cat-item {
+    min-width: 74px;
+    padding: 6px 8px;
+  }
+
+  .rana-layout .cat-item .cat-icon {
+    font-size: 17px;
+  }
+
+  .rana-layout .cat-item .cat-label {
+    font-size: 9.5px;
+  }
+
+  .rana-layout:not(.category-route) .page-wrap {
+    padding: 10px 8px 18px !important;
+  }
+
+  .rana-layout .main-content {
+    gap: 13px;
+  }
+
+  .rana-layout .hero-banner {
+    height: clamp(150px, 39vw, 210px);
+  }
+
+  .rana-layout .hero-content {
+    max-width: 100%;
+    padding: 18px;
+  }
+
+  .rana-layout .hero-title {
+    font-size: clamp(28px, 9vw, 42px);
+    letter-spacing: 0;
+  }
+
+  .rana-layout .hero-sub {
+    font-size: 12px;
+  }
+
+  .rana-layout .promo-strip {
+    grid-template-columns: repeat(3, minmax(104px, 1fr));
+    gap: 7px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+
+  .rana-layout .promo-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rana-layout .promo-card {
+    min-height: 70px;
+    padding: 8px 7px;
+    gap: 6px;
+  }
+
+  .rana-layout .section-banner,
+  .rana-layout .section-title {
+    max-width: 100%;
+    padding: 8px 12px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  .rana-layout .see-all {
+    min-height: 34px;
+    padding: 0 12px;
+    font-size: 10px;
+  }
+
+  .rana-layout .elite-offers-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .rana-layout .elite-offer-card {
+    min-height: 136px;
+    border-radius: 12px;
+  }
+
+  .rana-layout:not(.category-route) .sidebar-right {
+    grid-template-columns: 1fr;
+  }
+
+  .rana-layout:not(.category-route) .sidebar-left {
+    grid-template-columns: 1fr;
+  }
+
+  .rana-layout .side-title {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .rana-layout .side-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    padding: 6px;
+  }
+
+  .rana-layout .side-list a {
+    min-width: 0;
+    padding: 9px 8px;
+    border-left: 0;
+    border-radius: 8px;
+    font-size: 12px;
+  }
+
+  .rana-layout .side-list a:hover {
+    padding-left: 8px;
+  }
+
+  .rana-layout .auth-panel,
+  .rana-layout .side-section,
+  .rana-layout .app-banner {
+    border-radius: 12px;
+  }
+
+  .rana-layout .auth-body {
+    padding: 14px;
+  }
+
+  .rana-layout .wins-list {
+    max-height: none;
+  }
+
+  .rana-layout .app-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .rana-footer {
+    margin-top: 18px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --rana-header-height: 124px;
+  }
+
+  .rana-layout .header-inner {
+    gap: 7px;
+    padding: 0 8px;
+  }
+
+  .rana-layout .logo .logo-img {
+    height: 27px;
+    max-width: 62px;
+  }
+
+  .rana-layout .header-primary-actions .btn {
+    min-width: 0;
+    min-height: 32px;
+    padding: 0 9px;
+    font-size: 9.5px;
+  }
+
+  .rana-layout .header-icon-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .rana-layout .btn-demo-play {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+
+  .rana-layout .cat-nav-inner {
+    padding: 0 6px;
+  }
+
+  .rana-layout .cat-item {
+    min-width: 68px;
+    padding: 5px 7px;
+  }
+
+  .rana-layout .cat-item .cat-label {
+    font-size: 8.8px;
+  }
+
+  .rana-layout:not(.category-route) .page-wrap {
+    padding: 8px 6px 16px !important;
+    gap: 10px !important;
+  }
+
+  .rana-layout .hero-banner {
+    height: 142px;
+  }
+
+  .rana-layout .hero-banner-img {
+    object-fit: contain;
+  }
+
+  .rana-layout .promo-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+
+  .rana-layout .promo-info .promo-label {
+    font-size: 8px;
+    letter-spacing: 0.04em;
+  }
+
+  .rana-layout .promo-info .promo-val {
+    font-size: 13px;
+    letter-spacing: 0;
+    white-space: normal;
+    line-height: 1;
+  }
+
+  .rana-layout .promo-info .promo-desc {
+    font-size: 8px;
+  }
+
+  .rana-layout .section-banner,
+  .rana-layout .section-title {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+
+  .rana-layout .section-banner::before,
+  .rana-layout .section-title::before {
+    height: 12px;
+  }
+
+  .rana-layout .elite-offer-card {
+    min-height: 118px;
+  }
+
+  .rana-layout .elite-offer-fullscreen {
+    width: 34px;
+    height: 34px;
+  }
+
+  .rana-layout .side-list {
+    grid-template-columns: 1fr;
+  }
+
+  .rana-layout .app-btns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 380px) {
+  .rana-layout .header-primary-actions .btn {
+    padding: 0 7px;
+    font-size: 8.8px;
+  }
+
+  .rana-layout .header-utility-actions .header-icon-btn:not(:last-child) {
+    display: none !important;
+  }
+
+  .rana-layout .hero-banner {
+    height: 128px;
+  }
+}
