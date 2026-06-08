@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSite } from "../../../context/SiteContext";
 import { URL as BASE_URL } from "../../../utils/constants";
-import { FaBars, FaBell, FaGem, FaGift, FaMoon, FaSun, FaTimes, FaUserCircle } from "react-icons/fa";
+import { FaBars, FaBell, FaDice, FaFutbol, FaGem, FaGift, FaHeadset, FaHome, FaMoon, FaSun, FaTimes, FaUserCircle } from "react-icons/fa";
 import { useTheme } from "../../../context/ThemeContext";
 import { usePWAInstall } from "../../../hooks/usePWAInstall";
 
-const RanaHeader = ({ onOpenMobileMenu, onOpenMobileAccount }) => {
+const RanaHeader = () => {
   const { accountInfo, activateDemoMode, setShowLogin, setShowRegister } = useSite();
   const navigate = useNavigate();
   const location = useLocation();
@@ -104,6 +104,13 @@ const RanaHeader = ({ onOpenMobileMenu, onOpenMobileAccount }) => {
   const isHomeActive = location.pathname === "/" && !location.hash;
   const isHashActive = (hash) => location.pathname === "/" && location.hash === hash;
   const isPathActive = (path) => location.pathname === path;
+  const bottomLinks = [
+    { label: "Casino", icon: <FaDice />, path: "/casino" },
+    { label: "Sports", icon: <FaFutbol />, path: "/#live" },
+    { label: "Home", icon: <FaHome />, path: "/", isHome: true },
+    { label: "Promos", icon: <FaGift />, path: "/promotion" },
+    { label: "Support", icon: <FaHeadset />, path: "/support" },
+  ];
   const navClass = (active) => (active ? "active" : undefined);
   const catClass = (path) => `cat-item${isPathActive(path) ? " active" : ""}`;
   const goCategory = (event, path) => {
@@ -152,6 +159,11 @@ const RanaHeader = ({ onOpenMobileMenu, onOpenMobileAccount }) => {
   const handleMobileNavigate = (path) => {
     closeMobilePanel();
     if (path && path !== "#") navigate(path);
+  };
+  const isBottomActive = (path) => {
+    if (path === "/#live") return location.pathname === "/" && location.hash === "#live";
+    if (path === "/") return location.pathname === "/" && !location.hash;
+    return location.pathname === path;
   };
 
   useEffect(() => {
@@ -254,7 +266,7 @@ const RanaHeader = ({ onOpenMobileMenu, onOpenMobileAccount }) => {
                 >
                   <FaUserCircle />
                 </button>
-                {profileOpen && !onOpenMobileAccount && (
+                {profileOpen && (
                   <div className="mobile-header-popover mobile-profile-popover">
                     <div className="mobile-profile-popover-head">
                       <strong>{accountInfo?.account_username || "User"}</strong>
@@ -559,6 +571,18 @@ const RanaHeader = ({ onOpenMobileMenu, onOpenMobileAccount }) => {
           </section>
         </div>
       )}
+      <nav className="mobile-home-dock" aria-label="Mobile bottom navigation">
+        {bottomLinks.map((item) => (
+          <Link
+            key={item.label}
+            to={item.path}
+            className={`${isBottomActive(item.path) ? "active" : ""}${item.isHome ? " is-home" : ""}`.trim()}
+          >
+            {item.icon}
+            <span>{item.label}</span>
+          </Link>
+        ))}
+      </nav>
     </div>
   );
 };

@@ -359,6 +359,22 @@ const CasinoPage = () => {
         .content{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--lo) transparent;padding:24px 28px}
         .content::-webkit-scrollbar{width:4px}
         .content::-webkit-scrollbar-thumb{background:var(--lo);border-radius:3px}
+        .mobile-provider-toolbar{display:none}
+        .mobile-provider-toolbar select,
+        .mobile-provider-toolbar input{
+          width:100%;
+          min-width:0;
+          background:var(--bg0);
+          border:1px solid var(--border);
+          color:var(--hi);
+          padding:10px 12px;
+          border-radius:10px;
+          font-family:'Rajdhani',sans-serif;
+          font-size:13px;
+          outline:none;
+        }
+        .mobile-provider-toolbar select:focus,
+        .mobile-provider-toolbar input:focus{border-color:var(--gold)}
 
         /* JACKPOT BAR */
         .jp-bar{background:linear-gradient(135deg,#0b1f0e,#142918);border:1px solid rgba(0,230,118,.15);border-radius:10px;padding:8px 18px;margin-bottom:16px;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden}
@@ -431,6 +447,100 @@ const CasinoPage = () => {
         .c-ez{background:linear-gradient(150deg,#081410 0%,#0c3022 100%)}
         .c-sa{background:linear-gradient(150deg,#0a1020 0%,#0e2040 100%)}
         .c-rc{background:linear-gradient(150deg,#1a1000 0%,#3a2000 100%)}
+
+        @media (max-width: 820px){
+          .casino-shell{display:block;overflow:auto;padding-bottom:92px}
+          .sidebar{display:none}
+          .content{padding:14px 12px 120px}
+          .mobile-provider-toolbar{
+            display:grid;
+            grid-template-columns:1fr;
+            gap:10px;
+            margin-bottom:12px;
+          }
+          .jp-bar{
+            padding:12px;
+            gap:10px;
+            align-items:flex-start;
+            flex-wrap:wrap;
+          }
+          .jp-label{
+            width:100%;
+            font-size:9px;
+          }
+          .jp-sep{display:none}
+          .jp-val{
+            width:100%;
+            text-align:left;
+            font-size:18px;
+          }
+          .jp-btn{
+            width:100%;
+            padding:10px 12px;
+          }
+          .wins-bar{
+            padding:10px 12px;
+            gap:10px;
+            margin-bottom:16px;
+          }
+          .wins-label{
+            font-size:9px;
+          }
+          .cat-row{
+            gap:7px;
+            margin-bottom:16px;
+          }
+          .cat-pill{
+            padding:7px 12px;
+            font-size:10px;
+          }
+          .sec-row{
+            flex-direction:column;
+            align-items:stretch;
+            gap:10px;
+            margin-bottom:12px;
+          }
+          .sec-row .search-box{
+            display:none;
+          }
+          .sec-title{
+            font-size:11px;
+          }
+          .search-box input{
+            width:100%;
+            font-size:13px;
+          }
+          .game-grid{
+            grid-template-columns:repeat(2,minmax(0,1fr));
+            gap:12px;
+            margin-bottom:20px;
+          }
+          .ginfo{
+            padding:8px 9px;
+          }
+          .gname{
+            font-size:11px;
+          }
+          .gprov{
+            font-size:10px;
+          }
+          .gmeta{
+            gap:6px;
+            align-items:flex-start;
+            flex-direction:column;
+          }
+        }
+
+        @media (max-width: 480px){
+          .game-grid{
+            grid-template-columns:1fr 1fr;
+            gap:10px;
+          }
+          .gplay-btn{
+            width:38px;
+            height:38px;
+          }
+        }
       `}</style>
 
  
@@ -463,6 +573,16 @@ const CasinoPage = () => {
 
         {/* CONTENT */}
         <div className="content">
+          <div className="mobile-provider-toolbar">
+            <select value={activeProvider} onChange={(e) => setActiveProvider(e.target.value)} aria-label="Select provider">
+              <option value="all">All Providers ({allGames.length})</option>
+              {providers.map((provider) => (
+                <option key={provider} value={provider}>
+                  {provider} ({providerCounts[provider]})
+                </option>
+              ))}
+            </select>
+          </div>
           
           {/* JACKPOT BAR */}
           <div className="jp-bar">
