@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSite } from "../../../context/SiteContext";
 import { URL as BASE_URL } from "../../../utils/constants";
@@ -6,14 +6,15 @@ import { FaBars, FaBell, FaGem, FaGift, FaMoon, FaSun, FaTimes, FaUserCircle } f
 import { useTheme } from "../../../context/ThemeContext";
 import { usePWAInstall } from "../../../hooks/usePWAInstall";
 
-const RanaHeader = () => {
-  const { accountInfo, activateDemoMode } = useSite();
+const RanaHeader = ({ onOpenMobileMenu, onOpenMobileAccount }) => {
+  const { accountInfo, activateDemoMode, setShowLogin, setShowRegister } = useSite();
   const navigate = useNavigate();
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
   const { isInstalled, isInstallable, installApp, platform } = usePWAInstall();
   const [profileOpen, setProfileOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobilePanel, setMobilePanel] = useState(null);
   const isLoggedIn = !!(accountInfo?.account_id && accountInfo.account_id !== "guest" && localStorage.getItem("auth_secret_key") && localStorage.getItem("auth_secret_key") !== "guest");
   const toNumber = (value) => Number.parseFloat(value || 0) || 0;
   const remainingWager = toNumber(accountInfo?.tbl_requiredplay_balance);
@@ -73,6 +74,21 @@ const RanaHeader = () => {
     { label: "Transaction", path: "/transaction" },
     { label: "Bet History", path: "/betting-profit-loss" },
   ];
+  const mobileQuickLinks = [
+    { label: "My Account", action: () => setMobilePanel("account") },
+    { label: "Deposit", path: "/deposit" },
+    { label: "Withdrawal", path: "/withdraw" },
+    { label: "Bet History", path: "/betting-profit-loss" },
+    { label: "Promotions", path: "/promotion" },
+    { label: "Bonus", path: "/bonus" },
+    { label: "VIP Club", path: "#" },
+    { label: "Refer a Friend", path: "/inviteandearn" },
+    { label: "Rules", path: "/rules-regulation" },
+    { label: "Exclusion", path: "/exclusion" },
+    { label: "Privacy", path: "/privacy-policy" },
+    { label: "Responsible", path: "/responsible-gambling" },
+    { label: "Support", path: "/support" },
+  ];
   const latestNewsItems = [
     "New Live Casino Games launching in 7 days",
     "Mega Slots Tournament starts in 10 days",
@@ -95,6 +111,52 @@ const RanaHeader = () => {
       document.querySelector(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 80);
   };
+  const isMobileViewport = () => window.matchMedia?.("(max-width: 820px)").matches;
+  const formatBalance = (value) =>
+    Number(value || 0).toLocaleString("en-IN", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  const openMobilePanel = (panel) => {
+    setMenuOpen(false);
+    setProfileOpen(false);
+    setMobilePanel(panel);
+  };
+  const closeMobilePanel = () => setMobilePanel(null);
+  const handleProfileClick = (event) => {
+    event?.preventDefault?.();
+    event?.stopPropagation?.();
+    if (isMobileViewport()) {
+      openMobilePanel("account");
+      return;
+    }
+
+    setProfileOpen((prev) => !prev);
+  };
+  const handleMobileMenuClick = (event) => {
+    event?.preventDefault?.();
+    event?.stopPropagation?.();
+    if (isMobileViewport()) {
+      openMobilePanel("menu");
+      return;
+    }
+
+    setMenuOpen((prev) => !prev);
+  };
+  const handleMobileNavigate = (path) => {
+    closeMobilePanel();
+    if (path && path !== "#") navigate(path);
+  };
+
+  useEffect(() => {
+    if (mobilePanel) {
+      document.body.classList.add("mobile-home-menu-open");
+    } else {
+      document.body.classList.remove("mobile-home-menu-open");
+    }
+
+    return () => document.body.classList.remove("mobile-home-menu-open");
+  }, [mobilePanel]);
 
   // Logo URL Helper - resolve backend relative paths
   const getSafeLogoUrl = (logoPath) => {
@@ -166,6 +228,61 @@ const RanaHeader = () => {
             <Link to="/#fantasy-games" className={navClass(isHashActive("#fantasy-games"))}>🎮 Fantasy Games</Link>
             <Link to="/promotion" className={navClass(isPathActive("/promotion"))}>💰 Promotions</Link>
           </nav>
+          <div className="mobile-header-actions">
+            {!isLoggedIn ? (
+              <div className="mobile-auth-actions">
+                <button type="button" onClick={() => setShowLogin(true)}>Login</button>
+                <button type="button" onClick={() => setShowRegister(true)}>Sign Up</button>
+              </div>
+            ) : (
+              <div className="mobile-wallet-actions">
+                <button type="button" onClick={() => navigate("/deposit")}>Deposit</button>
+                <button type="button" onClick={() => navigate("/withdraw")}>Withdraw</button>
+                <button
+                  type="button"
+                  className="mobile-profile-open"
+                  onTouchEnd={handleProfileClick}
+                  onPointerUp={handleProfileClick}
+                  onClick={handleProfileClick}
+                  aria-label="Open profile"
+                >
+                  <FaUserCircle />
+                </button>
+                {profileOpen && !onOpenMobileAccount && (
+                  <div className="mobile-header-popover mobile-profile-popover">
+                    <div className="mobile-profile-popover-head">
+                      <strong>{accountInfo?.account_username || "User"}</strong>
+                      <span>My Profile</span>
+                    </div>
+                    {profileLinks.map((item) => (
+                      <button type="button" key={item.path} onClick={() => openProfileLink(item.path)}>
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+            <button
+              type="button"
+              className="mobile-header-menu-btn"
+              onTouchEnd={handleMobileMenuClick}
+              onPointerUp={handleMobileMenuClick}
+              onClick={handleMobileMenuClick}
+              aria-label="Open quick links"
+            >
+              <FaBars />
+              <span>Menu</span>
+            </button>
+            {menuOpen && (
+              <div className="mobile-header-popover">
+                <button type="button" onClick={() => { setMenuOpen(false); navigate("/"); }}>Home</button>
+                <button type="button" onClick={() => { setMenuOpen(false); navigate("/casino"); }}>Casino</button>
+                <button type="button" onClick={() => { setMenuOpen(false); navigate("/promotion"); }}>Promotions</button>
+                <button type="button" onClick={() => { setMenuOpen(false); navigate("/support"); }}>Support</button>
+              </div>
+            )}
+          </div>
           <div className="header-cta">
             {isLoggedIn ? (
               <div className="header-cta-group">
@@ -217,7 +334,7 @@ const RanaHeader = () => {
                     <button
                       type="button"
                       className="header-icon-btn"
-                      onClick={() => setProfileOpen((prev) => !prev)}
+                      onClick={handleProfileClick}
                       aria-label="Profile"
                       title="Profile"
                     >
@@ -340,6 +457,101 @@ const RanaHeader = () => {
           </a>
         </div>
       </div>
+      {mobilePanel && (
+        <div className={`mobile-home-drawer is-${mobilePanel}`} role="dialog" aria-modal="true">
+          <button type="button" className="mobile-drawer-backdrop" onClick={closeMobilePanel} aria-label="Close mobile menu" />
+          <section className="mobile-drawer-panel">
+            <div className="mobile-drawer-head">
+              <div>
+                <span>{mobilePanel === "menu" ? "Quick Navigation" : "Account Desk"}</span>
+                <strong>{mobilePanel === "menu" ? "Browse Menu" : accountInfo?.account_username || "My Account"}</strong>
+              </div>
+              <button type="button" onClick={closeMobilePanel} aria-label="Close">
+                <FaTimes />
+              </button>
+            </div>
+            <div className="mobile-drawer-body">
+              {mobilePanel === "menu" ? (
+                <div className="mobile-quick-panel">
+                  <div className="mobile-quick-card is-primary">
+                    <FaBars />
+                    <div>
+                      <strong>Quick Links</strong>
+                      <span>Fast access to wallet, bets, bonus and support.</span>
+                    </div>
+                  </div>
+                  <div className="mobile-quick-grid">
+                    {mobileQuickLinks.map((item) => (
+                      item.action ? (
+                        <button type="button" key={item.label} onClick={item.action} data-keep-drawer="true">
+                          {item.label}
+                        </button>
+                      ) : (
+                        <button type="button" key={item.label} onClick={() => handleMobileNavigate(item.path)}>
+                          {item.label}
+                        </button>
+                      )
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="mobile-account-panel">
+                  {isLoggedIn ? (
+                    <>
+                      <div className="mobile-account-hero">
+                        <FaUserCircle />
+                        <span>My Profile</span>
+                        <strong>{accountInfo?.account_username || "User"}</strong>
+                      </div>
+                      <div className="mobile-wallet-grid">
+                        {[
+                          ["Real Balance", accountInfo?.account_balance],
+                          ["Casino Bonus", accountInfo?.account_casino_bonus],
+                          ["Sports Bonus", accountInfo?.account_sports_bonus],
+                          ["Total Balance", accountInfo?.account_total_balance ?? accountInfo?.account_balance],
+                        ].map(([label, value]) => (
+                          <div key={label} className="mobile-wallet-tile">
+                            <span>{label}</span>
+                            <strong><small>₹</small>{formatBalance(value)}</strong>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mobile-profile-links">
+                        {profileLinks.map((item) => (
+                          <button type="button" key={item.path} onClick={() => handleMobileNavigate(item.path)}>
+                            {item.label}
+                          </button>
+                        ))}
+                      </div>
+                      <button
+                        type="button"
+                        className="mobile-logout-btn"
+                        onClick={() => {
+                          localStorage.removeItem("auth_secret_key");
+                          localStorage.removeItem("account_id");
+                          window.location.reload();
+                        }}
+                      >
+                        Log Out
+                      </button>
+                    </>
+                  ) : (
+                    <div className="mobile-login-card">
+                      <FaUserCircle />
+                      <strong>Account Access</strong>
+                      <span>Login or create your account to view wallet details.</span>
+                      <div>
+                        <button type="button" onClick={() => { closeMobilePanel(); setShowLogin(true); }}>Log In</button>
+                        <button type="button" onClick={() => { closeMobilePanel(); setShowRegister(true); }}>Sign Up</button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
+      )}
     </div>
   );
 };

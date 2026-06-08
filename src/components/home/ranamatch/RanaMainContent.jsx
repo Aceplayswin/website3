@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useSite } from "../../../context/SiteContext";
 import { useGames } from "../../../context/GameContext";
@@ -6,7 +6,7 @@ import { URL as BASE_URL } from "../../../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
-import { apiPost } from "../../../utils/apiFetch";
+import { apiGet, apiPost } from "../../../utils/apiFetch";
 import RanaFooter from "./RanaFooter";
 import Live from '../Live';
 import CasinoLobby from '../CasinoLobby';
@@ -21,6 +21,67 @@ import { FaExpandAlt, FaTimes } from 'react-icons/fa';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
+
+const MobileBigWinsStrip = () => {
+  const [wins, setWins] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const tickerWins = wins.length > 0 ? [...wins, ...wins] : [];
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadWins = async () => {
+      try {
+        const response = await apiGet("route-big-wins", { LIMIT: "10" });
+        const result = await response.json();
+
+        if (isMounted) {
+          setWins(result?.status_code === "success" && Array.isArray(result.data) ? result.data : []);
+        }
+      } catch (error) {
+        console.error("Failed to load mobile wins", error);
+        if (isMounted) setWins([]);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
+    loadWins();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  return (
+    <section className="mobile-bigwins-strip" aria-label="Recent big wins">
+      <div className="mobile-bigwins-label">
+        <span>🎉</span>
+        <strong>Big Wins</strong>
+      </div>
+      <div className="mobile-bigwins-row">
+        {loading ? (
+          <div className="mobile-win-pill is-empty">Loading live wins...</div>
+        ) : tickerWins.length > 0 ? (
+          <div className="mobile-bigwins-track">
+          {tickerWins.map((win, index) => (
+            <div className="mobile-win-pill" key={`${win.user}-${win.game}-${index}`}>
+              <span className={`win-avatar gt-${(index % 4) + 1}`}>{win.avatar}</span>
+              <span className="mobile-win-copy">
+                <strong>{win.user}</strong>
+                <small>{win.game}</small>
+              </span>
+              <b>+₹{win.amount}</b>
+            </div>
+          ))}
+          </div>
+        ) : (
+          <div className="mobile-win-pill is-empty">Live wins will appear after profitable bets.</div>
+        )}
+      </div>
+    </section>
+  );
+};
 
 const RanaMainContent = () => {
   const COLORS = useColors();
@@ -112,6 +173,8 @@ const RanaMainContent = () => {
           </>
         )}
       </div>
+
+      <MobileBigWinsStrip />
 
       {/* Promo Strip */}
       <div className="promo-strip">
