@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FaHistory, FaChevronRight, FaClock, FaUser,
   FaHeadset, FaArrowLeft, FaInbox, FaTicketAlt
@@ -38,8 +38,14 @@ const SupportHistory = ({ onBack }) => {
   const [loading, setLoading]             = useState(true);
   const [selectedTicket, setSelectedTicket] = useState(null);
   const [hoverId, setHoverId]             = useState(null);
+  const [isMobile, setIsMobile]           = useState(() => window.innerWidth <= 820);
 
   useEffect(()=>{ fetchHistory(); }, []);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 820);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const fetchHistory = async () => {
     setLoading(true);
@@ -145,12 +151,12 @@ const SupportHistory = ({ onBack }) => {
             return (
               <div key={i} style={{ display:'flex', flexDirection:'column', alignItems: isAdmin ? 'flex-start' : 'flex-end' }}>
                 <div style={{
-                  maxWidth:'80%',
-                  padding:'12px 16px',
+                  maxWidth:isMobile ? '100%' : '80%',
+                  padding:isMobile ? '10px 12px' : '12px 16px',
                   borderRadius: isAdmin ? '4px 12px 12px 12px' : '12px 4px 12px 12px',
                   background: isAdmin ? C.card : `linear-gradient(135deg, ${C.brand}, ${C.brandMid})`,
                   border: `1px solid ${isAdmin ? C.border : 'rgba(14,32,64,0.3)'}`,
-                  fontSize:13, color: isAdmin ? C.text : '#fff', lineHeight:1.6,
+                  fontSize:isMobile ? 12 : 13, color: isAdmin ? C.text : '#fff', lineHeight:1.6,
                   boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
                 }}>
                   <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:8, fontSize:10, fontWeight:700, textTransform:'uppercase', letterSpacing:'0.08em', color: isAdmin ? C.gold : 'rgba(255,255,255,0.6)' }}>
@@ -180,7 +186,7 @@ const SupportHistory = ({ onBack }) => {
     <div style={{ fontFamily:FONTS.ui, color:C.text }}>
 
       {/* Header — home page section-title style */}
-      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:14, flexWrap:'wrap', gap:10 }}>
+      <div style={{ display:'flex', alignItems:isMobile ? 'stretch' : 'center', justifyContent:'space-between', flexDirection:isMobile ? 'column' : 'row', marginBottom:14, flexWrap:'wrap', gap:10 }}>
         <div style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'8px 14px', borderRadius:10, background:'linear-gradient(90deg, #172033 0%, #0e2040 56%, #22d3ee 100%)', border:'1px solid rgba(255,255,255,0.08)', boxShadow:'0 10px 24px rgba(14,32,64,0.22)' }}>
           <div style={{ width:4, height:14, borderRadius:99, background:'rgba(255,255,255,0.85)', boxShadow:'0 0 10px rgba(255,255,255,0.3)' }}/>
           <FaHistory style={{ color:'#fff', fontSize:12 }}/>
@@ -188,7 +194,7 @@ const SupportHistory = ({ onBack }) => {
         </div>
         <button
           onClick={onBack}
-          style={{ padding:'8px 16px', background:'transparent', border:`1.5px solid ${C.brand}`, borderRadius:7, cursor:'pointer', color:C.brand, fontFamily:FONTS.head, fontWeight:700, fontSize:10, letterSpacing:'0.12em', textTransform:'uppercase', transition:'all 0.2s' }}
+          style={{ width:isMobile ? '100%' : 'auto', padding:'8px 16px', background:'transparent', border:`1.5px solid ${C.brand}`, borderRadius:7, cursor:'pointer', color:C.brand, fontFamily:FONTS.head, fontWeight:700, fontSize:10, letterSpacing:'0.12em', textTransform:'uppercase', transition:'all 0.2s' }}
           onMouseEnter={e=>{e.currentTarget.style.background=C.brand;e.currentTarget.style.color='#fff';}}
           onMouseLeave={e=>{e.currentTarget.style.background='transparent';e.currentTarget.style.color=C.brand;}}
         >
@@ -196,7 +202,7 @@ const SupportHistory = ({ onBack }) => {
         </button>
       </div>
 
-      <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:12, padding:20, boxShadow:'0 2px 12px rgba(0,0,0,0.07)' }}>
+      <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:12, padding:isMobile ? 14 : 20, boxShadow:'0 2px 12px rgba(0,0,0,0.07)' }}>
         {loading ? (
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', minHeight:300, gap:14 }}>
             <div style={{ width:32, height:32, border:`3px solid ${C.border}`, borderTopColor:C.brand, borderRadius:'50%', animation:'spin 0.8s linear infinite' }}/>
@@ -207,7 +213,7 @@ const SupportHistory = ({ onBack }) => {
             <ConversationThread ticket={selectedTicket}/>
           </AnimatePresence>
         ) : tickets.length > 0 ? (
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(260px, 1fr))', gap:12 }}>
+          <div style={{ display:'grid', gridTemplateColumns:isMobile ? '1fr' : 'repeat(auto-fill, minmax(260px, 1fr))', gap:12 }}>
             {tickets.map((ticket,i)=><TicketCard key={i} ticket={ticket} idx={i}/>)}
           </div>
         ) : (

@@ -351,7 +351,21 @@ const Withdraw = () => {
             ))}
           </div>
 
-          <button type="button" onClick={handleWithdrawal} disabled={!amount || !selectedAccount} className="finance-v2-primary">
+          <button
+            type="button"
+            onClick={handleWithdrawal}
+            disabled={!amount || !selectedAccount}
+            className="finance-v2-primary"
+            style={
+              amount && selectedAccount
+                ? {
+                    background: "linear-gradient(135deg, #0e2040 0%, #1646d7 58%, #22c6e8 100%)",
+                    color: "#ffffff",
+                    border: "0",
+                  }
+                : undefined
+            }
+          >
             <FontAwesomeIcon icon={faWallet} />
             Confirm Payout
           </button>

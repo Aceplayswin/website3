@@ -28,7 +28,7 @@ function SupportPage() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: '24px 16px 40px',
+        padding: '16px 12px 110px',
         minHeight: 0,
       }}>
         <div style={{ width: '100%', maxWidth: '960px' }}>

@@ -455,44 +455,73 @@ const CasinoPage = () => {
           .mobile-provider-toolbar{
             display:grid;
             grid-template-columns:1fr;
-            gap:10px;
-            margin-bottom:12px;
+            gap:8px;
+            margin-bottom:10px;
+          }
+          .mobile-provider-toolbar select{
+            min-height:38px;
+            padding:6px 12px;
+            border-radius:12px;
+            font-size:11px;
           }
           .jp-bar{
-            padding:12px;
-            gap:10px;
+            padding:8px 10px;
+            gap:6px;
             align-items:flex-start;
             flex-wrap:wrap;
+            margin-bottom:10px;
+            border-radius:12px;
           }
           .jp-label{
             width:100%;
-            font-size:9px;
+            font-size:8px;
+            letter-spacing:.14em;
           }
           .jp-sep{display:none}
           .jp-val{
             width:100%;
             text-align:left;
-            font-size:18px;
+            font-size:12px;
           }
           .jp-btn{
             width:100%;
-            padding:10px 12px;
+            min-height:34px;
+            padding:6px 10px;
+            font-size:9px;
+            border-radius:8px;
           }
           .wins-bar{
-            padding:10px 12px;
-            gap:10px;
-            margin-bottom:16px;
+            padding:8px 10px;
+            gap:8px;
+            margin-bottom:12px;
+            border-radius:14px;
           }
           .wins-label{
+            font-size:8px;
+            letter-spacing:.14em;
+          }
+          .wavatar{
+            width:20px;
+            height:20px;
+            font-size:10px;
+          }
+          .wuser{
             font-size:9px;
           }
+          .wgame{
+            font-size:9px;
+          }
+          .wamt{
+            font-size:10px;
+          }
           .cat-row{
-            gap:7px;
-            margin-bottom:16px;
+            gap:6px;
+            margin-bottom:12px;
           }
           .cat-pill{
-            padding:7px 12px;
-            font-size:10px;
+            padding:6px 11px;
+            font-size:9px;
+            border-radius:22px;
           }
           .sec-row{
             flex-direction:column;
@@ -698,8 +727,8 @@ const CasinoPage = () => {
       {/* MODALS */}
       {confirmPopup.show && createPortal(
         <div className="fixed inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm z-[100000] p-4 font-['Oxanium']">
-          <div className="bg-[#0b1120] border border-[rgba(255,255,255,0.1)] p-8 rounded-xl max-w-sm w-full text-center relative overflow-hidden">
-             <div className="absolute top-0 left-0 w-full h-1 bg-[#f0b429]"></div>
+          <div className="bg-[#0b1120] border border-[rgba(34,198,232,0.18)] p-8 rounded-xl max-w-sm w-full text-center relative overflow-hidden shadow-[0_24px_60px_rgba(14,32,64,0.45)]">
+             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0e2040] via-[#1646d7] to-[#22c6e8]"></div>
              
              <div className="w-16 h-16 rounded-xl overflow-hidden mx-auto mb-4 border border-white/10 shadow-lg">
                 <img src={confirmPopup.game?.icon || "/placeholder.svg"} alt="Game" className="w-full h-full object-cover" />
@@ -721,13 +750,13 @@ const CasinoPage = () => {
 
              <div className="flex flex-col gap-3">
                 {confirmPopup.error === "balance_error" ? (
-                   <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="bg-gradient-to-br from-[#f0b429] to-[#c8921a] text-black font-bold uppercase rounded-lg w-full justify-center py-2.5">Add Funds</button>
+                   <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="bg-gradient-to-br from-[#0e2040] via-[#1646d7] to-[#22c6e8] text-white font-bold uppercase rounded-lg w-full justify-center py-2.5 shadow-[0_12px_28px_rgba(22,70,215,0.28)]">Add Funds</button>
                 ) : confirmPopup.error === "authorization_error" ? (
-                   <button onClick={handleAuthError} className="bg-gradient-to-br from-[#f0b429] to-[#c8921a] text-black font-bold uppercase rounded-lg w-full justify-center py-2.5">Log In Again</button>
+                   <button onClick={handleAuthError} className="bg-gradient-to-br from-[#0e2040] via-[#1646d7] to-[#22c6e8] text-white font-bold uppercase rounded-lg w-full justify-center py-2.5 shadow-[0_12px_28px_rgba(22,70,215,0.28)]">Log In Again</button>
                 ) : confirmPopup.error ? (
-                   <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="bg-transparent border border-[#f0b429] text-[#f0b429] font-bold uppercase rounded-lg w-full justify-center py-2.5">Try Another</button>
+                   <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="bg-transparent border border-[#22c6e8] text-[#22c6e8] font-bold uppercase rounded-lg w-full justify-center py-2.5">Try Another</button>
                 ) : (
-                   <button onClick={confirmGameOpen} className="bg-gradient-to-br from-[#f0b429] to-[#c8921a] text-black font-bold uppercase rounded-lg w-full justify-center py-2.5">Confirm Play</button>
+                   <button onClick={confirmGameOpen} className="bg-gradient-to-br from-[#0e2040] via-[#1646d7] to-[#22c6e8] text-white font-bold uppercase rounded-lg w-full justify-center py-2.5 shadow-[0_12px_28px_rgba(22,70,215,0.28)]">Confirm Play</button>
                 )}
                 <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="text-xs text-gray-500 font-bold uppercase hover:text-white mt-1 transition-colors">Cancel</button>
              </div>
@@ -737,19 +766,19 @@ const CasinoPage = () => {
 
       {confirmLoading && createPortal(
         <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-[100000] flex flex-col items-center justify-center p-4 font-['Oxanium']">
-           <div className="bg-[#0b1120] border border-[#f0b429]/30 p-8 rounded-xl max-w-sm w-full text-center relative">
+           <div className="bg-[#0b1120] border border-[#22c6e8]/30 p-8 rounded-xl max-w-sm w-full text-center relative shadow-[0_24px_60px_rgba(14,32,64,0.45)]">
               <div className="mb-6 relative">
-                 <div className="w-20 h-20 rounded-xl overflow-hidden mx-auto border-2 border-[#f0b429] relative z-10">
+                 <div className="w-20 h-20 rounded-xl overflow-hidden mx-auto border-2 border-[#22c6e8] relative z-10">
                     <img src={confirmPopup.game?.icon || "/placeholder.svg"} alt="Game" className="w-full h-full object-cover" />
                  </div>
-                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-[#f0b429] rounded-full blur-[30px] opacity-20"></div>
+                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-[#22c6e8] rounded-full blur-[30px] opacity-20"></div>
               </div>
               <h3 className="text-xl font-bold text-white mb-6 tracking-widest uppercase">Launching...</h3>
               
               <div className="w-full bg-[#162035] rounded-full h-1.5 overflow-hidden mb-2">
-                 <div className="h-full bg-[#f0b429] transition-all duration-300" style={{ width: `${loadingProgress}%` }}></div>
+                 <div className="h-full bg-gradient-to-r from-[#0e2040] via-[#1646d7] to-[#22c6e8] transition-all duration-300" style={{ width: `${loadingProgress}%` }}></div>
               </div>
-              <div className="text-[10px] text-[#f0b429] font-bold tracking-widest uppercase">{Math.round(loadingProgress)}% Loaded</div>
+              <div className="text-[10px] text-[#22c6e8] font-bold tracking-widest uppercase">{Math.round(loadingProgress)}% Loaded</div>
            </div>
         </div>, document.body
       )}

@@ -44,9 +44,9 @@ const PrivacyPolicy = () => {
   ];
 
   return (
-    <div className="finance-route-shell legal-route-shell min-h-screen">
+    <div className="rana-layout legal-route-shell min-h-screen">
       <RanaHeader />
-      <main className="finance-route-main legal-route-main">
+      <main className="legal-route-main">
         <section className="legal-v2 legal-v2-privacy">
           <div className="legal-v2-hero split">
             <div>

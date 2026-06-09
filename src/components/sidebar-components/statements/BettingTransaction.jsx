@@ -139,28 +139,6 @@ const BettingTransactionPage = () => {
 
   return (
     <div className="statement-v2">
-      <section className="statement-v2-top">
-        <div>
-          <span className="statement-v2-tag">Betting Statement</span>
-          <h1 style={{ fontFamily: FONTS.head }}>Profit & Loss</h1>
-          <p>Track every played round, bet value, payout status, and settlement result from one clean report.</p>
-        </div>
-        <div className="statement-v2-summary">
-          <div>
-            <span>Total Stake</span>
-            <strong>{"\u20b9"}{formatMoney(totals.stake)}</strong>
-          </div>
-          <div>
-            <span>Returns</span>
-            <strong>{"\u20b9"}{formatMoney(totals.returns)}</strong>
-          </div>
-          <div className={totals.net < 0 ? "loss" : "win"}>
-            <span>Net Result</span>
-            <strong>{totals.net < 0 ? "-" : "+"}{"\u20b9"}{formatMoney(Math.abs(totals.net))}</strong>
-          </div>
-        </div>
-      </section>
-
       <section className="statement-v2-toolbar">
         <div className="statement-v2-title">
           <span><FaChartLine /></span>

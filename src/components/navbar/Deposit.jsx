@@ -344,6 +344,15 @@ function Deposit() {
             onClick={handleDeposit}
             disabled={!(amount && parseFloat(amount) > 0 && (activeTab.includes("gateway") || utr))}
             className="finance-v2-primary"
+            style={
+              amount && parseFloat(amount) > 0 && (activeTab.includes("gateway") || utr)
+                ? {
+                    background: "linear-gradient(135deg, #0e2040 0%, #1646d7 58%, #22c6e8 100%)",
+                    color: "#ffffff",
+                    border: "0",
+                  }
+                : undefined
+            }
           >
             <FontAwesomeIcon icon={faWallet} />
             Submit Deposit
