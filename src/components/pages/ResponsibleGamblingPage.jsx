@@ -1,5 +1,5 @@
 import ResponsibleGambling from '../sidebar-components/legal-complience/ResponsibleGambling'
-import RanaHeader from '../home/ranamatch/RanaHeader'
+import RanaHeader from '../home/boldvelocity/RanaHeader'
 import '../../assets/css/ranamatch.css';
 
 function ResponsibleGamblingPage() {

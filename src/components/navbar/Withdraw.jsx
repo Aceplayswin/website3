@@ -319,11 +319,13 @@ const Withdraw = () => {
                 ))}
               </AnimatePresence>
             ) : (
-              <button type="button" className="finance-v2-empty-account" onClick={() => setShowAddBankPopup(true)}>
+              <div className="finance-v2-empty-account" onClick={() => setShowAddBankPopup(true)} role="button" tabIndex={0}>
                 <FontAwesomeIcon icon={faPlus} />
-                <strong>Add Bank Account</strong>
-                <span>Required before withdrawal</span>
-              </button>
+                <div>
+                  <strong>Add Bank Account</strong>
+                  <span>Required before withdrawal</span>
+                </div>
+              </div>
             )}
           </div>
         </div>

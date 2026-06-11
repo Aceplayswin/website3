@@ -55,7 +55,7 @@ const RanaHeader = () => {
     }
 
     if (platform === 'android') {
-      window.open(accountInfo?.service_app_download_url || '/ranamatch.apk', '_blank', 'noopener,noreferrer');
+      window.open(accountInfo?.service_app_download_url || '/boldvelocity.apk', '_blank', 'noopener,noreferrer');
       return;
     }
 
@@ -249,6 +249,12 @@ const RanaHeader = () => {
           <div className="mobile-header-actions">
             {!isLoggedIn ? (
               <div className="mobile-auth-actions">
+                {localStorage.getItem("auth_secret_key") === "guest" && (
+                  <div style={{ display: 'flex', alignItems: 'center', background: 'rgba(16, 185, 129, 0.1)', color: '#34d399', padding: '4px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 'bold', marginRight: '4px' }}>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse mr-1.5"></span>
+                    DEMO
+                  </div>
+                )}
                 <button type="button" onClick={() => setShowLogin(true)}>Login</button>
                 <button type="button" onClick={() => setShowRegister(true)}>Sign Up</button>
               </div>
@@ -417,6 +423,11 @@ const RanaHeader = () => {
                   */}
                 </div>
               </div>
+            ) : localStorage.getItem("auth_secret_key") === "guest" ? (
+              <div className="btn-demo-play" style={{ cursor: 'default', pointerEvents: 'none' }}>
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse mr-1"></span>
+                <span>Demo Mode</span>
+              </div>
             ) : (
               <button
                 className="btn-demo-play"
@@ -554,6 +565,16 @@ const RanaHeader = () => {
                         Log Out
                       </button>
                     </>
+                  ) : localStorage.getItem("auth_secret_key") === "guest" ? (
+                    <div className="mobile-login-card" style={{ background: 'rgba(16, 185, 129, 0.05)', borderColor: 'rgba(16, 185, 129, 0.2)' }}>
+                      <FaGem style={{ color: '#34d399', fontSize: '2rem' }} className="animate-pulse" />
+                      <strong>Demo Mode Active</strong>
+                      <span>You are exploring the site in Demo Mode. Login to play with real money.</span>
+                      <div>
+                        <button type="button" onClick={() => { closeMobilePanel(); setShowLogin(true); }}>Log In</button>
+                        <button type="button" onClick={() => { closeMobilePanel(); setShowRegister(true); }}>Sign Up</button>
+                      </div>
+                    </div>
                   ) : (
                     <div className="mobile-login-card">
                       <FaUserCircle />

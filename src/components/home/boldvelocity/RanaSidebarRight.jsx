@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSite } from "../../../context/SiteContext";
 import { apiGet } from "../../../utils/apiFetch";
+import { usePWAInstall } from "../../../hooks/usePWAInstall";
 
 const RanaSidebarRight = () => {
   const { accountInfo, setShowLogin, setShowRegister } = useSite();
+  const { platform, installApp, isInstalled, isInstallable } = usePWAInstall();
   const [recentWins, setRecentWins] = useState([]);
   const [winsLoading, setWinsLoading] = useState(true);
   const isLoggedIn = !!(
@@ -23,6 +25,27 @@ const RanaSidebarRight = () => {
   const casinoBonus = formatBalance(accountInfo?.account_casino_bonus);
   const sportsBonus = formatBalance(accountInfo?.account_sports_bonus);
   const totalBalance = formatBalance(accountInfo?.account_total_balance ?? accountInfo?.account_balance);
+
+  const handleGetApp = (event) => {
+    event?.preventDefault();
+
+    if (isInstalled) {
+      window.open(window.location.origin, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    if (isInstallable) {
+      installApp();
+      return;
+    }
+
+    if (platform === 'android') {
+      window.open(accountInfo?.service_app_download_url || '/boldvelocity.apk', '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    window.open(window.location.origin, '_blank', 'noopener,noreferrer');
+  };
 
   useEffect(() => {
     let isMounted = true;
@@ -184,23 +207,34 @@ const RanaSidebarRight = () => {
 
       <div className="app-banner">
         <div className="app-icon">📱</div>
-        <h4>Download App</h4>
-        <p>Get the ultimate betting experience on your mobile</p>
+        <h4 style={{ color: '#ffffff' }}>Download App</h4>
+        <p style={{ color: '#ffffff' }}>Get the ultimate betting experience on your mobile</p>
         <div className="app-btns">
-          <button className="app-btn">
-            <span>🤖</span>
-            <div className="app-btn-text">
-              <span className="sub">Download for</span>
-              <span className="name">Android</span>
-            </div>
-          </button>
-          <button className="app-btn">
-            <span>🍏</span>
-            <div className="app-btn-text">
-              <span className="sub">Download for</span>
-              <span className="name">iOS</span>
-            </div>
-          </button>
+          {platform === 'android' ? (
+            <button className="app-btn" onClick={handleGetApp} style={{ width: '100%' }}>
+              <span>🤖</span>
+              <div className="app-btn-text">
+                <span className="sub" style={{ color: '#e5e7eb' }}>Download for</span>
+                <span className="name" style={{ color: '#ffffff' }}>Android</span>
+              </div>
+            </button>
+          ) : platform === 'ios' ? (
+            <button className="app-btn" onClick={handleGetApp} style={{ width: '100%' }}>
+              <span>🍏</span>
+              <div className="app-btn-text">
+                <span className="sub" style={{ color: '#e5e7eb' }}>Download for</span>
+                <span className="name" style={{ color: '#ffffff' }}>iOS</span>
+              </div>
+            </button>
+          ) : (
+            <button className="app-btn" onClick={handleGetApp} style={{ width: '100%' }}>
+              <span>💻</span>
+              <div className="app-btn-text">
+                <span className="sub" style={{ color: '#e5e7eb' }}>Download for</span>
+                <span className="name" style={{ color: '#ffffff' }}>Desktop</span>
+              </div>
+            </button>
+          )}
         </div>
       </div>
     </aside>

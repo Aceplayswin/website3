@@ -1,6 +1,6 @@
 import React from 'react'
 import ContactUs from '../sidebar-components/contact/ContactUs'
-import RanaHeader from '../home/ranamatch/RanaHeader'
+import RanaHeader from '../home/boldvelocity/RanaHeader'
 import { useColors } from '../../hooks/useColors';
 import '../../assets/css/ranamatch.css';
 

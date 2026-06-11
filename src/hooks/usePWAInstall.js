@@ -20,21 +20,16 @@ export const usePWAInstall = () => {
     setPlatform(getPlatform());
 
     const checkInstalled = async () => {
-      // 1. Check if we are currently running in standalone mode (installed view)
       if (window.matchMedia('(display-mode: standalone)').matches) {
         setIsInstalled(true);
         return;
       }
-
-      // 2. Use the getInstalledRelatedApps API (Chrome/Edge Only)
       if ('getInstalledRelatedApps' in navigator) {
         try {
           const relatedApps = await navigator.getInstalledRelatedApps();
-          if (relatedApps.length > 0) {
-            setIsInstalled(true);
-          }
+          if (relatedApps.length > 0) setIsInstalled(true);
         } catch (err) {
-          console.log('Error checking installed apps:', err);
+          // ignore
         }
       }
     };
@@ -53,10 +48,8 @@ export const usePWAInstall = () => {
 
   const installApp = async () => {
     if (!deferredPrompt) return;
-
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
-    
     if (outcome === 'accepted') {
       setIsInstalled(true);
       setIsInstallable(false);

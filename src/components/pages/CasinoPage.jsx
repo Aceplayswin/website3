@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { apiGet, apiPost } from "@/utils/apiFetch";
 import { FaPlay, FaSearch, FaTimes } from "react-icons/fa";
 
-import RanaHeader from "../home/ranamatch/RanaHeader";
+import RanaHeader from "../home/boldvelocity/RanaHeader";
 import AuthModalHost from "../common/AuthModalHost";
 import '../../assets/css/ranamatch.css';
 
@@ -79,9 +79,9 @@ const CasinoPage = () => {
 
   const [displayLimit, setDisplayLimit] = useState(48);
   const observerTarget = useRef(null);
-  
+
   const [jpAmount, setJpAmount] = useState(482367041);
-  
+
   useEffect(() => {
     const jpInterval = setInterval(() => {
       setJpAmount(prev => prev + Math.floor(Math.random() * 900 + 200));
@@ -155,7 +155,7 @@ const CasinoPage = () => {
       document.body.style.fontFamily = '';
       document.documentElement.style.height = '';
       document.body.style.height = '';
-      if(document.head.contains(link1)) document.head.removeChild(link1);
+      if (document.head.contains(link1)) document.head.removeChild(link1);
     }
   }, []);
 
@@ -308,7 +308,7 @@ const CasinoPage = () => {
     <div className="rana-layout" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
       <AuthModalHost />
       <RanaHeader />
-      
+
       <style>{`
         /* Scoped styles based on casino_sample.html */
         .casino-shell {
@@ -572,31 +572,31 @@ const CasinoPage = () => {
         }
       `}</style>
 
- 
+
 
       <div className="casino-shell">
         {/* SIDEBAR */}
         <aside className="sidebar">
           <div className="s-head">Providers</div>
           <div className="s-search">
-             <input type="text" placeholder="Search provider..." value={providerSearch} onChange={e => setProviderSearch(e.target.value)} />
+            <input type="text" placeholder="Search provider..." value={providerSearch} onChange={e => setProviderSearch(e.target.value)} />
           </div>
-          
+
           <div className={`s-item ${activeProvider === 'all' ? 'on' : ''}`} onClick={() => setActiveProvider('all')}>
-            <div className="s-ico c-sa" style={{fontSize: '11px'}}>ALL</div>
+            <div className="s-ico c-sa" style={{ fontSize: '11px' }}>ALL</div>
             <span className="s-name">All Providers</span>
             <span className="s-ct">{allGames.length}</span>
           </div>
-          
+
           {providers.filter(p => p.toLowerCase().includes(providerSearch.toLowerCase())).map(p => {
-             const info = getProviderIconInfo(p);
-             return (
+            const info = getProviderIconInfo(p);
+            return (
               <div key={p} className={`s-item ${activeProvider === p ? 'on' : ''}`} onClick={() => setActiveProvider(p)}>
                 <div className={`s-ico ${info.cls}`}>{info.ico}</div>
                 <span className="s-name" title={p}>{p}</span>
                 <span className="s-ct">{providerCounts[p]}</span>
               </div>
-             )
+            )
           })}
         </aside>
 
@@ -612,7 +612,7 @@ const CasinoPage = () => {
               ))}
             </select>
           </div>
-          
+
           {/* JACKPOT BAR */}
           <div className="jp-bar">
             <div className="jp-label">🏆 Daily Jackpot</div>
@@ -645,7 +645,7 @@ const CasinoPage = () => {
           </div>
 
           {/* CATEGORY PILLS */}
-          <div 
+          <div
             ref={scrollRef}
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseLeave}
@@ -654,8 +654,8 @@ const CasinoPage = () => {
             className={`cat-row ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
           >
             {GAME_TYPES.map(type => (
-              <button 
-                key={type.id} 
+              <button
+                key={type.id}
                 className={`cat-pill ${activeType === type.id ? 'on' : ''}`}
                 onClick={() => !isDragging && setActiveType(type.id)}
               >
@@ -667,8 +667,8 @@ const CasinoPage = () => {
           <div className="sec-row">
             <div className="sec-title">All Live Games</div>
             <div className="search-box">
-               <FaSearch />
-               <input type="text" placeholder="Search games..." value={gameSearch} onChange={e => setGameSearch(e.target.value)} />
+              <FaSearch />
+              <input type="text" placeholder="Search games..." value={gameSearch} onChange={e => setGameSearch(e.target.value)} />
             </div>
           </div>
 
@@ -685,15 +685,15 @@ const CasinoPage = () => {
                 const info = getProviderIconInfo(game["Game Provider"] || game.provider || "");
                 const isHot = idx % 5 === 0;
                 const isLive = idx % 3 === 0 && !isHot;
-                
+
                 return (
                   <div key={`${game["Game UID"]}-${idx}`} className="gcard" onClick={() => handleGameClick(game)}>
                     <div className={`gthumb ${info.cls}`}>
                       {game.icon && <img loading="lazy" src={game.icon} alt={game["Game Name"]} />}
                       {!game.icon && (
                         <>
-                           <div className="gicon">{info.ico}</div>
-                           <div className="gshortname">{game["Game Name"]}</div>
+                          <div className="gicon">{info.ico}</div>
+                          <div className="gshortname">{game["Game Name"]}</div>
                         </>
                       )}
                       <div className="gthumb-shade"></div>
@@ -728,58 +728,58 @@ const CasinoPage = () => {
       {confirmPopup.show && createPortal(
         <div className="fixed inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm z-[100000] p-4 font-['Oxanium']">
           <div className="bg-[#0b1120] border border-[rgba(34,198,232,0.18)] p-8 rounded-xl max-w-sm w-full text-center relative overflow-hidden shadow-[0_24px_60px_rgba(14,32,64,0.45)]">
-             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0e2040] via-[#1646d7] to-[#22c6e8]"></div>
-             
-             <div className="w-16 h-16 rounded-xl overflow-hidden mx-auto mb-4 border border-white/10 shadow-lg">
-                <img src={confirmPopup.game?.icon || "/placeholder.svg"} alt="Game" className="w-full h-full object-cover" />
-             </div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0e2040] via-[#1646d7] to-[#22c6e8]"></div>
 
-             <h3 className="text-lg font-bold text-white uppercase tracking-wider mb-2">
-               {confirmPopup.error === "balance_error" ? "Insufficient Balance" : 
-                confirmPopup.error === "authorization_error" ? "Session Expired" : 
-                confirmPopup.error ? "Game Unavailable" : 
-                "Ready to Play?"}
-             </h3>
+            <div className="w-16 h-16 rounded-xl overflow-hidden mx-auto mb-4 border border-white/10 shadow-lg">
+              <img src={confirmPopup.game?.icon || "/placeholder.svg"} alt="Game" className="w-full h-full object-cover" />
+            </div>
 
-             <p className="text-sm text-gray-400 mb-6 font-['Rajdhani']">
-               {confirmPopup.error === "balance_error" ? "A minimum deposit is required to play this game." :
+            <h3 className="text-lg font-bold text-white uppercase tracking-wider mb-2">
+              {confirmPopup.error === "balance_error" ? "Insufficient Balance" :
+                confirmPopup.error === "authorization_error" ? "Session Expired" :
+                  confirmPopup.error ? "Game Unavailable" :
+                    "Ready to Play?"}
+            </h3>
+
+            <p className="text-sm text-gray-400 mb-6 font-['Rajdhani']">
+              {confirmPopup.error === "balance_error" ? "A minimum deposit is required to play this game." :
                 confirmPopup.error === "authorization_error" ? "Please log in again to continue." :
-                confirmPopup.error ? `Error: ${confirmPopup.error}` :
-                `You are about to launch ${confirmPopup.game?.["Game Name"]}.`}
-             </p>
+                  confirmPopup.error ? `Error: ${confirmPopup.error}` :
+                    `You are about to launch ${confirmPopup.game?.["Game Name"]}.`}
+            </p>
 
-             <div className="flex flex-col gap-3">
-                {confirmPopup.error === "balance_error" ? (
-                   <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="bg-gradient-to-br from-[#0e2040] via-[#1646d7] to-[#22c6e8] text-white font-bold uppercase rounded-lg w-full justify-center py-2.5 shadow-[0_12px_28px_rgba(22,70,215,0.28)]">Add Funds</button>
-                ) : confirmPopup.error === "authorization_error" ? (
-                   <button onClick={handleAuthError} className="bg-gradient-to-br from-[#0e2040] via-[#1646d7] to-[#22c6e8] text-white font-bold uppercase rounded-lg w-full justify-center py-2.5 shadow-[0_12px_28px_rgba(22,70,215,0.28)]">Log In Again</button>
-                ) : confirmPopup.error ? (
-                   <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="bg-transparent border border-[#22c6e8] text-[#22c6e8] font-bold uppercase rounded-lg w-full justify-center py-2.5">Try Another</button>
-                ) : (
-                   <button onClick={confirmGameOpen} className="bg-gradient-to-br from-[#0e2040] via-[#1646d7] to-[#22c6e8] text-white font-bold uppercase rounded-lg w-full justify-center py-2.5 shadow-[0_12px_28px_rgba(22,70,215,0.28)]">Confirm Play</button>
-                )}
-                <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="text-xs text-gray-500 font-bold uppercase hover:text-white mt-1 transition-colors">Cancel</button>
-             </div>
+            <div className="flex flex-col gap-3">
+              {confirmPopup.error === "balance_error" ? (
+                <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="bg-gradient-to-br from-[#0e2040] via-[#1646d7] to-[#22c6e8] text-white font-bold uppercase rounded-lg w-full justify-center py-2.5 shadow-[0_12px_28px_rgba(22,70,215,0.28)]">Add Funds</button>
+              ) : confirmPopup.error === "authorization_error" ? (
+                <button onClick={handleAuthError} className="bg-gradient-to-br from-[#0e2040] via-[#1646d7] to-[#22c6e8] text-white font-bold uppercase rounded-lg w-full justify-center py-2.5 shadow-[0_12px_28px_rgba(22,70,215,0.28)]">Log In Again</button>
+              ) : confirmPopup.error ? (
+                <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="bg-transparent border border-[#22c6e8] text-[#22c6e8] font-bold uppercase rounded-lg w-full justify-center py-2.5">Try Another</button>
+              ) : (
+                <button onClick={confirmGameOpen} className="bg-gradient-to-br from-[#0e2040] via-[#1646d7] to-[#22c6e8] text-white font-bold uppercase rounded-lg w-full justify-center py-2.5 shadow-[0_12px_28px_rgba(22,70,215,0.28)]">Confirm Play</button>
+              )}
+              <button onClick={() => setConfirmPopup({ show: false, game: null, error: null })} className="text-xs text-gray-500 font-bold uppercase hover:text-white mt-1 transition-colors">Cancel</button>
+            </div>
           </div>
         </div>, document.body
       )}
 
       {confirmLoading && createPortal(
         <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-[100000] flex flex-col items-center justify-center p-4 font-['Oxanium']">
-           <div className="bg-[#0b1120] border border-[#22c6e8]/30 p-8 rounded-xl max-w-sm w-full text-center relative shadow-[0_24px_60px_rgba(14,32,64,0.45)]">
-              <div className="mb-6 relative">
-                 <div className="w-20 h-20 rounded-xl overflow-hidden mx-auto border-2 border-[#22c6e8] relative z-10">
-                    <img src={confirmPopup.game?.icon || "/placeholder.svg"} alt="Game" className="w-full h-full object-cover" />
-                 </div>
-                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-[#22c6e8] rounded-full blur-[30px] opacity-20"></div>
+          <div className="bg-[#0b1120] border border-[#22c6e8]/30 p-8 rounded-xl max-w-sm w-full text-center relative shadow-[0_24px_60px_rgba(14,32,64,0.45)]">
+            <div className="mb-6 relative">
+              <div className="w-20 h-20 rounded-xl overflow-hidden mx-auto border-2 border-[#22c6e8] relative z-10">
+                <img src={confirmPopup.game?.icon || "/placeholder.svg"} alt="Game" className="w-full h-full object-cover" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-6 tracking-widest uppercase">Launching...</h3>
-              
-              <div className="w-full bg-[#162035] rounded-full h-1.5 overflow-hidden mb-2">
-                 <div className="h-full bg-gradient-to-r from-[#0e2040] via-[#1646d7] to-[#22c6e8] transition-all duration-300" style={{ width: `${loadingProgress}%` }}></div>
-              </div>
-              <div className="text-[10px] text-[#22c6e8] font-bold tracking-widest uppercase">{Math.round(loadingProgress)}% Loaded</div>
-           </div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-[#22c6e8] rounded-full blur-[30px] opacity-20"></div>
+            </div>
+            <h3 className="text-xl font-bold text-white mb-6 tracking-widest uppercase">Launching...</h3>
+
+            <div className="w-full bg-[#162035] rounded-full h-1.5 overflow-hidden mb-2">
+              <div className="h-full bg-gradient-to-r from-[#0e2040] via-[#1646d7] to-[#22c6e8] transition-all duration-300" style={{ width: `${loadingProgress}%` }}></div>
+            </div>
+            <div className="text-[10px] text-[#22c6e8] font-bold tracking-widest uppercase">{Math.round(loadingProgress)}% Loaded</div>
+          </div>
         </div>, document.body
       )}
 

@@ -112,11 +112,16 @@ const TransactionPage = () => {
     (acc, transaction) => {
       const amount = safeFloat(transaction.amount)
       const status = (transaction.status || "").toLowerCase()
-      if (transaction.category === "Deposit") acc.deposits += amount
-      if (transaction.category === "Withdrawal") acc.withdrawals += amount
-      if (status === "success") acc.success += 1
+      
+      const isSuccess = status === "success" || status === "approved" || status === "completed"
+
+      if (transaction.category === "Deposit" && isSuccess) acc.deposits += amount
+      if (transaction.category === "Withdrawal" && isSuccess) acc.withdrawals += amount
+      
+      if (isSuccess) acc.success += 1
       else if (status === "processing" || status === "pending") acc.processing += 1
       else acc.rejected += 1
+      
       return acc
     },
     { deposits: 0, withdrawals: 0, success: 0, processing: 0, rejected: 0 }

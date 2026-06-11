@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { Eye, EyeOff, Lock, X } from "lucide-react";
-import { FaKey, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
+import { Eye, EyeOff, Lock } from "lucide-react";
+import { FaKey, FaCheckCircle, FaExclamationTriangle, FaShieldAlt } from "react-icons/fa";
 import { API_URL } from "@/utils/constants";
-import { useColors } from '../../../hooks/useColors';
-import { FONTS } from '../../../constants/theme';
 
 const PasswordChangeForm = () => {
-  const COLORS = useColors();
   const authSecretKey = localStorage.getItem('auth_secret_key');
   const userId = localStorage.getItem('account_id');
 
@@ -21,6 +18,7 @@ const PasswordChangeForm = () => {
     confirmPassword: false,
   });
   const [toast, setToast] = useState({ message: "", type: "", visible: false });
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = (field) => {
     setShowPassword((prev) => ({ ...prev, [field]: !prev[field] }));
@@ -31,13 +29,17 @@ const PasswordChangeForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const showToast = (message, type) => {
+    setToast({ message, type, visible: true });
+    setTimeout(() => setToast(prev => ({ ...prev, visible: false })), 3500);
+  };
+
   const changePassword = async () => {
     if (!authSecretKey) {
-      setToast({ message: "Authentication failed. Please log in.", type: "error", visible: true });
-      setTimeout(() => setToast(prev => ({ ...prev, visible: false })), 3000);
+      showToast("Authentication failed. Please log in.", "error");
       return;
     }
-
+    setLoading(true);
     try {
       const response = await fetch(API_URL, {
         method: 'POST',
@@ -55,128 +57,157 @@ const PasswordChangeForm = () => {
 
       const result = await response.json();
 
-      if (result.status_code == "success") {
-        setToast({ message: "Password changed successfully!", type: "success", visible: true });
+      if (result.status_code === "success") {
+        showToast("Password changed successfully!", "success");
         setFormData({ oldPassword: "", newPassword: "", confirmPassword: "" });
-      } else if (result.status_code == "authorization_error") {
-        setToast({ message: "Please login again.", type: "error", visible: true });
-      } else if (result.status_code == "password_error" || result.status_code == "old_password_not_match") {
-        setToast({ message: "Incorrect old password. Please try again.", type: "error", visible: true });
+      } else if (result.status_code === "authorization_error") {
+        showToast("Please login again.", "error");
+      } else if (result.status_code === "password_error" || result.status_code === "old_password_not_match") {
+        showToast("Incorrect old password. Please try again.", "error");
       } else {
-        setToast({ message: "Failed to change password. Please try again.", type: "error", visible: true });
+        showToast("Failed to change password. Please try again.", "error");
       }
-      setTimeout(() => setToast(prev => ({ ...prev, visible: false })), 3000);
     } catch (error) {
-      setToast({ message: "Network error. Please check your connection.", type: "error", visible: true });
-      setTimeout(() => setToast(prev => ({ ...prev, visible: false })), 3000);
+      showToast("Network error. Please check your connection.", "error");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.oldPassword || !formData.newPassword || !formData.confirmPassword) {
+      showToast("Please fill in all fields.", "error");
+      return;
+    }
     if (formData.newPassword !== formData.confirmPassword) {
-      setToast({ message: "Passwords do not match.", type: "error", visible: true });
-      setTimeout(() => setToast(prev => ({ ...prev, visible: false })), 3000);
+      showToast("New passwords do not match.", "error");
+      return;
+    }
+    if (formData.newPassword.length < 6) {
+      showToast("New password must be at least 6 characters.", "error");
       return;
     }
     changePassword();
   };
 
+  const fields = [
+    { label: "Current Password", name: "oldPassword", placeholder: "Enter your current password" },
+    { label: "New Password", name: "newPassword", placeholder: "Enter your new password" },
+    { label: "Confirm New Password", name: "confirmPassword", placeholder: "Re-enter your new password" },
+  ];
+
   return (
-    <div className="w-[96%] max-w-lg mx-auto overflow-hidden rounded-3xl border border-black/10 dark:border-white/10 shadow-2xl relative"
-      style={{ backgroundColor: COLORS.bg2 }}>
-
-      {/* Background Glows */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <div className="absolute top-0 right-0 w-48 h-48 bg-brand/30 blur-[100px]"></div>
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand/30 blur-[100px]"></div>
-      </div>
-
-      {/* Header */}
-      <div className="p-4 md:p-6 border-b border-black/5 dark:border-white/5 flex items-center gap-4 relative z-10 bg-white/[0.02]">
-        <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg text-black dark:text-white text-lg"
-          style={{ background: COLORS.brandGradient }}>
-          <FaKey />
-        </div>
-        <div>
-          <h2 className="text-xl font-black uppercase tracking-tight text-black dark:text-white" style={{ fontFamily: FONTS.head }}>
-            Change <span style={{ color: COLORS.brand }}>Password</span>
-          </h2>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-black/30 dark:text-white/30">Account Security</span>
-        </div>
-      </div>
+    <div className="finance-v2" style={{ maxWidth: 540, margin: '0 auto' }}>
 
       {/* Toast */}
       {toast.visible && (
-        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] animate-fadeIn">
-          <div className={`flex items-center p-4 rounded-xl border shadow-2xl backdrop-blur-xl ${toast.type === 'success' ? 'bg-black/10 dark:bg-black/90 border-green-500/30 text-black dark:text-white' : 'bg-black/10 dark:bg-black/90 border-red-500/30 text-black dark:text-white'}`}>
-            {toast.type === 'success' ? <FaCheckCircle className="text-green-500 mr-3 text-xl" /> : <FaExclamationTriangle className="text-red-500 mr-3 text-xl" />}
-            <span className="text-xs font-black uppercase tracking-wide">{toast.message}</span>
-            <button onClick={() => setToast({ ...toast, visible: false })} className="ml-6 text-xl opacity-30 hover:opacity-100">&times;</button>
-          </div>
+        <div className="wallet-toast" style={{
+          background: toast.type === 'success' ? '#059669' : '#e11d48',
+        }}>
+          {toast.type === 'success' ? <FaCheckCircle /> : <FaExclamationTriangle />}
+          <span>{toast.message}</span>
         </div>
       )}
 
-      {/* Form */}
-      <div className="p-6 md:p-8 space-y-5 relative z-10">
-        {[
-          { label: "Old Password", name: "oldPassword" },
-          { label: "New Password", name: "newPassword" },
-          { label: "Confirm Password", name: "confirmPassword" },
-        ].map(({ label, name }) => (
-          <div key={name}>
-            <label className="block text-[10px] font-black uppercase tracking-widest text-black/40 dark:text-white/40 mb-2" style={{ fontFamily: FONTS.ui }}>
-              {label}
-            </label>
-            <div className="relative">
-              <span className="absolute inset-y-0 left-4 flex items-center" style={{ color: COLORS.brand }}>
-                <Lock size={16} />
-              </span>
-              <input
-                type={showPassword[name] ? "text" : "password"}
-                name={name}
-                value={formData[name]}
-                onChange={handleChange}
-                className="w-full !pl-11 pr-10 py-2.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[13px] focus:outline-none focus:border-brand/50 focus:ring-1 focus:ring-brand/50 shadow-inner placeholder-black/30 dark:placeholder-white/30 transition-all text-black dark:text-white"
-                placeholder={label}
-                style={{ 
-                  fontFamily: FONTS.ui,
-                  paddingLeft: '44px'
-                }}
-              />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-4 flex items-center text-black/30 dark:text-white/30 hover:text-black/60 dark:text-white/60 transition-colors"
-                onClick={() => togglePasswordVisibility(name)}
-              >
-                {showPassword[name] ? <EyeOff size={16} /> : <Eye size={16} />}
-              </button>
-            </div>
+      {/* Hero */}
+      <div className="finance-v2-top" style={{ display: 'block', marginBottom: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 6 }}>
+          <div style={{
+            width: 42, height: 42, display: 'grid', placeItems: 'center',
+            borderRadius: 10, background: 'linear-gradient(135deg, #0e2040 0%, #1646d7 58%, #22c6e8 100%)',
+            color: '#fff', fontSize: 16, flexShrink: 0,
+          }}>
+            <FaShieldAlt />
           </div>
-        ))}
-
-        {/* Buttons */}
-        <div className="flex gap-3 pt-3">
-          <button
-            className="flex-1 px-4 py-2.5 rounded-lg font-black uppercase tracking-widest text-[10px] bg-gray-100 dark:bg-white/5 text-black/50 dark:text-white/50 hover:text-black dark:text-white hover:bg-gray-100 dark:bg-white/10 transition-all duration-300 border border-black/5 dark:border-white/5"
-            onClick={() => setFormData({ oldPassword: "", newPassword: "", confirmPassword: "" })}
-            style={{ fontFamily: FONTS.ui }}
-          >
-            Cancel
-          </button>
-          <button
-            className="flex-1 px-4 py-2.5 rounded-lg font-black uppercase tracking-widest text-[10px] text-black dark:text-white shadow-lg active:scale-95 transition-all duration-300 relative overflow-hidden group"
-            onClick={handleSubmit}
-            style={{ background: COLORS.brandGradient, fontFamily: FONTS.ui }}
-          >
-            <div className="absolute inset-0 bg-gray-100 dark:bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <span className="relative">Save Password</span>
-          </button>
+          <div>
+            <h1 style={{ margin: 0, color: '#0f172a', fontSize: 22, fontWeight: 900, lineHeight: 1 }}>
+              Change Password
+            </h1>
+            <p style={{ margin: '4px 0 0', color: '#64748b', fontSize: 12, fontWeight: 700 }}>
+              Update your account security credentials below.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="pb-6 text-center opacity-5 select-none pointer-events-none">
-        <p className="text-[9px] font-black uppercase tracking-[2em] ml-[2em]">Security</p>
+      {/* Form Panel */}
+      <div className="finance-v2-panel">
+        <div className="finance-v2-panel-head">
+          <span><FaKey /></span>
+          <div>
+            <h2>Account Security</h2>
+            <p>All fields are required</p>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit}>
+          <div className="finance-v2-form-grid" style={{ marginTop: 8 }}>
+            {fields.map(({ label, name, placeholder }) => (
+              <label key={name}>
+                <span>{label}</span>
+                <div style={{ position: 'relative' }}>
+                  <Lock
+                    size={13}
+                    style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: '#64748b', pointerEvents: 'none' }}
+                  />
+                  <input
+                    type={showPassword[name] ? "text" : "password"}
+                    name={name}
+                    value={formData[name]}
+                    onChange={handleChange}
+                    placeholder={placeholder}
+                    className="finance-v2-text-input"
+                    style={{ paddingLeft: 34, paddingRight: 38, width: '100%', boxSizing: 'border-box' }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => togglePasswordVisibility(name)}
+                    style={{
+                      position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
+                      border: 0, background: 'transparent', color: '#64748b', cursor: 'pointer',
+                      display: 'grid', placeItems: 'center', padding: 4,
+                    }}
+                  >
+                    {showPassword[name] ? <EyeOff size={15} /> : <Eye size={15} />}
+                  </button>
+                </div>
+              </label>
+            ))}
+          </div>
+
+          {/* Note */}
+          <div className="finance-v2-note" style={{ marginTop: 14 }}>
+            <FaShieldAlt style={{ color: '#1646d7', flexShrink: 0, marginTop: 1 }} />
+            <span>Use at least 6 characters. Avoid using easy-to-guess passwords like your name or birthdate.</span>
+          </div>
+
+          {/* Buttons */}
+          <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
+            <button
+              type="button"
+              className="finance-v2-secondary"
+              style={{ flex: 1 }}
+              onClick={() => setFormData({ oldPassword: "", newPassword: "", confirmPassword: "" })}
+            >
+              Clear
+            </button>
+            <button
+              type="submit"
+              className="finance-v2-primary"
+              style={{ flex: 2, marginTop: 0 }}
+              disabled={loading}
+            >
+              {loading ? "Saving…" : "Save New Password"}
+            </button>
+          </div>
+        </form>
+      </div>
+
+      {/* Footnote */}
+      <div className="wallet-statement-footnote" style={{ marginTop: 14 }}>
+        <FaShieldAlt style={{ color: '#1646d7' }} />
+        <span>Your password is encrypted and securely stored. You will remain logged in after changing it.</span>
       </div>
     </div>
   );

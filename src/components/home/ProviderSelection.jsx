@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useColors } from '../../hooks/useColors';
 import { FONTS } from '../../constants/theme';
 import { apiGet } from '@/utils/apiFetch';
@@ -115,7 +115,7 @@ const ProviderSelection = () => {
         </div>
       ) : selectedProvider && !loading && providerGames && providerGames.length === 0 ? (
         <div className="mt-6 p-12 text-center rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-md animate-fadeIn transition-all duration-500">
-          <div className="text-5xl mb-4 opacity-30">ðŸŽ®</div>
+          <div className="text-5xl mb-4 opacity-30">🎮</div>
           <h3 className="text-white font-black text-sm uppercase tracking-widest mb-1" style={{ fontFamily: FONTS.head }}>Coming Soon</h3>
           <p className="text-white/40 font-bold uppercase tracking-widest text-[9px]" style={{ fontFamily: FONTS.ui }}>
             No games found for this provider in current region

@@ -28,7 +28,7 @@ const RoundDetailsModal = ({ isOpen, onClose, transaction }) => {
     if (matchName.includes('kingmaker') || matchName.includes('km')) return 'King Maker';
     if (matchName.includes('turbo')) return 'Turbo Games';
 
-    if (rawProvider && rawProvider !== 'Standard' && rawProvider !== 'ranamatch') return rawProvider;
+    if (rawProvider && rawProvider !== 'Standard' && rawProvider !== 'boldvelocity') return rawProvider;
     return transaction.r_match_name || 'Velplay365 Official';
   };
 
@@ -147,7 +147,7 @@ const RoundDetailsModal = ({ isOpen, onClose, transaction }) => {
                 ) : (
                   <div className="mt-6 pt-5 border-t border-black/10 dark:border-white/10 text-center">
                     <div className={`inline-flex items-center gap-3 px-5 py-3 rounded-full font-black uppercase tracking-[0.16em] text-[9px] ${netProfit < 0 ? 'bg-rose-500/10 text-rose-500 border border-rose-500/20' :
-                        'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
+                      'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20'
                       }`}>
                       {netProfit < 0 ? 'Net Loss' : 'Net Profit'}:
                       <span className="text-base" style={{ fontFamily: FONTS.head }}>₹{Math.abs(netProfit || 0).toFixed(2)}</span>

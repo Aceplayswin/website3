@@ -1,5 +1,5 @@
 import React from 'react'
-import RanaHeader from '../home/ranamatch/RanaHeader'
+import RanaHeader from '../home/boldvelocity/RanaHeader'
 import Withdraw from '../navbar/Withdraw'
 import '../../assets/css/ranamatch.css'
 

@@ -1,10 +1,10 @@
 "use client"
 
 import { useEffect } from "react"
-import RanaHeader from "./ranamatch/RanaHeader"
-import RanaSidebarLeft from "./ranamatch/RanaSidebarLeft"
-import RanaSidebarRight from "./ranamatch/RanaSidebarRight"
-import RanaMainContent from "./ranamatch/RanaMainContent"
+import RanaHeader from "./boldvelocity/RanaHeader"
+import RanaSidebarLeft from "./boldvelocity/RanaSidebarLeft"
+import RanaSidebarRight from "./boldvelocity/RanaSidebarRight"
+import RanaMainContent from "./boldvelocity/RanaMainContent"
 import AuthModalHost from "../common/AuthModalHost"
 import '../../assets/css/ranamatch.css'
 

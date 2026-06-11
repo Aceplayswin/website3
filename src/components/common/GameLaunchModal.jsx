@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { FaPlay } from 'react-icons/fa';
 import { useColors } from '../../hooks/useColors';
@@ -103,7 +103,7 @@ export default function GameLaunchModal({ show, game, error, onClose }) {
                     Insufficient Balance
                   </h3>
                   <p className="game-launch-copy">
-                    A minimum deposit of <span className="text-black dark:text-white font-bold">â‚¹100</span> is required to access this premium experience.
+                    A minimum deposit of <span className="text-black dark:text-white font-bold">₹100</span> is required to access this premium experience.
                   </p>
                 </>
               ) : localError === "authorization_error" ? (
@@ -231,7 +231,7 @@ export default function GameLaunchModal({ show, game, error, onClose }) {
                     {step.label}
                   </span>
                   <div className="game-loading-dot">
-                    {loadingProgress > step.threshold ? "✓" : ""}
+                    {loadingProgress > step.threshold ? "?" : ""}
                   </div>
                 </div>
               ))}

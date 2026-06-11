@@ -2,7 +2,7 @@ import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import ContactUs from '../sidebar-components/contact/ContactUs'
 import SupportHistory from '../sidebar-components/contact/SupportHistory'
-import RanaHeader from '../home/ranamatch/RanaHeader'
+import RanaHeader from '../home/boldvelocity/RanaHeader'
 import AuthModalHost from '../common/AuthModalHost'
 import '../../assets/css/ranamatch.css'
 

@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaWallet, FaMoneyBillWave, FaCoins } from "react-icons/fa";
 import { useColors } from '../../hooks/useColors';
@@ -100,10 +100,10 @@ const AccountInfo = ({ accountInfo }) => {
               <div className="relative z-10">
                 <div className="flex items-center gap-1 mb-1">
                   <div className="text-[7px] font-black text-black/30 dark:text-white/30 uppercase tracking-widest leading-none">{box.label}</div>
-                  {box.locked && <span className="text-[8px]">ðŸ”’</span>}
+                  {box.locked && <span className="text-[8px]">🔒</span>}
                 </div>
                 <div className={`text-[11px] sm:text-sm font-black flex items-center gap-0.5 leading-none ${box.active ? "text-black dark:text-white" : "text-black/20 dark:text-white/20"}`} style={{ fontFamily: FONTS.head, letterSpacing: '-0.02em' }}>
-                  {box.isCurrency && box.active && <span className="text-brand text-[9px] font-bold">â‚¹</span>}
+                  {box.isCurrency && box.active && <span className="text-brand text-[9px] font-bold">₹</span>}
                   <span className="whitespace-nowrap">{box.value}</span>
                 </div>
               </div>
@@ -116,19 +116,19 @@ const AccountInfo = ({ accountInfo }) => {
           ))}
         </div>
 
-        {/* Wagering Progress Banner â€” shown only when bonus is locked in wagering */}
+        {/* Wagering Progress Banner — shown only when bonus is locked in wagering */}
         {isWagering && (
           <div className="mt-3 p-3 rounded-2xl border border-brand/20 bg-brand/5 relative overflow-hidden">
             <div className="flex items-start justify-between mb-2">
               <div>
-                <p className="text-[8px] font-black uppercase tracking-widest text-brand mb-0.5">Wagering In Progress ðŸ”’</p>
+                <p className="text-[8px] font-black uppercase tracking-widest text-brand mb-0.5">Wagering In Progress 🔒</p>
                 {wagerRequired > 0 ? (
                   <p className="text-[10px] font-bold text-black/60 dark:text-white/60">
-                    â‚¹{wagerCompleted.toLocaleString('en-IN')} completed of â‚¹{wagerRequired.toLocaleString('en-IN')} required
+                    ₹{wagerCompleted.toLocaleString('en-IN')} completed of ₹{wagerRequired.toLocaleString('en-IN')} required
                   </p>
                 ) : (
                   <p className="text-[10px] font-bold text-black/60 dark:text-white/60">
-                    â‚¹{remainingWager.toLocaleString('en-IN')} remaining to unlock
+                    ₹{remainingWager.toLocaleString('en-IN')} remaining to unlock
                   </p>
                 )}
               </div>
@@ -150,7 +150,7 @@ const AccountInfo = ({ accountInfo }) => {
               />
             </div>
             <p className="text-[7px] text-black/30 dark:text-white/30 mt-2 leading-tight">
-              Bonus of â‚¹{activeBonus.toLocaleString('en-IN')} stays in the Sports/Casino bonus wallet and will transfer to Real Balance automatically only after 100% wagering is complete.
+              Bonus of ₹{activeBonus.toLocaleString('en-IN')} stays in the Sports/Casino bonus wallet and will transfer to Real Balance automatically only after 100% wagering is complete.
             </p>
           </div>
         )}
@@ -186,7 +186,7 @@ const AccountInfo = ({ accountInfo }) => {
           <div className="relative z-10 flex items-center justify-between">
             <div>
               <p className="text-[8px] font-black text-brand uppercase tracking-widest mb-0.5">Available Cashback</p>
-              <p className="text-lg font-black text-white" style={{ fontFamily: FONTS.head }}>â‚¹{parseFloat(accountInfo.claimable_cashback).toLocaleString('en-IN')}</p>
+              <p className="text-lg font-black text-white" style={{ fontFamily: FONTS.head }}>₹{parseFloat(accountInfo.claimable_cashback).toLocaleString('en-IN')}</p>
             </div>
             <button
               onClick={async () => {

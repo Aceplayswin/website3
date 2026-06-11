@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import RanaHeader from "../home/ranamatch/RanaHeader";
-import RanaFooter from "../home/ranamatch/RanaFooter";
+import RanaHeader from "../home/boldvelocity/RanaHeader";
+import RanaFooter from "../home/boldvelocity/RanaFooter";
 import GameSection from "../home/GameSection";
 import "../../assets/css/ranamatch.css";
 

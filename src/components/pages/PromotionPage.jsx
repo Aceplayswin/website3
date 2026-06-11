@@ -1,5 +1,5 @@
 import React from 'react'
-import RanaHeader from '../home/ranamatch/RanaHeader'
+import RanaHeader from '../home/boldvelocity/RanaHeader'
 import Promotion from '../sidebar-components/Miscellaneous/Promotion'
 import '../../assets/css/ranamatch.css';
 

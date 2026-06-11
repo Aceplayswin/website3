@@ -61,6 +61,7 @@ const Register = ({ onSwitchToLogin, onClose }) => {
       });
 
       const data = await response.json();
+      console.log("[Register] OTP Response:", data);
 
       if (data.status_code === "otp_error") {
         setOtpError("We failed to send OTP! Please try again!");
@@ -68,10 +69,25 @@ const Register = ({ onSwitchToLogin, onClose }) => {
       } else if (data.status_code === "otp_limit_error") {
         setOtpError("You have reached the limit of OTP requests! Please try again later!");
         showToast("error", "OTP request limit reached. Please try later!");
+      } else if (data.status_code === "sms_token_missing") {
+        setOtpError("SMS gateway token is missing in backend settings.");
+        showToast("error", "SMS token missing in backend settings.");
+      } else if (data.status_code === "otp_service_disabled") {
+        setOtpError("OTP service is disabled in backend settings.");
+        showToast("error", "OTP service is disabled.");
+      } else if (data.status_code === "sms_gateway_error") {
+        setOtpError("SMS gateway request failed. Please try again.");
+        showToast("error", "SMS gateway request failed.");
+      } else if (data.status_code === "sms_gateway_invalid_response" || data.status_code === "sms_send_failed") {
+        setOtpError("SMS provider did not accept the OTP request.");
+        showToast("error", "SMS provider did not accept the OTP request.");
       } else if (data.status_code === "success") {
         setOtpSent(true);
         setOtpError("");
         showToast("success", "OTP sent successfully!");
+      } else {
+        setOtpError("Unable to send OTP right now.");
+        showToast("error", "Unable to send OTP right now.");
       }
     } catch (error) {
       setOtpError("Something went wrong! Please try again.");

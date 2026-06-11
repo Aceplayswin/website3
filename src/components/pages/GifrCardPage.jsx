@@ -1,5 +1,5 @@
 import React from 'react'
-import RanaHeader from '../home/ranamatch/RanaHeader'
+import RanaHeader from '../home/boldvelocity/RanaHeader'
 import GiftCardRedemption from '../sidebar-components/Miscellaneous/GiftCard'
 import { useColors } from '../../hooks/useColors';
 import '../../assets/css/ranamatch.css';

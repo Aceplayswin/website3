@@ -74,7 +74,7 @@ function Deposit() {
           setQuickAmounts(result.deposit_options.split(","))
         }
         setBank({
-          ACCOUNT_HOLDER: result.BANK_DETAILS?.ACCOUNT_HOLDER || "RANAMATCH TRADING",
+          ACCOUNT_HOLDER: result.BANK_DETAILS?.ACCOUNT_HOLDER || "boldvelocity TRADING",
           ACCOUNT_NUMBER: result.BANK_DETAILS?.ACCOUNT_NUMBER || "912020001234567",
           IFSC_CODE: result.BANK_DETAILS?.IFSC_CODE || "UTIB0001234",
           BANK_NAME: result.BANK_DETAILS?.BANK_NAME || "AXIS BANK",
@@ -82,7 +82,7 @@ function Deposit() {
       } catch (error) {
         console.error("Error fetching Deposit Address", error)
         setBank({
-          ACCOUNT_HOLDER: "RANAMATCH TRADING",
+          ACCOUNT_HOLDER: "boldvelocity TRADING",
           ACCOUNT_NUMBER: "912020001234567",
           IFSC_CODE: "UTIB0001234",
           BANK_NAME: "AXIS BANK",
@@ -152,7 +152,7 @@ function Deposit() {
       return
     }
     if (mode === "CasyPay") {
-      const paymentURL = "https://pay.ranamatch.com/gateapi/payments/gateways1/initialisation/casypay.php"
+      const paymentURL = "https://pay.boldvelocity.com/gateapi/payments/gateways1/initialisation/casypay.php"
       window.location.href = `${paymentURL}?amount=${amount}&user_id=${userId}`
       return
     }
@@ -347,10 +347,10 @@ function Deposit() {
             style={
               amount && parseFloat(amount) > 0 && (activeTab.includes("gateway") || utr)
                 ? {
-                    background: "linear-gradient(135deg, #0e2040 0%, #1646d7 58%, #22c6e8 100%)",
-                    color: "#ffffff",
-                    border: "0",
-                  }
+                  background: "linear-gradient(135deg, #0e2040 0%, #1646d7 58%, #22c6e8 100%)",
+                  color: "#ffffff",
+                  border: "0",
+                }
                 : undefined
             }
           >

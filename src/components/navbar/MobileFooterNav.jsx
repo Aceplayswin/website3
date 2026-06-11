@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import sportImage from "./images/sport.webp";
 import cusinoImage from "./images/cusino.webp";
@@ -65,7 +65,7 @@ const FooterNav = () => {
         const encodedUrl = btoa(data.data.game_url);
         navigate(`/game-url/${encodeURIComponent(encodedUrl)}/${encodeURIComponent(gameObj["Game Name"])}`);
       } else if (data.status_code === "balance_error") {
-        showToast("error", "Minimum balance of â‚¹100 required to play sports.");
+        showToast("error", "Minimum balance of ₹100 required to play sports.");
       } else if (data.status_code === "authorization_error" || data.status_code === "auth_error") {
         showToast("error", "Session expired. Please login again.");
         localStorage.removeItem("auth_secret_key");
@@ -219,7 +219,7 @@ const FooterNav = () => {
                 <div className="flex flex-col items-center group/item">
                   <div className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-300 ${item.active ? 'bg-brand/20 border-brand/40' : 'bg-gray-100 dark:bg-white/5 border-black/5 dark:border-white/5'} border mb-1`}>
                     {item.label === "Sport" && sportsLoading ? (
-                      <span className="text-brand animate-spin text-lg">â³</span>
+                      <span className="text-brand animate-spin text-lg">⏳</span>
                     ) : (
                       <img 
                         src={item.icon} 
@@ -247,9 +247,9 @@ const FooterNav = () => {
               }`}
             style={{ fontFamily: FONTS.ui }}
           >
-            <span className="text-sm font-bold">{toast.type === "success" ? "âœ“" : "âš "}</span>
+            <span className="text-sm font-bold">{toast.type === "success" ? "✓" : "⚠"}</span>
             <span className="text-xs font-medium">{toast.message}</span>
-            <button onClick={() => setToast(null)} className="ml-2 text-white/70 hover:text-white text-sm font-bold">âœ•</button>
+            <button onClick={() => setToast(null)} className="ml-2 text-white/70 hover:text-white text-sm font-bold">✕</button>
           </div>
         </div>
       )}
