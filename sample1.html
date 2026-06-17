@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexBet – Every Match. Every Moment.</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════
+   NEXBET REDESIGN — 2026
+   Palette: Deep navy base, electric violet primary, 
+            warm gold accent, ember red live
+   Signature: Diagonal split hero + glowing card borders
+   Fonts: Syne (display) · DM Sans (body) · DM Mono (data)
+═══════════════════════════════════════════ */
+
+:root {
+  --void:      #060912;
+  --deep:      #0D1120;
+  --base:      #111827;
+  --raised:    #161E30;
+  --lift:      #1C2640;
+  --rim:       rgba(255,255,255,0.06);
+  --rim2:      rgba(255,255,255,0.11);
+
+  --violet:    #7C5CFC;
+  --violet-lt: #9B7EFF;
+  --violet-glow: rgba(124,92,252,0.22);
+  --violet-dim:  rgba(124,92,252,0.09);
+
+  --gold:      #F0C040;
+  --gold-dim:  rgba(240,192,64,0.10);
+  --gold-glow: rgba(240,192,64,0.18);
+
+  --ember:     #FF4444;
+  --ember-dim: rgba(255,68,68,0.10);
+
+  --mint:      #34D4A0;
+  --mint-dim:  rgba(52,212,160,0.09);
+
+  --ink:       #F0F2F8;
+  --muted:     #6B7799;
+  --muted2:    #9BA5C2;
+
+  --r:         10px;
+  --r-sm:      6px;
+  --r-lg:      14px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--void);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* ── UTILITIES ── */
+.mono { font-family: 'DM Mono', monospace; }
+.display { font-family: 'Syne', sans-serif; }
+
+/* ── TICKER ── */
+.ticker {
+  height: 38px;
+  background: var(--deep);
+  border-bottom: 1px solid var(--rim);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+.ticker::before, .ticker::after {
+  content:''; position:absolute; top:0; bottom:0; width:80px; z-index:2; pointer-events:none;
+}
+.ticker::before { left:0; background:linear-gradient(90deg,var(--deep),transparent); }
+.ticker::after  { right:0; background:linear-gradient(-90deg,var(--deep),transparent); }
+
+.ticker-badge {
+  flex-shrink:0;
+  background: linear-gradient(135deg, var(--violet), #5B3FD4);
+  padding: 0 20px;
+  height:100%;
+  display:flex;
+  align-items:center;
+  font-family:'Syne',sans-serif;
+  font-weight:700;
+  font-size:10px;
+  letter-spacing:2px;
+  color:#fff;
+  clip-path: polygon(0 0, calc(100%) 0, calc(100% + 12px) 100%, 0 100%);
+  padding-right: 28px;
+  position:relative;
+  z-index:3;
+}
+
+.ticker-scroll { flex:1; overflow:hidden; padding: 0 24px; }
+.ticker-inner {
+  display:inline-flex;
+  gap: 52px;
+  white-space: nowrap;
+  animation: scroll-left 42s linear infinite;
+}
+@keyframes scroll-left { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+.tick {
+  display:flex; align-items:center; gap:10px;
+  font-family:'DM Mono',monospace; font-size:11px; color:var(--muted2);
+}
+.tick .sport { font-size:14px; }
+.tick .teams { color:var(--ink); font-weight:500; }
+.tick .score { color:var(--violet-lt); font-weight:700; }
+.tick .live-dot {
+  width:5px; height:5px; border-radius:50%; background:var(--ember);
+  animation: pulse 1.3s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.6)} }
+
+/* ── HEADER ── */
+header {
+  background: rgba(13,17,32,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rim);
+  position: sticky; top:0; z-index:300;
+}
+.hdr {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.logo {
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:0;
+  flex-shrink:0;
+}
+.logo-mark {
+  width:36px; height:36px;
+  background: linear-gradient(135deg,var(--violet),#5B3FD4);
+  border-radius: 8px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:16px;
+  color:#fff;
+  margin-right: 10px;
+  position:relative;
+}
+.logo-mark::after {
+  content:'';
+  position:absolute; bottom:-2px; right:-2px;
+  width:10px; height:10px;
+  background: var(--gold);
+  border-radius:50%;
+  border:2px solid var(--void);
+}
+.logo-text {
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:20px;
+  letter-spacing:-0.5px;
+}
+.logo-text .n { color:var(--ink); }
+.logo-text .b { color:var(--violet-lt); }
+
+nav {
+  flex:1;
+  display:flex;
+  align-items:center;
+  gap:2px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+nav::-webkit-scrollbar { display:none; }
+
+nav a {
+  display:flex; align-items:center; gap:6px;
+  padding: 7px 14px;
+  color:var(--muted2);
+  text-decoration:none;
+  font-size:13px;
+  font-weight:500;
+  border-radius:var(--r-sm);
+  transition: all .15s;
+  white-space:nowrap;
+}
+nav a:hover { color:var(--ink); background:rgba(255,255,255,.05); }
+nav a.active { color:var(--violet-lt); background:var(--violet-dim); }
+nav a .pip {
+  width:5px; height:5px; border-radius:50%; background:var(--ember);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.hdr-right { display:flex; align-items:center; gap:10px; flex-shrink:0; margin-left:auto; }
+.btn {
+  font-family:'DM Sans',sans-serif; font-weight:600; font-size:13px;
+  padding: 8px 20px; border-radius:var(--r-sm);
+  border:none; cursor:pointer; text-decoration:none;
+  transition: all .15s; display:inline-flex; align-items:center; gap:6px;
+}
+.btn-outline {
+  background:transparent; color:var(--muted2);
+  border:1px solid var(--rim2);
+}
+.btn-outline:hover { color:var(--ink); border-color:rgba(255,255,255,.25); }
+.btn-violet {
+  background: linear-gradient(135deg,var(--violet),#5B3FD4);
+  color:#fff; font-weight:700; letter-spacing:.1px;
+  box-shadow: 0 4px 16px rgba(124,92,252,.3);
+}
+.btn-violet:hover { box-shadow:0 6px 24px rgba(124,92,252,.45); transform:translateY(-1px); }
+
+/* ── SPORT PILLS BAR ── */
+.sport-bar {
+  background: var(--deep);
+  border-bottom: 1px solid var(--rim);
+}
+.sport-bar-inner {
+  max-width:1440px; margin:0 auto; padding:0 28px;
+  display:flex; gap:6px; overflow-x:auto; scrollbar-width:none;
+  padding-top:10px; padding-bottom:10px;
+}
+.sport-bar-inner::-webkit-scrollbar { display:none; }
+
+.spill {
+  display:flex; align-items:center; gap:6px;
+  padding: 6px 14px;
+  border-radius:40px;
+  border: 1px solid var(--rim);
+  font-size:12px; font-weight:600;
+  color:var(--muted2);
+  cursor:pointer;
+  white-space:nowrap;
+  transition: all .15s;
+  text-decoration:none;
+}
+.spill:hover { border-color:rgba(255,255,255,.18); color:var(--ink); }
+.spill.active {
+  background: var(--violet-dim);
+  border-color: rgba(124,92,252,.4);
+  color: var(--violet-lt);
+}
+.spill-icon { font-size:15px; }
+.spill-num {
+  font-family:'DM Mono',monospace;
+  font-size:10px; font-weight:700;
+  background:rgba(255,255,255,.07);
+  padding:1px 6px; border-radius:20px; color:var(--muted);
+}
+.spill.active .spill-num { background:rgba(124,92,252,.2); color:var(--violet-lt); }
+
+/* ── PAGE LAYOUT ── */
+.wrap {
+  max-width:1440px; margin:0 auto;
+  padding:24px 28px;
+  display:grid;
+  grid-template-columns: 220px 1fr 290px;
+  gap:22px;
+}
+
+/* ── LEFT SIDEBAR ── */
+.sidebar-l { display:flex; flex-direction:column; gap:2px; }
+
+.sl-label {
+  font-family:'Syne',sans-serif;
+  font-size:9px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase;
+  color:var(--muted);
+  padding: 18px 10px 6px;
+}
+.sl-label:first-child { padding-top:0; }
+
+.sl-link {
+  display:flex; align-items:center; gap:10px;
+  padding: 8px 10px;
+  border-radius:var(--r-sm);
+  color:var(--muted2); text-decoration:none;
+  font-size:13px; font-weight:500;
+  transition: all .12s; cursor:pointer;
+  position:relative;
+}
+.sl-link:hover { background:var(--raised); color:var(--ink); }
+.sl-link.active {
+  background: var(--violet-dim);
+  color:var(--violet-lt);
+}
+.sl-link.active::before {
+  content:'';
+  position:absolute; left:0; top:20%; bottom:20%;
+  width:3px; background:var(--violet); border-radius:0 3px 3px 0;
+}
+.sl-ico { font-size:15px; width:20px; text-align:center; flex-shrink:0; }
+.sl-name { flex:1; }
+.sl-ct {
+  font-family:'DM Mono',monospace; font-size:10px; font-weight:700;
+  color:var(--muted); background:rgba(255,255,255,.05);
+  padding:1px 6px; border-radius:10px;
+}
+.sl-link.is-live .sl-ct { color:var(--ember); background:var(--ember-dim); }
+
+/* ── MAIN CONTENT ── */
+.main { display:flex; flex-direction:column; gap:22px; min-width:0; }
+
+/* HERO — diagonal split */
+.hero {
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  position:relative;
+  min-height:260px;
+  background: var(--raised);
+  border:1px solid var(--rim);
+  display:flex;
+}
+.hero-left {
+  flex:1; padding:36px 40px;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative; z-index:2;
+}
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--violet-dim);
+  border:1px solid rgba(124,92,252,.25);
+  border-radius:40px;
+  padding:4px 12px 4px 8px;
+  margin-bottom:18px;
+  width:fit-content;
+}
+.hero-eyebrow-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:var(--ember);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+.hero-eyebrow-text {
+  font-size:10px; font-weight:700; letter-spacing:1.5px;
+  text-transform:uppercase; color:var(--violet-lt);
+}
+
+.hero-h1 {
+  font-family:'Syne',sans-serif;
+  font-weight:800; font-size:52px;
+  line-height:.95; letter-spacing:-2px;
+  color:var(--ink); margin-bottom:12px;
+}
+.hero-h1 .accent { color:var(--violet-lt); }
+.hero-h1 .gold { color:var(--gold); }
+.hero-sub {
+  font-size:14px; color:var(--muted2); line-height:1.65;
+  max-width:340px; margin-bottom:26px;
+}
+.hero-btns { display:flex; gap:10px; flex-wrap:wrap; }
+
+/* Hero floating badge */
+.hero-float {
+  position:absolute; top:28px; right:220px;
+  background:var(--deep);
+  border:1px solid rgba(240,192,64,.3);
+  border-radius:12px;
+  padding:16px 20px;
+  z-index:2;
+  text-align:center;
+  min-width:148px;
+  box-shadow: 0 0 32px rgba(240,192,64,.08);
+}
+.hf-label {
+  font-size:9px; font-weight:700; letter-spacing:2px;
+  text-transform:uppercase; color:var(--muted2); margin-bottom:5px;
+}
+.hf-amount {
+  font-family:'Syne',sans-serif;
+  font-weight:800; font-size:32px;
+  color:var(--gold); letter-spacing:-1px; line-height:1;
+}
+.hf-sub { font-size:10px; color:var(--muted); margin-top:4px; line-height:1.4; }
+
+/* Hero art panel */
+.hero-art {
+  width:200px; flex-shrink:0;
+  position:relative;
+  display:flex; align-items:center; justify-content:center;
+}
+.hero-art::before {
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(135deg,
+    rgba(124,92,252,.15) 0%,
+    rgba(52,212,160,.08) 100%
+  );
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+}
+.hero-art-emoji { font-size:80px; opacity:.15; filter:blur(1px); position:relative; z-index:1; }
+
+/* Hero BG */
+.hero-bg {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 10% 60%, rgba(124,92,252,.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 10%, rgba(52,212,160,.05) 0%, transparent 45%);
+}
+.hero-dots {
+  position:absolute; inset:0;
+  background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ── STATS ROW ── */
+.stats-row {
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:10px;
+}
+.stat {
+  background:var(--base);
+  border:1px solid var(--rim);
+  border-radius:var(--r);
+  padding:16px;
+  display:flex; align-items:center; gap:14px;
+  transition: border-color .15s;
+  position:relative; overflow:hidden;
+}
+.stat:hover { border-color:var(--rim2); }
+.stat::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:2px;
+}
+.stat-v::before { background:linear-gradient(90deg,var(--violet),transparent); }
+.stat-g::before { background:linear-gradient(90deg,var(--gold),transparent); }
+.stat-m::before { background:linear-gradient(90deg,var(--mint),transparent); }
+.stat-e::before { background:linear-gradient(90deg,var(--ember),transparent); }
+
+.stat-ico {
+  width:40px; height:40px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; flex-shrink:0;
+}
+.stat-ico-v { background:rgba(124,92,252,.1); }
+.stat-ico-g { background:rgba(240,192,64,.1); }
+.stat-ico-m { background:rgba(52,212,160,.1); }
+.stat-ico-e { background:rgba(255,68,68,.1); }
+
+.stat-val {
+  font-family:'Syne',sans-serif;
+  font-weight:800; font-size:20px;
+  line-height:1; color:var(--ink);
+}
+.stat-lbl { font-size:11px; color:var(--muted2); margin-top:3px; }
+
+/* ── SECTION HEAD ── */
+.sec {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:14px;
+}
+.sec-title {
+  font-family:'Syne',sans-serif;
+  font-weight:700; font-size:17px;
+  color:var(--ink); letter-spacing:-.3px;
+  display:flex; align-items:center; gap:10px;
+}
+.tag {
+  font-family:'DM Mono',monospace;
+  font-size:9px; font-weight:700;
+  letter-spacing:1px; text-transform:uppercase;
+  padding:3px 9px; border-radius:20px;
+}
+.tag-live { background:var(--ember-dim); color:var(--ember); border:1px solid rgba(255,68,68,.2); }
+.tag-hot  { background:var(--gold-dim);  color:var(--gold);  border:1px solid rgba(240,192,64,.2); }
+.tag-new  { background:var(--violet-dim);color:var(--violet-lt);border:1px solid rgba(124,92,252,.2); }
+.sec-all {
+  font-size:12px; font-weight:600;
+  color:var(--muted2); text-decoration:none;
+  display:flex; align-items:center; gap:4px;
+  transition:color .15s;
+}
+.sec-all:hover { color:var(--violet-lt); }
+
+/* ── MATCH CARDS ── */
+.matches { display:flex; flex-direction:column; gap:8px; }
+
+.match {
+  background:var(--base);
+  border:1px solid var(--rim);
+  border-radius:var(--r);
+  overflow:hidden;
+  cursor:pointer;
+  transition: all .15s;
+}
+.match:hover {
+  border-color:rgba(124,92,252,.3);
+  box-shadow: 0 0 0 1px rgba(124,92,252,.12), 0 8px 24px rgba(0,0,0,.3);
+  transform:translateY(-1px);
+}
+
+.match-hdr {
+  display:flex; align-items:center; gap:10px;
+  padding:12px 16px 0;
+}
+.match-sport {
+  width:30px; height:30px;
+  background:var(--raised); border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; flex-shrink:0;
+}
+.match-league {
+  flex:1; font-size:10px; font-weight:700;
+  color:var(--muted); text-transform:uppercase; letter-spacing:.5px;
+}
+.live-pill {
+  display:flex; align-items:center; gap:5px;
+  background:var(--ember-dim);
+  border:1px solid rgba(255,68,68,.18);
+  border-radius:4px;
+  padding:3px 8px;
+  font-family:'DM Mono',monospace;
+  font-size:9px; font-weight:700; color:var(--ember);
+  letter-spacing:1px;
+}
+.live-pill::before {
+  content:''; width:4px; height:4px; border-radius:50%;
+  background:var(--ember); animation:pulse 1.2s ease-in-out infinite;
+}
+.time-pill {
+  background:var(--raised); border:1px solid var(--rim);
+  border-radius:4px; padding:3px 8px;
+  font-family:'DM Mono',monospace;
+  font-size:10px; color:var(--muted);
+}
+
+.match-teams {
+  display:grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items:center; gap:10px;
+  padding:12px 16px;
+}
+.team { display:flex; align-items:center; gap:10px; }
+.team.r  { flex-direction:row-reverse; text-align:right; }
+.team-badge {
+  width:28px; height:28px; border-radius:50%;
+  background:var(--raised); border:1px solid var(--rim);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; flex-shrink:0;
+}
+.team-name {
+  font-family:'Syne',sans-serif;
+  font-weight:700; font-size:13px; color:var(--ink);
+}
+.team-sub { font-size:10px; color:var(--muted2); font-weight:500; }
+
+.score-mid { text-align:center; }
+.score {
+  font-family:'DM Mono',monospace;
+  font-weight:700; font-size:24px;
+  color:var(--ink); letter-spacing:3px; line-height:1;
+}
+.score-sub { font-size:10px; color:var(--muted); margin-top:3px; }
+
+/* Progress track */
+.match-bar {
+  margin:0 16px;
+  height:3px;
+  background:rgba(255,255,255,.05);
+  border-radius:2px; overflow:hidden;
+}
+.match-bar-fill {
+  height:100%;
+  border-radius:2px;
+  background:linear-gradient(90deg,var(--violet),var(--mint));
+  position:relative;
+  transition:width 1.2s ease;
+}
+.match-bar-fill::after {
+  content:''; position:absolute; right:0; top:0; bottom:0; width:14px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.7));
+  animation:shimmer 2s ease-in-out infinite;
+}
+@keyframes shimmer { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+/* Odds */
+.match-odds {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:6px; padding:10px 16px 16px;
+}
+.odd {
+  background:var(--raised);
+  border:1px solid var(--rim);
+  border-radius:8px; padding:8px 10px;
+  text-align:center; cursor:pointer;
+  transition: all .12s;
+}
+.odd:hover {
+  background:var(--violet-dim);
+  border-color:rgba(124,92,252,.35);
+}
+.odd.on {
+  background:linear-gradient(135deg,var(--violet),#5B3FD4);
+  border-color:var(--violet);
+}
+.odd.on .odd-lbl, .odd.on .odd-val { color:#fff; }
+.odd-lbl {
+  font-size:9px; font-weight:700;
+  color:var(--muted2); text-transform:uppercase; letter-spacing:.5px;
+  display:block; margin-bottom:3px;
+}
+.odd-val {
+  font-family:'DM Mono',monospace;
+  font-weight:700; font-size:15px;
+  color:var(--violet-lt); display:block; line-height:1;
+}
+
+/* ── GAME GRID ── */
+.game-grid {
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:10px;
+}
+.gc {
+  background:var(--base);
+  border:1px solid var(--rim);
+  border-radius:var(--r);
+  overflow:hidden; cursor:pointer;
+  transition: all .15s; position:relative;
+}
+.gc:hover {
+  border-color:rgba(124,92,252,.3);
+  transform:translateY(-3px);
+  box-shadow:0 10px 28px rgba(0,0,0,.35);
+}
+.gc-img {
+  height:90px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:36px; position:relative;
+}
+.gc-grd {
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,transparent 40%,var(--base));
+}
+.gc-badge {
+  position:absolute; top:7px; left:7px;
+  font-size:8px; font-weight:700; letter-spacing:.5px;
+  text-transform:uppercase; padding:2px 7px; border-radius:3px;
+}
+.gb-hot  { background:var(--gold); color:#000; }
+.gb-new  { background:var(--violet); color:#fff; }
+.gb-live { background:var(--ember); color:#fff; }
+.gc-info { padding:8px 10px 11px; }
+.gc-name {
+  font-family:'Syne',sans-serif;
+  font-weight:700; font-size:12px; color:var(--ink);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  margin-bottom:2px;
+}
+.gc-prov { font-size:10px; color:var(--muted2); }
+
+/* Thumb gradients */
+.t1  { background:linear-gradient(135deg,#100822,#230055); }
+.t2  { background:linear-gradient(135deg,#041518,#003340); }
+.t3  { background:linear-gradient(135deg,#180220,#450055); }
+.t4  { background:linear-gradient(135deg,#041a10,#003820); }
+.t5  { background:linear-gradient(135deg,#181000,#3f2800); }
+.t6  { background:linear-gradient(135deg,#041030,#081e50); }
+.t7  { background:linear-gradient(135deg,#18000c,#480018); }
+.t8  { background:linear-gradient(135deg,#021018,#053030); }
+.t9  { background:linear-gradient(135deg,#100018,#280050); }
+.t10 { background:linear-gradient(135deg,#001510,#003020); }
+.t11 { background:linear-gradient(135deg,#001830,#004070); }
+.t12 { background:linear-gradient(135deg,#180004,#500010); }
+
+/* ── PROMOS ── */
+.promo-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.promo {
+  border-radius:var(--r);
+  padding:22px 24px;
+  border:1px solid var(--rim);
+  cursor:pointer; transition:all .2s;
+  position:relative; overflow:hidden;
+  min-height:108px;
+}
+.promo:hover { transform:translateY(-2px); }
+.pv {
+  background:linear-gradient(135deg,#0e0825,#161040);
+  border-color:rgba(124,92,252,.2);
+}
+.pv:hover { border-color:rgba(124,92,252,.45); box-shadow:0 10px 28px rgba(124,92,252,.1); }
+.pg {
+  background:linear-gradient(135deg,#181000,#1f1600);
+  border-color:rgba(240,192,64,.18);
+}
+.pg:hover { border-color:rgba(240,192,64,.4); box-shadow:0 10px 28px rgba(240,192,64,.08); }
+.pm {
+  background:linear-gradient(135deg,#041410,#071c15);
+  border-color:rgba(52,212,160,.18);
+}
+.pm:hover { border-color:rgba(52,212,160,.4); box-shadow:0 10px 28px rgba(52,212,160,.08); }
+.pe {
+  background:linear-gradient(135deg,#180808,#200e0e);
+  border-color:rgba(255,68,68,.18);
+}
+.pe:hover { border-color:rgba(255,68,68,.4); }
+.promo-tag {
+  font-size:9px; font-weight:700; letter-spacing:2px;
+  text-transform:uppercase; margin-bottom:7px;
+}
+.pv .promo-tag { color:var(--violet-lt); }
+.pg .promo-tag { color:var(--gold); }
+.pm .promo-tag { color:var(--mint); }
+.pe .promo-tag { color:var(--ember); }
+.promo-title {
+  font-family:'Syne',sans-serif;
+  font-weight:800; font-size:22px;
+  color:var(--ink); letter-spacing:-.5px; line-height:1.1; margin-bottom:6px;
+}
+.promo-sub { font-size:11px; color:var(--muted2); line-height:1.55; max-width:200px; }
+.promo-art {
+  position:absolute; right:16px; top:50%;
+  transform:translateY(-50%);
+  font-size:54px; opacity:.07;
+}
+
+/* ── RIGHT SIDEBAR ── */
+.sidebar-r { display:flex; flex-direction:column; gap:14px; }
+
+/* Betslip */
+.slip {
+  background:var(--base);
+  border:1px solid var(--rim);
+  border-radius:var(--r);
+  overflow:hidden;
+}
+.slip-hdr {
+  background:var(--raised);
+  padding:13px 16px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid var(--rim);
+}
+.slip-title {
+  font-family:'Syne',sans-serif;
+  font-weight:700; font-size:14px;
+  display:flex; align-items:center; gap:8px;
+}
+.slip-ct {
+  background:var(--violet);
+  color:#fff; font-size:9px; font-weight:700;
+  min-width:18px; height:18px; border-radius:9px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'DM Mono',monospace; padding:0 4px;
+}
+.slip-clear {
+  background:none; border:none; color:var(--muted2);
+  cursor:pointer; font-size:12px; font-weight:600;
+  transition:color .12s;
+}
+.slip-clear:hover { color:var(--ember); }
+
+.slip-tabs {
+  display:grid; grid-template-columns:1fr 1fr 1fr;
+  border-bottom:1px solid var(--rim);
+}
+.stab {
+  padding:9px; text-align:center;
+  font-size:11px; font-weight:600;
+  color:var(--muted2); cursor:pointer;
+  border-bottom:2px solid transparent; transition:all .15s;
+}
+.stab.on { color:var(--violet-lt); border-bottom-color:var(--violet); }
+
+.slip-item {
+  padding:13px 16px;
+  border-bottom:1px solid var(--rim);
+}
+.si-match { font-size:10px; color:var(--muted2); margin-bottom:4px; }
+.si-row { display:flex; align-items:center; gap:8px; }
+.si-sel { flex:1; font-size:13px; font-weight:600; color:var(--ink); }
+.si-odd {
+  font-family:'DM Mono',monospace;
+  font-weight:700; font-size:15px; color:var(--violet-lt); flex-shrink:0;
+}
+.si-rm {
+  background:none; border:none; color:var(--muted);
+  cursor:pointer; font-size:18px; line-height:1; flex-shrink:0;
+  transition:color .12s;
+}
+.si-rm:hover { color:var(--ember); }
+
+.slip-foot { padding:14px 16px; }
+.stake-in {
+  width:100%; background:var(--raised);
+  border:1px solid var(--rim2); border-radius:var(--r-sm);
+  padding:9px 14px; color:var(--ink);
+  font-family:'DM Mono',monospace; font-size:15px; font-weight:700;
+  outline:none; margin-bottom:10px;
+}
+.stake-in:focus { border-color:var(--violet); box-shadow:0 0 0 3px rgba(124,92,252,.15); }
+.quick-btns {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:5px; margin-bottom:12px;
+}
+.qb {
+  background:var(--raised); border:1px solid var(--rim);
+  border-radius:5px; padding:6px;
+  text-align:center; font-family:'DM Mono',monospace;
+  font-size:10px; font-weight:700; color:var(--muted2);
+  cursor:pointer; transition:all .12s;
+}
+.qb:hover { background:var(--violet-dim); color:var(--violet-lt); border-color:rgba(124,92,252,.25); }
+.payout-row {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:10px 0; border-top:1px solid var(--rim); margin-bottom:12px;
+}
+.py-lbl { font-size:11px; color:var(--muted2); }
+.py-val {
+  font-family:'DM Mono',monospace;
+  font-weight:700; font-size:16px; color:var(--violet-lt);
+}
+.btn-place {
+  width:100%; justify-content:center;
+  padding:11px; font-size:14px;
+  border-radius:var(--r-sm);
+}
+.slip-login {
+  text-align:center; margin-top:10px;
+  font-size:11px; color:var(--muted);
+}
+.slip-login a { color:var(--muted2); text-decoration:underline; }
+
+/* Winners feed */
+.winners {
+  background:var(--base);
+  border:1px solid var(--rim); border-radius:var(--r); overflow:hidden;
+}
+.win-hdr {
+  padding:12px 16px; border-bottom:1px solid var(--rim);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.win-hdr-title {
+  font-family:'Syne',sans-serif;
+  font-weight:700; font-size:13px;
+  display:flex; align-items:center; gap:7px;
+}
+.win-hdr-sub { font-size:10px; color:var(--muted2); }
+.win {
+  display:flex; align-items:center; gap:10px;
+  padding:9px 16px; border-bottom:1px solid rgba(255,255,255,.03);
+  transition:background .12s;
+}
+.win:last-child { border-bottom:none; }
+.win:hover { background:rgba(255,255,255,.02); }
+.win-av {
+  width:30px; height:30px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700; color:#fff; flex-shrink:0;
+}
+.win-body { flex:1; min-width:0; }
+.win-user {
+  font-family:'Syne',sans-serif;
+  font-weight:700; font-size:12px; color:var(--ink);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.win-game { font-size:10px; color:var(--muted2); }
+.win-mult {
+  font-family:'DM Mono',monospace;
+  font-size:9px; color:var(--gold);
+  background:var(--gold-dim); padding:2px 6px; border-radius:3px; flex-shrink:0;
+}
+.win-amt {
+  font-family:'DM Mono',monospace;
+  font-weight:700; font-size:13px; color:var(--mint); flex-shrink:0;
+}
+
+/* App download */
+.app-card {
+  background:var(--base);
+  border:1px solid var(--rim); border-radius:var(--r); padding:18px;
+}
+.app-title {
+  font-family:'Syne',sans-serif;
+  font-weight:700; font-size:14px; margin-bottom:4px;
+}
+.app-sub { font-size:11px; color:var(--muted2); line-height:1.55; margin-bottom:14px; }
+.app-btns { display:flex; flex-direction:column; gap:7px; }
+.app-btn {
+  background:var(--raised); border:1px solid var(--rim2);
+  border-radius:var(--r-sm); padding:9px 14px;
+  display:flex; align-items:center; gap:10px;
+  cursor:pointer; color:var(--ink); transition:all .15s; width:100%;
+}
+.app-btn:hover { border-color:rgba(124,92,252,.3); background:var(--violet-dim); }
+.app-btn-icon { font-size:20px; }
+.app-btn-lbl { font-size:9px; color:var(--muted2); text-transform:uppercase; letter-spacing:.5px; }
+.app-btn-name {
+  font-family:'Syne',sans-serif;
+  font-weight:700; font-size:13px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background:var(--deep);
+  border-top:1px solid var(--rim);
+  margin-top:28px;
+}
+.footer-top {
+  max-width:1440px; margin:0 auto;
+  padding:44px 28px 30px;
+  display:grid;
+  grid-template-columns:2.5fr 1fr 1fr 1fr 1fr;
+  gap:36px;
+}
+.ft-brand-logo {
+  display:flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.ft-brand p {
+  font-size:12px; color:var(--muted2); line-height:1.7;
+  margin-bottom:18px; max-width:260px;
+}
+.ft-socials { display:flex; gap:8px; }
+.fsoc {
+  width:34px; height:34px; border-radius:8px;
+  background:var(--raised); border:1px solid var(--rim);
+  display:flex; align-items:center; justify-content:center;
+  font-size:15px; color:var(--muted2); text-decoration:none;
+  transition:all .15s;
+}
+.fsoc:hover { border-color:rgba(124,92,252,.4); color:var(--violet-lt); background:var(--violet-dim); }
+.ft-col h5 {
+  font-family:'Syne',sans-serif;
+  font-weight:700; font-size:12px; color:var(--ink);
+  margin-bottom:16px; letter-spacing:.1px;
+}
+.ft-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.ft-col ul li a {
+  font-size:12px; color:var(--muted2); text-decoration:none; transition:color .12s;
+}
+.ft-col ul li a:hover { color:var(--violet-lt); }
+
+.footer-btm {
+  max-width:1440px; margin:0 auto;
+  padding:16px 28px;
+  border-top:1px solid var(--rim);
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:12px;
+}
+.footer-btm p { font-size:11px; color:var(--muted); }
+.pay-row { display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+.pay-badge {
+  background:var(--raised); border:1px solid var(--rim);
+  border-radius:4px; padding:3px 10px;
+  font-family:'DM Mono',monospace;
+  font-size:9px; font-weight:700; color:var(--muted2); letter-spacing:.5px;
+}
+.age-badge {
+  background: linear-gradient(135deg,var(--violet),#5B3FD4);
+  color:#fff; font-family:'Syne',sans-serif;
+  font-weight:800; font-size:11px;
+  padding:3px 9px; border-radius:4px;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1200px) {
+  .wrap { grid-template-columns:210px 1fr; }
+  .sidebar-r { display:none; }
+  .game-grid { grid-template-columns:repeat(4,1fr); }
+  .stats-row { grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:900px) {
+  .wrap { grid-template-columns:1fr; padding:14px 18px; }
+  .sidebar-l { display:none; }
+  .game-grid { grid-template-columns:repeat(3,1fr); }
+  .hero-h1 { font-size:36px; }
+  .hero-float { display:none; }
+  nav { display:none; }
+  .footer-top { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:600px) {
+  .game-grid { grid-template-columns:repeat(2,1fr); }
+  .promo-grid { grid-template-columns:1fr; }
+  .stats-row { grid-template-columns:1fr 1fr; }
+}
+
+/* ── SEPARATE SCROLL (desktop) ── */
+@media(min-width:1201px) {
+  body { height:100vh; display:flex; flex-direction:column; overflow:hidden; }
+  .ticker, header, .sport-bar { flex-shrink:0; }
+  .wrap {
+    flex:1; min-height:0; overflow:hidden; align-items:stretch;
+  }
+  .sidebar-l, .main, .sidebar-r {
+    height:100%; min-height:0;
+    overflow-y:auto; overflow-x:hidden;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.06) transparent;
+  }
+  .sidebar-l::-webkit-scrollbar,
+  .main::-webkit-scrollbar,
+  .sidebar-r::-webkit-scrollbar { width:3px; }
+  .sidebar-l::-webkit-scrollbar-track,
+  .main::-webkit-scrollbar-track,
+  .sidebar-r::-webkit-scrollbar-track { background:transparent; }
+  .sidebar-l::-webkit-scrollbar-thumb,
+  .main::-webkit-scrollbar-thumb,
+  .sidebar-r::-webkit-scrollbar-thumb {
+    background:rgba(255,255,255,.07); border-radius:3px;
+  }
+  .sidebar-l::-webkit-scrollbar-thumb:hover,
+  .main::-webkit-scrollbar-thumb:hover,
+  .sidebar-r::-webkit-scrollbar-thumb:hover { background:var(--violet); }
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-badge">LIVE</div>
+  <div class="ticker-scroll">
+    <div class="ticker-inner">
+      <div class="tick"><span class="sport">🏏</span><span class="teams">MI vs CSK</span><span class="score">182/6 (18.4)</span><span class="live-dot"></span></div>
+      <div class="tick"><span class="sport">⚽</span><span class="teams">Man City 2 – 1 Arsenal</span><span class="score">67'</span><span class="live-dot"></span></div>
+      <div class="tick"><span class="sport">🎾</span><span class="teams">Djokovic vs Alcaraz</span><span class="score">6-4, 3-2*</span><span class="live-dot"></span></div>
+      <div class="tick"><span class="sport">🏀</span><span class="teams">Lakers 98 – 102 Warriors</span><span class="score">Q3 8:24</span><span class="live-dot"></span></div>
+      <div class="tick"><span class="sport">🏏</span><span class="teams">India 267/4 ★ AUS 234/8</span><span class="score">RESULT</span></div>
+      <div class="tick"><span class="sport">🏏</span><span class="teams">MI vs CSK</span><span class="score">182/6 (18.4)</span><span class="live-dot"></span></div>
+      <div class="tick"><span class="sport">⚽</span><span class="teams">Man City 2 – 1 Arsenal</span><span class="score">67'</span><span class="live-dot"></span></div>
+      <div class="tick"><span class="sport">🎾</span><span class="teams">Djokovic vs Alcaraz</span><span class="score">6-4, 3-2*</span><span class="live-dot"></span></div>
+      <div class="tick"><span class="sport">🏀</span><span class="teams">Lakers 98 – 102 Warriors</span><span class="score">Q3 8:24</span><span class="live-dot"></span></div>
+      <div class="tick"><span class="sport">🏏</span><span class="teams">India 267/4 ★ AUS 234/8</span><span class="score">RESULT</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr">
+    <a href="#" class="logo">
+      <div class="logo-mark">N</div>
+      <div class="logo-text">
+        <span class="n">NEX</span><span class="b">BET</span>
+      </div>
+    </a>
+    <nav>
+      <a href="#" class="active">🏠 Home</a>
+      <a href="#">🏏 Cricket <span class="pip"></span></a>
+      <a href="#">⚽ Football <span class="pip"></span></a>
+      <a href="#">🎾 Tennis</a>
+      <a href="#">🏀 Basketball</a>
+      <a href="#">🎰 Casino</a>
+      <a href="#">🃏 Live Casino</a>
+      <a href="#">💎 VIP</a>
+      <a href="#">🎁 Promos</a>
+    </nav>
+    <div class="hdr-right">
+      <a href="#" class="btn btn-outline">Log In</a>
+      <a href="#" class="btn btn-violet">Sign Up Free</a>
+    </div>
+  </div>
+</header>
+
+<!-- SPORT PILLS -->
+<div class="sport-bar">
+  <div class="sport-bar-inner">
+    <a href="#" class="spill active"><span class="spill-icon">⚡</span> Live Now <span class="spill-num">24</span></a>
+    <a href="#" class="spill"><span class="spill-icon">🏏</span> Cricket <span class="spill-num">8</span></a>
+    <a href="#" class="spill"><span class="spill-icon">⚽</span> Football <span class="spill-num">12</span></a>
+    <a href="#" class="spill"><span class="spill-icon">🎾</span> Tennis <span class="spill-num">6</span></a>
+    <a href="#" class="spill"><span class="spill-icon">🏀</span> Basketball <span class="spill-num">4</span></a>
+    <a href="#" class="spill"><span class="spill-icon">🏒</span> Hockey</a>
+    <a href="#" class="spill"><span class="spill-icon">🏐</span> Volleyball</a>
+    <a href="#" class="spill"><span class="spill-icon">🏉</span> Rugby</a>
+    <a href="#" class="spill"><span class="spill-icon">🏇</span> Horse Racing</a>
+    <a href="#" class="spill"><span class="spill-icon">🎮</span> Esports</a>
+    <a href="#" class="spill"><span class="spill-icon">🃏</span> Casino</a>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="wrap">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar-l">
+    <div class="sl-label">Live Sports</div>
+    <a href="#" class="sl-link active is-live"><span class="sl-ico">🏏</span><span class="sl-name">IPL 2026</span><span class="sl-ct">3</span></a>
+    <a href="#" class="sl-link is-live"><span class="sl-ico">⚽</span><span class="sl-name">Premier League</span><span class="sl-ct">5</span></a>
+    <a href="#" class="sl-link is-live"><span class="sl-ico">🎾</span><span class="sl-name">ATP Roland Garros</span><span class="sl-ct">2</span></a>
+    <a href="#" class="sl-link is-live"><span class="sl-ico">🏀</span><span class="sl-name">NBA Playoffs</span><span class="sl-ct">1</span></a>
+    <a href="#" class="sl-link"><span class="sl-ico">🏒</span><span class="sl-name">NHL Finals</span><span class="sl-ct">2</span></a>
+    <a href="#" class="sl-link"><span class="sl-ico">🏏</span><span class="sl-name">Int'l T20</span><span class="sl-ct">1</span></a>
+
+    <div class="sl-label">Casino</div>
+    <a href="#" class="sl-link is-live"><span class="sl-ico">🎰</span><span class="sl-name">Live Roulette</span><span class="sl-ct">12</span></a>
+    <a href="#" class="sl-link"><span class="sl-ico">🃏</span><span class="sl-name">Teen Patti</span><span class="sl-ct">8</span></a>
+    <a href="#" class="sl-link"><span class="sl-ico">🂡</span><span class="sl-name">Blackjack</span><span class="sl-ct">6</span></a>
+    <a href="#" class="sl-link"><span class="sl-ico">🐉</span><span class="sl-name">Dragon Tiger</span><span class="sl-ct">4</span></a>
+    <a href="#" class="sl-link"><span class="sl-ico">🎯</span><span class="sl-name">Andar Bahar</span><span class="sl-ct">3</span></a>
+    <a href="#" class="sl-link"><span class="sl-ico">🚀</span><span class="sl-name">Crash Games</span><span class="sl-ct">5</span></a>
+
+    <div class="sl-label">My Account</div>
+    <a href="#" class="sl-link"><span class="sl-ico">💳</span><span class="sl-name">Deposit</span></a>
+    <a href="#" class="sl-link"><span class="sl-ico">💸</span><span class="sl-name">Withdraw</span></a>
+    <a href="#" class="sl-link"><span class="sl-ico">📋</span><span class="sl-name">Bet History</span></a>
+    <a href="#" class="sl-link"><span class="sl-ico">💎</span><span class="sl-name">VIP Club</span></a>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-dots"></div>
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-dot"></span>
+          <span class="hero-eyebrow-text">Welcome Offer · New Members Only</span>
+        </div>
+        <h1 class="hero-h1">
+          BET ON<br>
+          <span class="accent">EVERY</span><br>
+          <span class="gold">MOMENT.</span>
+        </h1>
+        <p class="hero-sub">Instant markets on 30+ sports, live casino & crash games — your stake, your call.</p>
+        <div class="hero-btns">
+          <a href="#" class="btn btn-violet">Claim ₹20,000 Bonus</a>
+          <a href="#" class="btn btn-outline">Browse Markets</a>
+        </div>
+      </div>
+      <div class="hero-float">
+        <div class="hf-label">Welcome Bonus</div>
+        <div class="hf-amount">₹20K</div>
+        <div class="hf-sub">100% First Deposit<br>+ 50 Free Spins</div>
+      </div>
+      <div class="hero-art">
+        <div class="hero-art-emoji">🏏</div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat stat-v">
+        <div class="stat-ico stat-ico-v">⚡</div>
+        <div><div class="stat-val" style="color:var(--violet-lt)">24</div><div class="stat-lbl">Live Events Now</div></div>
+      </div>
+      <div class="stat stat-g">
+        <div class="stat-ico stat-ico-g">🏆</div>
+        <div><div class="stat-val" style="color:var(--gold)">500+</div><div class="stat-lbl">Daily Markets</div></div>
+      </div>
+      <div class="stat stat-m">
+        <div class="stat-ico stat-ico-m">💸</div>
+        <div><div class="stat-val" style="color:var(--mint)">Instant</div><div class="stat-lbl">UPI Withdrawal</div></div>
+      </div>
+      <div class="stat stat-e">
+        <div class="stat-ico stat-ico-e">🔐</div>
+        <div><div class="stat-val">256-bit</div><div class="stat-lbl">SSL Secured</div></div>
+      </div>
+    </div>
+
+    <!-- LIVE MATCHES -->
+    <div>
+      <div class="sec">
+        <div class="sec-title">Live Matches <span class="tag tag-live">● 24 LIVE</span></div>
+        <a href="#" class="sec-all">All Markets →</a>
+      </div>
+      <div class="matches">
+
+        <!-- Match 1 -->
+        <div class="match">
+          <div class="match-hdr">
+            <div class="match-sport">🏏</div>
+            <span class="match-league">IPL 2026 · Match 48</span>
+            <span class="live-pill">LIVE</span>
+            <span class="time-pill">Over 18.4</span>
+          </div>
+          <div class="match-teams">
+            <div class="team">
+              <div class="team-badge">🔵</div>
+              <div><div class="team-name">Mumbai Indians</div><div class="team-sub">MI · Bat</div></div>
+            </div>
+            <div class="score-mid">
+              <div class="score">182/6</div>
+              <div class="score-sub">vs 165/8 (20)</div>
+            </div>
+            <div class="team r">
+              <div class="team-badge">🟡</div>
+              <div><div class="team-name">CSK</div><div class="team-sub">Bowl</div></div>
+            </div>
+          </div>
+          <div class="match-bar"><div class="match-bar-fill" style="width:92%"></div></div>
+          <div class="match-odds">
+            <div class="odd on"><span class="odd-lbl">MI Win</span><span class="odd-val">1.75</span></div>
+            <div class="odd"><span class="odd-lbl">Tie</span><span class="odd-val">8.50</span></div>
+            <div class="odd"><span class="odd-lbl">CSK Win</span><span class="odd-val">2.20</span></div>
+          </div>
+        </div>
+
+        <!-- Match 2 -->
+        <div class="match">
+          <div class="match-hdr">
+            <div class="match-sport">⚽</div>
+            <span class="match-league">Premier League · GW38</span>
+            <span class="live-pill">LIVE</span>
+            <span class="time-pill">67'</span>
+          </div>
+          <div class="match-teams">
+            <div class="team">
+              <div class="team-badge">🔵</div>
+              <div><div class="team-name">Man City</div><div class="team-sub">MCI</div></div>
+            </div>
+            <div class="score-mid">
+              <div class="score">2 – 1</div>
+              <div class="score-sub">HT: 1 – 0</div>
+            </div>
+            <div class="team r">
+              <div class="team-badge">🔴</div>
+              <div><div class="team-name">Arsenal</div><div class="team-sub">ARS</div></div>
+            </div>
+          </div>
+          <div class="match-bar"><div class="match-bar-fill" style="width:67%"></div></div>
+          <div class="match-odds">
+            <div class="odd"><span class="odd-lbl">MCI</span><span class="odd-val">1.60</span></div>
+            <div class="odd"><span class="odd-lbl">Draw</span><span class="odd-val">4.20</span></div>
+            <div class="odd"><span class="odd-lbl">ARS</span><span class="odd-val">2.80</span></div>
+          </div>
+        </div>
+
+        <!-- Match 3 -->
+        <div class="match">
+          <div class="match-hdr">
+            <div class="match-sport">🎾</div>
+            <span class="match-league">ATP Roland Garros · QF</span>
+            <span class="live-pill">LIVE</span>
+            <span class="time-pill">Set 2, 3–2</span>
+          </div>
+          <div class="match-teams">
+            <div class="team">
+              <div class="team-badge">🇷🇸</div>
+              <div><div class="team-name">Djokovic</div><div class="team-sub">DJO</div></div>
+            </div>
+            <div class="score-mid">
+              <div class="score">6-4</div>
+              <div class="score-sub">3-2* (2nd Set)</div>
+            </div>
+            <div class="team r">
+              <div class="team-badge">🇪🇸</div>
+              <div><div class="team-name">Alcaraz</div><div class="team-sub">ALC</div></div>
+            </div>
+          </div>
+          <div class="match-bar"><div class="match-bar-fill" style="width:42%"></div></div>
+          <div class="match-odds">
+            <div class="odd"><span class="odd-lbl">DJO</span><span class="odd-val">1.95</span></div>
+            <div class="odd"><span class="odd-lbl">+3.5 Games</span><span class="odd-val">1.88</span></div>
+            <div class="odd"><span class="odd-lbl">ALC</span><span class="odd-val">1.95</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- POPULAR GAMES -->
+    <div>
+      <div class="sec">
+        <div class="sec-title">Popular Games <span class="tag tag-hot">🔥 Hot</span></div>
+        <a href="#" class="sec-all">View All →</a>
+      </div>
+      <div class="game-grid">
+        <div class="gc"><div class="gc-img t1"><span>🎰</span><div class="gc-grd"></div><div class="gc-badge gb-hot">HOT</div></div><div class="gc-info"><div class="gc-name">Gates of Olympus</div><div class="gc-prov">Pragmatic Play</div></div></div>
+        <div class="gc"><div class="gc-img t2"><span>🚀</span><div class="gc-grd"></div><div class="gc-badge gb-hot">HOT</div></div><div class="gc-info"><div class="gc-name">Aviator</div><div class="gc-prov">Spribe</div></div></div>
+        <div class="gc"><div class="gc-img t3"><span>🃏</span><div class="gc-grd"></div><div class="gc-badge gb-live">LIVE</div></div><div class="gc-info"><div class="gc-name">Teen Patti Gold</div><div class="gc-prov">Ezugi</div></div></div>
+        <div class="gc"><div class="gc-img t4"><span>🎲</span><div class="gc-grd"></div><div class="gc-badge gb-new">NEW</div></div><div class="gc-info"><div class="gc-name">Live Roulette</div><div class="gc-prov">Evolution</div></div></div>
+        <div class="gc"><div class="gc-img t5"><span>💣</span><div class="gc-grd"></div></div><div class="gc-info"><div class="gc-name">Mines</div><div class="gc-prov">Spribe</div></div></div>
+        <div class="gc"><div class="gc-img t6"><span>🐉</span><div class="gc-grd"></div></div><div class="gc-info"><div class="gc-name">Dragon Tiger</div><div class="gc-prov">Ezugi</div></div></div>
+        <div class="gc"><div class="gc-img t7"><span>🂡</span><div class="gc-grd"></div><div class="gc-badge gb-new">NEW</div></div><div class="gc-info"><div class="gc-name">Speed Blackjack</div><div class="gc-prov">Evolution</div></div></div>
+        <div class="gc"><div class="gc-img t8"><span>🎯</span><div class="gc-grd"></div></div><div class="gc-info"><div class="gc-name">Andar Bahar</div><div class="gc-prov">Ezugi</div></div></div>
+        <div class="gc"><div class="gc-img t9"><span>🎱</span><div class="gc-grd"></div></div><div class="gc-info"><div class="gc-name">Baccarat Live</div><div class="gc-prov">Pragmatic</div></div></div>
+        <div class="gc"><div class="gc-img t10"><span>🍀</span><div class="gc-grd"></div><div class="gc-badge gb-hot">HOT</div></div><div class="gc-info"><div class="gc-name">Mega Lucky 7</div><div class="gc-prov">Spribe</div></div></div>
+        <div class="gc"><div class="gc-img t11"><span>⚡</span><div class="gc-grd"></div></div><div class="gc-info"><div class="gc-name">Lightning Dice</div><div class="gc-prov">Evolution</div></div></div>
+        <div class="gc"><div class="gc-img t12"><span>🔮</span><div class="gc-grd"></div><div class="gc-badge gb-new">NEW</div></div><div class="gc-info"><div class="gc-name">Crazy Time</div><div class="gc-prov">Evolution</div></div></div>
+      </div>
+    </div>
+
+    <!-- PROMOTIONS -->
+    <div>
+      <div class="sec">
+        <div class="sec-title">Promotions <span class="tag tag-new">Active</span></div>
+        <a href="#" class="sec-all">All Offers →</a>
+      </div>
+      <div class="promo-grid">
+        <div class="promo pv">
+          <div class="promo-tag">Welcome Bonus</div>
+          <div class="promo-title">100% Up to<br>₹20,000</div>
+          <div class="promo-sub">First deposit matched. Use code NEXBET100. Wagering applies.</div>
+          <div class="promo-art">💰</div>
+        </div>
+        <div class="promo pg">
+          <div class="promo-tag">Weekly Reload</div>
+          <div class="promo-title">20% Every<br>Monday</div>
+          <div class="promo-sub">Reload your account every Monday and claim your weekly boost.</div>
+          <div class="promo-art">📅</div>
+        </div>
+        <div class="promo pm">
+          <div class="promo-tag">VIP Rewards</div>
+          <div class="promo-title">Earn Points<br>Every Bet</div>
+          <div class="promo-sub">Climb tiers and unlock cashback, exclusive bonuses, and personal account managers.</div>
+          <div class="promo-art">💎</div>
+        </div>
+        <div class="promo pe">
+          <div class="promo-tag">Refer & Earn</div>
+          <div class="promo-title">₹500 Per<br>Referral</div>
+          <div class="promo-sub">Share your unique link. When your friend deposits, you both win.</div>
+          <div class="promo-art">👥</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER inside main scroll -->
+    <footer>
+      <div class="footer-top">
+        <div class="ft-brand">
+          <div class="ft-brand-logo">
+            <div class="logo-mark" style="width:32px;height:32px;font-size:14px;">N</div>
+            <div class="logo-text" style="font-size:18px;"><span class="n">NEX</span><span class="b">BET</span></div>
+          </div>
+          <p>NexBet is a premium sports betting and live casino destination. We offer fast payouts, industry-leading odds, and a secure platform built for Indian players. 18+ only. Please gamble responsibly.</p>
+          <div class="ft-socials">
+            <a href="#" class="fsoc">📘</a>
+            <a href="#" class="fsoc">📸</a>
+            <a href="#" class="fsoc">🐦</a>
+            <a href="#" class="fsoc">💬</a>
+            <a href="#" class="fsoc">▶️</a>
+          </div>
+        </div>
+        <div class="ft-col">
+          <h5>Sports</h5>
+          <ul>
+            <li><a href="#">Cricket</a></li>
+            <li><a href="#">Football</a></li>
+            <li><a href="#">Tennis</a></li>
+            <li><a href="#">Basketball</a></li>
+            <li><a href="#">Kabaddi</a></li>
+            <li><a href="#">Esports</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Casino</h5>
+          <ul>
+            <li><a href="#">Live Casino</a></li>
+            <li><a href="#">Slots</a></li>
+            <li><a href="#">Teen Patti</a></li>
+            <li><a href="#">Roulette</a></li>
+            <li><a href="#">Crash Games</a></li>
+            <li><a href="#">Blackjack</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Account</h5>
+          <ul>
+            <li><a href="#">Register</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Deposit</a></li>
+            <li><a href="#">Withdraw</a></li>
+            <li><a href="#">Bet History</a></li>
+            <li><a href="#">VIP Club</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Help</h5>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Promotions</a></li>
+            <li><a href="#">Responsible Play</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-btm">
+        <p>© 2026 NexBet. All rights reserved. Gambling involves risk. Play responsibly.</p>
+        <div class="pay-row">
+          <span class="pay-badge">UPI</span>
+          <span class="pay-badge">PAYTM</span>
+          <span class="pay-badge">VISA</span>
+          <span class="pay-badge">MC</span>
+          <span class="pay-badge">CRYPTO</span>
+          <span class="age-badge">18+</span>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="sidebar-r">
+
+    <!-- BET SLIP -->
+    <div class="slip">
+      <div class="slip-hdr">
+        <div class="slip-title">Bet Slip <span class="slip-ct">1</span></div>
+        <button class="slip-clear">Clear All</button>
+      </div>
+      <div class="slip-tabs">
+        <div class="stab on">Single</div>
+        <div class="stab">Multi</div>
+        <div class="stab">System</div>
+      </div>
+      <div class="slip-item" id="slip-bet">
+        <div class="si-match">🏏 MI vs CSK · IPL</div>
+        <div class="si-row">
+          <div class="si-sel">MI to Win</div>
+          <div class="si-odd">1.75</div>
+          <button class="si-rm" id="rem-btn">×</button>
+        </div>
+      </div>
+      <div class="slip-foot">
+        <input type="text" class="stake-in" id="stake" value="500" placeholder="Enter stake">
+        <div class="quick-btns">
+          <div class="qb">+100</div>
+          <div class="qb">+500</div>
+          <div class="qb">+1K</div>
+          <div class="qb">+5K</div>
+        </div>
+        <div class="payout-row">
+          <span class="py-lbl">Potential Payout</span>
+          <span class="py-val" id="payout">₹875</span>
+        </div>
+        <a href="#" class="btn btn-violet btn-place">Place Bet →</a>
+        <div class="slip-login"><a href="#">Log in to bet</a></div>
+      </div>
+    </div>
+
+    <!-- RECENT WINNERS -->
+    <div class="winners">
+      <div class="win-hdr">
+        <div class="win-hdr-title">🏆 Recent Winners</div>
+        <span class="win-hdr-sub">Live Feed</span>
+      </div>
+      <div class="win">
+        <div class="win-av" style="background:linear-gradient(135deg,#003028,#34d4a0)">R</div>
+        <div class="win-body"><div class="win-user">Raj***K</div><div class="win-game">Cricket · MI Win</div></div>
+        <div class="win-mult">×4.2</div>
+        <div class="win-amt">+₹24,500</div>
+      </div>
+      <div class="win">
+        <div class="win-av" style="background:linear-gradient(135deg,#001540,#7c5cfc)">A</div>
+        <div class="win-body"><div class="win-user">Anon***87</div><div class="win-game">Teen Patti · Live</div></div>
+        <div class="win-mult">×2.1</div>
+        <div class="win-amt">+₹8,200</div>
+      </div>
+      <div class="win">
+        <div class="win-av" style="background:linear-gradient(135deg,#1a1000,#f0c040)">M</div>
+        <div class="win-body"><div class="win-user">Mukesh***P</div><div class="win-game">Gates of Olympus</div></div>
+        <div class="win-mult">×12.8</div>
+        <div class="win-amt">+₹41,000</div>
+      </div>
+      <div class="win">
+        <div class="win-av" style="background:linear-gradient(135deg,#001500,#34d4a0)">P</div>
+        <div class="win-body"><div class="win-user">Priya***N</div><div class="win-game">Live Roulette</div></div>
+        <div class="win-mult">×3.5</div>
+        <div class="win-amt">+₹5,600</div>
+      </div>
+      <div class="win">
+        <div class="win-av" style="background:linear-gradient(135deg,#180020,#7c5cfc)">V</div>
+        <div class="win-body"><div class="win-user">Vijay***35</div><div class="win-game">Aviator · 7.4×</div></div>
+        <div class="win-mult">×7.4</div>
+        <div class="win-amt">+₹18,000</div>
+      </div>
+    </div>
+
+    <!-- APP DOWNLOAD -->
+    <div class="app-card">
+      <div class="app-title">📱 Get the App</div>
+      <p class="app-sub">Live scores, instant bets, fast payouts — all in your pocket.</p>
+      <div class="app-btns">
+        <button class="app-btn">
+          <span class="app-btn-icon">🍎</span>
+          <div>
+            <div class="app-btn-lbl">Download on</div>
+            <div class="app-btn-name">App Store</div>
+          </div>
+        </button>
+        <button class="app-btn">
+          <span class="app-btn-icon">🤖</span>
+          <div>
+            <div class="app-btn-lbl">Get it on</div>
+            <div class="app-btn-name">Google Play</div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<script>
+  // Sport pills
+  document.querySelectorAll('.spill').forEach(t => {
+    t.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('.spill').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+    });
+  });
+
+  // Bet slip tabs
+  document.querySelectorAll('.stab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.stab').forEach(x => x.classList.remove('on'));
+      t.classList.add('on');
+    });
+  });
+
+  // Odd selection
+  document.querySelectorAll('.match-odds').forEach(row => {
+    row.querySelectorAll('.odd').forEach(cell => {
+      cell.addEventListener('click', () => {
+        row.querySelectorAll('.odd').forEach(c => c.classList.remove('on'));
+        cell.classList.add('on');
+      });
+    });
+  });
+
+  // Left sidebar
+  document.querySelectorAll('.sl-link').forEach(item => {
+    item.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('.sl-link').forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  // Quick stake buttons
+  document.querySelectorAll('.qb').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const inp = document.getElementById('stake');
+      const add = parseInt(btn.textContent.replace(/\D/g,'').replace('K','000'));
+      inp.value = (parseInt(inp.value)||0) + add;
+      updatePayout();
+    });
+  });
+
+  function updatePayout() {
+    const stake = parseInt(document.getElementById('stake').value) || 0;
+    const payout = Math.round(stake * 1.75);
+    document.getElementById('payout').textContent = '₹' + payout.toLocaleString('en-IN');
+  }
+  document.getElementById('stake').addEventListener('input', updatePayout);
+
+  // Remove bet
+  document.getElementById('rem-btn')?.addEventListener('click', () => {
+    document.getElementById('slip-bet').remove();
+    document.querySelector('.slip-ct').textContent = '0';
+  });
+
+  // Live progress jitter
+  document.querySelectorAll('.match-bar-fill').forEach(fill => {
+    const base = parseFloat(fill.style.width);
+    setInterval(() => {
+      const jitter = (Math.random() - .5) * 1.5;
+      fill.style.width = Math.min(100, Math.max(base - 2, base + jitter)) + '%';
+    }, 3000);
+  });
+</script>
+</body>
+</html>

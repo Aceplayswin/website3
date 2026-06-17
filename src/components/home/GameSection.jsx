@@ -197,10 +197,10 @@ const GameSection = ({ title, games, id, layout = "slider", hideHeader = false }
       className="game-section relative w-full py-4 md:py-6 scroll-mt-24 md:scroll-mt-32"
     >
       {!hideHeader && (
-        <div className="flex justify-between items-center gap-3 mb-4 md:mb-5 px-1 md:px-2">
-          <h2 className="section-banner max-w-full" style={{ fontFamily: FONTS.head }}>
-            <span>{title}</span>
-          </h2>
+        <div className="section-head">
+          <div className="section-title">
+            <i className="ti ti-device-gamepad-2"></i> {title}
+          </div>
           {layout !== "grid" && (
             <div className="flex items-center space-x-2 sm:space-x-4">
               <div className="hidden md:flex items-center gap-1">
@@ -216,13 +216,12 @@ const GameSection = ({ title, games, id, layout = "slider", hideHeader = false }
                 </button>
               </div>
 
-              <button
+              <span
                 onClick={openPopup}
-                className="see-all"
-                aria-label="See All"
+                className="section-more"
               >
-                See All
-              </button>
+                See All <i className="ti ti-arrow-right" style={{ fontSize: '13px' }}></i>
+              </span>
             </div>
           )}
         </div>

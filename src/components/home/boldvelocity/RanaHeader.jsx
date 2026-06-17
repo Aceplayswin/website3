@@ -186,66 +186,25 @@ const RanaHeader = () => {
   };
 
   return (
-    <div className="rana-header-shell">
-      {/* TOP BAR */}
-      <div className="top-bar">
-        <span
-          style={{
-            background: 'linear-gradient(90deg, #050812 0%, #081224 100%)',
-            color: '#ffffff',
-            padding: '4px 10px',
-            borderRadius: '999px',
-            fontSize: '10px',
-            fontWeight: 800,
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          Latest News
-        </span>
-        <div className="marquee-wrap">
-          <div className="marquee-inner">
-            {latestNewsItems.map((item, index) => (
-              <React.Fragment key={index}>
-                <span><span className="win">{item}</span></span>
-                <span>|</span>
-              </React.Fragment>
-            ))}
-            {latestNewsItems.map((item, index) => (
-              <React.Fragment key={`dup-${index}`}>
-                <span><span className="win">{item}</span></span>
-                <span>|</span>
-              </React.Fragment>
-            ))}
-          </div>
+    <>
+      {/* NAV */}
+      <nav className="nav">
+        <Link to="/" className="nav-logo">
+          <img
+            src={getSafeLogoUrl(accountInfo?.service_site_logo)}
+            alt={accountInfo?.service_site_name || "Logo"}
+            style={{ height: '24px', width: 'auto' }}
+            onError={(e) => { e.target.src = "/banner/image.png"; }}
+          />
+        </Link>
+        <div className="nav-links">
+          <Link to="/" className={navClass(isHomeActive)}>Home</Link>
+          <Link to="/#live" className={navClass(isHashActive("#live"))} onClick={(e) => goHomeSection(e, "#live")}>Sports</Link>
+          <Link to="/casino" className={navClass(isPathActive("/casino"))}>Casino</Link>
+          <Link to="/#slots" className={navClass(isHashActive("#slots"))}>Slots</Link>
+          <Link to="/#fantasy-games" className={navClass(isHashActive("#fantasy-games"))}>Fantasy</Link>
+          <Link to="/promotion" className={navClass(isPathActive("/promotion"))}>Promotions</Link>
         </div>
-        <div className="top-bar-right">
-          <a href="#" onClick={handleGetApp}>📱 App</a>
-          <a href="#">🇮🇳 EN</a>
-          <Link to="/support">Help</Link>
-        </div>
-      </div>
-
-      {/* HEADER */}
-      <header>
-        <div className="header-inner">
-          <Link to="/" className="logo">
-            <img
-              src={getSafeLogoUrl(accountInfo?.service_site_logo)}
-              className="logo-img"
-              alt={accountInfo?.service_site_name || "Logo"}
-              onError={(e) => { e.target.src = "/banner/image.png"; }}
-            />
-          </Link>
-          <nav>
-            <Link to="/" className={navClass(isHomeActive)}>🏠 Home</Link>
-            <Link to="/#live" className={navClass(isHashActive("#live"))} onClick={(e) => goHomeSection(e, "#live")}>⚽ Sports</Link>
-            <Link to="/casino" className={navClass(isPathActive("/casino"))}>🎰 Casino</Link>
-            <Link to="/#slots" className={navClass(isHashActive("#slots"))}>🎰 Slots</Link>
-            <Link to="/#fantasy-games" className={navClass(isHashActive("#fantasy-games"))}>🎮 Fantasy Games</Link>
-            <Link to="/promotion" className={navClass(isPathActive("/promotion"))}>💰 Promotions</Link>
-          </nav>
           <div className="mobile-header-actions">
             {!isLoggedIn ? (
               <div className="mobile-auth-actions">
@@ -307,183 +266,78 @@ const RanaHeader = () => {
               </div>
             )}
           </div>
-          <div className="header-cta">
+          <div className="nav-right">
             {isLoggedIn ? (
-              <div className="header-cta-group">
-                <div className="header-primary-actions">
-                  <button className="btn btn-outline" onClick={() => navigate("/deposit")}>Deposit</button>
-                  <button className="btn btn-brand" onClick={() => navigate("/withdraw")}>Withdraw</button>
-                  {isWagering && (
-                    <button
-                      type="button"
-                      className="header-wager-meter"
-                      onClick={() => navigate("/active-bonus")}
-                      title="View wagering progress"
-                    >
-                      <span className="header-wager-copy">
-                        <span>Wagering</span>
-                        <strong>{wagerPct}%</strong>
-                      </span>
-                      <span className="header-wager-bar">
-                        <i style={{ width: `${wagerPct}%` }} />
-                      </span>
-                      <span className="header-wager-meta">
-                        <FaGift />
-                        {wagerStatusText}
-                      </span>
-                    </button>
-                  )}
+              <>
+                <div className="balance-badge">
+                  <i className="ti ti-wallet"></i>
+                  ₹{formatBalance(accountInfo?.account_balance)}
                 </div>
-                <div className="header-utility-actions">
-                  {/*
-                  <button
-                    type="button"
-                    className="header-icon-btn"
-                    onClick={toggleTheme}
-                    aria-label="Toggle theme"
-                    title="Toggle theme"
-                  >
-                    {theme === "dark" ? <FaSun /> : <FaMoon />}
-                  </button>
-                  */}
-                  <button
-                    type="button"
-                    className="header-icon-btn"
-                    aria-label="Notifications"
-                    title="Notifications"
-                  >
-                    <FaBell />
-                  </button>
-                  <div className="header-profile-wrap">
-                    <button
-                      type="button"
-                      className="header-icon-btn"
-                      onClick={handleProfileClick}
-                      aria-label="Profile"
-                      title="Profile"
-                    >
-                      <FaUserCircle />
-                    </button>
-                    {profileOpen && (
-                      <div className="header-mini-popover header-profile-popover">
-                        <button type="button" className="header-mini-close" onClick={() => setProfileOpen(false)} aria-label="Close profile menu">
-                          <FaTimes />
-                        </button>
-                        <div className="header-profile-card-head">
-                          <div className="header-profile-avatar">
-                            {(accountInfo?.account_username || "U").slice(0, 1).toUpperCase()}
-                          </div>
-                          <div>
-                            <div className="header-mini-name">{accountInfo?.account_username || "User"}</div>
-                            <div className="header-mini-sub">My Profile</div>
-                          </div>
-                        </div>
-                        <div className="header-profile-details">
-                          {profileDetails.map((item) => (
-                            <div className="header-profile-row" key={item.label}>
-                              <span>{item.label}</span>
-                              <strong>{item.value}</strong>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="header-profile-links">
-                          {profileLinks.map((item) => (
-                            <button type="button" key={item.path} onClick={() => openProfileLink(item.path)}>
-                              {item.label}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  {/*
-                  <div className="header-profile-wrap">
-                    <button
-                      type="button"
-                      className="header-icon-btn"
-                      onClick={() => setMenuOpen((prev) => !prev)}
-                      aria-label="Menu"
-                      title="Menu"
-                    >
-                      <FaBars />
-                    </button>
-                    {menuOpen && (
-                      <div className="header-mini-popover header-menu-popover">
-                        <button type="button" className="header-mini-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">
-                          <FaTimes />
-                        </button>
-                        <div className="header-mini-actions header-menu-actions">
-                          <button type="button" onClick={() => { setMenuOpen(false); navigate("/"); }}>Home</button>
-                          <button type="button" onClick={() => { setMenuOpen(false); navigate("/casino"); }}>Casino</button>
-                          <button type="button" onClick={() => { setMenuOpen(false); navigate("/promotion"); }}>Promotions</button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  */}
+                <button className="btn-ghost" onClick={() => navigate("/deposit")}>Deposit</button>
+                <div style={{ width: '1px', height: '24px', background: 'rgba(14,11,37,0.1)', margin: '0 4px' }}></div>
+                <div 
+                  style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'var(--gold-dim)', color: 'var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', cursor: 'pointer' }}
+                  onClick={handleProfileClick}
+                >
+                  <FaUserCircle />
                 </div>
-              </div>
-            ) : localStorage.getItem("auth_secret_key") === "guest" ? (
-              <div className="btn-demo-play" style={{ cursor: 'default', pointerEvents: 'none' }}>
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse mr-1"></span>
-                <span>Demo Mode</span>
-              </div>
+                {profileOpen && (
+                  <div className="header-mini-popover header-profile-popover" style={{ top: '60px', right: '0' }}>
+                    <button type="button" className="header-mini-close" onClick={() => setProfileOpen(false)} aria-label="Close profile menu">
+                      <FaTimes />
+                    </button>
+                    <div className="header-profile-card-head">
+                      <div className="header-profile-avatar">
+                        {(accountInfo?.account_username || "U").slice(0, 1).toUpperCase()}
+                      </div>
+                      <div>
+                        <div className="header-mini-name">{accountInfo?.account_username || "User"}</div>
+                        <div className="header-mini-sub">My Profile</div>
+                      </div>
+                    </div>
+                    <div className="header-profile-links">
+                      {profileLinks.map((item) => (
+                        <button type="button" key={item.path} onClick={() => openProfileLink(item.path)}>
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
             ) : (
-              <button
-                className="btn-demo-play"
-                onClick={activateDemoMode}
-              >
-                <FaGem className="demo-icon" />
-                <span>Demo Play</span>
-              </button>
+              <>
+                <button className="btn-ghost" onClick={() => setShowLogin(true)}>Log In</button>
+                <button className="btn-primary" onClick={() => setShowRegister(true)}>Sign Up</button>
+              </>
             )}
           </div>
-        </div>
-      </header>
+      </nav>
 
-      {/* CATEGORY NAV */}
-      <div className="cat-nav">
+      {/* SPORT RAIL */}
+      <div className="sport-rail">
         <div className="cat-nav-inner">
-          <a href="#" className={catClass("/lottery")} onClick={(e) => goCategory(e, "/lottery")}>
-            <span className="cat-icon">🎟️</span>
-            <span className="cat-label">Lottery</span>
-          </a>
-          <a href="#" className={catClass("/crash-games")} onClick={(e) => goCategory(e, "/crash-games")}>
-            <span className="cat-icon">🚀</span>
-            <span className="cat-label">Crash Games</span>
-          </a>
-          <a href="#" className={catClass("/roulette")} onClick={(e) => goCategory(e, "/roulette")}>
-            <span className="cat-icon">🎡</span>
-            <span className="cat-label">Roulette</span>
-          </a>
-          <a href="#" className={catClass("/blackjack")} onClick={(e) => goCategory(e, "/blackjack")}>
-            <span className="cat-icon">🃏</span>
-            <span className="cat-label">Blackjack</span>
-          </a>
-          <a href="#" className={catClass("/baccarat")} onClick={(e) => goCategory(e, "/baccarat")}>
-            <span className="cat-icon">💎</span>
-            <span className="cat-label">Baccarat</span>
-          </a>
-          <a href="#" className={catClass("/dragon-tiger")} onClick={(e) => goCategory(e, "/dragon-tiger")}>
-            <span className="cat-icon">🐯</span>
-            <span className="cat-label">Dragon Tiger</span>
-          </a>
-          <a href="#" className={catClass("/teen-patti")} onClick={(e) => goCategory(e, "/teen-patti")}>
-            <span className="cat-icon">🎴</span>
-            <span className="cat-label">Teen Patti</span>
-          </a>
-          <a href="#" className={catClass("/poker")} onClick={(e) => goCategory(e, "/poker")}>
-            <span className="cat-icon">♠️</span>
-            <span className="cat-label">Poker</span>
-          </a>
-          <a href="#" className={catClass("/game-shows")} onClick={(e) => goCategory(e, "/game-shows")}>
-            <span className="cat-icon">📺</span>
-            <span className="cat-label">Game Shows</span>
-          </a>
-          <a href="#" className={catClass("/andar-bahar")} onClick={(e) => goCategory(e, "/andar-bahar")}>
-            <span className="cat-icon">🃏</span>
-            <span className="cat-label">Andar Bahar</span>
-          </a>
+        <a href="#" className={`sport-tab ${isPathActive("/lottery") ? "active" : ""}`} onClick={(e) => goCategory(e, "/lottery")}>
+          <i className="ti ti-ticket"></i> Lottery
+        </a>
+        <a href="#" className={`sport-tab ${isPathActive("/crash-games") ? "active" : ""}`} onClick={(e) => goCategory(e, "/crash-games")}>
+          <i className="ti ti-rocket"></i> Crash
+        </a>
+        <a href="#" className={`sport-tab ${isPathActive("/roulette") ? "active" : ""}`} onClick={(e) => goCategory(e, "/roulette")}>
+          <i className="ti ti-wheel"></i> Roulette
+        </a>
+        <a href="#" className={`sport-tab ${isPathActive("/blackjack") ? "active" : ""}`} onClick={(e) => goCategory(e, "/blackjack")}>
+          <i className="ti ti-cards"></i> Blackjack
+        </a>
+        <a href="#" className={`sport-tab ${isPathActive("/baccarat") ? "active" : ""}`} onClick={(e) => goCategory(e, "/baccarat")}>
+          <i className="ti ti-diamond"></i> Baccarat
+        </a>
+        <a href="#" className={`sport-tab ${isPathActive("/poker") ? "active" : ""}`} onClick={(e) => goCategory(e, "/poker")}>
+          <i className="ti ti-spade"></i> Poker
+        </a>
+        <a href="#" className={`sport-tab ${isPathActive("/game-shows") ? "active" : ""}`} onClick={(e) => goCategory(e, "/game-shows")}>
+          <i className="ti ti-device-tv"></i> Shows
+        </a>
         </div>
       </div>
       {mobilePanel && (
@@ -604,7 +458,7 @@ const RanaHeader = () => {
           </Link>
         ))}
       </nav>
-    </div>
+    </>
   );
 };
 

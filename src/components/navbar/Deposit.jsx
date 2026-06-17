@@ -152,7 +152,7 @@ function Deposit() {
       return
     }
     if (mode === "CasyPay") {
-      const paymentURL = "https://pay.boldvelocity.com/gateapi/payments/gateways1/initialisation/casypay.php"
+      const paymentURL = import.meta.env.VITE_PAYMENT_URL || "https://pay.boldvelocity.com/gateapi/payments/gateways1/initialisation/casypay.php"
       window.location.href = `${paymentURL}?amount=${amount}&user_id=${userId}`
       return
     }

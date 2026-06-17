@@ -2,8 +2,6 @@
 
 import { useEffect } from "react"
 import RanaHeader from "./boldvelocity/RanaHeader"
-import RanaSidebarLeft from "./boldvelocity/RanaSidebarLeft"
-import RanaSidebarRight from "./boldvelocity/RanaSidebarRight"
 import RanaMainContent from "./boldvelocity/RanaMainContent"
 import AuthModalHost from "../common/AuthModalHost"
 import '../../assets/css/ranamatch.css'
@@ -18,13 +16,23 @@ function Home() {
   }, [])
 
   return (
-    <div className="rana-layout">
+    <div className="rana-layout category-route">
+      <div className="bg-canvas" aria-hidden="true">
+        <div className="bg-aurora" />
+        <div className="bg-orb bg-orb-1" />
+        <div className="bg-orb bg-orb-2" />
+        <div className="bg-orb bg-orb-3" />
+        <div className="bg-orb bg-orb-4" />
+        <div className="bg-orb bg-orb-5" />
+        <div className="bg-orb bg-orb-6" />
+        <div className="bg-grid" />
+        <div className="bg-vignette" />
+        <div className="bg-noise" />
+      </div>
       <AuthModalHost />
       <RanaHeader />
-      <div className="page-wrap">
-        <RanaSidebarLeft />
+      <div className="category-page-main">
         <RanaMainContent />
-        <RanaSidebarRight />
       </div>
     </div>
   )
