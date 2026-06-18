@@ -9076,10 +9076,37 @@ body.category-page-scroll #root {
 }
 
 .rana-layout.category-route .elite-offers-scroll-shell {
+  position: relative;
   overflow: hidden;
   width: 100%;
-  padding: 0 0 6px;
-  mask-image: linear-gradient(90deg, transparent 0%, #000 3%, #000 97%, transparent 100%);
+  padding: 10px 22px 14px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.32), rgba(255,255,255,0.08));
+  border-top: 1px solid rgba(255,255,255,0.62);
+  border-bottom: 1px solid rgba(167,119,23,0.10);
+  mask-image: none;
+}
+
+.rana-layout.category-route .elite-offers-scroll-shell::before,
+.rana-layout.category-route .elite-offers-scroll-shell::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, transparent, rgba(167,119,23,0.64), transparent);
+  box-shadow: 0 0 18px rgba(167,119,23,0.24);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.rana-layout.category-route .elite-offers-scroll-shell::before {
+  left: 6px;
+}
+
+.rana-layout.category-route .elite-offers-scroll-shell::after {
+  right: 6px;
 }
 
 .rana-layout.category-route .elite-offers-grid {
