@@ -125,6 +125,13 @@ const RanaMainContent = () => {
   const { casino } = useGames() || {};
   const navigate = useNavigate();
   const [activeOffer, setActiveOffer] = useState(null);
+  const [offerStart, setOfferStart] = useState(0);
+  const [offersPaused, setOffersPaused] = useState(false);
+  const offerCount = Array.isArray(promoBanners) ? promoBanners.length : 0;
+  const visibleOfferCount = Math.min(3, offerCount);
+  const visibleOffers = offerCount > 0
+    ? Array.from({ length: visibleOfferCount }, (_, index) => promoBanners[(offerStart + index) % offerCount])
+    : [];
   const getSafeLogoUrl = (path) => {
     if (!path) return "/placeholder.svg";
     if (path.startsWith('http') || path.startsWith('data:')) return path;
@@ -138,6 +145,22 @@ const RanaMainContent = () => {
     });
   };
   const closeOfferPreview = () => setActiveOffer(null);
+
+  useEffect(() => {
+    if (offerCount <= visibleOfferCount || offersPaused) return undefined;
+
+    const timer = window.setInterval(() => {
+      setOfferStart((current) => (current + 1) % offerCount);
+    }, 2600);
+
+    return () => window.clearInterval(timer);
+  }, [offerCount, offersPaused, visibleOfferCount]);
+
+  useEffect(() => {
+    if (offerCount > 0 && offerStart >= offerCount) {
+      setOfferStart(0);
+    }
+  }, [offerCount, offerStart]);
 
   return (
     <main className="main-content">
@@ -305,13 +328,17 @@ const RanaMainContent = () => {
           </a>
         </div>
 
-        <div className="elite-offers-scroll-shell">
+        <div
+          className="elite-offers-scroll-shell"
+          onMouseEnter={() => setOffersPaused(true)}
+          onMouseLeave={() => setOffersPaused(false)}
+        >
         <div className="elite-offers-grid">
         {promoBanners && promoBanners.length > 0 ? (
-          [...promoBanners, ...promoBanners].map((promo, index) => (
+          visibleOffers.map((promo, index) => (
             <article
-              key={`${promo?.id || promo?.image_path || promo?.title || "offer"}-${index}`}
-              className={`elite-offer-card group ${index >= promoBanners.length ? 'is-duplicate' : ''}`}
+              key={`${promo?.id || promo?.image_path || promo?.title || "offer"}-${offerStart}-${index}`}
+              className="elite-offer-card group"
               role="button"
               tabIndex={0}
               onClick={() => openOfferPreview(promo)}

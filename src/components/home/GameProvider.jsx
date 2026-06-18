@@ -60,25 +60,19 @@ const providers = [
 
 /* ── Pure circular badge — NO text, NO name ── */
 const Circle = ({ logo, name, brand }) => (
-  <div className="group flex items-center justify-center px-1 py-2">
+  <div className="provider-chip group">
     <div
-      className="provider-circle relative rounded-full flex items-center justify-center overflow-hidden transition-all duration-200 group-hover:scale-105 cursor-pointer"
-      style={{
-        width: '80px',
-        height: '80px',
-        borderRadius: '50%',
-      }}
+      className="provider-circle relative flex items-center justify-center overflow-hidden transition-all duration-200 group-hover:scale-105 cursor-pointer"
       title={name}
     >
       {/* Inner ring */}
       <div
-        className="provider-inner-ring absolute rounded-full pointer-events-none"
-        style={{ inset: '6px', borderRadius: '50%' }}
+        className="provider-inner-ring absolute pointer-events-none"
       ></div>
       {/* Hover glow ring */}
       <div
-        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
-        style={{ boxShadow: `inset 0 0 20px ${brand}22`, borderRadius: '50%' }}
+        className="provider-hover-ring absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+        style={{ boxShadow: `inset 0 0 24px ${brand}30` }}
       ></div>
       {/* Logo */}
       <img
@@ -96,6 +90,7 @@ const Circle = ({ logo, name, brand }) => (
         onError={e => { e.currentTarget.style.display = 'none'; }}
       />
     </div>
+    <span className="provider-chip-name">{name}</span>
   </div>
 );
 
@@ -104,16 +99,20 @@ const GameProvider = () => {
   const [showAll, setShowAll] = useState(false);
 
   return (
-    <section className="mt-7 px-4 md:px-0 w-full">
+    <section className="provider-showcase mt-7 px-4 md:px-0 w-full">
       {/* Header */}
-      <div className="flex items-center justify-between gap-3 mb-4 px-1 md:px-2">
-        <h2 className="section-banner max-w-full" style={{ fontFamily: FONTS.head }}>
-          <span>Game Providers</span>
-        </h2>
+      <div className="provider-showcase-head">
+        <div>
+          <span className="provider-kicker">Studio Network</span>
+          <h2 className="provider-title" style={{ fontFamily: FONTS.head }}>
+            Game Providers
+          </h2>
+        </div>
+        <span className="provider-count">{providers.length} Partners</span>
 
         <button
           onClick={() => setShowAll(!showAll)}
-          className={`see-all cursor-pointer ${showAll ? 'bg-blue-600 text-white' : ''}`}
+          className={`see-all provider-toggle cursor-pointer ${showAll ? 'is-open' : ''}`}
           style={showAll ? { background: COLORS.brand, color: '#fff' } : {}}
         >
           {showAll ? 'Close ✕' : 'View All'}
@@ -122,21 +121,22 @@ const GameProvider = () => {
 
       {/* Infinite scroll carousel */}
       {!showAll && (
+        <div className="provider-carousel-shell">
         <Swiper
           modules={[Autoplay]}
-          spaceBetween={0}
-          slidesPerView={5}
+          spaceBetween={14}
+          slidesPerView={3}
           loop={true}
-          speed={4000}
+          speed={3800}
           autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true }}
           breakpoints={{
-            480:  { slidesPerView: 6 },
-            640:  { slidesPerView: 7 },
-            768:  { slidesPerView: 8 },
-            1024: { slidesPerView: 10 },
-            1280: { slidesPerView: 12 },
+            480:  { slidesPerView: 4 },
+            640:  { slidesPerView: 5 },
+            768:  { slidesPerView: 6 },
+            1024: { slidesPerView: 7 },
+            1280: { slidesPerView: 8 },
           }}
-          className="w-full"
+          className="provider-swiper w-full"
         >
           {[...providers, ...providers].map((p, i) => (
             <SwiperSlide key={i} style={{ display: 'flex', justifyContent: 'center' }}>
@@ -144,11 +144,12 @@ const GameProvider = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        </div>
       )}
 
       {/* Expanded full grid — circles only, no names */}
       {showAll && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'flex-start' }}>
+        <div className="provider-expanded-grid">
           {providers.map((p, i) => (
             <Circle key={i} logo={p.logo} name={p.name} brand={COLORS.brand} />
           ))}
