@@ -308,10 +308,10 @@ const RanaMainContent = () => {
         <div className="elite-offers-scroll-shell">
         <div className="elite-offers-grid">
         {promoBanners && promoBanners.length > 0 ? (
-          [...promoBanners.slice(0, 2), ...promoBanners.slice(0, 2)].map((promo, index) => (
+          [...promoBanners, ...promoBanners].map((promo, index) => (
             <article
-              key={index}
-              className={`elite-offer-card group ${index >= promoBanners.slice(0, 2).length ? 'is-duplicate' : ''}`}
+              key={`${promo?.id || promo?.image_path || promo?.title || "offer"}-${index}`}
+              className={`elite-offer-card group ${index >= promoBanners.length ? 'is-duplicate' : ''}`}
               role="button"
               tabIndex={0}
               onClick={() => openOfferPreview(promo)}

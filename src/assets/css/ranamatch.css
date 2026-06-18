@@ -432,6 +432,66 @@ nav a.active {
   box-shadow: 0 4px 14px rgba(167, 119, 23, 0.25);
 }
 
+.header-profile-balance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.header-profile-balance-tile {
+  min-height: 56px;
+  padding: 9px 10px;
+  border: 1px solid rgba(167, 119, 23, 0.14);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 85% 8%, rgba(255, 217, 125, 0.22), transparent 38%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 250, 239, 0.86));
+  display: grid;
+  align-content: center;
+  gap: 4px;
+}
+
+.header-profile-balance-tile span {
+  color: var(--text-600);
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.header-profile-balance-tile strong {
+  color: var(--gold);
+  font-family: var(--font-head);
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.header-profile-signout {
+  width: 100%;
+  min-height: 36px;
+  margin-top: 10px;
+  border: 1px solid rgba(211, 47, 47, 0.18);
+  border-radius: 11px;
+  background: rgba(211, 47, 47, 0.06);
+  color: var(--crimson);
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.header-profile-signout:hover {
+  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(211, 47, 47, 0.18);
+}
+
 .header-menu-popover {
   min-width: 160px;
 }
@@ -7754,14 +7814,15 @@ body.category-page-scroll #root {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #111425;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 251, 241, 0.92) 48%, rgba(246, 242, 255, 0.9) 100%);
   border-radius: 16px;
   padding: 24px 40px;
   margin: 16px 0 0px;
-  box-shadow: 
-    0 12px 24px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow:
+    0 14px 34px rgba(14, 11, 37, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(167, 119, 23, 0.16);
 }
 
 .promo-metrics-strip .metric-item {
@@ -7779,7 +7840,7 @@ body.category-page-scroll #root {
 .promo-metrics-strip .metric-divider {
   width: 1px;
   height: 54px;
-  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(167,119,23,0.16) 50%, transparent 100%);
 }
 
 .promo-metrics-strip .metric-val {
@@ -7792,36 +7853,36 @@ body.category-page-scroll #root {
 
 .promo-metrics-strip .metric-label {
   font-size: 13px;
-  color: #8B94A6;
-  font-weight: 600;
+  color: #7a748f;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .promo-metrics-strip .gold-gradient {
-  background: linear-gradient(135deg, #FDE047 0%, #D97706 100%);
+  background: linear-gradient(135deg, #f0b429 0%, #a77717 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 16px rgba(217, 119, 6, 0.4));
+  filter: drop-shadow(0 4px 12px rgba(167, 119, 23, 0.22));
 }
 
 .promo-metrics-strip .green-gradient {
-  background: linear-gradient(135deg, #4ADE80 0%, #059669 100%);
+  background: linear-gradient(135deg, #34d399 0%, #047857 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 16px rgba(5, 150, 105, 0.4));
+  filter: drop-shadow(0 4px 12px rgba(5, 150, 105, 0.18));
 }
 
 .promo-metrics-strip .red-gradient {
-  background: linear-gradient(135deg, #F87171 0%, #DC2626 100%);
+  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 16px rgba(220, 38, 38, 0.4));
+  filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.16));
 }
 
 .promo-metrics-strip .white-glow {
-  color: #FFFFFF;
-  text-shadow: 0 4px 16px rgba(255, 255, 255, 0.4);
+  color: #17142d;
+  text-shadow: 0 6px 18px rgba(167, 119, 23, 0.12);
 }
 
 .rana-layout.category-route .main-content > .promo-grid .promo-btn:hover i {
@@ -9017,21 +9078,26 @@ body.category-page-scroll #root {
 .rana-layout.category-route .elite-offers-scroll-shell {
   overflow: hidden;
   width: 100%;
-  padding: 0 0 4px;
+  padding: 0 0 6px;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 3%, #000 97%, transparent 100%);
 }
 
 .rana-layout.category-route .elite-offers-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 360px));
-  justify-content: start;
+  display: flex;
+  align-items: stretch;
   gap: 14px;
-  width: auto;
+  width: max-content;
   padding: 0;
-  animation: none !important;
+  animation: elite-offers-marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.rana-layout.category-route .elite-offers-scroll-shell:hover .elite-offers-grid {
+  animation-play-state: paused;
 }
 
 .rana-layout.category-route .elite-offer-card {
-  width: 100%;
+  flex: 0 0 clamp(300px, 26vw, 430px);
   min-height: 108px;
   aspect-ratio: 18 / 7;
   border-radius: 16px;
@@ -9049,7 +9115,7 @@ body.category-page-scroll #root {
 }
 
 .rana-layout.category-route .elite-offer-card.is-duplicate {
-  display: none;
+  display: block;
 }
 
 .rana-layout.category-route .elite-offer-empty {
@@ -9073,4 +9139,104 @@ body.category-page-scroll #root {
   background: linear-gradient(135deg, #c59124, #a77717);
   color: #fff;
   box-shadow: 0 10px 22px rgba(167, 119, 23, 0.18);
+}
+
+@keyframes elite-offers-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 7px));
+  }
+}
+
+@media (max-width: 720px) {
+  .rana-layout.category-route .elite-offer-card {
+    flex-basis: min(82vw, 340px);
+  }
+
+  .rana-layout.category-route .elite-offers-grid {
+    animation-duration: 22s;
+  }
+}
+
+/* Final promo metrics polish */
+.rana-layout.category-route .promo-metrics-strip {
+  background:
+    radial-gradient(circle at 14% 22%, rgba(255, 217, 125, 0.28) 0%, transparent 30%),
+    radial-gradient(circle at 82% 18%, rgba(109, 40, 217, 0.12) 0%, transparent 34%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 249, 235, 0.96) 50%, rgba(244, 242, 255, 0.96) 100%);
+  border: 1px solid rgba(167, 119, 23, 0.2);
+  box-shadow: 0 16px 38px rgba(14, 11, 37, 0.1), inset 0 1px 0 rgba(255,255,255,0.98);
+}
+
+.rana-layout.category-route .promo-metrics-strip .metric-item {
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+}
+
+.rana-layout.category-route .promo-metrics-strip .metric-val {
+  font-size: 34px;
+  letter-spacing: -0.6px;
+  filter: none;
+}
+
+.rana-layout.category-route .promo-metrics-strip .metric-label {
+  color: #4a445f !important;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  opacity: 1;
+  text-shadow: none;
+}
+
+.rana-layout.category-route .promo-metrics-strip .metric-divider {
+  background: linear-gradient(180deg, transparent 0%, rgba(167,119,23,0.18) 50%, transparent 100%);
+}
+
+.rana-layout.category-route .promo-metrics-strip .white-glow {
+  color: #15112b;
+  font-size: 36px;
+  font-weight: 900;
+  text-shadow: 0 8px 20px rgba(167,119,23,0.16);
+}
+
+/* Final profile menu polish */
+.rana-layout .header-profile-popover {
+  width: 336px;
+  min-width: 336px;
+  padding: 16px;
+  border-color: rgba(167, 119, 23, 0.18) !important;
+  background:
+    radial-gradient(circle at 12% 6%, rgba(255, 217, 125, 0.18), transparent 34%),
+    linear-gradient(145deg, rgba(255,255,255,0.98), rgba(255,250,239,0.95)) !important;
+}
+
+.rana-layout .header-profile-avatar {
+  background: linear-gradient(135deg, #a77717 0%, #c59124 70%, #ffd97d 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 22px rgba(167, 119, 23, 0.24) !important;
+}
+
+.rana-layout .header-profile-links button {
+  background: rgba(255, 255, 255, 0.78) !important;
+  border-color: rgba(167, 119, 23, 0.16) !important;
+  color: #302a43 !important;
+}
+
+.rana-layout .header-profile-links button:hover {
+  background: linear-gradient(135deg, #a77717 0%, #c59124 100%) !important;
+  border-color: rgba(167, 119, 23, 0.32) !important;
+  color: #ffffff !important;
+}
+
+.rana-layout .header-profile-balance-tile span {
+  color: #756f8f !important;
+}
+
+.rana-layout .header-profile-balance-tile strong {
+  color: #a77717 !important;
 }

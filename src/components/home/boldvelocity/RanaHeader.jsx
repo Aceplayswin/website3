@@ -7,7 +7,7 @@ import { useTheme } from "../../../context/ThemeContext";
 import { usePWAInstall } from "../../../hooks/usePWAInstall";
 
 const RanaHeader = () => {
-  const { accountInfo, activateDemoMode, setShowLogin, setShowRegister } = useSite();
+  const { accountInfo, activateDemoMode, setShowLogin, setShowRegister, logout } = useSite();
   const navigate = useNavigate();
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
@@ -79,6 +79,19 @@ const RanaHeader = () => {
     { label: "Refer & Earn", path: "/inviteandearn" },
     { label: "Transaction", path: "/transaction" },
     { label: "Bet History", path: "/betting-profit-loss" },
+  ];
+  const profileRealBalance = toNumber(accountInfo?.account_balance);
+  const profileCasinoBalance = toNumber(accountInfo?.account_casino_bonus);
+  const profileSportsBalance = toNumber(accountInfo?.account_sports_bonus);
+  const profileApiTotalBalance = toNumber(accountInfo?.account_total_balance);
+  const profileTotalBalance = profileApiTotalBalance > 0
+    ? profileApiTotalBalance
+    : profileRealBalance + profileCasinoBalance + profileSportsBalance;
+  const profileBalances = [
+    { label: "Real", value: profileRealBalance },
+    { label: "Casino", value: profileCasinoBalance },
+    { label: "Sports", value: profileSportsBalance },
+    { label: "Total", value: profileTotalBalance },
   ];
   const mobileQuickLinks = [
     { label: "My Account", action: () => setMobilePanel("account") },
@@ -196,6 +209,17 @@ const RanaHeader = () => {
     event?.stopPropagation?.();
     setProfileOpen(false);
     setMenuOpen((prev) => !prev);
+  };
+  const handleSignOut = () => {
+    setProfileOpen(false);
+    setMenuOpen(false);
+    if (typeof logout === "function") {
+      logout();
+      return;
+    }
+    localStorage.removeItem("auth_secret_key");
+    localStorage.removeItem("account_id");
+    setShowLogin(true);
   };
   const isBottomActive = (path) => {
     if (path === "/#live") return location.pathname === "/" && location.hash === "#live";
@@ -332,6 +356,14 @@ const RanaHeader = () => {
                         <div className="header-mini-sub">My Profile</div>
                       </div>
                     </div>
+                    <div className="header-profile-balance-grid">
+                      {profileBalances.map((item) => (
+                        <div className="header-profile-balance-tile" key={item.label}>
+                          <span>{item.label}</span>
+                          <strong>{"\u20B9"}{formatBalance(item.value)}</strong>
+                        </div>
+                      ))}
+                    </div>
                     <div className="header-profile-links">
                       {profileLinks.map((item) => (
                         <button type="button" key={item.path} onClick={() => openProfileLink(item.path)}>
@@ -339,6 +371,9 @@ const RanaHeader = () => {
                         </button>
                       ))}
                     </div>
+                    <button type="button" className="header-profile-signout" onClick={handleSignOut}>
+                      Sign Out
+                    </button>
                   </div>
                 )}
                 <div className="header-menu-wrap">
