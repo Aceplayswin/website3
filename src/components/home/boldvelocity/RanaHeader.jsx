@@ -111,6 +111,18 @@ const RanaHeader = () => {
     { label: "Promos", icon: <FaGift />, path: "/promotion" },
     { label: "Support", icon: <FaHeadset />, path: "/support" },
   ];
+  const casinoCategoryLinks = [
+    { label: "Lottery", icon: "🎟️", path: "/lottery" },
+    { label: "Crash Games", icon: "🚀", path: "/crash-games" },
+    { label: "Roulette", icon: "🎡", path: "/roulette" },
+    { label: "Blackjack", icon: "🃏", path: "/blackjack" },
+    { label: "Baccarat", icon: "💎", path: "/baccarat" },
+    { label: "Dragon Tiger", icon: "🐯", path: "/dragon-tiger" },
+    { label: "Teen Patti", icon: "🎴", path: "/teen-patti" },
+    { label: "Poker", icon: "♠️", path: "/poker" },
+    { label: "Game Shows", icon: "📺", path: "/game-shows" },
+    { label: "Andar Bahar", icon: "🃏", path: "/andar-bahar" },
+  ];
   const navClass = (active) => (active ? "active" : undefined);
   const catClass = (path) => `cat-item${isPathActive(path) ? " active" : ""}`;
   const goCategory = (event, path) => {
@@ -317,27 +329,17 @@ const RanaHeader = () => {
       {/* SPORT RAIL */}
       <div className="sport-rail">
         <div className="cat-nav-inner">
-        <a href="#" className={`sport-tab ${isPathActive("/lottery") ? "active" : ""}`} onClick={(e) => goCategory(e, "/lottery")}>
-          <i className="ti ti-ticket"></i> Lottery
-        </a>
-        <a href="#" className={`sport-tab ${isPathActive("/crash-games") ? "active" : ""}`} onClick={(e) => goCategory(e, "/crash-games")}>
-          <i className="ti ti-rocket"></i> Crash
-        </a>
-        <a href="#" className={`sport-tab ${isPathActive("/roulette") ? "active" : ""}`} onClick={(e) => goCategory(e, "/roulette")}>
-          <i className="ti ti-wheel"></i> Roulette
-        </a>
-        <a href="#" className={`sport-tab ${isPathActive("/blackjack") ? "active" : ""}`} onClick={(e) => goCategory(e, "/blackjack")}>
-          <i className="ti ti-cards"></i> Blackjack
-        </a>
-        <a href="#" className={`sport-tab ${isPathActive("/baccarat") ? "active" : ""}`} onClick={(e) => goCategory(e, "/baccarat")}>
-          <i className="ti ti-diamond"></i> Baccarat
-        </a>
-        <a href="#" className={`sport-tab ${isPathActive("/poker") ? "active" : ""}`} onClick={(e) => goCategory(e, "/poker")}>
-          <i className="ti ti-spade"></i> Poker
-        </a>
-        <a href="#" className={`sport-tab ${isPathActive("/game-shows") ? "active" : ""}`} onClick={(e) => goCategory(e, "/game-shows")}>
-          <i className="ti ti-device-tv"></i> Shows
-        </a>
+        {casinoCategoryLinks.map((item) => (
+          <a
+            key={item.path}
+            href="#"
+            className={`sport-tab ${isPathActive(item.path) ? "active" : ""}`}
+            onClick={(event) => goCategory(event, item.path)}
+          >
+            <span className="sport-tab-emoji" aria-hidden="true">{item.icon}</span>
+            <span>{item.label}</span>
+          </a>
+        ))}
         </div>
       </div>
       {mobilePanel && (
