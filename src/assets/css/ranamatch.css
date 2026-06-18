@@ -7834,13 +7834,20 @@ body.category-page-scroll #root {
 
 .sport-rail {
   position: fixed;
-  top: 72px; left: 0; right: 0;
+  top: 72px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 1600px;
   z-index: 999;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(14, 11, 37, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 18px;
+  box-shadow: 0 10px 32px rgba(14, 11, 37, 0.06);
   display: flex;
-  padding: 0 44px;
+  padding: 0 22px;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -9809,6 +9816,26 @@ body.category-page-scroll #root {
 
 .faq-card.is-open .faq-chevron svg {
   transform: rotate(180deg);
+}
+
+/* Final category rail gutter alignment */
+.rana-layout .sport-rail {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 48px) !important;
+  max-width: 1600px !important;
+  padding-left: 22px !important;
+  padding-right: 22px !important;
+  border-radius: 18px !important;
+}
+
+@media (max-width: 720px) {
+  .rana-layout .sport-rail {
+    width: calc(100% - 20px) !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
 }
 
 .why-choose-section .trust-title {
