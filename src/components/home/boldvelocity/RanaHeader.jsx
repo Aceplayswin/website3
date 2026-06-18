@@ -95,6 +95,21 @@ const RanaHeader = () => {
     { label: "Responsible", path: "/responsible-gambling" },
     { label: "Support", path: "/support" },
   ];
+  const rightMenuLinks = [
+    { label: "My Account", path: "/" },
+    { label: "Deposit", path: "/deposit" },
+    { label: "Withdrawal", path: "/withdraw" },
+    { label: "Bet History", path: "/betting-profit-loss" },
+    { label: "Promotions", path: "/promotion" },
+    { label: "Bonus", path: "/bonus" },
+    { label: "VIP Club", path: "/" },
+    { label: "Refer a Friend", path: "/inviteandearn" },
+    { label: "Rules", path: "/rules-regulation" },
+    { label: "Exclusion", path: "/exclusion" },
+    { label: "Privacy", path: "/privacy-policy" },
+    { label: "Responsible", path: "/responsible-gambling" },
+    { label: "Support", path: "/support" },
+  ];
   const latestNewsItems = [
     "New Live Casino Games launching in 7 days",
     "Mega Slots Tournament starts in 10 days",
@@ -171,6 +186,16 @@ const RanaHeader = () => {
   const handleMobileNavigate = (path) => {
     closeMobilePanel();
     if (path && path !== "#") navigate(path);
+  };
+  const handleRightMenuNavigate = (path) => {
+    setMenuOpen(false);
+    if (path && path !== "#") navigate(path);
+  };
+  const handleRightMenuClick = (event) => {
+    event?.preventDefault?.();
+    event?.stopPropagation?.();
+    setProfileOpen(false);
+    setMenuOpen((prev) => !prev);
   };
   const isBottomActive = (path) => {
     if (path === "/#live") return location.pathname === "/" && location.hash === "#live";
@@ -316,6 +341,42 @@ const RanaHeader = () => {
                     </div>
                   </div>
                 )}
+                <div className="header-menu-wrap">
+                  <button
+                    type="button"
+                    className={`header-menu-trigger ${menuOpen ? "active" : ""}`}
+                    onClick={handleRightMenuClick}
+                    aria-label="Open menu"
+                    aria-expanded={menuOpen}
+                  >
+                    <FaBars />
+                  </button>
+                  {menuOpen && (
+                    <div className="header-mini-popover header-menu-popover right-menu-popover">
+                      <button type="button" className="header-mini-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">
+                        <FaTimes />
+                      </button>
+                      <div className="header-menu-title">Quick Menu</div>
+                      <button
+                        type="button"
+                        className="right-menu-get-app"
+                        onClick={(event) => {
+                          setMenuOpen(false);
+                          handleGetApp(event);
+                        }}
+                      >
+                        Get App
+                      </button>
+                      <div className="right-menu-actions">
+                        {rightMenuLinks.map((item) => (
+                          <button type="button" key={`${item.label}-${item.path}`} onClick={() => handleRightMenuNavigate(item.path)}>
+                            {item.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </>
             ) : (
               <>

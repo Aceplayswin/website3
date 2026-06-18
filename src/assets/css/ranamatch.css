@@ -436,6 +436,103 @@ nav a.active {
   min-width: 160px;
 }
 
+.header-menu-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.header-menu-trigger {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--gold-border);
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(167, 119, 23, 0.08), rgba(167, 119, 23, 0.03));
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.header-menu-trigger:hover,
+.header-menu-trigger.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 100%);
+  box-shadow: 0 8px 20px rgba(167, 119, 23, 0.22);
+  transform: translateY(-1px);
+}
+
+.right-menu-popover {
+  top: 48px;
+  right: 0;
+  width: 292px;
+  min-width: 292px;
+  padding: 14px;
+}
+
+.header-menu-title {
+  padding: 0 28px 10px 2px;
+  color: var(--text-100);
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.right-menu-get-app {
+  width: 100%;
+  min-height: 38px;
+  margin-bottom: 9px;
+  border: 1px solid rgba(167, 119, 23, 0.28);
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 72%, var(--gold-light) 100%);
+  color: #ffffff !important;
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(167, 119, 23, 0.2);
+}
+
+.right-menu-popover .right-menu-get-app {
+  background: linear-gradient(135deg, #a77717 0%, #c59124 70%, #d8a83a 100%) !important;
+  color: #ffffff !important;
+  text-shadow: 0 1px 1px rgba(70, 43, 0, 0.28);
+}
+
+.right-menu-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.right-menu-actions button {
+  min-height: 34px;
+  border: 1px solid rgba(167, 119, 23, 0.14);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--text-200);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.right-menu-actions button:hover {
+  border-color: var(--gold-border);
+  background: var(--gold-dim);
+  color: var(--gold);
+  box-shadow: inset 0 0 0 1px rgba(167, 119, 23, 0.06);
+}
+
 .header-mini-close {
   position: absolute;
   top: 8px;
