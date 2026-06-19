@@ -1388,6 +1388,151 @@ const CasinoPage = () => {
           color:#a77717;
         }
 
+        .casino-top-layout{
+          grid-template-columns:minmax(0,1fr) minmax(300px,338px);
+          gap:12px;
+          align-items:stretch;
+        }
+
+        .casino-left-stack{
+          gap:8px;
+          grid-template-rows:auto 62px;
+        }
+
+        .casino-command{
+          grid-template-columns:minmax(0,1fr) minmax(220px,.48fr);
+          gap:10px;
+          align-items:stretch;
+        }
+
+        .casino-hero-card{
+          min-height:142px;
+          padding:13px 16px;
+          border-radius:18px;
+        }
+
+        .casino-control-card,
+        .provider-deck{
+          border-radius:18px;
+        }
+
+        .casino-kicker-line{
+          font-size:7px;
+          margin-bottom:6px;
+        }
+
+        .casino-hero-title{
+          font-size:clamp(24px, 2.15vw, 34px);
+        }
+
+        .casino-hero-copy{
+          max-width:560px;
+          margin-top:6px;
+          font-size:11px;
+          line-height:1.35;
+        }
+
+        .casino-hero-stats-new{
+          max-width:410px;
+          gap:6px;
+          margin-top:10px;
+        }
+
+        .casino-hero-stats-new div{
+          padding:7px 9px;
+          border-radius:11px;
+        }
+
+        .casino-hero-stats-new strong{
+          font-size:15px;
+        }
+
+        .casino-hero-stats-new span{
+          font-size:7px;
+        }
+
+        .casino-hero-card::after{
+          font-size:44px;
+          bottom:-7px;
+        }
+
+        .casino-control-card{
+          padding:12px;
+          gap:8px;
+        }
+
+        .casino-control-title{
+          font-size:12px;
+        }
+
+        .casino-control-card .search-box input{
+          min-height:32px;
+          font-size:10px;
+          border-radius:11px;
+        }
+
+        .provider-deck{
+          height:212px;
+          padding:12px;
+          display:flex;
+          flex-direction:column;
+        }
+
+        .provider-grid-top{
+          flex:1;
+          max-height:none;
+          gap:7px;
+          min-height:0;
+        }
+
+        .provider-chip-top{
+          min-height:44px;
+          padding:7px;
+          border-radius:13px;
+        }
+
+        .provider-chip-top .s-ico{
+          width:28px;
+          height:28px;
+        }
+
+        .provider-chip-copy strong{
+          font-size:10px;
+        }
+
+        .provider-chip-copy span{
+          font-size:7px;
+        }
+
+        .cat-row{
+          min-height:62px;
+          height:62px;
+          margin:0;
+          border-radius:18px;
+          grid-auto-columns:minmax(118px,1fr);
+        }
+
+        .cat-pill{
+          min-width:118px;
+          min-height:62px;
+          padding:8px 10px;
+          gap:5px;
+        }
+
+        .cat-pill::before{
+          inset:6px;
+          border-radius:13px;
+        }
+
+        .cat-icon{
+          font-size:18px;
+        }
+
+        .cat-name{
+          font-size:8px;
+          letter-spacing:.1em;
+        }
+
         @media (max-width: 1180px){
           .casino-top-layout{
             grid-template-columns:1fr;
