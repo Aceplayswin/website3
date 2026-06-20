@@ -4,7 +4,7 @@ import '../../assets/css/ranamatch.css';
 
 function Transaction() {
   return (
-    <div className="finance-route-shell rana-layout min-h-screen">
+    <div className="finance-route-shell statement-route wallet-statement-route rana-layout min-h-screen">
       <RanaHeader />
       <main className="finance-route-main">
         <TransactionPage />

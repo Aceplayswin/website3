@@ -5,7 +5,7 @@ import '../../assets/css/ranamatch.css';
 
 function PromotionPage() {
   return (
-    <div className="rana-layout promo-route min-h-screen">
+    <div className="rana-layout promo-route rewards-redesign-route min-h-screen">
       <RanaHeader />
       <main className="promo-route-main">
         <Promotion />

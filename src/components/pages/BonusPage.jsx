@@ -5,7 +5,7 @@ import '../../assets/css/ranamatch.css';
 
 function BonusPage() {
   return (
-    <div className="rana-layout bonus-route min-h-screen">
+    <div className="rana-layout bonus-route rewards-redesign-route min-h-screen">
       <RanaHeader />
       <main className="bonus-route-main">
         <Bonus />
