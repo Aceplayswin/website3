@@ -136,7 +136,7 @@ const CasinoPage = () => {
   };
 
   useEffect(() => {
-    document.body.style.backgroundColor = '#eef3f8';
+    document.body.style.backgroundColor = '#e6e8ee';
     document.body.style.color = '#071226';
     document.body.style.fontFamily = "'Rajdhani', sans-serif";
     document.documentElement.style.height = '100%';
@@ -811,18 +811,18 @@ const CasinoPage = () => {
           --lo:#8b86a3;
           --border:rgba(14,11,37,.08);
           background:
-            radial-gradient(ellipse 90% 50% at 15% 0%, rgba(109,40,217,.055) 0%, transparent 60%),
-            radial-gradient(ellipse 80% 45% at 85% 5%, rgba(167,119,23,.06) 0%, transparent 55%),
-            radial-gradient(ellipse 60% 40% at 50% 100%, rgba(6,214,245,.04) 0%, transparent 55%),
-            linear-gradient(180deg,#fdfdff 0%,#f6f5fc 50%,#eeedf8 100%);
+            radial-gradient(ellipse 80% 42% at 16% 0%, rgba(167,119,23,.045) 0%, transparent 58%),
+            radial-gradient(ellipse 70% 38% at 86% 0%, rgba(14,11,37,.045) 0%, transparent 58%),
+            linear-gradient(180deg,#f4f5f8 0%,#eceef3 48%,#f4f5f8 100%);
           color:var(--hi);
         }
 
         .casino-shell::before{
-          opacity:.42;
+          display:none;
+          opacity:0;
           background-image:
-            linear-gradient(rgba(109,40,217,.045) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(109,40,217,.04) 1px, transparent 1px);
+            linear-gradient(rgba(14,11,37,.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(14,11,37,.03) 1px, transparent 1px);
         }
 
         .sidebar{
@@ -1004,10 +1004,7 @@ const CasinoPage = () => {
         .casino-shell{
           display:block;
           overflow:auto;
-          background:
-            radial-gradient(circle at 14% 8%, rgba(34, 211, 238, 0.16), transparent 28%),
-            radial-gradient(circle at 90% 0%, rgba(29, 78, 216, 0.12), transparent 30%),
-            linear-gradient(180deg, #eef3f8 0%, #e4eaf1 46%, #edf2f7 100%);
+          background:#e6e8ee;
         }
 
         .casino-shell .sidebar{
@@ -1018,6 +1015,7 @@ const CasinoPage = () => {
           max-width:1720px;
           margin:0 auto;
           padding:8px clamp(24px, 4vw, 72px) 48px;
+          background:transparent !important;
         }
 
         .content::before,

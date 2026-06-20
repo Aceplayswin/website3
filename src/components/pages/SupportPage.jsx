@@ -19,26 +19,18 @@ function SupportPage() {
   };
 
   return (
-    <div className="rana-layout">
+    <div className="rana-layout category-route support-route">
       <AuthModalHost />
       <RanaHeader />
-      <div style={{
-        flex: 1,
-        overflowY: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: '16px 12px 110px',
-        minHeight: 0,
-      }}>
-        <div style={{ width: '100%', maxWidth: '960px' }}>
+      <main className="support-page-main">
+        <div className="support-page-shell">
           {view === 'history' ? (
             <SupportHistory onBack={setShowContact} />
           ) : (
             <ContactUs onShowHistory={setShowHistory} />
           )}
         </div>
-      </div>
+      </main>
     </div>
   )
 }

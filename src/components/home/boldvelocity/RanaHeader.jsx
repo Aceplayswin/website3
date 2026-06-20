@@ -265,6 +265,7 @@ const RanaHeader = () => {
           <Link to="/#slots" className={navClass(isHashActive("#slots"))}>Slots</Link>
           <Link to="/#fantasy-games" className={navClass(isHashActive("#fantasy-games"))}>Fantasy</Link>
           <Link to="/promotion" className={navClass(isPathActive("/promotion"))}>Promotions</Link>
+          <Link to="/support" className={navClass(isPathActive("/support"))}>Support</Link>
         </div>
           <div className="mobile-header-actions">
             {!isLoggedIn ? (

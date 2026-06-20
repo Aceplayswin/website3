@@ -198,7 +198,7 @@ function Deposit() {
   if (!isLoggedIn) return null
 
   return (
-    <div className="finance-v2 finance-deposit-v2">
+    <div className="finance-v2 finance-deposit-v2 finance-redesign finance-redesign-deposit">
       {notification.isOpen && (
         <div className="finance-v2-modal">
           <div className="finance-v2-notice">

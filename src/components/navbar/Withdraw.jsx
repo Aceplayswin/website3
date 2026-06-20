@@ -229,7 +229,7 @@ const Withdraw = () => {
   const selectedBankAccount = addedBankAccounts.find((account) => account.c_bank_id === selectedAccount)
 
   return (
-    <div className="finance-v2 finance-withdraw-v2">
+    <div className="finance-v2 finance-withdraw-v2 finance-redesign finance-redesign-withdraw">
       {notification.isOpen && (
         <div className="finance-v2-modal">
           <div className="finance-v2-notice">

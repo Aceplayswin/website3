@@ -1,73 +1,78 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaTelegramPlane,
-  FaInstagram, FaFacebookF, FaTwitter, FaPaperPlane,
-  FaCheckCircle, FaTicketAlt, FaPaperclip, FaTimes, FaUser,
-  FaExclamationTriangle, FaHistory, FaHeadphones,
-  FaBolt, FaLock, FaShieldAlt
+  FaCheckCircle,
+  FaClock,
+  FaEnvelope,
+  FaExclamationTriangle,
+  FaHeadphones,
+  FaHistory,
+  FaPaperPlane,
+  FaPaperclip,
+  FaShieldAlt,
+  FaTicketAlt,
+  FaTimes,
+  FaUser,
+  FaWhatsapp,
 } from 'react-icons/fa';
+import { AnimatePresence, motion } from 'framer-motion';
 import { FONTS } from '../../../constants/theme';
 import { useSite } from '../../../context/SiteContext';
 import { API_URL } from '../../../utils/constants';
-import { motion, AnimatePresence } from 'framer-motion';
 
-/* ── Home page light theme tokens ── */
-const C = {
-  bg:       '#dde1e7',        /* same as .rana-layout */
-  card:     '#ffffff',
-  cardAlt:  '#f0f4f8',
-  brand:    '#0e2040',        /* --brand */
-  brandMid: '#1a3668',
-  gold:     '#22d3ee',        /* --gold  */
-  goldDim:  'rgba(34,211,238,0.12)',
-  goldBorder:'rgba(34,211,238,0.3)',
-  text:     '#111827',
-  muted:    '#6b7280',
-  border:   'rgba(0,0,0,0.08)',
-  borderBrand: 'rgba(14,32,64,0.15)',
-  rose:     '#f43f5e',
-  green:    '#10b981',
+const palette = {
+  gold: '#b77a0a',
+  goldSoft: 'rgba(183,122,10,0.12)',
+  goldBorder: 'rgba(183,122,10,0.22)',
+  text: '#15132a',
+  muted: '#6f6a8c',
+  card: 'rgba(255,255,255,0.88)',
+  line: 'rgba(151,142,178,0.18)',
+  red: '#ef4444',
+  green: '#0aa66a',
 };
 
-const inputStyle = {
+const fieldBase = {
   width: '100%',
-  background: '#f8fafc',
-  border: `1px solid rgba(0,0,0,0.12)`,
-  borderRadius: 8,
-  padding: '11px 14px',
-  color: C.text,
-  fontSize: 13,
+  minHeight: 46,
+  border: `1px solid ${palette.line}`,
+  borderRadius: 16,
+  background: 'rgba(255,255,255,0.86)',
+  color: palette.text,
   fontFamily: FONTS.ui,
-  outline: 'none',
-  transition: 'border-color 0.2s, box-shadow 0.2s',
-};
-
-const labelStyle = {
-  display: 'block',
-  fontFamily: FONTS.head,
+  fontSize: 13,
   fontWeight: 700,
-  fontSize: 10,
-  textTransform: 'uppercase',
-  letterSpacing: '0.12em',
-  color: C.muted,
-  marginBottom: 6,
+  outline: 'none',
+  padding: '0 15px',
+  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.84)',
 };
 
-const ContactUs = (props) => {
+const labelBase = {
+  display: 'block',
+  marginBottom: 8,
+  color: '#817b9c',
+  fontFamily: FONTS.head,
+  fontSize: 10,
+  fontWeight: 900,
+  letterSpacing: '0.16em',
+  textTransform: 'uppercase',
+};
+
+const ContactUs = ({ onShowHistory }) => {
   const { accountInfo } = useSite();
-  const fileInputRef    = useRef(null);
-  const [focus, setFocus] = useState(null);
+  const fileInputRef = useRef(null);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 820);
-
-  const [formData, setFormData]   = useState({ name:'', email:'', subject:'', message:'', priority:'Medium', profile_id:'' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+    priority: 'Medium',
+    profile_id: '',
+  });
   const [attachments, setAttachments] = useState([]);
-  const [submitting, setSubmitting]   = useState(false);
-  const [ticketId, setTicketId]       = useState('');
-  const [notification, setNotification] = useState({ isOpen:false, message:'', type:'success' });
-
-  const handleChange    = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-  const handleFileChange= e => setAttachments([...attachments, ...Array.from(e.target.files)]);
-  const removeAttachment= i => setAttachments(attachments.filter((_, idx) => idx !== i));
+  const [submitting, setSubmitting] = useState(false);
+  const [ticketId, setTicketId] = useState('');
+  const [notification, setNotification] = useState({ isOpen: false, message: '', type: 'success' });
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 820);
@@ -75,72 +80,106 @@ const ContactUs = (props) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleChange = (event) => {
+    setFormData((current) => ({ ...current, [event.target.name]: event.target.value }));
+  };
+
+  const handleFileChange = (event) => {
+    setAttachments((current) => [...current, ...Array.from(event.target.files || [])]);
+  };
+
+  const removeAttachment = (index) => {
+    setAttachments((current) => current.filter((_, itemIndex) => itemIndex !== index));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setSubmitting(true);
     try {
-      const userId  = localStorage.getItem('account_id') || 'guest';
+      const userId = localStorage.getItem('account_id') || 'guest';
       const authKey = localStorage.getItem('auth_secret_key') || 'guest';
-      const body    = new FormData();
-      Object.keys(formData).forEach(k => body.append(k, formData[k]));
+      const body = new FormData();
+      Object.keys(formData).forEach((key) => body.append(key, formData[key]));
       body.append('USER_ID', userId);
-      attachments.forEach(f => body.append('attachments[]', f));
-      const res    = await fetch(API_URL, { method:'POST', headers:{ Route:'route-submit-ticket', AuthToken:authKey }, body });
-      const result = await res.json();
+      attachments.forEach((file) => body.append('attachments[]', file));
+
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { Route: 'route-submit-ticket', AuthToken: authKey },
+        body,
+      });
+      const result = await response.json();
+
       if (result.status_code === 'success') {
-        setTicketId(result.ticket_id || 'TKT-' + Date.now());
-        setNotification({ isOpen:true, message:'Ticket submitted! Our team will contact you shortly.', type:'success' });
-        setFormData({ name:'', email:'', subject:'', message:'', priority:'Medium', profile_id:'' });
+        setTicketId(result.ticket_id || `TKT-${Date.now()}`);
+        setNotification({ isOpen: true, message: 'Ticket submitted. Our team will contact you shortly.', type: 'success' });
+        setFormData({ name: '', email: '', subject: '', message: '', priority: 'Medium', profile_id: '' });
         setAttachments([]);
       } else {
-        setNotification({ isOpen:true, message:`Submission failed: ${result.status_code || 'Unknown Error'}`, type:'error' });
+        setNotification({ isOpen: true, message: `Submission failed: ${result.status_code || 'Unknown error'}`, type: 'error' });
       }
     } catch {
-      setNotification({ isOpen:true, message:'Network error. Please check your connection.', type:'error' });
+      setNotification({ isOpen: true, message: 'Network error. Please check your connection.', type: 'error' });
     } finally {
       setSubmitting(false);
     }
   };
 
-  const socialIconMap = {
-    whatsapp:  { icon:<FaWhatsapp />,      color:'#25D366', prefix:'https://wa.me/' },
-    telegram:  { icon:<FaTelegramPlane />, color:'#0088cc', prefix:'' },
-    instagram: { icon:<FaInstagram />,     color:'#E1306C', prefix:'' },
-    facebook:  { icon:<FaFacebookF />,     color:'#1877F2', prefix:'' },
-    twitter:   { icon:<FaTwitter />,       color:'#1DA1F2', prefix:'' },
+  const inputFocus = (event) => {
+    event.currentTarget.style.borderColor = palette.gold;
+    event.currentTarget.style.boxShadow = '0 0 0 4px rgba(183,122,10,0.10), inset 0 1px 0 rgba(255,255,255,0.84)';
   };
 
-  const fs = (name) => focus === name ? { borderColor: C.gold, boxShadow:`0 0 0 3px rgba(34,211,238,0.15)`, background:'#fff' } : {};
-  const Inp = ({ style, ...p }) => <input style={{ ...inputStyle, ...style, ...fs(p.name) }} onFocus={()=>setFocus(p.name)} onBlur={()=>setFocus(null)} {...p} />;
-  const Sel = ({ style, children, ...p }) => <select style={{ ...inputStyle, ...style, cursor:'pointer', ...fs(p.name) }} onFocus={()=>setFocus(p.name)} onBlur={()=>setFocus(null)} {...p}>{children}</select>;
-  const Tex = ({ style, ...p }) => <textarea style={{ ...inputStyle, ...style, resize:'none', ...fs(p.name) }} onFocus={()=>setFocus(p.name)} onBlur={()=>setFocus(null)} {...p} />;
+  const inputBlur = (event) => {
+    event.currentTarget.style.borderColor = palette.line;
+    event.currentTarget.style.boxShadow = fieldBase.boxShadow;
+  };
+
+  const inputProps = {
+    style: fieldBase,
+    onFocus: inputFocus,
+    onBlur: inputBlur,
+  };
+
+  const quickStats = [
+    { icon: <FaClock />, value: '< 2 hrs', label: 'avg response' },
+    { icon: <FaShieldAlt />, value: 'secure', label: 'private tickets' },
+    { icon: <FaHeadphones />, value: '24/7', label: 'support desk' },
+  ];
+
+  const categories = [
+    'Deposit Issue',
+    'Withdrawal Issue',
+    'Account Issue',
+    'Game Issue',
+    'Bonus/Promotion',
+    'Technical Issue',
+    'Other',
+  ];
 
   return (
-    <div style={{ fontFamily: FONTS.ui, color: C.text }}>
-
-      {/* ── MODAL ── */}
+    <section className="support-redesign" style={{ color: palette.text, fontFamily: FONTS.ui }}>
       <AnimatePresence>
         {notification.isOpen && (
-          <div style={{ position:'fixed', inset:0, zIndex:9999, display:'flex', alignItems:'center', justifyContent:'center', background:'rgba(14,32,64,0.7)', backdropFilter:'blur(8px)', padding:'16px' }}>
+          <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'grid', placeItems: 'center', background: 'rgba(20,17,43,0.48)', backdropFilter: 'blur(8px)', padding: 18 }}>
             <motion.div
-              initial={{ scale:0.85, opacity:0, y:30 }}
-              animate={{ scale:1, opacity:1, y:0 }}
-              exit={{ scale:0.85, opacity:0 }}
-              style={{ background:C.card, border:`1px solid ${notification.type==='success' ? C.goldBorder : 'rgba(244,63,94,0.3)'}`, borderRadius:16, padding:isMobile ? '28px 18px' : '36px 28px', maxWidth:360, width:'100%', textAlign:'center', boxShadow:'0 20px 60px rgba(0,0,0,0.2)' }}
+              initial={{ opacity: 0, scale: 0.92, y: 18 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              style={{ width: 'min(390px, 100%)', borderRadius: 28, padding: 24, background: 'linear-gradient(145deg, #ffffff, #fff8ea)', border: `1px solid ${palette.goldBorder}`, boxShadow: '0 28px 80px rgba(20,17,43,0.28)', textAlign: 'center' }}
             >
-              <div style={{ width:60, height:60, borderRadius:'50%', margin:'0 auto 18px', display:'flex', alignItems:'center', justifyContent:'center', fontSize:26, background: notification.type==='success' ? 'rgba(16,185,129,0.1)' : 'rgba(244,63,94,0.1)', color: notification.type==='success' ? C.green : C.rose }}>
-                {notification.type==='success' ? <FaCheckCircle/> : <FaExclamationTriangle/>}
+              <div style={{ width: 58, height: 58, margin: '0 auto 14px', borderRadius: 20, display: 'grid', placeItems: 'center', background: notification.type === 'success' ? 'rgba(10,166,106,0.10)' : 'rgba(239,68,68,0.10)', color: notification.type === 'success' ? palette.green : palette.red, fontSize: 24 }}>
+                {notification.type === 'success' ? <FaCheckCircle /> : <FaExclamationTriangle />}
               </div>
-              <h3 style={{ fontFamily:FONTS.head, fontSize:18, fontWeight:800, color:C.text, marginBottom:8 }}>{notification.type==='success' ? 'Ticket Received!' : 'Something Went Wrong'}</h3>
-              <p style={{ fontSize:12, color:C.muted, lineHeight:1.6, marginBottom: notification.type==='success' ? 16 : 24 }}>{notification.message}</p>
-              {notification.type==='success' && (
-                <div style={{ padding:'10px 16px', background:C.cardAlt, border:`1px solid ${C.border}`, borderRadius:8, marginBottom:22 }}>
-                  <div style={{ fontSize:9, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:C.muted, marginBottom:4 }}>Your Ticket ID</div>
-                  <div style={{ fontSize:15, fontWeight:800, color:C.brand, fontFamily:FONTS.head }}>{ticketId}</div>
+              <h3 style={{ margin: '0 0 8px', fontFamily: FONTS.head, fontSize: 21, fontWeight: 900 }}>{notification.type === 'success' ? 'Ticket Created' : 'Try Again'}</h3>
+              <p style={{ margin: 0, color: palette.muted, fontSize: 13, lineHeight: 1.55 }}>{notification.message}</p>
+              {notification.type === 'success' && (
+                <div style={{ marginTop: 16, padding: 12, borderRadius: 16, background: 'rgba(183,122,10,0.08)', border: `1px solid ${palette.goldBorder}` }}>
+                  <span style={{ display: 'block', fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: palette.muted, fontWeight: 900 }}>ticket id</span>
+                  <strong style={{ fontFamily: FONTS.head, fontSize: 16, color: palette.gold }}>{ticketId}</strong>
                 </div>
               )}
-              <button onClick={()=>setNotification({...notification,isOpen:false})}
-                style={{ width:'100%', padding:'13px 0', borderRadius:8, border:'none', cursor:'pointer', background:`linear-gradient(90deg, ${C.brand}, ${C.brandMid})`, color:'#fff', fontFamily:FONTS.head, fontWeight:800, fontSize:11, letterSpacing:'0.14em', textTransform:'uppercase' }}>
+              <button type="button" onClick={() => setNotification((current) => ({ ...current, isOpen: false }))} style={{ width: '100%', marginTop: 18, minHeight: 44, border: 'none', borderRadius: 15, background: 'linear-gradient(135deg, #b77a0a, #ffd66b)', color: '#211604', fontFamily: FONTS.head, fontWeight: 900, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer' }}>
                 Close
               </button>
             </motion.div>
@@ -148,217 +187,134 @@ const ContactUs = (props) => {
         )}
       </AnimatePresence>
 
-      {/* ── HERO ── */}
-      <div style={{ display:'grid', gridTemplateColumns:isMobile ? '1fr' : '1fr 300px', gap:14, marginBottom:14 }}>
-        {/* Left banner */}
-        <div style={{ background:`linear-gradient(135deg, ${C.brand} 0%, ${C.brandMid} 60%, #1e4080 100%)`, borderRadius:14, padding:isMobile ? '14px 14px' : '32px 28px', position:'relative', overflow:'hidden', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
-          <div style={{ position:'absolute', inset:0, backgroundImage:'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize:'28px 28px', pointerEvents:'none' }} />
-          <div style={{ position:'absolute', bottom:-50, right:-50, width:220, height:220, borderRadius:'50%', background:`radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%)`, pointerEvents:'none' }} />
-          <div style={{ position:'relative' }}>
-            <div style={{ display:'inline-flex', alignItems:'center', gap:6, background:'rgba(255,255,255,0.12)', color:'rgba(255,255,255,0.9)', fontFamily:FONTS.head, fontWeight:700, fontSize:isMobile ? 8 : 10, letterSpacing:'1.5px', textTransform:'uppercase', padding:isMobile ? '4px 10px' : '5px 12px', borderRadius:4, marginBottom:isMobile ? 10 : 14, backdropFilter:'blur(4px)' }}>
-              <FaHeadphones size={9}/> Support Center
-            </div>
-            <h1 style={{ fontFamily:FONTS.head, fontWeight:900, fontSize:isMobile ? 15 : 30, lineHeight:1.15, color:'#fff', margin:'0 0 8px' }}>
-              We're here to<br/><span style={{ color:C.gold }}>help you 24/7</span>
-            </h1>
-            <p style={{ fontSize:isMobile ? 10 : 13, color:'rgba(255,255,255,0.65)', lineHeight:1.5, margin:0 }}>
-              Submit a support ticket and our dedicated team will get back to you as fast as possible.
-            </p>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(0, 1.05fr) minmax(320px, 0.95fr)', gap: 16, marginBottom: 16 }}>
+        <div style={{ minHeight: 238, borderRadius: 30, padding: isMobile ? 22 : 30, background: 'radial-gradient(circle at 80% 20%, rgba(255,214,107,0.32), transparent 34%), linear-gradient(135deg, #ffffff 0%, #fff9ec 54%, #f4f0ff 100%)', border: '1px solid rgba(255,255,255,0.9)', boxShadow: '0 18px 48px rgba(36,32,65,0.10)', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', right: 26, bottom: -16, fontFamily: FONTS.head, fontSize: isMobile ? 58 : 96, fontWeight: 900, color: 'rgba(183,122,10,0.06)', pointerEvents: 'none' }}>HELP</div>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '7px 12px', borderRadius: 999, background: palette.goldSoft, border: `1px solid ${palette.goldBorder}`, color: palette.gold, fontFamily: FONTS.head, fontSize: 10, fontWeight: 900, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+            <FaHeadphones /> support command
           </div>
-          <div style={{ display:'flex', gap:isMobile ? 6 : 8, marginTop:isMobile ? 10 : 22, flexWrap:'wrap', position:'relative' }}>
-            {[{icon:<FaBolt/>,label:'Fast Response'},{icon:<FaLock/>,label:'Secure & Private'},{icon:<FaShieldAlt/>,label:'24/7 Available'}].map((item,i)=>(
-              <div key={i} style={{ display:'flex', alignItems:'center', gap:5, padding:isMobile ? '5px 8px' : '6px 11px', background:'rgba(255,255,255,0.1)', borderRadius:6, backdropFilter:'blur(4px)' }}>
-                <span style={{ color:C.gold, fontSize:isMobile ? 8 : 10 }}>{item.icon}</span>
-                <span style={{ fontSize:isMobile ? 8 : 10, fontFamily:FONTS.head, fontWeight:600, color:'rgba(255,255,255,0.75)' }}>{item.label}</span>
+          <h1 style={{ maxWidth: 520, margin: '18px 0 10px', color: palette.text, fontFamily: FONTS.head, fontSize: isMobile ? 34 : 52, lineHeight: 0.98, fontWeight: 900, letterSpacing: 0 }}>
+            Need help? Start a ticket.
+          </h1>
+          <p style={{ maxWidth: 560, margin: 0, color: palette.muted, fontSize: 14, fontWeight: 700, lineHeight: 1.55 }}>
+            Tell us what happened, attach proof if needed, and track every reply from your support history.
+          </p>
+        </div>
+
+        <aside style={{ borderRadius: 30, padding: 18, background: 'linear-gradient(145deg, rgba(20,17,43,0.96), rgba(46,36,78,0.92))', boxShadow: '0 18px 48px rgba(20,17,43,0.18)', color: '#fff' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 10 }}>
+            {quickStats.map((item) => (
+              <div key={item.label} style={{ minHeight: 94, borderRadius: 20, padding: 12, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                <div style={{ color: '#ffd66b', fontSize: 18 }}>{item.icon}</div>
+                <strong style={{ display: 'block', marginTop: 12, color: '#fff', fontFamily: FONTS.head, fontSize: 18, fontWeight: 900 }}>{item.value}</strong>
+                <span style={{ color: 'rgba(255,255,255,0.56)', fontSize: 9, fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase' }}>{item.label}</span>
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Right stats */}
-        <div style={{ display:'grid', gridTemplateColumns:isMobile ? 'repeat(3, minmax(0, 1fr))' : '1fr', gap:10 }}>
-          {[{label:'Avg. Response',val:'< 2 hrs',icon:'⚡'},{label:'Issues Solved',val:'98.7%',icon:'✅'},{label:'Support Agents',val:'Always On',icon:'🎧'}].map((s,i)=>(
-            <div key={i} style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:isMobile ? '10px 8px' : '14px 16px', display:'flex', alignItems:'center', gap:isMobile ? 6 : 12, flex:1, boxShadow:'0 1px 4px rgba(0,0,0,0.06)', minWidth:0 }}>
-              <span style={{ fontSize:isMobile ? 15 : 20, flexShrink:0 }}>{s.icon}</span>
-              <div>
-                <div style={{ fontFamily:FONTS.head, fontWeight:800, fontSize:isMobile ? 11 : 15, color:C.brand, lineHeight:1.1 }}>{s.val}</div>
-                <div style={{ fontSize:isMobile ? 8 : 10, fontWeight:600, textTransform:'uppercase', letterSpacing:'0.08em', color:C.muted, marginTop:2, lineHeight:1.2 }}>{s.label}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── INFO TILES ── */}
-      {(accountInfo?.service_address || accountInfo?.service_social_links?.length > 0) && (
-        <div style={{ display:'grid', gridTemplateColumns:isMobile ? '1fr' : 'repeat(auto-fit, minmax(220px, 1fr))', gap:12, marginBottom:14 }}>
-          {accountInfo?.service_address && (
-            <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:'16px 18px', display:'flex', gap:12, alignItems:'flex-start', boxShadow:'0 1px 4px rgba(0,0,0,0.06)' }}>
-              <div style={{ width:34, height:34, borderRadius:8, background:C.goldDim, border:`1px solid ${C.goldBorder}`, display:'flex', alignItems:'center', justifyContent:'center', color:C.gold, flexShrink:0 }}>
-                <FaMapMarkerAlt size={13}/>
-              </div>
-              <div>
-                <div style={{ fontFamily:FONTS.head, fontSize:10, fontWeight:700, textTransform:'uppercase', letterSpacing:'0.1em', color:C.muted, marginBottom:4 }}>Our Location</div>
-                <div style={{ fontSize:12, color:C.text, lineHeight:1.5 }}>{accountInfo.service_address}</div>
-              </div>
-            </div>
-          )}
-          {accountInfo?.service_social_links?.length > 0 && (
-            <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:'16px 18px', boxShadow:'0 1px 4px rgba(0,0,0,0.06)' }}>
-              <div style={{ fontFamily:FONTS.head, fontSize:10, fontWeight:700, textTransform:'uppercase', letterSpacing:'0.1em', color:C.muted, marginBottom:12 }}>Connect With Us</div>
-              <div style={{ display:'flex', flexWrap:'wrap', gap:8 }}>
-                {accountInfo.service_social_links.map((link,i)=>{
-                  const platform = link.platform.toLowerCase();
-                  let url = link.value;
-                  const meta = socialIconMap[platform] || socialIconMap.telegram;
-                  if (platform==='whatsapp' && !url.includes('wa.me')) url = meta.prefix + url.replace(/\s+/g,'');
-                  else if (!url.startsWith('http')) url = 'https://' + url;
-                  return (
-                    <a key={i} href={url} target="_blank" rel="noopener noreferrer"
-                      style={{ width:36, height:36, borderRadius:8, display:'flex', alignItems:'center', justifyContent:'center', background:`${meta.color}15`, border:`1px solid ${meta.color}30`, color:meta.color, fontSize:15, textDecoration:'none', transition:'transform 0.15s' }}
-                      onMouseEnter={e=>e.currentTarget.style.transform='scale(1.12)'}
-                      onMouseLeave={e=>e.currentTarget.style.transform='scale(1)'}
-                    >{meta.icon}</a>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* ── FORM ── */}
-      <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:14, overflow:'hidden', boxShadow:'0 2px 12px rgba(0,0,0,0.08)' }}>
-        {/* Title bar — matches home page section-title gradient */}
-        <div style={{ display:'flex', alignItems:isMobile ? 'flex-start' : 'center', justifyContent:'space-between', flexDirection:isMobile ? 'column' : 'row', gap:isMobile ? 8 : 12, padding:isMobile ? '12px 14px' : '13px 20px', background:'linear-gradient(90deg, #172033 0%, #0e2040 56%, #22d3ee 100%)', borderBottom:`1px solid ${C.border}` }}>
-          <div style={{ display:'flex', alignItems:'center', gap:10 }}>
-            <div style={{ width:4, height:16, borderRadius:99, background:'rgba(255,255,255,0.85)', boxShadow:'0 0 10px rgba(255,255,255,0.3)' }}/>
-            <FaTicketAlt style={{ color:'#fff', fontSize:12 }}/>
-            <span style={{ fontFamily:FONTS.head, fontWeight:800, fontSize:13, letterSpacing:'1.2px', textTransform:'uppercase', color:'#fff' }}>Submit Support Ticket</span>
-          </div>
-          <div style={{ display:'flex', alignItems:isMobile ? 'stretch' : 'center', gap:8, width:isMobile ? '100%' : 'auto', flexDirection:isMobile ? 'column' : 'row' }}>
-            <span style={{ fontSize:10, fontFamily:FONTS.head, fontWeight:600, color:'rgba(255,255,255,0.55)' }}>Avg. reply in 2 hrs</span>
-            {localStorage.getItem('account_id') && (
-              <button
-                type="button"
-                onClick={props.onShowHistory}
-                style={{
-                  padding: isMobile ? '9px 12px' : '8px 12px',
-                  background: 'rgba(255,255,255,0.96)',
-                  border: '1px solid rgba(255,255,255,0.25)',
-                  borderRadius: 8,
-                  cursor: 'pointer',
-                  color: C.brand,
-                  fontFamily: FONTS.head,
-                  fontWeight: 800,
-                  fontSize: isMobile ? 9 : 10,
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 6,
-                  minHeight: 34,
-                  width: isMobile ? '100%' : 'auto',
-                  boxShadow: '0 4px 12px rgba(7, 18, 38, 0.16)'
-                }}
-              >
-                <FaHistory size={11} />
-                View My Tickets
-              </button>
-            )}
-          </div>
-        </div>
-
-        <form onSubmit={handleSubmit} style={{ padding:isMobile ? '16px 14px 18px' : '22px 22px 26px' }}>
-          <div style={{ display:'grid', gridTemplateColumns:isMobile ? '1fr' : '1fr 1fr', gap:14, marginBottom:14 }}>
-            <div>
-              <label style={labelStyle}>Full Name</label>
-              <Inp type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="Your name"/>
-            </div>
-            <div>
-              <label style={labelStyle}>Profile ID <span style={{ color:'rgba(107,114,128,0.5)' }}>(Optional)</span></label>
-              <div style={{ position:'relative' }}>
-                <Inp type="text" name="profile_id" value={formData.profile_id} onChange={handleChange} placeholder="User ID" style={{ paddingLeft:36 }}/>
-                <FaUser style={{ position:'absolute', left:12, top:'50%', transform:'translateY(-50%)', color:C.muted, fontSize:11 }}/>
-              </div>
-            </div>
-            <div>
-              <label style={labelStyle}>Email Address</label>
-              <Inp type="email" name="email" required value={formData.email} onChange={handleChange} placeholder="your@email.com"/>
-            </div>
-            <div>
-              <label style={labelStyle}>Priority Level</label>
-              <Sel name="priority" required value={formData.priority} onChange={handleChange}>
-                <option value="Low">🟢  Low Priority</option>
-                <option value="Medium">🟡  Medium Priority</option>
-                <option value="High">🔴  High Priority</option>
-              </Sel>
-            </div>
-          </div>
-
-          <div style={{ marginBottom:14 }}>
-            <label style={labelStyle}>Category / Subject</label>
-            <Sel name="subject" required value={formData.subject} onChange={handleChange}>
-              <option value="">Choose a category...</option>
-              <option value="Deposit Issue">Deposit Issue</option>
-              <option value="Withdrawal Issue">Withdrawal Issue</option>
-              <option value="Account Issue">Account Issue</option>
-              <option value="Game Issue">Game Issue</option>
-              <option value="Bonus/Promotion">Bonus / Promotion</option>
-              <option value="Technical Issue">Technical Issue</option>
-              <option value="Other">Other</option>
-            </Sel>
-          </div>
-
-          <div style={{ marginBottom:14 }}>
-            <label style={labelStyle}>Message</label>
-            <Tex name="message" required rows={isMobile ? 4 : 5} value={formData.message} onChange={handleChange} placeholder="Describe your issue in as much detail as possible..."/>
-          </div>
-
-          <div style={{ marginBottom:20 }}>
-            <label style={labelStyle}>Attachments <span style={{ color:'rgba(107,114,128,0.5)' }}>(Optional)</span></label>
-            <div
-              onClick={()=>fileInputRef.current?.click()}
-              style={{ border:`2px dashed rgba(0,0,0,0.12)`, borderRadius:8, padding:'16px', textAlign:'center', cursor:'pointer', transition:'border-color 0.2s, background 0.2s' }}
-              onMouseEnter={e=>{e.currentTarget.style.borderColor=C.gold;e.currentTarget.style.background='rgba(34,211,238,0.04)';}}
-              onMouseLeave={e=>{e.currentTarget.style.borderColor='rgba(0,0,0,0.12)';e.currentTarget.style.background='transparent';}}
-            >
-              <FaPaperclip style={{ fontSize:18, color:C.muted, display:'block', margin:'0 auto 6px' }}/>
-              <span style={{ fontSize:11, color:C.muted, fontWeight:600 }}>Click to upload files (images, PDF, doc)</span>
-              <input type="file" ref={fileInputRef} multiple onChange={handleFileChange} style={{ display:'none' }} accept="image/*,.pdf,.doc,.docx"/>
-            </div>
-            {attachments.length > 0 && (
-              <div style={{ display:'flex', flexWrap:'wrap', gap:8, marginTop:10 }}>
-                {attachments.map((f,i)=>(
-                  <div key={i} style={{ display:'flex', alignItems:'center', gap:6, padding:'5px 10px', background:C.cardAlt, border:`1px solid ${C.border}`, borderRadius:6, minWidth:0, maxWidth:'100%' }}>
-                    <span style={{ fontSize:11, color:C.text, maxWidth:130, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{f.name}</span>
-                    <button type="button" onClick={()=>removeAttachment(i)} style={{ background:'none', border:'none', cursor:'pointer', color:C.rose, padding:0 }}><FaTimes size={10}/></button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <button
-            type="submit" disabled={submitting}
-            style={{ width:'100%', padding:'14px 0', borderRadius:8, border:'none', cursor:submitting?'not-allowed':'pointer', background:submitting?'rgba(0,0,0,0.15)':`linear-gradient(90deg, ${C.brand} 0%, ${C.brandMid} 100%)`, color:'#fff', fontFamily:FONTS.head, fontWeight:800, fontSize:12, letterSpacing:'0.14em', textTransform:'uppercase', display:'flex', alignItems:'center', justifyContent:'center', gap:8, opacity:submitting?0.7:1, transition:'opacity 0.2s, transform 0.15s', boxShadow:submitting?'none':`0 4px 20px rgba(14,32,64,0.35)` }}
-            onMouseEnter={e=>{if(!submitting)e.currentTarget.style.transform='translateY(-1px)';}}
-            onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';}}
-          >
-            {submitting
-              ? <><div style={{ width:16,height:16,border:'2px solid rgba(255,255,255,0.3)',borderTopColor:'#fff',borderRadius:'50%',animation:'spin 0.7s linear infinite' }}/> Submitting...</>
-              : <><FaPaperPlane style={{ fontSize:13 }}/> Send Support Ticket</>
-            }
+          <button type="button" onClick={onShowHistory} style={{ width: '100%', marginTop: 14, minHeight: 50, borderRadius: 18, border: '1px solid rgba(255,214,107,0.34)', background: 'rgba(255,214,107,0.12)', color: '#ffd66b', fontFamily: FONTS.head, fontSize: 12, fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9 }}>
+            <FaHistory /> View my tickets
           </button>
-        </form>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 10 }}>
+            <a href={accountInfo?.service_support_url || '#'} style={{ minHeight: 48, borderRadius: 16, background: 'rgba(255,255,255,0.08)', color: '#fff', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontWeight: 900, fontSize: 12 }}>
+              <FaWhatsapp /> Chat
+            </a>
+            <a href={`mailto:${accountInfo?.service_email || ''}`} style={{ minHeight: 48, borderRadius: 16, background: 'rgba(255,255,255,0.08)', color: '#fff', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontWeight: 900, fontSize: 12 }}>
+              <FaEnvelope /> Email
+            </a>
+          </div>
+        </aside>
       </div>
+
+      <form onSubmit={handleSubmit} style={{ borderRadius: 30, padding: isMobile ? 18 : 24, background: palette.card, border: '1px solid rgba(255,255,255,0.86)', boxShadow: '0 18px 48px rgba(36,32,65,0.10)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', marginBottom: 18 }}>
+          <div>
+            <span style={{ color: palette.gold, fontFamily: FONTS.head, fontSize: 10, fontWeight: 900, letterSpacing: '0.18em', textTransform: 'uppercase' }}>ticket details</span>
+            <h2 style={{ margin: '5px 0 0', color: palette.text, fontFamily: FONTS.head, fontSize: 25, fontWeight: 900 }}>Submit Support Request</h2>
+          </div>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 13px', borderRadius: 999, background: 'rgba(183,122,10,0.08)', border: `1px solid ${palette.goldBorder}`, color: palette.gold, fontSize: 11, fontWeight: 900 }}>
+            <FaTicketAlt /> Priority routing enabled
+          </div>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, minmax(0, 1fr))', gap: 14 }}>
+          <div>
+            <label style={labelBase}>Full name</label>
+            <input {...inputProps} type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="Your name" />
+          </div>
+          <div>
+            <label style={labelBase}>Profile ID</label>
+            <div style={{ position: 'relative' }}>
+              <FaUser style={{ position: 'absolute', left: 15, top: '50%', transform: 'translateY(-50%)', color: palette.gold, fontSize: 12 }} />
+              <input {...inputProps} style={{ ...fieldBase, paddingLeft: 40 }} type="text" name="profile_id" value={formData.profile_id} onChange={handleChange} placeholder="Optional user id" />
+            </div>
+          </div>
+          <div>
+            <label style={labelBase}>Email address</label>
+            <input {...inputProps} type="email" name="email" required value={formData.email} onChange={handleChange} placeholder="your@email.com" />
+          </div>
+          <div>
+            <label style={labelBase}>Priority</label>
+            <select {...inputProps} name="priority" required value={formData.priority} onChange={handleChange}>
+              <option value="Low">Low Priority</option>
+              <option value="Medium">Medium Priority</option>
+              <option value="High">High Priority</option>
+            </select>
+          </div>
+        </div>
+
+        <div style={{ marginTop: 14 }}>
+          <label style={labelBase}>Category</label>
+          <select {...inputProps} name="subject" required value={formData.subject} onChange={handleChange}>
+            <option value="">Choose a category</option>
+            {categories.map((category) => <option value={category} key={category}>{category}</option>)}
+          </select>
+        </div>
+
+        <div style={{ marginTop: 14 }}>
+          <label style={labelBase}>Message</label>
+          <textarea
+            {...inputProps}
+            name="message"
+            required
+            rows={isMobile ? 5 : 6}
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="Describe your issue clearly..."
+            style={{ ...fieldBase, minHeight: isMobile ? 126 : 144, paddingTop: 14, resize: 'vertical', lineHeight: 1.5 }}
+          />
+        </div>
+
+        <div style={{ marginTop: 14 }}>
+          <label style={labelBase}>Attachment</label>
+          <div onClick={() => fileInputRef.current?.click()} style={{ minHeight: 82, borderRadius: 20, border: `1.5px dashed ${palette.goldBorder}`, background: 'linear-gradient(135deg, rgba(183,122,10,0.07), rgba(255,255,255,0.72))', display: 'grid', placeItems: 'center', cursor: 'pointer', textAlign: 'center', padding: 14 }}>
+            <FaPaperclip style={{ color: palette.gold, fontSize: 18, marginBottom: 7 }} />
+            <span style={{ color: palette.muted, fontSize: 12, fontWeight: 800 }}>Upload image, PDF, DOC or screenshot</span>
+            <input type="file" ref={fileInputRef} multiple onChange={handleFileChange} style={{ display: 'none' }} accept="image/*,.pdf,.doc,.docx" />
+          </div>
+          {attachments.length > 0 && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 10 }}>
+              {attachments.map((file, index) => (
+                <div key={`${file.name}-${index}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, maxWidth: '100%', padding: '8px 10px', borderRadius: 999, background: '#fff', border: `1px solid ${palette.line}` }}>
+                  <span style={{ maxWidth: 170, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: palette.text, fontSize: 11, fontWeight: 800 }}>{file.name}</span>
+                  <button type="button" onClick={() => removeAttachment(index)} style={{ border: 0, background: 'transparent', color: palette.red, cursor: 'pointer', padding: 0 }}><FaTimes size={10} /></button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <button type="submit" disabled={submitting} style={{ width: '100%', minHeight: 52, marginTop: 18, border: 0, borderRadius: 18, background: submitting ? 'rgba(20,17,43,0.18)' : 'linear-gradient(135deg, #ffd66b 0%, #c9901a 48%, #a66b05 100%)', color: '#211604', cursor: submitting ? 'not-allowed' : 'pointer', fontFamily: FONTS.head, fontSize: 13, fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, boxShadow: submitting ? 'none' : '0 18px 34px rgba(183,122,10,0.24)' }}>
+          {submitting ? 'Submitting...' : <><FaPaperPlane /> Send Support Ticket</>}
+        </button>
+      </form>
 
       <style>{`
-        @keyframes spin { to { transform: rotate(360deg); } }
-        select option { background: #fff; color: #111827; }
+        .support-redesign select option { background: #fff; color: #15132a; }
+        @media (max-width: 720px) {
+          .support-redesign { padding-bottom: 60px; }
+        }
       `}</style>
-    </div>
+    </section>
   );
 };
 
