@@ -20,6 +20,7 @@ import WithdrawPage from './components/pages/WithdrawPage';
 import GifrCardPage from './components/pages/GifrCardPage';
 import PromotionPage from './components/pages/PromotionPage';
 import InviteAndEarnPage from './components/pages/InviteAndEarnPage';
+import VipClubPage from './components/pages/VipClubPage';
 import SupportPage from './components/pages/SupportPage';
 import BonusDetailsPage from './components/pages/BonusDetailsPage';
 import ActiveBonusPage from './components/pages/ActiveBonusPage';
@@ -169,6 +170,10 @@ const appRouter = createBrowserRouter([
             <ActiveBonusPage />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "/vip-club",
+        element: <VipClubPage />,
       },
       {
         path: "/inviteandearn",

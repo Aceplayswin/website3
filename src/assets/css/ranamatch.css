@@ -12244,3 +12244,1181 @@ body.category-page-scroll #root {
     flex-basis: 72px !important;
   }
 }
+
+/* Final login/register redesign */
+.auth-modal-shell {
+  width: min(820px, calc(100vw - 28px)) !important;
+  margin: 12px auto !important;
+  font-family: var(--font-ui) !important;
+}
+
+.auth-modal-card,
+.rana-layout .auth-modal-card {
+  position: relative !important;
+  overflow: hidden !important;
+  display: grid !important;
+  grid-template-columns: 280px minmax(0, 1fr) !important;
+  min-height: 0 !important;
+  max-height: min(86vh, 680px) !important;
+  border-radius: 28px !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(199, 230, 255, 0.72), transparent 34%),
+    radial-gradient(circle at 90% 8%, rgba(255, 224, 151, 0.55), transparent 36%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(255, 249, 236, 0.94) 48%, rgba(244, 240, 255, 0.96)) !important;
+  color: #15132a !important;
+  box-shadow: 0 26px 80px rgba(20, 17, 43, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+.auth-modal-card::before,
+.rana-layout .auth-modal-card::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  opacity: 0.48 !important;
+  pointer-events: none !important;
+  background-image:
+    linear-gradient(rgba(183, 122, 10, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(183, 122, 10, 0.045) 1px, transparent 1px) !important;
+  background-size: 42px 42px !important;
+}
+
+.auth-brand-panel,
+.rana-layout .auth-brand-panel {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  min-height: 100% !important;
+  padding: 24px 20px !important;
+  border-right: 1px solid rgba(183, 122, 10, 0.16) !important;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 214, 107, 0.32), transparent 32%),
+    linear-gradient(160deg, #17142a 0%, #282044 55%, #15132a 100%) !important;
+  color: #ffffff !important;
+}
+
+.auth-brand-panel::before,
+.rana-layout .auth-brand-panel::before {
+  opacity: 0.34 !important;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px) !important;
+}
+
+.auth-brand-mark,
+.rana-layout .auth-brand-mark {
+  width: 48px !important;
+  height: 48px !important;
+  margin-bottom: 16px !important;
+  border-radius: 17px !important;
+  background: linear-gradient(135deg, #fff4c4, #d19a20) !important;
+  color: #211604 !important;
+  -webkit-text-fill-color: #211604 !important;
+  box-shadow: 0 18px 38px rgba(183, 122, 10, 0.32) !important;
+  font-family: var(--font-head) !important;
+  font-size: 16px !important;
+  font-weight: 900 !important;
+}
+
+.auth-brand-title,
+.rana-layout .auth-modal-card .auth-brand-title {
+  max-width: 230px !important;
+  margin: 0 0 10px !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-family: var(--font-head) !important;
+  font-size: 24px !important;
+  font-weight: 900 !important;
+  line-height: 1.04 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.auth-brand-copy,
+.rana-layout .auth-modal-card .auth-brand-copy {
+  max-width: 232px !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.72) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.5 !important;
+}
+
+.auth-benefits {
+  gap: 8px !important;
+}
+
+.auth-benefit,
+.rana-layout .auth-modal-card .auth-benefit {
+  min-height: 48px !important;
+  padding: 10px 12px !important;
+  border-radius: 16px !important;
+  border-color: rgba(255, 214, 107, 0.18) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.auth-benefit span:first-child,
+.rana-layout .auth-modal-card .auth-benefit span:first-child {
+  color: rgba(255, 255, 255, 0.72) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.72) !important;
+  font-size: 9px !important;
+}
+
+.auth-benefit span:last-child,
+.rana-layout .auth-modal-card .auth-benefit span:last-child {
+  color: #ffd66b !important;
+  -webkit-text-fill-color: #ffd66b !important;
+  font-size: 12px !important;
+}
+
+.auth-content,
+.rana-layout .auth-content {
+  position: relative !important;
+  z-index: 1 !important;
+  padding: 24px 24px 22px !important;
+  overflow-y: auto !important;
+  color: #15132a !important;
+}
+
+.auth-content::before {
+  inset: 14px !important;
+  border-radius: 22px !important;
+  background:
+    radial-gradient(circle at top right, rgba(255, 214, 107, 0.18), transparent 46%),
+    radial-gradient(circle at bottom left, rgba(199, 230, 255, 0.34), transparent 38%) !important;
+}
+
+.auth-close-btn,
+.rana-layout .auth-close-btn {
+  top: 14px !important;
+  right: 14px !important;
+  width: 34px !important;
+  height: 34px !important;
+  border: 1px solid rgba(183, 122, 10, 0.18) !important;
+  color: #756f8f !important;
+  -webkit-text-fill-color: #756f8f !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  box-shadow: 0 10px 22px rgba(36, 32, 65, 0.08) !important;
+}
+
+.auth-kicker,
+.rana-layout .auth-modal-card .auth-kicker,
+.auth-mobile-kicker {
+  margin-bottom: 8px !important;
+  padding: 5px 10px !important;
+  border-radius: 999px !important;
+  color: #a77717 !important;
+  -webkit-text-fill-color: #a77717 !important;
+  background: rgba(183, 122, 10, 0.09) !important;
+  border: 1px solid rgba(183, 122, 10, 0.18) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.14em !important;
+}
+
+.auth-title,
+.rana-layout .auth-modal-card .auth-title {
+  margin: 0 !important;
+  color: #15132a !important;
+  -webkit-text-fill-color: #15132a !important;
+  font-family: var(--font-head) !important;
+  font-size: clamp(28px, 4vw, 44px) !important;
+  font-weight: 900 !important;
+  line-height: 0.94 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.auth-title span,
+.rana-layout .auth-modal-card .auth-title span {
+  color: #b77a0a !important;
+  -webkit-text-fill-color: #b77a0a !important;
+  text-shadow: 0 16px 34px rgba(183, 122, 10, 0.16) !important;
+}
+
+.auth-subtitle,
+.rana-layout .auth-modal-card .auth-subtitle {
+  margin: 8px 0 14px !important;
+  color: #625d7d !important;
+  -webkit-text-fill-color: #625d7d !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+.auth-switcher {
+  margin-bottom: 14px !important;
+  padding: 5px !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.66) !important;
+  border: 1px solid rgba(183, 122, 10, 0.14) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
+}
+
+.auth-switcher-btn,
+.rana-layout .auth-modal-card .auth-switcher-btn {
+  min-height: 38px !important;
+  border-radius: 12px !important;
+  color: #625d7d !important;
+  -webkit-text-fill-color: #625d7d !important;
+  background: transparent !important;
+  font-size: 9px !important;
+}
+
+.auth-switcher-btn.is-active,
+.rana-layout .auth-modal-card .auth-switcher-btn.is-active {
+  color: #211604 !important;
+  -webkit-text-fill-color: #211604 !important;
+  background: linear-gradient(135deg, #ffd66b 0%, #c9901a 100%) !important;
+  box-shadow: 0 12px 28px rgba(183, 122, 10, 0.24) !important;
+}
+
+.auth-form {
+  gap: 10px !important;
+}
+
+.auth-field-row {
+  grid-template-columns: 86px minmax(0, 1fr) !important;
+  gap: 9px !important;
+}
+
+.auth-label,
+.rana-layout .auth-modal-card .auth-label {
+  color: #756f8f !important;
+  -webkit-text-fill-color: #756f8f !important;
+  font-family: var(--font-mono) !important;
+  font-size: 9px !important;
+  letter-spacing: 0.13em !important;
+}
+
+.auth-input,
+.rana-layout .auth-modal-card .auth-input {
+  height: 42px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(183, 122, 10, 0.16) !important;
+  color: #15132a !important;
+  -webkit-text-fill-color: #15132a !important;
+  background: rgba(255, 255, 255, 0.82) !important;
+  background-color: rgba(255, 255, 255, 0.82) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+.auth-input::placeholder {
+  color: #9b95b2 !important;
+  -webkit-text-fill-color: #9b95b2 !important;
+}
+
+.auth-input:focus {
+  border-color: rgba(183, 122, 10, 0.58) !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(183, 122, 10, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+.auth-input:-webkit-autofill,
+.auth-input:-webkit-autofill:hover,
+.auth-input:-webkit-autofill:focus,
+.auth-input:-webkit-autofill:active {
+  -webkit-text-fill-color: #15132a !important;
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+  caret-color: #15132a !important;
+}
+
+.auth-prefix,
+.rana-layout .auth-modal-card .auth-prefix {
+  color: #a77717 !important;
+  -webkit-text-fill-color: #a77717 !important;
+}
+
+.auth-secondary-btn,
+.rana-layout .auth-modal-card .auth-secondary-btn {
+  min-width: 94px !important;
+  height: 42px !important;
+  border-radius: 14px !important;
+  color: #211604 !important;
+  -webkit-text-fill-color: #211604 !important;
+  background: linear-gradient(135deg, #fff4c4 0%, #d19a20 100%) !important;
+  box-shadow: 0 12px 26px rgba(183, 122, 10, 0.18) !important;
+  font-size: 9px !important;
+}
+
+.auth-submit-btn,
+.rana-layout .auth-modal-card .auth-submit-btn {
+  min-height: 46px !important;
+  border-radius: 15px !important;
+  color: #211604 !important;
+  -webkit-text-fill-color: #211604 !important;
+  background: linear-gradient(135deg, #ffd66b 0%, #c9901a 48%, #a66b05 100%) !important;
+  box-shadow: 0 16px 34px rgba(183, 122, 10, 0.25) !important;
+  font-size: 10px !important;
+}
+
+.auth-error {
+  border-color: rgba(239, 68, 68, 0.22) !important;
+  color: #dc2626 !important;
+  -webkit-text-fill-color: #dc2626 !important;
+  background: rgba(239, 68, 68, 0.08) !important;
+}
+
+.auth-footer,
+.rana-layout .auth-modal-card .auth-footer {
+  margin-top: 14px !important;
+  padding-top: 14px !important;
+  border-top: 1px solid rgba(183, 122, 10, 0.13) !important;
+  color: #625d7d !important;
+  -webkit-text-fill-color: #625d7d !important;
+  font-size: 12px !important;
+}
+
+.auth-link-btn,
+.rana-layout .auth-modal-card .auth-link-btn {
+  color: #a77717 !important;
+  -webkit-text-fill-color: #a77717 !important;
+}
+
+.auth-success {
+  padding: 18px 0 4px !important;
+}
+
+.auth-success-orb {
+  width: 78px !important;
+  height: 78px !important;
+  margin-bottom: 16px !important;
+  color: #0aa66a !important;
+  background: rgba(10, 166, 106, 0.1) !important;
+  border-color: rgba(10, 166, 106, 0.2) !important;
+}
+
+.auth-mobile-banner {
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 214, 107, 0.26), transparent 36%),
+    linear-gradient(145deg, #ffffff, #fff8ea) !important;
+  border-color: rgba(183, 122, 10, 0.16) !important;
+}
+
+.auth-mobile-title {
+  color: #15132a !important;
+  -webkit-text-fill-color: #15132a !important;
+}
+
+.auth-mobile-chips span {
+  background: rgba(183, 122, 10, 0.08) !important;
+  color: #a77717 !important;
+  -webkit-text-fill-color: #a77717 !important;
+}
+
+@media (max-width: 680px) {
+  .auth-modal-shell {
+    width: min(520px, calc(100vw - 18px)) !important;
+  }
+
+  .auth-modal-card,
+  .rana-layout .auth-modal-card {
+    grid-template-columns: 1fr !important;
+    max-height: 90vh !important;
+    border-radius: 22px !important;
+  }
+
+  .auth-brand-panel {
+    display: none !important;
+  }
+
+  .auth-content {
+    padding: 16px 14px !important;
+  }
+
+  .auth-mobile-banner {
+    display: block !important;
+  }
+
+  .auth-field-row {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+
+  .auth-input-line {
+    flex-direction: column !important;
+  }
+
+  .auth-secondary-btn {
+    width: 100% !important;
+  }
+}
+
+/* VIP, referral, and policy pages redesign */
+.rana-layout.legal-route-shell,
+.rana-layout.invite-route,
+.rana-layout.premium-info-route {
+  min-height: 100vh !important;
+  overflow-x: hidden !important;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(199, 230, 255, 0.72), transparent 30%),
+    radial-gradient(circle at 88% 8%, rgba(255, 235, 189, 0.78), transparent 31%),
+    linear-gradient(135deg, #eef4f8 0%, #f7f4ff 48%, #eff6f1 100%) !important;
+  color: #15132a !important;
+}
+
+.rana-layout.legal-route-shell .legal-route-main,
+.rana-layout.invite-route .invite-route-main,
+.rana-layout.premium-info-route .premium-info-main {
+  width: min(100%, 1560px) !important;
+  max-width: 1560px !important;
+  margin: 0 auto !important;
+  padding: 92px 24px 72px !important;
+}
+
+.legal-v2,
+.invite-v2,
+.vip-v2 {
+  display: grid !important;
+  gap: 16px !important;
+  color: #15132a !important;
+}
+
+.legal-v2-hero,
+.invite-v2-hero,
+.premium-info-hero {
+  position: relative !important;
+  overflow: hidden !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 18px !important;
+  min-height: 178px !important;
+  padding: 24px 26px !important;
+  border-radius: 28px !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  background:
+    radial-gradient(circle at 84% 10%, rgba(255, 214, 107, 0.3), transparent 34%),
+    linear-gradient(135deg, #ffffff 0%, #fff9ec 52%, #f4f0ff 100%) !important;
+  box-shadow: 0 20px 54px rgba(36, 32, 65, 0.1) !important;
+}
+
+.legal-v2-hero::after,
+.invite-v2-hero::after,
+.premium-info-hero::after {
+  content: "PREMIUM";
+  position: absolute;
+  right: 24px;
+  bottom: -16px;
+  color: rgba(183, 122, 10, 0.055);
+  font-family: var(--font-head);
+  font-size: clamp(54px, 8vw, 118px);
+  font-weight: 900;
+  line-height: 0.82;
+  pointer-events: none;
+}
+
+.legal-v2-kicker,
+.invite-v2-kicker,
+.invite-v2-section-tag,
+.premium-info-kicker {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: fit-content !important;
+  margin-bottom: 11px !important;
+  padding: 7px 12px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(183, 122, 10, 0.2) !important;
+  background: rgba(183, 122, 10, 0.08) !important;
+  color: #a77717 !important;
+  -webkit-text-fill-color: #a77717 !important;
+  font-family: var(--font-mono) !important;
+  font-size: 9px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+}
+
+.legal-v2 h1,
+.invite-v2 h1,
+.premium-info-hero h1 {
+  max-width: 760px !important;
+  margin: 0 !important;
+  color: #15132a !important;
+  -webkit-text-fill-color: #15132a !important;
+  font-family: var(--font-head) !important;
+  font-size: clamp(34px, 5vw, 66px) !important;
+  font-weight: 900 !important;
+  line-height: 0.94 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.legal-v2-hero p,
+.invite-v2-copy > p,
+.premium-info-hero p {
+  max-width: 720px !important;
+  margin: 12px 0 0 !important;
+  color: #625d7d !important;
+  -webkit-text-fill-color: #625d7d !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1.5 !important;
+}
+
+.legal-v2-hero-icon,
+.vip-v2-crown {
+  position: relative !important;
+  z-index: 1 !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 96px !important;
+  height: 96px !important;
+  border-radius: 30px !important;
+  background: linear-gradient(135deg, #fff4c4, #d19a20) !important;
+  color: #211604 !important;
+  -webkit-text-fill-color: #211604 !important;
+  box-shadow: 0 22px 44px rgba(183, 122, 10, 0.22) !important;
+  font-size: 34px !important;
+}
+
+.legal-v2-stats,
+.legal-v2-process,
+.invite-v2-stats,
+.vip-v2-strip,
+.vip-v2-benefits {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+
+.legal-v2-stats div,
+.legal-v2-process div,
+.invite-v2-stats article,
+.invite-v2-earnings,
+.vip-v2-strip div,
+.vip-v2-benefits article,
+.legal-v2-care-panel,
+.legal-v2-bottom-callout,
+.legal-v2-side-note,
+.legal-v2-info-card,
+.legal-v2-tool-card,
+.legal-v2-privacy-card,
+.invite-v2-card,
+.invite-v2-steps,
+.invite-v2-note,
+.vip-v2-card {
+  border-radius: 22px !important;
+  border: 1px solid rgba(255, 255, 255, 0.86) !important;
+  background: rgba(255, 255, 255, 0.76) !important;
+  box-shadow: 0 16px 42px rgba(36, 32, 65, 0.08) !important;
+}
+
+.legal-v2-stats div,
+.legal-v2-process div,
+.invite-v2-stats article,
+.vip-v2-strip div,
+.vip-v2-benefits article {
+  min-height: 86px !important;
+  padding: 16px !important;
+}
+
+.legal-v2-stats svg,
+.legal-v2-process svg,
+.vip-v2-benefits svg {
+  color: #b77a0a !important;
+  -webkit-text-fill-color: #b77a0a !important;
+  font-size: 20px !important;
+}
+
+.legal-v2-stats strong,
+.legal-v2-process strong,
+.invite-v2-stats strong,
+.vip-v2-strip strong,
+.vip-v2-benefits strong,
+.legal-v2-side-note strong,
+.legal-v2-care-panel strong,
+.legal-v2-bottom-callout strong,
+.invite-v2-section-head strong,
+.invite-v2-note strong {
+  display: block !important;
+  color: #15132a !important;
+  -webkit-text-fill-color: #15132a !important;
+  font-family: var(--font-head) !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  line-height: 1.08 !important;
+}
+
+.legal-v2-stats span,
+.legal-v2-process span,
+.invite-v2-stats span,
+.invite-v2-stats em,
+.vip-v2-strip span,
+.vip-v2-benefits span,
+.legal-v2-side-note p,
+.legal-v2-info-card p,
+.legal-v2-tool-card p,
+.legal-v2-care-panel p,
+.legal-v2-bottom-callout p,
+.legal-v2-privacy-card p,
+.invite-v2-card-head p,
+.invite-v2-earnings p,
+.invite-v2-step-card p,
+.invite-v2-note p,
+.vip-v2-card p {
+  color: #625d7d !important;
+  -webkit-text-fill-color: #625d7d !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.5 !important;
+}
+
+.legal-v2-grid,
+.invite-v2-grid {
+  display: grid !important;
+  grid-template-columns: minmax(260px, 0.34fr) minmax(0, 1fr) !important;
+  gap: 16px !important;
+}
+
+.legal-v2-stack,
+.legal-v2-card-list {
+  display: grid !important;
+  gap: 12px !important;
+}
+
+.legal-v2-side-note,
+.legal-v2-care-panel,
+.legal-v2-bottom-callout,
+.invite-v2-card,
+.invite-v2-steps,
+.invite-v2-note {
+  padding: 18px !important;
+}
+
+.legal-v2-accordion {
+  overflow: hidden !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(183, 122, 10, 0.14) !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  box-shadow: 0 12px 30px rgba(36, 32, 65, 0.06) !important;
+}
+
+.legal-v2-accordion-head {
+  min-height: 62px !important;
+  padding: 14px 16px !important;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.92), rgba(255, 248, 231, 0.72)) !important;
+}
+
+.legal-v2-accordion-head small,
+.legal-v2-info-card > span,
+.legal-v2-tool-card > span,
+.legal-v2-privacy-card > span,
+.invite-v2-step-no {
+  color: #a77717 !important;
+  -webkit-text-fill-color: #a77717 !important;
+  font-family: var(--font-mono) !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.14em !important;
+}
+
+.legal-v2-accordion-head strong,
+.legal-v2-info-card h2,
+.legal-v2-tool-card h2,
+.legal-v2-privacy-card h2,
+.invite-v2-card h2,
+.invite-v2-step-card h3,
+.vip-v2-card h2 {
+  color: #15132a !important;
+  -webkit-text-fill-color: #15132a !important;
+  font-family: var(--font-head) !important;
+  font-size: 19px !important;
+  font-weight: 900 !important;
+  line-height: 1.08 !important;
+}
+
+.legal-v2-accordion-body {
+  padding: 16px !important;
+}
+
+.legal-v2-accordion-body h3 {
+  color: #a77717 !important;
+  -webkit-text-fill-color: #a77717 !important;
+  font-family: var(--font-head) !important;
+  font-size: 15px !important;
+}
+
+.legal-v2-accordion-body p,
+.legal-v2-accordion-body li {
+  color: #4f4965 !important;
+  -webkit-text-fill-color: #4f4965 !important;
+  font-size: 12px !important;
+  line-height: 1.58 !important;
+}
+
+.legal-v2-info-card {
+  display: grid !important;
+  grid-template-columns: 48px minmax(0, 1fr) !important;
+  gap: 14px !important;
+  padding: 16px !important;
+}
+
+.legal-v2-tool-grid,
+.legal-v2-privacy-grid,
+.vip-v2-grid,
+.invite-v2-steps-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+.legal-v2-privacy-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.legal-v2-tool-card,
+.legal-v2-privacy-card,
+.vip-v2-card,
+.invite-v2-step-card {
+  position: relative !important;
+  overflow: hidden !important;
+  min-height: 190px !important;
+  padding: 18px !important;
+}
+
+.legal-v2-tool-icon,
+.legal-v2-privacy-icon,
+.invite-v2-card-head > span,
+.invite-v2-step-icon,
+.vip-v2-card div {
+  display: grid !important;
+  place-items: center !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 16px !important;
+  background: linear-gradient(135deg, #fff4c4, #d19a20) !important;
+  color: #211604 !important;
+  -webkit-text-fill-color: #211604 !important;
+  box-shadow: 0 16px 30px rgba(183, 122, 10, 0.18) !important;
+}
+
+.invite-v2-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px) !important;
+}
+
+.invite-v2-earnings {
+  position: relative !important;
+  z-index: 1 !important;
+  padding: 18px !important;
+}
+
+.invite-v2-earnings strong {
+  color: #b77a0a !important;
+  -webkit-text-fill-color: #b77a0a !important;
+  font-size: 32px !important;
+}
+
+.invite-v2-card-head {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
+}
+
+.invite-v2-field {
+  margin-top: 14px !important;
+  display: flex !important;
+  gap: 10px !important;
+  align-items: center !important;
+  padding: 8px !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(183, 122, 10, 0.14) !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+}
+
+.invite-v2-field input,
+.invite-v2-code-box {
+  min-height: 42px !important;
+  color: #15132a !important;
+  -webkit-text-fill-color: #15132a !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  border: 1px solid rgba(183, 122, 10, 0.12) !important;
+  border-radius: 14px !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+.invite-v2-field button {
+  min-height: 42px !important;
+  border-radius: 14px !important;
+  border: 0 !important;
+  color: #211604 !important;
+  -webkit-text-fill-color: #211604 !important;
+  background: linear-gradient(135deg, #ffd66b 0%, #c9901a 100%) !important;
+  box-shadow: 0 12px 24px rgba(183, 122, 10, 0.18) !important;
+}
+
+.invite-v2-toast {
+  border-color: rgba(10, 166, 106, 0.24) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #0aa66a !important;
+  -webkit-text-fill-color: #0aa66a !important;
+}
+
+.vip-v2-card > span {
+  position: absolute !important;
+  top: 16px !important;
+  right: 18px !important;
+  color: rgba(183, 122, 10, 0.14) !important;
+  -webkit-text-fill-color: rgba(183, 122, 10, 0.14) !important;
+  font-family: var(--font-head) !important;
+  font-size: 50px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+}
+
+.vip-v2-card h2 {
+  margin: 18px 0 8px !important;
+}
+
+.vip-v2-benefits {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+@media (max-width: 980px) {
+  .rana-layout.legal-route-shell .legal-route-main,
+  .rana-layout.invite-route .invite-route-main,
+  .rana-layout.premium-info-route .premium-info-main {
+    padding: 82px 14px 90px !important;
+  }
+
+  .legal-v2-hero,
+  .invite-v2-hero,
+  .premium-info-hero,
+  .legal-v2-grid,
+  .invite-v2-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .legal-v2-stats,
+  .legal-v2-process,
+  .invite-v2-stats,
+  .vip-v2-strip,
+  .vip-v2-benefits,
+  .legal-v2-tool-grid,
+  .legal-v2-privacy-grid,
+  .vip-v2-grid,
+  .invite-v2-steps-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .legal-v2-hero-icon,
+  .vip-v2-crown {
+    width: 72px !important;
+    height: 72px !important;
+    border-radius: 22px !important;
+    font-size: 26px !important;
+  }
+
+  .invite-v2-field {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+}
+
+/* Invite & Earn page final alignment fixes */
+.rana-layout.invite-route .invite-route-main {
+  width: min(100%, 1450px) !important;
+  max-width: 1450px !important;
+  padding: 24px 24px 72px !important;
+}
+
+.rana-layout.invite-route .invite-v2 {
+  gap: 20px !important;
+}
+
+.rana-layout.invite-route .invite-v2-hero,
+.rana-layout.invite-route .invite-v2-grid,
+.rana-layout.invite-route .invite-v2-steps,
+.rana-layout.invite-route .invite-v2-note {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.rana-layout.invite-route .invite-v2-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px) !important;
+  align-items: stretch !important;
+  min-height: 0 !important;
+  padding: 26px 28px !important;
+}
+
+.rana-layout.invite-route .invite-v2-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+}
+
+.rana-layout.invite-route .invite-v2-card {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.rana-layout.invite-route .invite-v2-card-head {
+  min-width: 0 !important;
+}
+
+.rana-layout.invite-route .invite-v2-card-head > div {
+  min-width: 0 !important;
+}
+
+.rana-layout.invite-route .invite-v2-card-head h2,
+.rana-layout.invite-route .invite-v2-card-head p {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.rana-layout.invite-route .invite-v2-field {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  gap: 10px !important;
+}
+
+.rana-layout.invite-route .invite-v2-field input,
+.rana-layout.invite-route .invite-v2-code-box {
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 0 14px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.rana-layout.invite-route .invite-v2-field button {
+  width: auto !important;
+  min-width: 132px !important;
+  padding: 0 18px !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 980px) {
+  .rana-layout.invite-route .invite-route-main {
+    padding: 18px 14px 82px !important;
+  }
+
+  .rana-layout.invite-route .invite-v2-hero,
+  .rana-layout.invite-route .invite-v2-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .rana-layout.invite-route .invite-v2-field {
+    grid-template-columns: 1fr !important;
+  }
+
+  .rana-layout.invite-route .invite-v2-field button {
+    width: 100% !important;
+  }
+}
+
+/* Compact redesign for VIP, policy, rules, privacy, responsible, and exclusion pages */
+.rana-layout.legal-route-shell .legal-route-main,
+.rana-layout.premium-info-route .premium-info-main {
+  width: min(100%, 1500px) !important;
+  max-width: 1500px !important;
+  padding: 128px 24px 64px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2,
+.rana-layout.premium-info-route .vip-v2 {
+  gap: 14px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-hero,
+.rana-layout.premium-info-route .premium-info-hero {
+  min-height: 132px !important;
+  padding: 20px 22px !important;
+  border-radius: 24px !important;
+  grid-template-columns: minmax(0, 1fr) 74px !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 249, 233, 0.82) 54%, rgba(246, 242, 255, 0.9)) !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-hero::after,
+.rana-layout.premium-info-route .premium-info-hero::after {
+  right: 20px !important;
+  bottom: -8px !important;
+  font-size: clamp(44px, 6vw, 86px) !important;
+  opacity: 0.85 !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-kicker,
+.rana-layout.premium-info-route .premium-info-kicker {
+  margin-bottom: 8px !important;
+  padding: 6px 11px !important;
+  font-size: 8px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2 h1,
+.rana-layout.premium-info-route .premium-info-hero h1 {
+  font-size: clamp(30px, 3.6vw, 50px) !important;
+  line-height: 0.96 !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-hero p,
+.rana-layout.premium-info-route .premium-info-hero p {
+  max-width: 680px !important;
+  margin-top: 8px !important;
+  font-size: 13px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-hero-icon,
+.rana-layout.premium-info-route .vip-v2-crown {
+  width: 70px !important;
+  height: 70px !important;
+  border-radius: 22px !important;
+  font-size: 25px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-stats,
+.rana-layout.legal-route-shell .legal-v2-process,
+.rana-layout.premium-info-route .vip-v2-strip,
+.rana-layout.premium-info-route .vip-v2-benefits {
+  gap: 10px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-stats div,
+.rana-layout.legal-route-shell .legal-v2-process div,
+.rana-layout.premium-info-route .vip-v2-strip div,
+.rana-layout.premium-info-route .vip-v2-benefits article {
+  min-height: 72px !important;
+  padding: 13px 14px !important;
+  border-radius: 18px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-grid {
+  grid-template-columns: minmax(210px, 0.28fr) minmax(0, 1fr) !important;
+  gap: 12px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-side-note,
+.rana-layout.legal-route-shell .legal-v2-care-panel,
+.rana-layout.legal-route-shell .legal-v2-bottom-callout,
+.rana-layout.legal-route-shell .legal-v2-info-card,
+.rana-layout.legal-route-shell .legal-v2-tool-card,
+.rana-layout.legal-route-shell .legal-v2-privacy-card,
+.rana-layout.premium-info-route .vip-v2-card {
+  border-radius: 18px !important;
+  padding: 15px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-care-panel {
+  display: grid !important;
+  grid-template-columns: 44px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-care-panel > svg,
+.rana-layout.legal-route-shell .legal-v2-side-note.strong svg {
+  width: 44px !important;
+  height: 44px !important;
+  padding: 12px !important;
+  border-radius: 14px !important;
+  background: linear-gradient(135deg, #fff4c4, #d19a20) !important;
+  color: #211604 !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-tool-grid,
+.rana-layout.legal-route-shell .legal-v2-privacy-grid,
+.rana-layout.premium-info-route .vip-v2-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-tool-card,
+.rana-layout.legal-route-shell .legal-v2-privacy-card,
+.rana-layout.premium-info-route .vip-v2-card {
+  min-height: 158px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-tool-icon,
+.rana-layout.legal-route-shell .legal-v2-privacy-icon,
+.rana-layout.premium-info-route .vip-v2-card div {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 14px !important;
+  font-size: 17px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-accordion-head {
+  min-height: 54px !important;
+  padding: 12px 14px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-accordion-body {
+  padding: 13px 14px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-stats strong,
+.rana-layout.legal-route-shell .legal-v2-process strong,
+.rana-layout.legal-route-shell .legal-v2-side-note strong,
+.rana-layout.legal-route-shell .legal-v2-care-panel strong,
+.rana-layout.legal-route-shell .legal-v2-bottom-callout strong,
+.rana-layout.legal-route-shell .legal-v2-info-card h2,
+.rana-layout.legal-route-shell .legal-v2-tool-card h2,
+.rana-layout.legal-route-shell .legal-v2-privacy-card h2,
+.rana-layout.legal-route-shell .legal-v2-accordion-head strong,
+.rana-layout.premium-info-route .vip-v2-card h2,
+.rana-layout.premium-info-route .vip-v2-strip strong,
+.rana-layout.premium-info-route .vip-v2-benefits strong {
+  font-size: 16px !important;
+}
+
+.rana-layout.legal-route-shell .legal-v2-info-card {
+  grid-template-columns: 42px minmax(0, 1fr) !important;
+  gap: 12px !important;
+}
+
+.rana-layout.premium-info-route .vip-v2-card > span {
+  top: 12px !important;
+  right: 14px !important;
+  font-size: 40px !important;
+}
+
+.rana-layout.premium-info-route .vip-v2-card h2 {
+  margin: 14px 0 7px !important;
+}
+
+@media (max-width: 980px) {
+  .rana-layout.legal-route-shell .legal-route-main,
+  .rana-layout.premium-info-route .premium-info-main {
+    padding: 124px 14px 82px !important;
+  }
+
+  .rana-layout.legal-route-shell .legal-v2-hero,
+  .rana-layout.premium-info-route .premium-info-hero,
+  .rana-layout.legal-route-shell .legal-v2-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .rana-layout.legal-route-shell .legal-v2-tool-grid,
+  .rana-layout.legal-route-shell .legal-v2-privacy-grid,
+  .rana-layout.premium-info-route .vip-v2-grid,
+  .rana-layout.premium-info-route .vip-v2-strip,
+  .rana-layout.premium-info-route .vip-v2-benefits,
+  .rana-layout.legal-route-shell .legal-v2-stats,
+  .rana-layout.legal-route-shell .legal-v2-process {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Final header gap correction for VIP and policy pages */
+.rana-layout.legal-route-shell .legal-route-main,
+.rana-layout.premium-info-route .premium-info-main {
+  padding-top: 24px !important;
+}
+
+@media (max-width: 980px) {
+  .rana-layout.legal-route-shell .legal-route-main,
+  .rana-layout.premium-info-route .premium-info-main {
+    padding-top: 18px !important;
+  }
+}
