@@ -9,6 +9,7 @@ import { apiGet, apiPost } from "@/utils/apiFetch";
 import { FaPlay, FaSearch, FaTimes } from "react-icons/fa";
 
 import RanaHeader from "../home/boldvelocity/RanaHeader";
+import RanaFooter from "../home/boldvelocity/RanaFooter";
 import AuthModalHost from "../common/AuthModalHost";
 import '../../assets/css/ranamatch.css';
 
@@ -305,7 +306,7 @@ const CasinoPage = () => {
   }
 
   return (
-    <div className="rana-layout casino-route" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="rana-layout casino-route" style={{ minHeight: '100vh' }}>
       <AuthModalHost />
       <RanaHeader />
 
@@ -1551,9 +1552,9 @@ const CasinoPage = () => {
         }
 
         @media (max-width: 820px){
-          .casino-shell{display:block;overflow:auto;padding-bottom:92px}
+          .casino-shell{display:block;margin-top:0;padding-top:132px !important;padding-bottom:92px}
           .sidebar{display:none}
-          .content{padding:14px 12px 120px}
+          .content{padding:0 10px 120px !important}
           .casino-top-layout{
             grid-template-columns:1fr;
             gap:10px;
@@ -1567,17 +1568,29 @@ const CasinoPage = () => {
           }
           .casino-hero-card{
             min-height:0;
-            padding:20px;
+            padding:14px 16px;
           }
           .casino-hero-title{
-            font-size:32px;
+            font-size:20px !important;
+            line-height:1.1 !important;
+          }
+          .casino-hero-copy{
+            font-size:11px !important;
+            margin-top:5px !important;
           }
           .casino-hero-stats-new{
-            grid-template-columns:1fr;
+            grid-template-columns:repeat(3,1fr);
+            gap:5px;
+            margin-top:8px;
           }
-          .provider-grid-top{
-            grid-template-columns:1fr;
-            max-height:220px;
+          .casino-hero-stats-new div{
+            padding:5px 8px;
+          }
+          .casino-hero-stats-new strong{
+            font-size:13px;
+          }
+          .casino-hero-stats-new span{
+            font-size:7px;
           }
           .mobile-provider-toolbar{
             display:grid;
@@ -1699,6 +1712,512 @@ const CasinoPage = () => {
             height:38px;
           }
         }
+
+        @media (max-width: 820px){
+          .rana-layout.casino-route .mobile-top-news{
+            display:none !important;
+          }
+
+          .rana-layout.casino-route .nav{
+            display:flex !important;
+            align-items:center !important;
+            justify-content:space-between !important;
+          }
+
+          .rana-layout.casino-route .sport-rail{
+            display:flex !important;
+          }
+
+          .rana-layout.casino-route{
+            height:auto !important;
+            min-height:100dvh !important;
+            display:block !important;
+            overflow-x:hidden !important;
+            background:#e6e8ee !important;
+          }
+
+          .casino-shell{
+            min-height:100dvh !important;
+            height:auto !important;
+            display:block !important;
+            overflow:visible !important;
+            padding:154px 0 84px !important;
+            background:#e6e8ee !important;
+          }
+
+          .content{
+            width:100% !important;
+            max-width:none !important;
+            padding:8px 8px 82px !important;
+            margin:0 !important;
+            overflow:visible !important;
+          }
+
+          .casino-top-layout{
+            display:block !important;
+            margin:0 0 8px !important;
+          }
+
+          .casino-left-stack{
+            display:block !important;
+          }
+
+          .casino-command{
+            display:block !important;
+            margin:0 0 8px !important;
+          }
+
+          .casino-control-card,
+          .provider-deck{
+            display:none !important;
+          }
+
+          .casino-hero-card{
+            min-height:0 !important;
+            padding:10px 11px !important;
+            border-radius:11px !important;
+            box-shadow:0 7px 16px rgba(14,11,37,.07), inset 0 1px 0 rgba(255,255,255,.96) !important;
+          }
+
+          .casino-hero-card::after{
+            right:8px !important;
+            bottom:-5px !important;
+            font-size:26px !important;
+          }
+
+          .casino-kicker-line{
+            margin-bottom:4px !important;
+            font-size:6px !important;
+            letter-spacing:.13em !important;
+          }
+
+          .casino-hero-title{
+            max-width:100% !important;
+            font-size:18px !important;
+            line-height:1 !important;
+          }
+
+          .casino-hero-copy{
+            max-width:100% !important;
+            margin-top:4px !important;
+            font-size:9px !important;
+            line-height:1.3 !important;
+          }
+
+          .casino-hero-stats-new{
+            grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+            gap:4px !important;
+            max-width:none !important;
+            margin-top:7px !important;
+          }
+
+          .casino-hero-stats-new div{
+            min-width:0 !important;
+            padding:6px 4px !important;
+            border-radius:8px !important;
+            text-align:center !important;
+          }
+
+          .casino-hero-stats-new strong{
+            font-size:11px !important;
+          }
+
+          .casino-hero-stats-new span{
+            font-size:5.5px !important;
+            letter-spacing:.05em !important;
+          }
+
+          .mobile-provider-toolbar{
+            display:grid !important;
+            grid-template-columns:1fr !important;
+            gap:6px !important;
+            margin:0 0 8px !important;
+            padding:8px !important;
+            border-radius:11px !important;
+            background:rgba(255,255,255,.64) !important;
+            border:1px solid rgba(255,255,255,.82) !important;
+            box-shadow:0 7px 16px rgba(14,11,37,.06), inset 0 1px 0 rgba(255,255,255,.96) !important;
+          }
+
+          .mobile-provider-toolbar select,
+          .mobile-provider-toolbar input{
+            min-height:34px !important;
+            border-radius:8px !important;
+            background:#ffffff !important;
+            color:#17142d !important;
+            border-color:rgba(14,11,37,.10) !important;
+            font-size:10px !important;
+          }
+
+          .mobile-provider-toolbar .search-box{
+            display:block !important;
+          }
+
+          .mobile-provider-toolbar .search-box input{
+            width:100% !important;
+            padding-left:30px !important;
+          }
+
+          .cat-row{
+            display:flex !important;
+            grid-auto-flow:unset !important;
+            min-height:46px !important;
+            height:auto !important;
+            gap:6px !important;
+            margin:0 0 8px !important;
+            padding:6px !important;
+            border-radius:11px !important;
+            overflow-x:auto !important;
+            background:rgba(255,255,255,.68) !important;
+          }
+
+          .cat-pill{
+            flex:0 0 auto !important;
+            min-width:auto !important;
+            min-height:34px !important;
+            height:34px !important;
+            padding:0 10px !important;
+            flex-direction:row !important;
+            gap:5px !important;
+            border:1px solid rgba(14,11,37,.08) !important;
+            border-radius:999px !important;
+            background:#ffffff !important;
+            box-shadow:none !important;
+          }
+
+          .cat-pill::before{
+            display:none !important;
+          }
+
+          .cat-pill.on{
+            background:linear-gradient(135deg,#a77717,#c59124) !important;
+            border-color:transparent !important;
+          }
+
+          .cat-pill.on .cat-name{
+            color:#ffffff !important;
+          }
+
+          .cat-icon{
+            font-size:13px !important;
+            filter:none !important;
+          }
+
+          .cat-name{
+            font-size:7px !important;
+            letter-spacing:.04em !important;
+          }
+
+          .jp-bar,
+          .wins-bar{
+            display:flex !important;
+          }
+
+          .jp-bar{
+            min-height:0 !important;
+            grid-template-columns:none !important;
+            padding:8px 9px !important;
+            margin:0 0 8px !important;
+            border-radius:11px !important;
+          }
+
+          .jp-label{
+            width:100% !important;
+          }
+
+          .jp-val{
+            font-size:14px !important;
+          }
+
+          .jp-btn{
+            min-height:30px !important;
+            font-size:8px !important;
+          }
+
+          .wins-bar{
+            min-height:34px !important;
+            padding:6px 8px !important;
+            margin:0 0 8px !important;
+            border-radius:11px !important;
+          }
+
+          .wins-label{
+            font-size:7px !important;
+            letter-spacing:.08em !important;
+          }
+
+          .sec-row{
+            min-height:34px !important;
+            display:flex !important;
+            align-items:center !important;
+            justify-content:space-between !important;
+            padding:8px 10px !important;
+            margin:0 0 8px !important;
+            border-radius:11px !important;
+          }
+
+          .sec-title{
+            font-size:10px !important;
+            letter-spacing:.06em !important;
+          }
+
+          .game-grid{
+            grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+            gap:8px !important;
+            margin-bottom:14px !important;
+          }
+
+          .gcard{
+            border-radius:11px !important;
+          }
+
+          .gcard::before{
+            border-radius:11px !important;
+          }
+
+          .gthumb{
+            border-radius:11px 11px 0 0 !important;
+          }
+
+          .ginfo{
+            padding:7px 7px 8px !important;
+          }
+
+          .gname{
+            font-size:10px !important;
+          }
+
+          .gmeta{
+            margin-top:4px !important;
+            gap:4px !important;
+          }
+
+          .gprov{
+            max-width:100% !important;
+            font-size:7px !important;
+            overflow:hidden !important;
+            text-overflow:ellipsis !important;
+            white-space:nowrap !important;
+          }
+
+          .gtag-hot,
+          .gtag-live,
+          .gtag-pop{
+            display:none !important;
+          }
+        }
+
+        @media (max-width: 380px){
+          .casino-hero-title{
+            font-size:17px !important;
+          }
+
+          .casino-hero-copy{
+            font-size:8.5px !important;
+          }
+
+          .game-grid{
+            gap:7px !important;
+          }
+
+          .gname{
+            font-size:9.5px !important;
+          }
+        }
+
+        @media (max-width: 820px){
+          .casino-shell{
+            padding-top:148px !important;
+            background:
+              radial-gradient(circle at 8% 12%, rgba(199,230,255,.55), transparent 34%),
+              radial-gradient(circle at 88% 8%, rgba(255,235,189,.50), transparent 32%),
+              linear-gradient(135deg,#eef2f7 0%,#f5f0fb 48%,#eef6f1 100%) !important;
+          }
+
+          .content{
+            padding:0 18px 86px !important;
+          }
+
+          .mobile-provider-toolbar{
+            display:none !important;
+          }
+
+          .casino-hero-card{
+            min-height:118px !important;
+            padding:14px 15px !important;
+            border:1px solid rgba(255,255,255,.86) !important;
+            border-radius:18px !important;
+            background:rgba(255,255,255,.72) !important;
+            box-shadow:0 12px 26px rgba(15,23,42,.10), inset 0 1px 0 rgba(255,255,255,.96) !important;
+            overflow:hidden !important;
+          }
+
+          .casino-hero-card::after{
+            display:block !important;
+            right:10px !important;
+            bottom:-8px !important;
+            color:rgba(167,119,23,.08) !important;
+            font-size:36px !important;
+          }
+
+          .casino-kicker-line{
+            display:block !important;
+            margin-bottom:5px !important;
+            color:#a77717 !important;
+            font-size:6px !important;
+            letter-spacing:.15em !important;
+          }
+
+          .casino-hero-title{
+            margin:0 !important;
+            color:#1f2937 !important;
+            font-size:21px !important;
+            line-height:1.05 !important;
+            font-weight:900 !important;
+          }
+
+          .casino-hero-copy{
+            max-width:300px !important;
+            margin-top:6px !important;
+            color:#4b5563 !important;
+            font-size:10.5px !important;
+            line-height:1.35 !important;
+          }
+
+          .casino-hero-stats-new{
+            display:grid !important;
+            grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+            gap:6px !important;
+            margin-top:10px !important;
+            max-width:none !important;
+          }
+
+          .casino-hero-stats-new div{
+            min-width:0 !important;
+            padding:7px 5px !important;
+            border-radius:10px !important;
+            background:rgba(255,255,255,.76) !important;
+          }
+
+          .casino-hero-stats-new strong{
+            font-size:12px !important;
+          }
+
+          .casino-hero-stats-new span{
+            font-size:6px !important;
+            letter-spacing:.05em !important;
+          }
+
+          .cat-row{
+            min-height:56px !important;
+            margin:10px 0 14px !important;
+            padding:5px !important;
+            border-radius:16px !important;
+            background:rgba(255,255,255,.74) !important;
+            box-shadow:0 10px 24px rgba(15,23,42,.08), inset 0 1px 0 rgba(255,255,255,.95) !important;
+          }
+
+          .cat-pill{
+            min-height:46px !important;
+            height:46px !important;
+            min-width:96px !important;
+            padding:0 11px !important;
+            border:0 !important;
+            border-radius:13px !important;
+            background:rgba(255,255,255,.56) !important;
+            flex-direction:row !important;
+            gap:6px !important;
+          }
+
+          .cat-pill.on{
+            background:linear-gradient(135deg,#a77717,#c59124) !important;
+          }
+
+          .cat-icon{
+            font-size:15px !important;
+          }
+
+          .cat-name{
+            font-size:7px !important;
+            font-weight:900 !important;
+          }
+
+          .jp-bar,
+          .wins-bar{
+            display:none !important;
+          }
+
+          .sec-row{
+            background:transparent !important;
+            border:0 !important;
+            box-shadow:none !important;
+            padding:0 2px !important;
+            margin:0 0 12px !important;
+          }
+
+          .sec-title{
+            color:#111827 !important;
+            font-size:17px !important;
+            letter-spacing:0 !important;
+            text-transform:none !important;
+          }
+
+          .game-grid{
+            gap:10px !important;
+          }
+
+          .gcard{
+            border-radius:16px !important;
+            background:#ffffff !important;
+            box-shadow:0 10px 22px rgba(15,23,42,.10) !important;
+            overflow:hidden !important;
+          }
+
+          .gcard::before{
+            border-radius:16px !important;
+          }
+
+          .gthumb{
+            border-radius:16px 16px 0 0 !important;
+          }
+
+          .ginfo{
+            padding:9px 10px 11px !important;
+            background:#ffffff !important;
+          }
+
+          .gname{
+            font-size:12px !important;
+            color:#111827 !important;
+            font-weight:900 !important;
+          }
+
+          .gprov{
+            color:#111827 !important;
+            font-size:8px !important;
+          }
+        }
+
+        @media (max-width: 430px){
+          .content{
+            padding-left:30px !important;
+            padding-right:30px !important;
+          }
+
+          .casino-hero-card{
+            min-height:164px !important;
+            padding:10px 2px !important;
+          }
+
+          .casino-hero-title{
+            font-size:19px !important;
+          }
+
+          .game-grid{
+            grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+            gap:10px !important;
+          }
+        }
       `}</style>
 
 
@@ -1740,6 +2259,10 @@ const CasinoPage = () => {
                 </option>
               ))}
             </select>
+            <div className="search-box">
+              <FaSearch />
+              <input type="text" placeholder="Search casino games..." value={gameSearch} onChange={e => setGameSearch(e.target.value)} />
+            </div>
           </div>
 
           <section className="casino-top-layout">
@@ -1899,8 +2422,8 @@ const CasinoPage = () => {
                       <div className="gname" title={game["Game Name"]}>{game["Game Name"]}</div>
                       <div className="gmeta">
                         <span className="gprov">{game["Game Provider"] || game.provider || "Casino"}</span>
-                        {isHot && <span className="gtag-hot">🔥 HOT</span>}
-                        {isLive && <span className="gtag-live">● LIVE</span>}
+                        {isHot && <span className="gtag-hot">HOT</span>}
+                        {isLive && <span className="gtag-live">LIVE</span>}
                         {!isHot && !isLive && <span className="gtag-pop">POPULAR</span>}
                       </div>
                     </div>
@@ -1978,6 +2501,9 @@ const CasinoPage = () => {
           </div>
         </div>, document.body
       )}
+
+      {/* Footer - same as home page */}
+      <RanaFooter />
 
     </div>
   );
