@@ -187,8 +187,8 @@ const ContactUs = ({ onShowHistory }) => {
         )}
       </AnimatePresence>
 
-      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(0, 1.05fr) minmax(320px, 0.95fr)', gap: 16, marginBottom: 16 }}>
-        <div style={{ minHeight: 238, borderRadius: 30, padding: isMobile ? 22 : 30, background: 'radial-gradient(circle at 80% 20%, rgba(255,214,107,0.32), transparent 34%), linear-gradient(135deg, #ffffff 0%, #fff9ec 54%, #f4f0ff 100%)', border: '1px solid rgba(255,255,255,0.9)', boxShadow: '0 18px 48px rgba(36,32,65,0.10)', position: 'relative', overflow: 'hidden' }}>
+      <div className="support-intro-grid" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(0, 1.05fr) minmax(320px, 0.95fr)', gap: 16, marginBottom: 16 }}>
+        <div className="support-hero-card" style={{ minHeight: 238, borderRadius: 30, padding: isMobile ? 22 : 30, background: 'radial-gradient(circle at 80% 20%, rgba(255,214,107,0.32), transparent 34%), linear-gradient(135deg, #ffffff 0%, #fff9ec 54%, #f4f0ff 100%)', border: '1px solid rgba(255,255,255,0.9)', boxShadow: '0 18px 48px rgba(36,32,65,0.10)', position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', right: 26, bottom: -16, fontFamily: FONTS.head, fontSize: isMobile ? 58 : 96, fontWeight: 900, color: 'rgba(183,122,10,0.06)', pointerEvents: 'none' }}>HELP</div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '7px 12px', borderRadius: 999, background: palette.goldSoft, border: `1px solid ${palette.goldBorder}`, color: palette.gold, fontFamily: FONTS.head, fontSize: 10, fontWeight: 900, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
             <FaHeadphones /> support command
@@ -201,10 +201,10 @@ const ContactUs = ({ onShowHistory }) => {
           </p>
         </div>
 
-        <aside style={{ borderRadius: 30, padding: 18, background: 'linear-gradient(145deg, rgba(20,17,43,0.96), rgba(46,36,78,0.92))', boxShadow: '0 18px 48px rgba(20,17,43,0.18)', color: '#fff' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 10 }}>
+        <aside className="support-quick-card" style={{ borderRadius: 30, padding: 18, background: 'linear-gradient(145deg, rgba(20,17,43,0.96), rgba(46,36,78,0.92))', boxShadow: '0 18px 48px rgba(20,17,43,0.18)', color: '#fff' }}>
+          <div className="support-stat-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 10 }}>
             {quickStats.map((item) => (
-              <div key={item.label} style={{ minHeight: 94, borderRadius: 20, padding: 12, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
+              <div className="support-stat-card" key={item.label} style={{ minHeight: 94, borderRadius: 20, padding: 12, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
                 <div style={{ color: '#ffd66b', fontSize: 18 }}>{item.icon}</div>
                 <strong style={{ display: 'block', marginTop: 12, color: '#fff', fontFamily: FONTS.head, fontSize: 18, fontWeight: 900 }}>{item.value}</strong>
                 <span style={{ color: 'rgba(255,255,255,0.56)', fontSize: 9, fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase' }}>{item.label}</span>
@@ -214,7 +214,7 @@ const ContactUs = ({ onShowHistory }) => {
           <button type="button" onClick={onShowHistory} style={{ width: '100%', marginTop: 14, minHeight: 50, borderRadius: 18, border: '1px solid rgba(255,214,107,0.34)', background: 'rgba(255,214,107,0.12)', color: '#ffd66b', fontFamily: FONTS.head, fontSize: 12, fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9 }}>
             <FaHistory /> View my tickets
           </button>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 10 }}>
+          <div className="support-action-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 10 }}>
             <a href={accountInfo?.service_support_url || '#'} style={{ minHeight: 48, borderRadius: 16, background: 'rgba(255,255,255,0.08)', color: '#fff', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontWeight: 900, fontSize: 12 }}>
               <FaWhatsapp /> Chat
             </a>

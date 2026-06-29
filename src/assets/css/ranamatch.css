@@ -10089,6 +10089,120 @@ body.category-page-scroll #root {
   .support-page-main {
     padding: 10px 12px 90px;
   }
+
+  .rana-layout.support-route .support-page-main {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-bottom: 112px !important;
+  }
+
+  .rana-layout.support-route .support-page-shell {
+    width: 100% !important;
+  }
+
+  .rana-layout.support-route .support-intro-grid {
+    gap: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .rana-layout.support-route .support-hero-card {
+    min-height: 0 !important;
+    border-radius: 22px !important;
+    padding: 18px 18px 22px !important;
+  }
+
+  .rana-layout.support-route .support-hero-card h1 {
+    max-width: 100% !important;
+    margin: 14px 0 8px !important;
+    font-size: clamp(28px, 8vw, 36px) !important;
+    line-height: 1.03 !important;
+  }
+
+  .rana-layout.support-route .support-hero-card p {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+  }
+
+  .rana-layout.support-route .support-quick-card {
+    border-radius: 22px !important;
+    padding: 12px !important;
+  }
+
+  .rana-layout.support-route .support-stat-grid {
+    gap: 8px !important;
+  }
+
+  .rana-layout.support-route .support-stat-card {
+    min-height: 78px !important;
+    border-radius: 16px !important;
+    padding: 10px 9px !important;
+  }
+
+  .rana-layout.support-route .support-stat-card svg {
+    font-size: 16px !important;
+  }
+
+  .rana-layout.support-route .support-stat-card strong {
+    margin-top: 8px !important;
+    font-size: clamp(15px, 4.4vw, 20px) !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  .rana-layout.support-route .support-stat-card span {
+    display: block !important;
+    margin-top: 6px !important;
+    font-size: 7px !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .rana-layout.support-route .support-action-grid {
+    gap: 8px !important;
+  }
+
+  .rana-layout.support-route .support-action-grid a,
+  .rana-layout.support-route .support-quick-card button {
+    min-height: 42px !important;
+    border-radius: 14px !important;
+    font-size: 11px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .rana-layout.support-route .support-header-gap {
+    height: 118px !important;
+    flex-basis: 118px !important;
+  }
+
+  .rana-layout.support-route .support-page-main {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .rana-layout.support-route .support-hero-card {
+    padding: 16px 16px 20px !important;
+    border-radius: 20px !important;
+  }
+
+  .rana-layout.support-route .support-hero-card h1 {
+    font-size: 31px !important;
+  }
+
+  .rana-layout.support-route .support-stat-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+  }
+
+  .rana-layout.support-route .support-stat-card {
+    min-height: 72px !important;
+    padding: 9px 7px !important;
+  }
+
+  .rana-layout.support-route .support-stat-card strong {
+    font-size: 15px !important;
+  }
 }
 
 /* Category pages full redesign */
@@ -12240,8 +12354,39 @@ body.category-page-scroll #root {
   }
 
   .rana-layout.support-route .support-header-gap {
-    height: 72px !important;
-    flex-basis: 72px !important;
+    height: 124px !important;
+    flex-basis: 124px !important;
+  }
+
+  .rana-layout.support-route .support-quick-card {
+    background: linear-gradient(145deg, rgba(20,17,43,0.97), rgba(46,36,78,0.94)) !important;
+    color: #ffffff !important;
+  }
+
+  .rana-layout.support-route .support-stat-card {
+    background: rgba(255,255,255,0.08) !important;
+    border-color: rgba(255,255,255,0.14) !important;
+  }
+
+  .rana-layout.support-route .support-stat-card svg {
+    color: #ffd66b !important;
+  }
+
+  .rana-layout.support-route .support-stat-card strong {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+
+  .rana-layout.support-route .support-stat-card span {
+    color: rgba(255,255,255,0.64) !important;
+    -webkit-text-fill-color: rgba(255,255,255,0.64) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .rana-layout.support-route .support-header-gap {
+    height: 116px !important;
+    flex-basis: 116px !important;
   }
 }
 
@@ -13428,6 +13573,11 @@ body.category-page-scroll #root {
    ════════════════════════════════════════════════════════ */
 
 /* 1. The global 820px rule hides all nav - re-show the pill nav on category-route */
+.rana-layout.casino-route .rana-footer,
+.rana-layout.casino-route footer {
+  display: none !important;
+}
+
 @media (max-width: 820px) {
   .rana-layout.category-route nav.nav {
     display: flex !important;
@@ -13535,14 +13685,70 @@ body.category-page-scroll #root {
   }
   .rana-layout.category-route .game-section .section-title { font-size: 17px !important; }
 
-  /* Elite offers – single column */
-  .rana-layout.category-route .elite-offers-grid {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
+  /* Elite offers – horizontal sliding row on mobile */
+  .rana-layout.category-route .elite-offers-scroll-shell {
+    position: relative !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 10px 0 16px 10px !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding-left: 10px !important;
+    overscroll-behavior-x: contain !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 34px), transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18px, #000 calc(100% - 34px), transparent 100%) !important;
   }
+
+  .rana-layout.category-route .elite-offers-scroll-shell::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .rana-layout.category-route .elite-offers-scroll-shell::before,
+  .rana-layout.category-route .elite-offers-scroll-shell::after {
+    display: none !important;
+  }
+
+  .rana-layout.category-route .elite-offers-grid {
+    display: flex !important;
+    grid-template-columns: none !important;
+    gap: 12px !important;
+    width: max-content !important;
+    min-width: 100% !important;
+    padding: 0 34px 0 0 !important;
+    animation: none !important;
+  }
+
   .rana-layout.category-route .elite-offer-card {
-    height: clamp(160px, 46vw, 220px) !important;
+    flex: 0 0 min(76vw, 350px) !important;
+    width: min(76vw, 350px) !important;
+    height: clamp(132px, 37vw, 188px) !important;
     border-radius: 16px !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    box-shadow: 0 14px 30px rgba(31, 41, 55, 0.14), inset 0 1px 0 rgba(255,255,255,.92) !important;
+    transform: translateZ(0) !important;
+  }
+
+  .rana-layout.category-route .elite-offer-img {
+    object-fit: contain !important;
+    padding: 0 !important;
+  }
+
+  .rana-layout.category-route .elite-offer-badge {
+    top: 8px !important;
+    left: 10px !important;
+    min-height: 22px !important;
+    padding: 0 10px !important;
+    border-radius: 8px !important;
+    font-size: 9px !important;
+  }
+
+  .rana-layout.category-route .elite-offer-fullscreen {
+    right: 10px !important;
+    bottom: 10px !important;
+    width: 34px !important;
+    height: 34px !important;
   }
 
   /* Trust strip – 2 cols */
@@ -14556,10 +14762,10 @@ body.category-page-scroll #root {
     box-shadow: 0 16px 28px rgba(167, 119, 23, 0.28) !important;
   }
 
-  /* Make casino footer visible on mobile */
+  /* Casino page does not use the site footer */
   .rana-layout.casino-route .rana-footer,
   .rana-layout.casino-route footer {
-    display: block !important;
+    display: none !important;
   }
 
   /* Game grid: 3 cols on mobile for casino page */

@@ -9,7 +9,6 @@ import { apiGet, apiPost } from "@/utils/apiFetch";
 import { FaPlay, FaSearch, FaTimes } from "react-icons/fa";
 
 import RanaHeader from "../home/boldvelocity/RanaHeader";
-import RanaFooter from "../home/boldvelocity/RanaFooter";
 import AuthModalHost from "../common/AuthModalHost";
 import '../../assets/css/ranamatch.css';
 
@@ -2309,6 +2308,142 @@ const CasinoPage = () => {
             padding-top:6px !important;
           }
         }
+
+        @media (max-width: 820px){
+          .content{
+            padding-left:14px !important;
+            padding-right:14px !important;
+          }
+
+          .casino-top-layout{
+            margin-bottom:6px !important;
+          }
+
+          .casino-command{
+            margin-bottom:6px !important;
+          }
+
+          .casino-hero-card{
+            min-height:92px !important;
+            padding:10px 12px !important;
+            border-radius:14px !important;
+          }
+
+          .casino-kicker-line{
+            margin-bottom:3px !important;
+            font-size:5px !important;
+          }
+
+          .casino-hero-title{
+            font-size:18px !important;
+            line-height:1 !important;
+          }
+
+          .casino-hero-copy{
+            max-width:300px !important;
+            margin-top:4px !important;
+            font-size:9px !important;
+            line-height:1.25 !important;
+          }
+
+          .casino-hero-stats-new{
+            gap:5px !important;
+            margin-top:8px !important;
+          }
+
+          .casino-hero-stats-new div{
+            padding:5px 4px !important;
+            border-radius:9px !important;
+          }
+
+          .casino-hero-stats-new strong{
+            font-size:11px !important;
+          }
+
+          .casino-hero-stats-new span{
+            font-size:5.5px !important;
+          }
+
+          .cat-row{
+            min-height:44px !important;
+            margin:6px 0 8px !important;
+            padding:4px !important;
+            border-radius:13px !important;
+          }
+
+          .cat-pill{
+            min-height:36px !important;
+            height:36px !important;
+            min-width:86px !important;
+            padding:0 8px !important;
+            border-radius:11px !important;
+            gap:5px !important;
+          }
+
+          .cat-icon{
+            font-size:13px !important;
+          }
+
+          .cat-name{
+            font-size:6.5px !important;
+          }
+
+          .provider-deck{
+            margin-bottom:8px !important;
+            padding:7px !important;
+            border-radius:13px !important;
+          }
+
+          .provider-deck-head{
+            margin-bottom:6px !important;
+          }
+
+          .provider-deck-head strong{
+            font-size:11px !important;
+          }
+
+          .provider-deck-head span{
+            font-size:6px !important;
+          }
+
+          .provider-grid-top{
+            gap:6px !important;
+          }
+
+          .provider-chip-top{
+            flex-basis:118px !important;
+            min-height:38px !important;
+            padding:5px 6px !important;
+            border-radius:11px !important;
+          }
+
+          .provider-chip-top .s-ico{
+            width:24px !important;
+            height:24px !important;
+            border-radius:8px !important;
+            font-size:10px !important;
+          }
+
+          .provider-chip-copy{
+            gap:2px !important;
+          }
+
+          .provider-chip-copy strong{
+            font-size:8px !important;
+          }
+
+          .provider-chip-copy span{
+            font-size:6px !important;
+          }
+
+          .sec-row{
+            margin-bottom:8px !important;
+          }
+
+          .sec-title{
+            font-size:14px !important;
+          }
+        }
       `}</style>
 
 
@@ -2592,9 +2727,6 @@ const CasinoPage = () => {
           </div>
         </div>, document.body
       )}
-
-      {/* Footer - same as home page */}
-      <RanaFooter />
 
     </div>
   );
