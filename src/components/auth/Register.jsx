@@ -161,7 +161,7 @@ const Register = ({ onSwitchToLogin, onClose }) => {
 
   return (
     <>
-      <div className="auth-modal-shell">
+      <div className="auth-modal-shell auth-register-shell">
         <div className="auth-modal-card animate-modal-in">
           <button onClick={onClose} className="auth-close-btn" aria-label="Close sign up">
             <FontAwesomeIcon icon={faTimes} className="w-3.5 h-3.5" />

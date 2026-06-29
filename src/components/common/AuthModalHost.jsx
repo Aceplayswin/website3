@@ -13,7 +13,7 @@ const AuthModalHost = () => {
   if (!showLogin && !showRegister) return null;
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center z-[100000] bg-black/60 backdrop-blur-sm animate-fadeIn">
+    <div className="auth-modal-backdrop fixed inset-0 flex justify-center items-center z-[100000] bg-black/60 backdrop-blur-sm animate-fadeIn">
       {showRegister ? (
         <Register
           onClose={closeAuthModal}

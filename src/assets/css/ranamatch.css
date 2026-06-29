@@ -12390,6 +12390,235 @@ body.category-page-scroll #root {
   }
 }
 
+@media (max-width: 820px) {
+  .rana-layout.support-route .support-header-gap {
+    height: 96px !important;
+    flex-basis: 96px !important;
+  }
+
+  .rana-layout.support-route .support-page-main {
+    padding: 4px 7px 86px !important;
+  }
+
+  .rana-layout.support-route .support-redesign {
+    gap: 8px !important;
+  }
+
+  .rana-layout.support-route .support-intro-grid {
+    gap: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .rana-layout.support-route .support-hero-card {
+    min-height: 0 !important;
+    border-radius: 15px !important;
+    padding: 11px 12px 13px !important;
+    overflow: visible !important;
+  }
+
+  .rana-layout.support-route .support-hero-card > div:nth-child(2) {
+    gap: 6px !important;
+    padding: 5px 9px !important;
+    font-size: 8px !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .rana-layout.support-route .support-hero-card h1 {
+    margin: 9px 0 5px !important;
+    font-size: clamp(22px, 6.1vw, 27px) !important;
+    line-height: 1.04 !important;
+  }
+
+  .rana-layout.support-route .support-hero-card p {
+    font-size: 10.5px !important;
+    line-height: 1.34 !important;
+  }
+
+  .rana-layout.support-route .support-quick-card {
+    border-radius: 15px !important;
+    padding: 8px !important;
+    background: rgba(255, 255, 255, 0.86) !important;
+    border: 1px solid rgba(255, 255, 255, 0.86) !important;
+    color: #15132a !important;
+    box-shadow: 0 14px 36px rgba(36, 32, 65, 0.09) !important;
+  }
+
+  .rana-layout.support-route .support-stat-grid {
+    gap: 6px !important;
+  }
+
+  .rana-layout.support-route .support-stat-card {
+    min-height: 56px !important;
+    border-radius: 12px !important;
+    padding: 7px 6px !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    border-color: rgba(151, 142, 178, 0.18) !important;
+  }
+
+  .rana-layout.support-route .support-stat-card svg {
+    color: #ffd66b !important;
+    font-size: 13px !important;
+  }
+
+  .rana-layout.support-route .support-stat-card strong {
+    margin-top: 5px !important;
+    color: #15132a !important;
+    -webkit-text-fill-color: #15132a !important;
+    font-size: clamp(10.5px, 3vw, 12px) !important;
+    line-height: 1.05 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .rana-layout.support-route .support-stat-card span {
+    display: block !important;
+    margin-top: 3px !important;
+    color: #6f6a8c !important;
+    -webkit-text-fill-color: #6f6a8c !important;
+    font-size: 5.8px !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  .rana-layout.support-route .support-quick-card button {
+    min-height: 34px !important;
+    margin-top: 8px !important;
+    border-radius: 11px !important;
+    color: #b77a0a !important;
+    -webkit-text-fill-color: #b77a0a !important;
+    background: rgba(183, 122, 10, 0.08) !important;
+    font-size: 8.5px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .rana-layout.support-route .support-action-grid {
+    gap: 6px !important;
+    margin-top: 8px !important;
+  }
+
+  .rana-layout.support-route .support-action-grid a {
+    min-height: 32px !important;
+    border-radius: 11px !important;
+    color: #15132a !important;
+    -webkit-text-fill-color: #15132a !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    font-size: 9.5px !important;
+  }
+
+  .rana-layout.support-route .support-form-card {
+    border-radius: 15px !important;
+    padding: 10px !important;
+  }
+
+  .rana-layout.support-route .support-form-card > div {
+    margin-top: 8px !important;
+  }
+
+  .rana-layout.support-route .support-form-card > div:first-child {
+    margin-top: 0 !important;
+    margin-bottom: 9px !important;
+    gap: 8px !important;
+  }
+
+  .rana-layout.support-route .support-form-card > div:nth-child(2) {
+    gap: 8px !important;
+  }
+
+  .rana-layout.support-route .support-form-title {
+    font-size: 18px !important;
+    line-height: 1.18 !important;
+  }
+
+  .rana-layout.support-route .support-routing-badge {
+    padding: 6px 8px !important;
+    font-size: 7.5px !important;
+    gap: 5px !important;
+  }
+
+  .rana-layout.support-route .support-redesign label {
+    margin-bottom: 4px !important;
+    font-size: 7px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .rana-layout.support-route .support-redesign input,
+  .rana-layout.support-route .support-redesign select,
+  .rana-layout.support-route .support-redesign textarea {
+    min-height: 34px !important;
+    border-radius: 11px !important;
+    font-size: 10.5px !important;
+    padding-right: 10px !important;
+    padding-left: 12px !important;
+  }
+
+  .rana-layout.support-route .support-redesign input[name="profile_id"] {
+    padding-left: 30px !important;
+  }
+
+  .rana-layout.support-route .support-profile-icon {
+    left: 11px !important;
+    font-size: 10px !important;
+  }
+
+  .rana-layout.support-route .support-redesign textarea {
+    min-height: 74px !important;
+    padding-top: 10px !important;
+  }
+
+  .rana-layout.support-route .support-upload-drop {
+    min-height: 56px !important;
+    border-radius: 12px !important;
+    padding: 8px !important;
+  }
+
+  .rana-layout.support-route .support-upload-drop svg {
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .rana-layout.support-route .support-upload-drop span {
+    font-size: 10px !important;
+  }
+
+  .rana-layout.support-route .support-submit-btn {
+    min-height: 38px !important;
+    margin-top: 11px !important;
+    border-radius: 12px !important;
+    font-size: 9.5px !important;
+    letter-spacing: 0.07em !important;
+    gap: 7px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .rana-layout.support-route .support-header-gap {
+    height: 92px !important;
+    flex-basis: 92px !important;
+  }
+
+  .rana-layout.support-route .support-page-main {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+
+  .rana-layout.support-route .support-hero-card h1 {
+    font-size: 23px !important;
+  }
+
+  .rana-layout.support-route .support-stat-grid {
+    gap: 5px !important;
+  }
+
+  .rana-layout.support-route .support-stat-card {
+    min-height: 52px !important;
+    padding: 6px 5px !important;
+  }
+
+  .rana-layout.support-route .support-stat-card strong {
+    font-size: 10.5px !important;
+  }
+}
+
 /* Final login/register redesign */
 .auth-modal-shell {
   width: min(820px, calc(100vw - 28px)) !important;
@@ -14949,5 +15178,2692 @@ body.category-page-scroll #root {
     padding-left: 10px !important;
     padding-right: 10px !important;
     padding-top: 0 !important;
+  }
+}
+
+/* Support mobile compact pass */
+@media (max-width: 820px) {
+  .rana-layout.support-route {
+    --rana-header-height: 92px !important;
+  }
+
+  .rana-layout.support-route nav.nav {
+    top: 5px !important;
+    width: calc(100% - 18px) !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 0 9px !important;
+    border-radius: 18px !important;
+  }
+
+  .rana-layout.support-route .nav-logo {
+    width: 40px !important;
+    height: 34px !important;
+    max-width: 40px !important;
+    border-radius: 10px !important;
+  }
+
+  .rana-layout.support-route .nav-logo img {
+    width: 26px !important;
+    height: 26px !important;
+    max-width: 26px !important;
+    object-fit: contain !important;
+  }
+
+  .rana-layout.support-route .mobile-auth-actions,
+  .rana-layout.support-route .mobile-wallet-actions {
+    gap: 5px !important;
+  }
+
+  .rana-layout.support-route .mobile-auth-actions button,
+  .rana-layout.support-route .mobile-wallet-actions button,
+  .rana-layout.support-route .mobile-header-menu-btn,
+  .rana-layout.support-route .mobile-profile-open {
+    min-height: 31px !important;
+    height: 31px !important;
+    padding: 0 9px !important;
+    font-size: 8.5px !important;
+    border-radius: 999px !important;
+  }
+
+  .rana-layout.support-route .mobile-header-menu-btn {
+    width: 34px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+
+  .rana-layout.support-route .mobile-header-menu-btn span {
+    display: none !important;
+  }
+
+  .rana-layout.support-route .sport-rail {
+    top: 53px !important;
+    width: calc(100% - 18px) !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 8px !important;
+    border-radius: 15px !important;
+  }
+
+  .rana-layout.support-route .sport-rail .cat-nav-inner {
+    gap: 0 !important;
+  }
+
+  .rana-layout.support-route .sport-rail .sport-tab {
+    gap: 5px !important;
+    min-height: 30px !important;
+    padding: 6px 10px !important;
+    margin: 3px 1px 0 !important;
+    font-size: 10px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.support-route .sport-rail .sport-tab-emoji {
+    font-size: 11px !important;
+  }
+
+  .rana-layout.support-route .support-header-gap {
+    height: 92px !important;
+    flex-basis: 92px !important;
+  }
+
+  .rana-layout.support-route .mobile-home-dock {
+    bottom: 7px !important;
+    width: min(460px, calc(100vw - 18px)) !important;
+    min-height: 54px !important;
+    padding: 5px 8px !important;
+    border-radius: 18px !important;
+  }
+
+  .rana-layout.support-route .mobile-home-dock a {
+    min-height: 38px !important;
+    padding: 2px !important;
+    border-radius: 13px !important;
+    font-size: 7px !important;
+    gap: 2px !important;
+  }
+
+  .rana-layout.support-route .mobile-home-dock svg {
+    font-size: 12px !important;
+  }
+
+  .rana-layout.support-route .mobile-home-dock a.is-home {
+    min-height: 46px !important;
+    margin-top: -13px !important;
+    border-radius: 15px !important;
+  }
+
+  .rana-layout.support-route .mobile-home-dock a.is-home svg {
+    font-size: 15px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .rana-layout.support-route {
+    --rana-header-height: 86px !important;
+  }
+
+  .rana-layout.support-route nav.nav {
+    width: calc(100% - 12px) !important;
+    height: 39px !important;
+    min-height: 39px !important;
+    padding: 0 7px !important;
+  }
+
+  .rana-layout.support-route .sport-rail {
+    top: 49px !important;
+    width: calc(100% - 12px) !important;
+    height: 34px !important;
+    min-height: 34px !important;
+  }
+
+  .rana-layout.support-route .sport-rail .sport-tab {
+    padding: 5px 8px !important;
+    font-size: 9px !important;
+  }
+
+  .rana-layout.support-route .support-header-gap {
+    height: 86px !important;
+    flex-basis: 86px !important;
+  }
+
+  .rana-layout.support-route .mobile-home-dock {
+    width: calc(100vw - 14px) !important;
+    min-height: 50px !important;
+  }
+}
+
+/* Login and sign-up modal responsive pass */
+.auth-modal-backdrop {
+  padding: 16px !important;
+  overflow-y: auto !important;
+  align-items: center !important;
+}
+
+.auth-modal-shell {
+  width: min(820px, calc(100vw - 32px)) !important;
+  max-height: calc(100dvh - 32px) !important;
+  margin: auto !important;
+}
+
+.auth-modal-card,
+.rana-layout .auth-modal-card {
+  width: 100% !important;
+  max-height: calc(100dvh - 32px) !important;
+}
+
+.auth-content,
+.rana-layout .auth-content {
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.auth-input-line {
+  align-items: stretch !important;
+}
+
+.auth-input-wrap {
+  min-width: 0 !important;
+}
+
+@media (max-width: 680px) {
+  .auth-modal-backdrop {
+    padding: 10px !important;
+    align-items: center !important;
+  }
+
+  .auth-modal-shell {
+    width: min(460px, calc(100vw - 14px)) !important;
+    max-height: calc(100dvh - 20px) !important;
+    margin: 10px auto !important;
+  }
+
+  .auth-modal-card,
+  .rana-layout .auth-modal-card {
+    grid-template-columns: 1fr !important;
+    max-height: calc(100dvh - 20px) !important;
+    min-height: 0 !important;
+    border-radius: 18px !important;
+  }
+
+  .auth-brand-panel,
+  .rana-layout .auth-brand-panel {
+    display: none !important;
+  }
+
+  .auth-content,
+  .rana-layout .auth-content {
+    padding: 14px 12px 12px !important;
+    max-height: calc(100dvh - 20px) !important;
+  }
+
+  .auth-content::before {
+    inset: 8px !important;
+    border-radius: 15px !important;
+  }
+
+  .auth-mobile-banner {
+    display: block !important;
+    margin-bottom: 10px !important;
+    padding: 10px 11px !important;
+    border-radius: 13px !important;
+  }
+
+  .auth-mobile-kicker {
+    margin-bottom: 6px !important;
+    padding: 3px 7px !important;
+    font-size: 7px !important;
+    letter-spacing: 0.11em !important;
+  }
+
+  .auth-mobile-title {
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+  }
+
+  .auth-mobile-chips {
+    gap: 5px !important;
+    margin-top: 8px !important;
+  }
+
+  .auth-mobile-chips span {
+    padding: 3px 7px !important;
+    font-size: 7px !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  .auth-close-btn,
+  .rana-layout .auth-close-btn {
+    top: 10px !important;
+    right: 10px !important;
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .auth-kicker,
+  .rana-layout .auth-modal-card .auth-kicker {
+    margin-bottom: 6px !important;
+    padding: 4px 8px !important;
+    font-size: 7px !important;
+    letter-spacing: 0.11em !important;
+  }
+
+  .auth-title,
+  .rana-layout .auth-modal-card .auth-title {
+    font-size: clamp(22px, 7vw, 28px) !important;
+    line-height: 0.98 !important;
+  }
+
+  .auth-subtitle,
+  .rana-layout .auth-modal-card .auth-subtitle {
+    margin: 6px 0 10px !important;
+    font-size: 10px !important;
+    line-height: 1.35 !important;
+  }
+
+  .auth-content .mb-6 {
+    margin-bottom: 12px !important;
+  }
+
+  .auth-switcher {
+    margin-bottom: 10px !important;
+    padding: 4px !important;
+    gap: 4px !important;
+    border-radius: 12px !important;
+  }
+
+  .auth-switcher-btn,
+  .rana-layout .auth-modal-card .auth-switcher-btn {
+    min-height: 32px !important;
+    border-radius: 9px !important;
+    font-size: 7.5px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .auth-form {
+    gap: 8px !important;
+  }
+
+  .auth-field-row {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+  }
+
+  .auth-label,
+  .rana-layout .auth-modal-card .auth-label {
+    font-size: 7.5px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .auth-input-line {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    gap: 7px !important;
+  }
+
+  .auth-input,
+  .rana-layout .auth-modal-card .auth-input {
+    height: 36px !important;
+    min-height: 36px !important;
+    border-radius: 11px !important;
+    padding: 0 12px !important;
+    font-size: 10.5px !important;
+  }
+
+  .auth-input.has-prefix,
+  .rana-layout .auth-modal-card .auth-input.has-prefix {
+    padding-left: 64px !important;
+  }
+
+  .auth-prefix,
+  .rana-layout .auth-modal-card .auth-prefix {
+    left: 14px !important;
+    width: 36px !important;
+    font-size: 10px !important;
+    text-align: left !important;
+  }
+
+  .auth-secondary-btn,
+  .rana-layout .auth-modal-card .auth-secondary-btn {
+    width: auto !important;
+    min-width: 78px !important;
+    height: 36px !important;
+    border-radius: 11px !important;
+    font-size: 7.5px !important;
+    letter-spacing: 0.08em !important;
+    padding: 0 10px !important;
+  }
+
+  .auth-submit-btn,
+  .rana-layout .auth-modal-card .auth-submit-btn {
+    min-height: 38px !important;
+    border-radius: 12px !important;
+    font-size: 8.5px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .auth-error {
+    padding: 7px 9px !important;
+    border-radius: 10px !important;
+    font-size: 9px !important;
+    line-height: 1.3 !important;
+  }
+
+  .auth-footer,
+  .rana-layout .auth-modal-card .auth-footer {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+    font-size: 10px !important;
+    line-height: 1.35 !important;
+  }
+
+  .auth-register-shell .auth-mobile-banner {
+    display: none !important;
+  }
+
+  .auth-register-shell .auth-content .mb-6 {
+    margin-bottom: 9px !important;
+  }
+
+  .auth-register-shell .auth-subtitle {
+    display: none !important;
+  }
+
+  .auth-register-shell .auth-form .auth-form {
+    gap: 7px !important;
+  }
+
+  .auth-register-shell .auth-submit-btn {
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .auth-modal-backdrop {
+    padding: 7px !important;
+  }
+
+  .auth-modal-shell {
+    width: calc(100vw - 10px) !important;
+    max-height: calc(100dvh - 14px) !important;
+    margin: 7px auto !important;
+  }
+
+  .auth-modal-card,
+  .rana-layout .auth-modal-card {
+    max-height: calc(100dvh - 14px) !important;
+    border-radius: 15px !important;
+  }
+
+  .auth-content,
+  .rana-layout .auth-content {
+    padding: 11px 10px 10px !important;
+    max-height: calc(100dvh - 14px) !important;
+  }
+
+  .auth-mobile-banner {
+    margin-bottom: 8px !important;
+    padding: 8px 9px !important;
+  }
+
+  .auth-title,
+  .rana-layout .auth-modal-card .auth-title {
+    font-size: 22px !important;
+  }
+
+  .auth-input-line {
+    gap: 6px !important;
+  }
+
+  .auth-input,
+  .rana-layout .auth-modal-card .auth-input {
+    height: 34px !important;
+    min-height: 34px !important;
+    font-size: 10px !important;
+  }
+
+  .auth-input.has-prefix,
+  .rana-layout .auth-modal-card .auth-input.has-prefix {
+    padding-left: 60px !important;
+  }
+
+  .auth-prefix,
+  .rana-layout .auth-modal-card .auth-prefix {
+    left: 13px !important;
+    width: 34px !important;
+    text-align: left !important;
+   }
+
+  .auth-secondary-btn,
+  .rana-layout .auth-modal-card .auth-secondary-btn {
+    min-width: 72px !important;
+    height: 34px !important;
+    padding: 0 8px !important;
+  }
+
+  .auth-submit-btn,
+  .rana-layout .auth-modal-card .auth-submit-btn {
+    min-height: 36px !important;
+  }
+}
+
+/* Deposit and withdraw mobile alignment */
+@media (max-width: 820px) {
+  .rana-layout.finance-route-shell.deposit-route,
+  .rana-layout.finance-route-shell.withdraw-route {
+    --rana-header-height: 96px !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-x: hidden !important;
+    padding-top: 0 !important;
+    padding-bottom: 64px !important;
+    background:
+      radial-gradient(circle at 10% 14%, rgba(199, 230, 255, 0.65), transparent 30%),
+      radial-gradient(circle at 88% 10%, rgba(255, 239, 198, 0.68), transparent 30%),
+      linear-gradient(135deg, #eef4f8 0%, #f7f4ff 48%, #eff6f1 100%) !important;
+  }
+
+  .rana-layout.deposit-route nav.nav,
+  .rana-layout.withdraw-route nav.nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    top: 5px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 18px) !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 0 9px !important;
+    border-radius: 17px !important;
+  }
+
+  .rana-layout.deposit-route .nav-links,
+  .rana-layout.deposit-route .nav-right,
+  .rana-layout.withdraw-route .nav-links,
+  .rana-layout.withdraw-route .nav-right {
+    display: none !important;
+  }
+
+  .rana-layout.deposit-route .mobile-header-actions,
+  .rana-layout.withdraw-route .mobile-header-actions {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 6px !important;
+    margin-left: auto !important;
+    min-width: 0 !important;
+    position: relative !important;
+    z-index: 930 !important;
+  }
+
+  .rana-layout.deposit-route .nav-logo,
+  .rana-layout.withdraw-route .nav-logo {
+    width: 34px !important;
+    height: 29px !important;
+    max-width: 34px !important;
+    border-radius: 8px !important;
+  }
+
+  .rana-layout.deposit-route .nav-logo img,
+  .rana-layout.withdraw-route .nav-logo img {
+    width: 22px !important;
+    height: 22px !important;
+    max-width: 22px !important;
+    object-fit: contain !important;
+  }
+
+  .rana-layout.deposit-route .mobile-auth-actions,
+  .rana-layout.deposit-route .mobile-wallet-actions,
+  .rana-layout.withdraw-route .mobile-auth-actions,
+  .rana-layout.withdraw-route .mobile-wallet-actions {
+    gap: 5px !important;
+  }
+
+  .rana-layout.deposit-route .mobile-auth-actions button,
+  .rana-layout.deposit-route .mobile-wallet-actions button,
+  .rana-layout.deposit-route .mobile-header-menu-btn,
+  .rana-layout.deposit-route .mobile-profile-open,
+  .rana-layout.withdraw-route .mobile-auth-actions button,
+  .rana-layout.withdraw-route .mobile-wallet-actions button,
+  .rana-layout.withdraw-route .mobile-header-menu-btn,
+  .rana-layout.withdraw-route .mobile-profile-open {
+    min-height: 28px !important;
+    height: 28px !important;
+    padding: 0 8px !important;
+    font-size: 7.5px !important;
+    border-radius: 999px !important;
+  }
+
+  .rana-layout.deposit-route .mobile-header-menu-btn,
+  .rana-layout.withdraw-route .mobile-header-menu-btn {
+    width: 30px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+
+  .rana-layout.deposit-route .mobile-header-menu-btn span,
+  .rana-layout.withdraw-route .mobile-header-menu-btn span {
+    display: none !important;
+  }
+
+  .rana-layout.deposit-route .sport-rail,
+  .rana-layout.withdraw-route .sport-rail {
+    top: 53px !important;
+    width: calc(100% - 18px) !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 7px !important;
+    border-radius: 13px !important;
+  }
+
+  .rana-layout.deposit-route .sport-rail .cat-nav-inner,
+  .rana-layout.withdraw-route .sport-rail .cat-nav-inner {
+    gap: 0 !important;
+  }
+
+  .rana-layout.deposit-route .sport-rail .sport-tab,
+  .rana-layout.withdraw-route .sport-rail .sport-tab {
+    gap: 4px !important;
+    min-height: 29px !important;
+    padding: 5px 8px !important;
+    margin: 3px 1px 0 !important;
+    font-size: 9px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.deposit-route .sport-rail .sport-tab-emoji,
+  .rana-layout.withdraw-route .sport-rail .sport-tab-emoji {
+    font-size: 10px !important;
+  }
+
+  .rana-layout.deposit-route .finance-route-main,
+  .rana-layout.withdraw-route .finance-route-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 96px 7px 72px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2,
+  .rana-layout.withdraw-route .finance-v2 {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: grid !important;
+    gap: 7px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-top,
+  .rana-layout.withdraw-route .finance-v2-top {
+    grid-template-columns: 1fr !important;
+    min-height: 0 !important;
+    padding: 10px !important;
+    gap: 8px !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-top::after,
+  .rana-layout.withdraw-route .finance-v2-top::after {
+    font-size: 36px !important;
+    right: 12px !important;
+    bottom: -7px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-tag,
+  .rana-layout.withdraw-route .finance-v2-tag {
+    padding: 4px 8px !important;
+    font-size: 6px !important;
+    letter-spacing: 0.11em !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2 h1,
+  .rana-layout.withdraw-route .finance-v2 h1,
+  .rana-layout.deposit-route .finance-v2-top h1,
+  .rana-layout.withdraw-route .finance-v2-top h1 {
+    margin: 6px 0 3px !important;
+    font-size: 20px !important;
+    line-height: 1.02 !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-top p,
+  .rana-layout.withdraw-route .finance-v2-top p {
+    max-width: 100% !important;
+    font-size: 9.5px !important;
+    line-height: 1.3 !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-stats,
+  .rana-layout.withdraw-route .finance-v2-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+    padding: 5px !important;
+    border-radius: 11px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-stats div,
+  .rana-layout.withdraw-route .finance-v2-stats div {
+    min-height: 39px !important;
+    padding: 6px 4px !important;
+    border-radius: 9px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-stats strong,
+  .rana-layout.withdraw-route .finance-v2-stats strong {
+    font-size: 11.5px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-stats span,
+  .rana-layout.withdraw-route .finance-v2-stats span {
+    margin-top: 3px !important;
+    font-size: 5.8px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-workspace,
+  .rana-layout.withdraw-route .finance-v2-workspace,
+  .rana-layout.withdraw-route .finance-v2-workspace.withdraw {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-areas: none !important;
+    gap: 7px !important;
+    margin-top: 0 !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-panel,
+  .rana-layout.deposit-route .finance-v2-ticket,
+  .rana-layout.deposit-route .finance-v2-history,
+  .rana-layout.withdraw-route .finance-v2-panel,
+  .rana-layout.withdraw-route .finance-v2-ticket,
+  .rana-layout.withdraw-route .finance-v2-history {
+    position: static !important;
+    top: auto !important;
+    grid-area: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 9px !important;
+    border-radius: 13px !important;
+    overflow: visible !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-panel-head,
+  .rana-layout.withdraw-route .finance-v2-panel-head {
+    gap: 6px !important;
+    margin-bottom: 7px !important;
+    align-items: flex-start !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-panel-head > span,
+  .rana-layout.withdraw-route .finance-v2-panel-head > span {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    font-size: 7px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-panel-head h2,
+  .rana-layout.deposit-route .finance-v2-history-head h2,
+  .rana-layout.withdraw-route .finance-v2-panel-head h2,
+  .rana-layout.withdraw-route .finance-v2-history-head h2 {
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-panel-head p,
+  .rana-layout.deposit-route .finance-v2-history-head p,
+  .rana-layout.withdraw-route .finance-v2-panel-head p,
+  .rana-layout.withdraw-route .finance-v2-history-head p {
+    font-size: 8px !important;
+    line-height: 1.25 !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-method-list,
+  .rana-layout.deposit-route .finance-v2-chip-grid,
+  .rana-layout.deposit-route .finance-v2-chip-grid.four,
+  .rana-layout.withdraw-route .finance-v2-chip-grid,
+  .rana-layout.withdraw-route .finance-v2-chip-grid.four,
+  .rana-layout.withdraw-route .finance-v2-mini-balances,
+  .rana-layout.withdraw-route .finance-v2-account-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-method-list button,
+  .rana-layout.deposit-route .finance-v2-chip-grid button,
+  .rana-layout.withdraw-route .finance-v2-chip-grid button,
+  .rana-layout.deposit-route .finance-v2-filters button,
+  .rana-layout.withdraw-route .finance-v2-filters button {
+    min-height: 31px !important;
+    padding: 6px 7px !important;
+    border-radius: 10px !important;
+    font-size: 8px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-payment-card,
+  .rana-layout.withdraw-route .finance-v2-balance-strip,
+  .rana-layout.withdraw-route .finance-v2-empty-account,
+  .rana-layout.withdraw-route .finance-v2-account-card {
+    padding: 8px !important;
+    border-radius: 11px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-payline,
+  .rana-layout.deposit-route .finance-v2-qr-row,
+  .rana-layout.withdraw-route .finance-v2-history-head,
+  .rana-layout.deposit-route .finance-v2-history-head {
+    align-items: stretch !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-upi-id {
+    padding: 7px 8px !important;
+    border-radius: 10px !important;
+    font-size: 9px !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-qr {
+    width: 78px !important;
+    height: 78px !important;
+    min-width: 78px !important;
+    margin: 0 auto !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-bank-grid,
+  .rana-layout.withdraw-route .finance-v2-mini-balances {
+    grid-template-columns: 1fr !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-money-input,
+  .rana-layout.withdraw-route .finance-v2-money-input {
+    min-height: 36px !important;
+    border-radius: 10px !important;
+    padding: 0 10px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-money-input input,
+  .rana-layout.withdraw-route .finance-v2-money-input input {
+    font-size: 15px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-text-input,
+  .rana-layout.withdraw-route .finance-v2-text-input,
+  .rana-layout.withdraw-route .finance-v2-form-grid input,
+  .rana-layout.withdraw-route .finance-v2-bank-menu input {
+    min-height: 35px !important;
+    border-radius: 10px !important;
+    font-size: 9.5px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-label,
+  .rana-layout.withdraw-route .finance-v2-label {
+    margin: 8px 0 4px !important;
+    font-size: 6.8px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-primary,
+  .rana-layout.withdraw-route .finance-v2-primary,
+  .rana-layout.withdraw-route .finance-v2-secondary,
+  .rana-layout.deposit-route .finance-v2-soft-btn,
+  .rana-layout.withdraw-route .finance-v2-link-btn {
+    min-height: 34px !important;
+    border-radius: 10px !important;
+    font-size: 7.5px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-note,
+  .rana-layout.withdraw-route .finance-v2-note {
+    margin-top: 7px !important;
+    padding: 7px !important;
+    border-radius: 10px !important;
+    font-size: 8px !important;
+    line-height: 1.3 !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-history,
+  .rana-layout.withdraw-route .finance-v2-history {
+    margin-top: 0 !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-records,
+  .rana-layout.withdraw-route .finance-v2-records {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-record,
+  .rana-layout.withdraw-route .finance-v2-record {
+    padding: 8px !important;
+    border-radius: 10px !important;
+    gap: 6px !important;
+  }
+
+  .rana-layout.deposit-route .mobile-home-dock,
+  .rana-layout.withdraw-route .mobile-home-dock {
+    bottom: 6px !important;
+    width: min(430px, calc(100vw - 14px)) !important;
+    min-height: 48px !important;
+    padding: 4px 7px !important;
+    border-radius: 16px !important;
+  }
+
+  .rana-layout.deposit-route .mobile-home-dock a,
+  .rana-layout.withdraw-route .mobile-home-dock a {
+    min-height: 34px !important;
+    padding: 2px !important;
+    border-radius: 13px !important;
+    font-size: 6px !important;
+    gap: 2px !important;
+  }
+
+  .rana-layout.deposit-route .mobile-home-dock svg,
+  .rana-layout.withdraw-route .mobile-home-dock svg {
+    font-size: 11px !important;
+  }
+
+  .rana-layout.deposit-route .mobile-home-dock a.is-home,
+  .rana-layout.withdraw-route .mobile-home-dock a.is-home {
+    min-height: 40px !important;
+    margin-top: -10px !important;
+    border-radius: 13px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .rana-layout.finance-route-shell.deposit-route,
+  .rana-layout.finance-route-shell.withdraw-route {
+    --rana-header-height: 88px !important;
+  }
+
+  .rana-layout.deposit-route nav.nav,
+  .rana-layout.withdraw-route nav.nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 10px) !important;
+    height: 39px !important;
+    min-height: 39px !important;
+    padding: 0 7px !important;
+  }
+
+  .rana-layout.deposit-route .sport-rail,
+  .rana-layout.withdraw-route .sport-rail {
+    top: 49px !important;
+    width: calc(100% - 10px) !important;
+    height: 34px !important;
+    min-height: 34px !important;
+  }
+
+  .rana-layout.deposit-route .sport-rail .sport-tab,
+  .rana-layout.withdraw-route .sport-rail .sport-tab {
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+
+  .rana-layout.deposit-route .finance-route-main,
+  .rana-layout.withdraw-route .finance-route-main {
+    padding: 88px 5px 68px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2-top,
+  .rana-layout.withdraw-route .finance-v2-top,
+  .rana-layout.deposit-route .finance-v2-panel,
+  .rana-layout.deposit-route .finance-v2-ticket,
+  .rana-layout.deposit-route .finance-v2-history,
+  .rana-layout.withdraw-route .finance-v2-panel,
+  .rana-layout.withdraw-route .finance-v2-ticket,
+  .rana-layout.withdraw-route .finance-v2-history {
+    padding: 8px !important;
+    border-radius: 12px !important;
+  }
+
+  .rana-layout.deposit-route .finance-v2 h1,
+  .rana-layout.withdraw-route .finance-v2 h1,
+  .rana-layout.deposit-route .finance-v2-top h1,
+  .rana-layout.withdraw-route .finance-v2-top h1 {
+    font-size: 18px !important;
+  }
+}
+
+/* Category lobby mobile compact pass */
+@media (max-width: 820px) {
+  .rana-layout.category-redesign-route {
+    min-height: 100vh !important;
+    overflow-x: hidden !important;
+    --home-content-gutter: 7px !important;
+  }
+
+  .rana-layout.category-redesign-route nav.nav {
+    display: flex !important;
+    top: 5px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 18px) !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 0 9px !important;
+    border-radius: 17px !important;
+  }
+
+  .rana-layout.category-redesign-route .nav-logo {
+    width: 34px !important;
+    height: 29px !important;
+    max-width: 34px !important;
+    border-radius: 8px !important;
+  }
+
+  .rana-layout.category-redesign-route .nav-logo img {
+    width: 22px !important;
+    height: 22px !important;
+    max-width: 22px !important;
+    object-fit: contain !important;
+  }
+
+  .rana-layout.category-redesign-route .mobile-header-actions {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 5px !important;
+    margin-left: auto !important;
+    min-width: 0 !important;
+  }
+
+  .rana-layout.category-redesign-route .mobile-auth-actions,
+  .rana-layout.category-redesign-route .mobile-wallet-actions {
+    gap: 5px !important;
+  }
+
+  .rana-layout.category-redesign-route .mobile-auth-actions button,
+  .rana-layout.category-redesign-route .mobile-wallet-actions button,
+  .rana-layout.category-redesign-route .mobile-header-menu-btn,
+  .rana-layout.category-redesign-route .mobile-profile-open {
+    min-height: 28px !important;
+    height: 28px !important;
+    padding: 0 8px !important;
+    border-radius: 999px !important;
+    font-size: 7.5px !important;
+  }
+
+  .rana-layout.category-redesign-route .mobile-header-menu-btn {
+    width: 30px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+
+  .rana-layout.category-redesign-route .mobile-header-menu-btn span {
+    display: none !important;
+  }
+
+  .rana-layout.category-redesign-route .sport-rail {
+    top: 53px !important;
+    width: calc(100% - 18px) !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 7px !important;
+    border-radius: 13px !important;
+  }
+
+  .rana-layout.category-redesign-route .sport-rail .cat-nav-inner {
+    gap: 0 !important;
+  }
+
+  .rana-layout.category-redesign-route .sport-rail .sport-tab {
+    min-height: 29px !important;
+    margin: 3px 1px 0 !important;
+    padding: 5px 8px !important;
+    gap: 4px !important;
+    font-size: 9px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.category-redesign-route .sport-rail .sport-tab-emoji {
+    font-size: 10px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-page-main.category-redesign-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 96px 7px 72px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-redesign-hero {
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-command-card,
+  .rana-layout.category-redesign-route .category-feature-card {
+    min-height: 0 !important;
+    padding: 9px !important;
+    border-radius: 13px !important;
+    box-shadow: 0 12px 30px rgba(36, 32, 65, 0.08) !important;
+  }
+
+  .rana-layout.category-redesign-route .category-command-top {
+    gap: 5px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-eyebrow,
+  .rana-layout.category-redesign-route .category-live-pill {
+    padding: 4px 8px !important;
+    font-size: 6px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .rana-layout.category-redesign-route .category-command-card h1 {
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 7px !important;
+    margin: 6px 0 3px !important;
+    font-size: 19px !important;
+    line-height: 1.02 !important;
+  }
+
+  .rana-layout.category-redesign-route .category-command-card h1 em {
+    grid-column: 2 !important;
+    font-size: 0.34em !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .rana-layout.category-redesign-route .category-hero-icon {
+    width: 30px !important;
+    height: 30px !important;
+    flex-basis: 30px !important;
+    border-radius: 10px !important;
+    font-size: 14px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-command-card p {
+    max-width: 100% !important;
+    font-size: 8.5px !important;
+    line-height: 1.3 !important;
+  }
+
+  .rana-layout.category-redesign-route .category-search-row {
+    width: 100% !important;
+    min-height: 33px !important;
+    margin-top: 6px !important;
+    padding: 0 9px !important;
+    gap: 6px !important;
+    border-radius: 10px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-search-row i {
+    font-size: 12px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-search-row input {
+    min-width: 0 !important;
+    font-size: 9px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-hero-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+    margin-top: 6px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-hero-stats div {
+    min-height: 36px !important;
+    padding: 5px 4px !important;
+    border-radius: 9px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-hero-stats strong {
+    font-size: 12px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.category-redesign-route .category-hero-stats span {
+    margin-top: 3px !important;
+    font-size: 5.8px !important;
+    letter-spacing: 0.07em !important;
+  }
+
+  .rana-layout.category-redesign-route .category-command-card::after {
+    right: 10px !important;
+    bottom: -8px !important;
+    font-size: 36px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-feature-card {
+    display: grid !important;
+    grid-template-columns: 72px minmax(0, 1fr) !important;
+    grid-template-areas:
+      "preview kicker"
+      "preview title"
+      "preview meta" !important;
+    align-items: center !important;
+    column-gap: 8px !important;
+  }
+
+  .rana-layout.category-redesign-route .feature-kicker {
+    grid-area: kicker !important;
+    font-size: 6px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .rana-layout.category-redesign-route .feature-preview {
+    grid-area: preview !important;
+    width: 72px !important;
+    height: 58px !important;
+    margin: 0 !important;
+    border-radius: 10px !important;
+  }
+
+  .rana-layout.category-redesign-route .feature-preview > span {
+    font-size: 26px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-feature-card strong {
+    grid-area: title !important;
+    min-width: 0 !important;
+    font-size: 11px !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .rana-layout.category-redesign-route .category-feature-card small {
+    grid-area: meta !important;
+    min-width: 0 !important;
+    margin-top: 2px !important;
+    font-size: 7px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .rana-layout.category-redesign-route .provider-chip-row {
+    display: none !important;
+  }
+
+  .rana-layout.category-redesign-route .category-redesign-heading {
+    flex-direction: row !important;
+    align-items: end !important;
+    margin-top: 8px !important;
+    padding: 0 2px !important;
+    gap: 8px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-redesign-heading span {
+    font-size: 6.5px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .rana-layout.category-redesign-route .category-redesign-heading h2 {
+    margin-top: 2px !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.category-redesign-route .category-redesign-heading small {
+    flex: 0 0 auto !important;
+    font-size: 6.5px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .rana-layout.category-redesign-route .category-redesign-panel {
+    margin-top: 6px !important;
+    padding: 7px !important;
+    border-radius: 12px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-content-panel .game-section {
+    padding: 0 !important;
+  }
+
+  .rana-layout.category-redesign-route .category-redesign-panel .see-all-grid,
+  .rana-layout.category-redesign-route .see-all-grid,
+  .rana-layout.category-redesign-route .games-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-redesign-panel .see-all-grid .aspect-\[4\/5\],
+  .rana-layout.category-redesign-route .game-card {
+    border-radius: 8px !important;
+  }
+
+  .rana-layout.category-redesign-route .game-info {
+    padding: 5px 6px 6px !important;
+  }
+
+  .rana-layout.category-redesign-route .game-name,
+  .rana-layout.category-redesign-route .lobby-card-name {
+    font-size: 8.5px !important;
+    line-height: 1.08 !important;
+  }
+
+  .rana-layout.category-redesign-route .game-provider,
+  .rana-layout.category-redesign-route .lobby-card-provider {
+    font-size: 6px !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  .rana-layout.category-redesign-route .category-loading,
+  .rana-layout.category-redesign-route .category-empty {
+    min-height: 120px !important;
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-loading strong,
+  .rana-layout.category-redesign-route .category-empty strong {
+    font-size: 12px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-loading span,
+  .rana-layout.category-redesign-route .category-empty span {
+    font-size: 8px !important;
+  }
+
+  .rana-layout.category-redesign-route .mobile-home-dock {
+    bottom: 6px !important;
+    width: min(430px, calc(100vw - 14px)) !important;
+    min-height: 48px !important;
+    padding: 4px 7px !important;
+    border-radius: 16px !important;
+  }
+
+  .rana-layout.category-redesign-route .mobile-home-dock a {
+    min-height: 34px !important;
+    padding: 2px !important;
+    border-radius: 13px !important;
+    font-size: 6px !important;
+    gap: 2px !important;
+  }
+
+  .rana-layout.category-redesign-route .mobile-home-dock svg {
+    font-size: 11px !important;
+  }
+
+  .rana-layout.category-redesign-route .mobile-home-dock a.is-home {
+    min-height: 40px !important;
+    margin-top: -10px !important;
+    border-radius: 13px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .rana-layout.category-redesign-route nav.nav {
+    width: calc(100% - 10px) !important;
+    height: 39px !important;
+    min-height: 39px !important;
+    padding: 0 7px !important;
+  }
+
+  .rana-layout.category-redesign-route .sport-rail {
+    top: 49px !important;
+    width: calc(100% - 10px) !important;
+    height: 34px !important;
+    min-height: 34px !important;
+  }
+
+  .rana-layout.category-redesign-route .sport-rail .sport-tab {
+    min-height: 28px !important;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-page-main.category-redesign-main {
+    padding: 88px 5px 68px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-command-card,
+  .rana-layout.category-redesign-route .category-feature-card {
+    padding: 8px !important;
+    border-radius: 12px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-command-card h1 {
+    font-size: 17px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-command-card p {
+    font-size: 8px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-search-row {
+    min-height: 31px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-redesign-heading h2 {
+    font-size: 15px !important;
+  }
+
+  .rana-layout.category-redesign-route .category-redesign-panel .see-all-grid,
+  .rana-layout.category-redesign-route .see-all-grid,
+  .rana-layout.category-redesign-route .games-grid {
+    gap: 4px !important;
+  }
+}
+
+/* Betting profit/loss mobile responsive pass */
+@media (max-width: 820px) {
+  .rana-layout.betting-statement-route {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-x: hidden !important;
+    padding-top: 0 !important;
+    padding-bottom: 64px !important;
+  }
+
+  .rana-layout.betting-statement-route nav.nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    top: 5px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 18px) !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 0 9px !important;
+    border-radius: 17px !important;
+  }
+
+  .rana-layout.betting-statement-route .nav-links,
+  .rana-layout.betting-statement-route .nav-right {
+    display: none !important;
+  }
+
+  .rana-layout.betting-statement-route .mobile-header-actions {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 5px !important;
+    margin-left: auto !important;
+    min-width: 0 !important;
+    position: relative !important;
+    z-index: 930 !important;
+  }
+
+  .rana-layout.betting-statement-route .nav-logo {
+    width: 34px !important;
+    height: 29px !important;
+    max-width: 34px !important;
+    border-radius: 8px !important;
+  }
+
+  .rana-layout.betting-statement-route .nav-logo img {
+    width: 22px !important;
+    height: 22px !important;
+    max-width: 22px !important;
+    object-fit: contain !important;
+  }
+
+  .rana-layout.betting-statement-route .mobile-auth-actions,
+  .rana-layout.betting-statement-route .mobile-wallet-actions {
+    gap: 5px !important;
+  }
+
+  .rana-layout.betting-statement-route .mobile-auth-actions button,
+  .rana-layout.betting-statement-route .mobile-wallet-actions button,
+  .rana-layout.betting-statement-route .mobile-header-menu-btn,
+  .rana-layout.betting-statement-route .mobile-profile-open {
+    min-height: 28px !important;
+    height: 28px !important;
+    padding: 0 8px !important;
+    border-radius: 999px !important;
+    font-size: 7.5px !important;
+  }
+
+  .rana-layout.betting-statement-route .mobile-header-menu-btn {
+    width: 30px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+
+  .rana-layout.betting-statement-route .mobile-header-menu-btn span {
+    display: none !important;
+  }
+
+  .rana-layout.betting-statement-route .sport-rail {
+    top: 53px !important;
+    width: calc(100% - 18px) !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 7px !important;
+    border-radius: 13px !important;
+  }
+
+  .rana-layout.betting-statement-route .sport-rail .cat-nav-inner {
+    gap: 0 !important;
+  }
+
+  .rana-layout.betting-statement-route .sport-rail .sport-tab {
+    min-height: 29px !important;
+    margin: 3px 1px 0 !important;
+    padding: 5px 8px !important;
+    gap: 4px !important;
+    font-size: 9px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.betting-statement-route .sport-rail .sport-tab-emoji {
+    font-size: 10px !important;
+  }
+
+  .rana-layout.betting-statement-route .finance-route-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 96px 7px 72px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2 {
+    gap: 7px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-toolbar {
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+    min-height: 0 !important;
+    padding: 9px !important;
+    gap: 7px !important;
+    border-radius: 13px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-toolbar::after {
+    right: 10px !important;
+    bottom: -8px !important;
+    font-size: 36px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-title {
+    gap: 7px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-title > span {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    border-radius: 10px !important;
+    font-size: 11px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-title h2 {
+    font-size: 18px !important;
+    line-height: 1.02 !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-title p {
+    margin-top: 3px !important;
+    font-size: 8px !important;
+    line-height: 1.25 !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-controls {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-search,
+  .rana-layout.betting-statement-route .statement-v2-select {
+    min-height: 34px !important;
+    padding: 0 9px !important;
+    border-radius: 10px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-search input,
+  .rana-layout.betting-statement-route .statement-v2-select select {
+    font-size: 9px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-counts {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+    padding: 5px !important;
+    border-radius: 11px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-counts div {
+    min-height: 36px !important;
+    padding: 5px 4px !important;
+    border-radius: 9px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-counts strong {
+    font-size: 13px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-counts span {
+    margin-top: 3px !important;
+    font-size: 6px !important;
+    letter-spacing: 0.07em !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-table-card {
+    padding: 7px !important;
+    border-radius: 12px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-table-wrap {
+    display: none !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-mobile-list {
+    display: grid !important;
+    gap: 6px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-mobile-card {
+    gap: 6px !important;
+    padding: 8px !important;
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.74) !important;
+    border: 1px solid rgba(183, 122, 10, 0.13) !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-mobile-card > div {
+    gap: 7px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-mobile-card strong {
+    font-size: 9.5px !important;
+    line-height: 1.12 !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-mobile-card > span {
+    font-size: 7.5px !important;
+    line-height: 1.25 !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-mobile-card em {
+    padding: 3px 6px !important;
+    font-size: 6.5px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-mobile-card section {
+    gap: 5px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-mobile-card p {
+    padding: 6px 5px !important;
+    border-radius: 8px !important;
+    font-size: 8px !important;
+    line-height: 1.15 !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-mobile-card small {
+    margin-bottom: 3px !important;
+    font-size: 5.8px !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-empty {
+    min-height: 120px !important;
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-empty svg {
+    font-size: 16px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-empty strong {
+    font-size: 12px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-empty span {
+    font-size: 8px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-pagination {
+    align-items: stretch !important;
+    flex-direction: column !important;
+    gap: 7px !important;
+    margin-top: 7px !important;
+    padding: 7px !important;
+    border-radius: 10px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-pagination > div {
+    justify-content: space-between !important;
+    gap: 6px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-pagination span,
+  .rana-layout.betting-statement-route .statement-v2-pagination strong {
+    font-size: 7px !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-pagination select,
+  .rana-layout.betting-statement-route .statement-v2-pagination button {
+    min-height: 30px !important;
+    border-radius: 9px !important;
+    padding: 0 9px !important;
+    font-size: 7.5px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-footnote {
+    margin-top: 0 !important;
+    padding: 7px !important;
+    border-radius: 10px !important;
+    font-size: 8px !important;
+    line-height: 1.3 !important;
+  }
+
+  .rana-layout.betting-statement-route .mobile-home-dock {
+    bottom: 6px !important;
+    width: min(430px, calc(100vw - 14px)) !important;
+    min-height: 48px !important;
+    padding: 4px 7px !important;
+    border-radius: 16px !important;
+  }
+
+  .rana-layout.betting-statement-route .mobile-home-dock a {
+    min-height: 34px !important;
+    padding: 2px !important;
+    border-radius: 13px !important;
+    font-size: 6px !important;
+    gap: 2px !important;
+  }
+
+  .rana-layout.betting-statement-route .mobile-home-dock svg {
+    font-size: 11px !important;
+  }
+
+  .rana-layout.betting-statement-route .mobile-home-dock a.is-home {
+    min-height: 40px !important;
+    margin-top: -10px !important;
+    border-radius: 13px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .rana-layout.betting-statement-route nav.nav {
+    width: calc(100% - 10px) !important;
+    height: 39px !important;
+    min-height: 39px !important;
+    padding: 0 7px !important;
+  }
+
+  .rana-layout.betting-statement-route .sport-rail {
+    top: 49px !important;
+    width: calc(100% - 10px) !important;
+    height: 34px !important;
+    min-height: 34px !important;
+  }
+
+  .rana-layout.betting-statement-route .sport-rail .sport-tab {
+    min-height: 28px !important;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+
+  .rana-layout.betting-statement-route .finance-route-main {
+    padding: 88px 5px 68px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-toolbar,
+  .rana-layout.betting-statement-route .statement-v2-table-card {
+    padding: 8px !important;
+    border-radius: 12px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-title h2 {
+    font-size: 16px !important;
+  }
+
+  .rana-layout.betting-statement-route .statement-v2-mobile-card {
+    padding: 7px !important;
+  }
+}
+
+/* Transaction history mobile responsive pass */
+@media (max-width: 820px) {
+  .rana-layout.wallet-statement-route {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-x: hidden !important;
+    padding-top: 0 !important;
+    padding-bottom: 64px !important;
+  }
+
+  .rana-layout.wallet-statement-route nav.nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    top: 5px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 18px) !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 0 9px !important;
+    border-radius: 17px !important;
+  }
+
+  .rana-layout.wallet-statement-route .nav-links,
+  .rana-layout.wallet-statement-route .nav-right {
+    display: none !important;
+  }
+
+  .rana-layout.wallet-statement-route .mobile-header-actions {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 5px !important;
+    margin-left: auto !important;
+    min-width: 0 !important;
+    position: relative !important;
+    z-index: 930 !important;
+  }
+
+  .rana-layout.wallet-statement-route .nav-logo {
+    width: 34px !important;
+    height: 29px !important;
+    max-width: 34px !important;
+    border-radius: 8px !important;
+  }
+
+  .rana-layout.wallet-statement-route .nav-logo img {
+    width: 22px !important;
+    height: 22px !important;
+    max-width: 22px !important;
+    object-fit: contain !important;
+  }
+
+  .rana-layout.wallet-statement-route .mobile-auth-actions,
+  .rana-layout.wallet-statement-route .mobile-wallet-actions {
+    gap: 5px !important;
+  }
+
+  .rana-layout.wallet-statement-route .mobile-auth-actions button,
+  .rana-layout.wallet-statement-route .mobile-wallet-actions button,
+  .rana-layout.wallet-statement-route .mobile-header-menu-btn,
+  .rana-layout.wallet-statement-route .mobile-profile-open {
+    min-height: 28px !important;
+    height: 28px !important;
+    padding: 0 8px !important;
+    border-radius: 999px !important;
+    font-size: 7.5px !important;
+  }
+
+  .rana-layout.wallet-statement-route .mobile-header-menu-btn {
+    width: 30px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+
+  .rana-layout.wallet-statement-route .mobile-header-menu-btn span {
+    display: none !important;
+  }
+
+  .rana-layout.wallet-statement-route .sport-rail {
+    top: 53px !important;
+    width: calc(100% - 18px) !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 7px !important;
+    border-radius: 13px !important;
+  }
+
+  .rana-layout.wallet-statement-route .sport-rail .cat-nav-inner {
+    gap: 0 !important;
+  }
+
+  .rana-layout.wallet-statement-route .sport-rail .sport-tab {
+    min-height: 29px !important;
+    margin: 3px 1px 0 !important;
+    padding: 5px 8px !important;
+    gap: 4px !important;
+    font-size: 9px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.wallet-statement-route .sport-rail .sport-tab-emoji {
+    font-size: 10px !important;
+  }
+
+  .rana-layout.wallet-statement-route .finance-route-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 96px 7px 72px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-v2 {
+    gap: 7px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-hero,
+  .rana-layout.wallet-statement-route .wallet-statement-toolbar,
+  .rana-layout.wallet-statement-route .wallet-statement-controls,
+  .rana-layout.wallet-statement-route .wallet-status-strip,
+  .rana-layout.wallet-statement-route .wallet-statement-card {
+    width: 100% !important;
+    padding: 8px !important;
+    border-radius: 12px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-hero {
+    grid-template-columns: 1fr !important;
+    min-height: 0 !important;
+    gap: 7px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-hero > div:first-child {
+    display: grid !important;
+    grid-template-columns: 30px minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 7px !important;
+    min-width: 0 !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-hero::after {
+    right: 10px !important;
+    bottom: -8px !important;
+    font-size: 36px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-tag {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    border-radius: 10px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-tag::before {
+    font-size: 12px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-v2 h1 {
+    grid-column: 2 !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    font-size: 18px !important;
+    line-height: 1.02 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-hero p,
+  .rana-layout.wallet-statement-route .wallet-statement-title p {
+    grid-column: 1 / -1 !important;
+    max-width: 100% !important;
+    margin-top: 3px !important;
+    font-size: 8px !important;
+    line-height: 1.25 !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-metrics div {
+    min-height: 36px !important;
+    padding: 5px 4px !important;
+    border-radius: 9px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-metrics strong {
+    font-size: 10.5px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-metrics span {
+    font-size: 5.8px !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-toolbar {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-title {
+    gap: 7px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-title > span {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    border-radius: 10px !important;
+    font-size: 11px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-title h2 {
+    font-size: 15px !important;
+    line-height: 1.05 !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-search {
+    min-height: 34px !important;
+    padding: 0 9px !important;
+    border-radius: 10px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-search input {
+    font-size: 9px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-controls {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 6px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-tabs,
+  .rana-layout.wallet-statement-route .wallet-statement-filters {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-filters {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-tabs button,
+  .rana-layout.wallet-statement-route .wallet-statement-filters button {
+    min-height: 30px !important;
+    padding: 0 6px !important;
+    border-radius: 9px !important;
+    font-size: 6.8px !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-status-strip {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-status-strip div {
+    min-height: 36px !important;
+    padding: 5px 4px !important;
+    border-radius: 9px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-status-strip strong {
+    font-size: 13px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-status-strip span {
+    margin-top: 3px !important;
+    font-size: 6px !important;
+    letter-spacing: 0.07em !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-table-wrap {
+    display: none !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-list {
+    display: grid !important;
+    gap: 6px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-card {
+    gap: 6px !important;
+    padding: 8px !important;
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.74) !important;
+    border: 1px solid rgba(183, 122, 10, 0.13) !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-top {
+    gap: 7px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-top span {
+    font-size: 6.5px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-top strong {
+    font-size: 9px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-card em {
+    padding: 3px 6px !important;
+    font-size: 6.5px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-card p {
+    font-size: 7.5px !important;
+    line-height: 1.25 !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-grid div,
+  .rana-layout.wallet-statement-route .wallet-mobile-grid button {
+    min-height: 34px !important;
+    padding: 5px !important;
+    border-radius: 8px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-grid span {
+    font-size: 5.8px !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-grid strong {
+    font-size: 8px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-grid button {
+    font-size: 6.5px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-mobile-note {
+    padding: 6px !important;
+    border-radius: 8px !important;
+    font-size: 7px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-empty-state {
+    min-height: 120px !important;
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-empty-state svg {
+    font-size: 16px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-empty-state strong {
+    font-size: 12px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-empty-state span {
+    font-size: 8px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-footnote {
+    margin-top: 0 !important;
+    padding: 7px !important;
+    border-radius: 10px !important;
+    font-size: 8px !important;
+    line-height: 1.3 !important;
+  }
+
+  .rana-layout.wallet-statement-route .mobile-home-dock {
+    bottom: 6px !important;
+    width: min(430px, calc(100vw - 14px)) !important;
+    min-height: 48px !important;
+    padding: 4px 7px !important;
+    border-radius: 16px !important;
+  }
+
+  .rana-layout.wallet-statement-route .mobile-home-dock a {
+    min-height: 34px !important;
+    padding: 2px !important;
+    border-radius: 13px !important;
+    font-size: 6px !important;
+    gap: 2px !important;
+  }
+
+  .rana-layout.wallet-statement-route .mobile-home-dock svg {
+    font-size: 11px !important;
+  }
+
+  .rana-layout.wallet-statement-route .mobile-home-dock a.is-home {
+    min-height: 40px !important;
+    margin-top: -10px !important;
+    border-radius: 13px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .rana-layout.wallet-statement-route nav.nav {
+    width: calc(100% - 10px) !important;
+    height: 39px !important;
+    min-height: 39px !important;
+    padding: 0 7px !important;
+  }
+
+  .rana-layout.wallet-statement-route .sport-rail {
+    top: 49px !important;
+    width: calc(100% - 10px) !important;
+    height: 34px !important;
+    min-height: 34px !important;
+  }
+
+  .rana-layout.wallet-statement-route .sport-rail .sport-tab {
+    min-height: 28px !important;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+
+  .rana-layout.wallet-statement-route .finance-route-main {
+    padding: 88px 5px 68px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-hero,
+  .rana-layout.wallet-statement-route .wallet-statement-toolbar,
+  .rana-layout.wallet-statement-route .wallet-statement-controls,
+  .rana-layout.wallet-statement-route .wallet-status-strip,
+  .rana-layout.wallet-statement-route .wallet-statement-card {
+    padding: 7px !important;
+    border-radius: 11px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-v2 h1 {
+    font-size: 16px !important;
+  }
+
+  .rana-layout.wallet-statement-route .wallet-statement-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Promotion and bonus mobile responsive pass */
+@media (max-width: 820px) {
+  .rana-layout.rewards-redesign-route {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-x: hidden !important;
+    padding-top: 0 !important;
+    padding-bottom: 64px !important;
+  }
+
+  .rana-layout.rewards-redesign-route nav.nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    top: 5px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 18px) !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    padding: 0 9px !important;
+    border-radius: 17px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .nav-links,
+  .rana-layout.rewards-redesign-route .nav-right {
+    display: none !important;
+  }
+
+  .rana-layout.rewards-redesign-route .mobile-header-actions {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 5px !important;
+    margin-left: auto !important;
+    min-width: 0 !important;
+    position: relative !important;
+    z-index: 930 !important;
+  }
+
+  .rana-layout.rewards-redesign-route .nav-logo {
+    width: 34px !important;
+    height: 29px !important;
+    max-width: 34px !important;
+    border-radius: 8px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .nav-logo img {
+    width: 22px !important;
+    height: 22px !important;
+    max-width: 22px !important;
+    object-fit: contain !important;
+  }
+
+  .rana-layout.rewards-redesign-route .mobile-auth-actions,
+  .rana-layout.rewards-redesign-route .mobile-wallet-actions {
+    gap: 5px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .mobile-auth-actions button,
+  .rana-layout.rewards-redesign-route .mobile-wallet-actions button,
+  .rana-layout.rewards-redesign-route .mobile-header-menu-btn,
+  .rana-layout.rewards-redesign-route .mobile-profile-open {
+    min-height: 28px !important;
+    height: 28px !important;
+    padding: 0 8px !important;
+    border-radius: 999px !important;
+    font-size: 7.5px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .mobile-header-menu-btn {
+    width: 30px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+
+  .rana-layout.rewards-redesign-route .mobile-header-menu-btn span {
+    display: none !important;
+  }
+
+  .rana-layout.rewards-redesign-route .sport-rail {
+    top: 53px !important;
+    width: calc(100% - 18px) !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 7px !important;
+    border-radius: 13px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .sport-rail .cat-nav-inner {
+    gap: 0 !important;
+  }
+
+  .rana-layout.rewards-redesign-route .sport-rail .sport-tab {
+    min-height: 29px !important;
+    margin: 3px 1px 0 !important;
+    padding: 5px 8px !important;
+    gap: 4px !important;
+    font-size: 9px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.rewards-redesign-route .sport-rail .sport-tab-emoji {
+    font-size: 10px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-route-main,
+  .rana-layout.rewards-redesign-route .bonus-route-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 96px 7px 72px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2,
+  .rana-layout.rewards-redesign-route .bonus-v3-shell {
+    gap: 7px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-toolbar,
+  .rana-layout.rewards-redesign-route .bonus-v3-hero {
+    grid-template-columns: 1fr !important;
+    min-height: 0 !important;
+    gap: 7px !important;
+    padding: 9px !important;
+    border-radius: 13px !important;
+    box-shadow: 0 12px 30px rgba(36, 32, 65, 0.08) !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-toolbar::after,
+  .rana-layout.rewards-redesign-route .bonus-v3-hero::after {
+    right: 10px !important;
+    bottom: -8px !important;
+    font-size: 34px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-title,
+  .rana-layout.rewards-redesign-route .bonus-v3-hero-copy {
+    grid-template-columns: 30px minmax(0, 1fr) !important;
+    gap: 7px !important;
+    min-width: 0 !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-title > span,
+  .rana-layout.rewards-redesign-route .bonus-v3-kicker {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    border-radius: 10px !important;
+    font-size: 11px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-kicker svg {
+    font-size: 11px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2 h1,
+  .rana-layout.rewards-redesign-route .bonus-v3-hero h1 {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    font-size: 18px !important;
+    line-height: 1.02 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-title p,
+  .rana-layout.rewards-redesign-route .bonus-v3-hero p {
+    grid-column: 1 / -1 !important;
+    max-width: 100% !important;
+    margin-top: 3px !important;
+    font-size: 8px !important;
+    line-height: 1.25 !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-search {
+    min-height: 34px !important;
+    padding: 0 9px !important;
+    border-radius: 10px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-search input {
+    font-size: 9px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-stats div {
+    min-height: 36px !important;
+    padding: 5px 4px !important;
+    border-radius: 9px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-stats strong {
+    font-size: 12px !important;
+    line-height: 1 !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-stats span {
+    font-size: 5.8px !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-controls,
+  .rana-layout.rewards-redesign-route .bonus-v3-filter {
+    align-items: stretch !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    padding: 7px !important;
+    border-radius: 11px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-tabs,
+  .rana-layout.rewards-redesign-route .bonus-v3-filter {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-filter span {
+    grid-column: 1 / -1 !important;
+    padding: 0 !important;
+    font-size: 7px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-tabs button,
+  .rana-layout.rewards-redesign-route .bonus-v3-filter button {
+    min-width: 0 !important;
+    min-height: 30px !important;
+    padding: 0 6px !important;
+    border-radius: 9px !important;
+    font-size: 6.8px !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-count {
+    min-height: 34px !important;
+    padding: 5px 8px !important;
+    border-radius: 9px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-count strong {
+    font-size: 13px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-count span {
+    font-size: 6px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-grid-wrap,
+  .rana-layout.rewards-redesign-route .bonus-v3-board {
+    padding: 7px !important;
+    border-radius: 12px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-workspace {
+    gap: 7px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-grid,
+  .rana-layout.rewards-redesign-route .bonus-v3-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-card,
+  .rana-layout.rewards-redesign-route .bonus-v3-ticket {
+    grid-template-rows: 82px minmax(0, 1fr) !important;
+    min-height: 178px !important;
+    border-radius: 11px !important;
+    box-shadow: 0 10px 22px rgba(36, 32, 65, 0.08) !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-card:hover,
+  .rana-layout.rewards-redesign-route .bonus-v3-ticket:hover {
+    transform: none !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-body,
+  .rana-layout.rewards-redesign-route .bonus-v3-ticket-body {
+    gap: 5px !important;
+    padding: 7px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-body {
+    padding-top: 8px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-kicker,
+  .rana-layout.rewards-redesign-route .bonus-v3-ticket-copy span {
+    font-size: 6.5px !important;
+    line-height: 1.2 !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-card h3,
+  .rana-layout.rewards-redesign-route .bonus-v3-ticket-copy h3 {
+    font-size: 10px !important;
+    line-height: 1.12 !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-badges {
+    top: 6px !important;
+    left: 6px !important;
+    right: 6px !important;
+    gap: 4px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-badges span,
+  .rana-layout.rewards-redesign-route .promo-v2-badges em,
+  .rana-layout.rewards-redesign-route .bonus-v3-ticket-badge,
+  .rana-layout.rewards-redesign-route .bonus-v3-active-pin {
+    min-height: 18px !important;
+    padding: 0 5px !important;
+    border-radius: 999px !important;
+    font-size: 5.8px !important;
+    gap: 3px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-action,
+  .rana-layout.rewards-redesign-route .bonus-v3-ticket-action {
+    min-height: 28px !important;
+    padding: 0 8px !important;
+    border-radius: 9px !important;
+    font-size: 6.8px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-ticket-meta {
+    grid-template-columns: 1fr !important;
+    gap: 5px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-ticket-meta div {
+    min-height: 30px !important;
+    padding: 5px !important;
+    border-radius: 8px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-ticket-meta strong {
+    font-size: 8px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-ticket-meta span {
+    font-size: 5.8px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-lock {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    padding: 8px !important;
+    border-radius: 10px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-lock span {
+    font-size: 6.5px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-lock strong {
+    font-size: 10px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-lock-actions {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .bonus-v3-lock-actions button {
+    min-height: 30px !important;
+    border-radius: 9px !important;
+    font-size: 7px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-empty,
+  .rana-layout.rewards-redesign-route .bonus-v3-loading,
+  .rana-layout.rewards-redesign-route .bonus-v3-empty {
+    min-height: 120px !important;
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-empty strong,
+  .rana-layout.rewards-redesign-route .bonus-v3-loading strong,
+  .rana-layout.rewards-redesign-route .bonus-v3-empty strong {
+    font-size: 12px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-empty p,
+  .rana-layout.rewards-redesign-route .bonus-v3-empty span {
+    font-size: 8px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-note,
+  .rana-layout.rewards-redesign-route .bonus-v3-note {
+    margin-top: 7px !important;
+    padding: 7px !important;
+    border-radius: 10px !important;
+    font-size: 8px !important;
+    line-height: 1.3 !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-note h2 {
+    font-size: 10px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-note p,
+  .rana-layout.rewards-redesign-route .bonus-v3-note p {
+    font-size: 8px !important;
+    line-height: 1.3 !important;
+  }
+
+  .rana-layout.rewards-redesign-route .mobile-home-dock {
+    bottom: 6px !important;
+    width: min(430px, calc(100vw - 14px)) !important;
+    min-height: 48px !important;
+    padding: 4px 7px !important;
+    border-radius: 16px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .mobile-home-dock a {
+    min-height: 34px !important;
+    padding: 2px !important;
+    border-radius: 13px !important;
+    font-size: 6px !important;
+    gap: 2px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .mobile-home-dock svg {
+    font-size: 11px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .mobile-home-dock a.is-home {
+    min-height: 40px !important;
+    margin-top: -10px !important;
+    border-radius: 13px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .rana-layout.rewards-redesign-route nav.nav {
+    width: calc(100% - 10px) !important;
+    height: 39px !important;
+    min-height: 39px !important;
+    padding: 0 7px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .sport-rail {
+    top: 49px !important;
+    width: calc(100% - 10px) !important;
+    height: 34px !important;
+    min-height: 34px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .sport-rail .sport-tab {
+    min-height: 28px !important;
+    padding: 5px 8px !important;
+    font-size: 8px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-route-main,
+  .rana-layout.rewards-redesign-route .bonus-route-main {
+    padding: 88px 5px 68px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-toolbar,
+  .rana-layout.rewards-redesign-route .bonus-v3-hero,
+  .rana-layout.rewards-redesign-route .promo-v2-controls,
+  .rana-layout.rewards-redesign-route .bonus-v3-filter,
+  .rana-layout.rewards-redesign-route .promo-v2-grid-wrap,
+  .rana-layout.rewards-redesign-route .bonus-v3-board {
+    padding: 7px !important;
+    border-radius: 11px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2 h1,
+  .rana-layout.rewards-redesign-route .bonus-v3-hero h1 {
+    font-size: 16px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-grid,
+  .rana-layout.rewards-redesign-route .bonus-v3-grid {
+    gap: 5px !important;
+  }
+
+  .rana-layout.rewards-redesign-route .promo-v2-card,
+  .rana-layout.rewards-redesign-route .bonus-v3-ticket {
+    grid-template-rows: 76px minmax(0, 1fr) !important;
+    min-height: 166px !important;
   }
 }

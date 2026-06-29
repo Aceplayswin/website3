@@ -5,7 +5,7 @@ import '../../assets/css/ranamatch.css'
 
 function DepositPage() {
   return (
-    <div className="finance-route-shell rana-layout min-h-screen">
+    <div className="finance-route-shell deposit-route rana-layout min-h-screen">
       <RanaHeader />
       <main className="finance-route-main">
         <Deposit />

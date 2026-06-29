@@ -225,13 +225,13 @@ const ContactUs = ({ onShowHistory }) => {
         </aside>
       </div>
 
-      <form onSubmit={handleSubmit} style={{ borderRadius: 30, padding: isMobile ? 18 : 24, background: palette.card, border: '1px solid rgba(255,255,255,0.86)', boxShadow: '0 18px 48px rgba(36,32,65,0.10)' }}>
+      <form className="support-form-card" onSubmit={handleSubmit} style={{ borderRadius: 30, padding: isMobile ? 18 : 24, background: palette.card, border: '1px solid rgba(255,255,255,0.86)', boxShadow: '0 18px 48px rgba(36,32,65,0.10)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', marginBottom: 18 }}>
           <div>
             <span style={{ color: palette.gold, fontFamily: FONTS.head, fontSize: 10, fontWeight: 900, letterSpacing: '0.18em', textTransform: 'uppercase' }}>ticket details</span>
-            <h2 style={{ margin: '5px 0 0', color: palette.text, fontFamily: FONTS.head, fontSize: 25, fontWeight: 900 }}>Submit Support Request</h2>
+            <h2 className="support-form-title" style={{ margin: '5px 0 0', color: palette.text, fontFamily: FONTS.head, fontSize: 25, fontWeight: 900 }}>Submit Support Request</h2>
           </div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 13px', borderRadius: 999, background: 'rgba(183,122,10,0.08)', border: `1px solid ${palette.goldBorder}`, color: palette.gold, fontSize: 11, fontWeight: 900 }}>
+          <div className="support-routing-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 13px', borderRadius: 999, background: 'rgba(183,122,10,0.08)', border: `1px solid ${palette.goldBorder}`, color: palette.gold, fontSize: 11, fontWeight: 900 }}>
             <FaTicketAlt /> Priority routing enabled
           </div>
         </div>
@@ -244,7 +244,7 @@ const ContactUs = ({ onShowHistory }) => {
           <div>
             <label style={labelBase}>Profile ID</label>
             <div style={{ position: 'relative' }}>
-              <FaUser style={{ position: 'absolute', left: 15, top: '50%', transform: 'translateY(-50%)', color: palette.gold, fontSize: 12 }} />
+              <FaUser className="support-profile-icon" style={{ position: 'absolute', left: 15, top: '50%', transform: 'translateY(-50%)', color: palette.gold, fontSize: 12 }} />
               <input {...inputProps} style={{ ...fieldBase, paddingLeft: 40 }} type="text" name="profile_id" value={formData.profile_id} onChange={handleChange} placeholder="Optional user id" />
             </div>
           </div>
@@ -286,7 +286,7 @@ const ContactUs = ({ onShowHistory }) => {
 
         <div style={{ marginTop: 14 }}>
           <label style={labelBase}>Attachment</label>
-          <div onClick={() => fileInputRef.current?.click()} style={{ minHeight: 82, borderRadius: 20, border: `1.5px dashed ${palette.goldBorder}`, background: 'linear-gradient(135deg, rgba(183,122,10,0.07), rgba(255,255,255,0.72))', display: 'grid', placeItems: 'center', cursor: 'pointer', textAlign: 'center', padding: 14 }}>
+          <div className="support-upload-drop" onClick={() => fileInputRef.current?.click()} style={{ minHeight: 82, borderRadius: 20, border: `1.5px dashed ${palette.goldBorder}`, background: 'linear-gradient(135deg, rgba(183,122,10,0.07), rgba(255,255,255,0.72))', display: 'grid', placeItems: 'center', cursor: 'pointer', textAlign: 'center', padding: 14 }}>
             <FaPaperclip style={{ color: palette.gold, fontSize: 18, marginBottom: 7 }} />
             <span style={{ color: palette.muted, fontSize: 12, fontWeight: 800 }}>Upload image, PDF, DOC or screenshot</span>
             <input type="file" ref={fileInputRef} multiple onChange={handleFileChange} style={{ display: 'none' }} accept="image/*,.pdf,.doc,.docx" />
@@ -303,7 +303,7 @@ const ContactUs = ({ onShowHistory }) => {
           )}
         </div>
 
-        <button type="submit" disabled={submitting} style={{ width: '100%', minHeight: 52, marginTop: 18, border: 0, borderRadius: 18, background: submitting ? 'rgba(20,17,43,0.18)' : 'linear-gradient(135deg, #ffd66b 0%, #c9901a 48%, #a66b05 100%)', color: '#211604', cursor: submitting ? 'not-allowed' : 'pointer', fontFamily: FONTS.head, fontSize: 13, fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, boxShadow: submitting ? 'none' : '0 18px 34px rgba(183,122,10,0.24)' }}>
+        <button className="support-submit-btn" type="submit" disabled={submitting} style={{ width: '100%', minHeight: 52, marginTop: 18, border: 0, borderRadius: 18, background: submitting ? 'rgba(20,17,43,0.18)' : 'linear-gradient(135deg, #ffd66b 0%, #c9901a 48%, #a66b05 100%)', color: '#211604', cursor: submitting ? 'not-allowed' : 'pointer', fontFamily: FONTS.head, fontSize: 13, fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, boxShadow: submitting ? 'none' : '0 18px 34px rgba(183,122,10,0.24)' }}>
           {submitting ? 'Submitting...' : <><FaPaperPlane /> Send Support Ticket</>}
         </button>
       </form>

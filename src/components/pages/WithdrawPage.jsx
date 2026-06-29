@@ -5,7 +5,7 @@ import '../../assets/css/ranamatch.css'
 
 function WithdrawPage() {
   return (
-    <div className="finance-route-shell rana-layout min-h-screen">
+    <div className="finance-route-shell withdraw-route rana-layout min-h-screen">
       <RanaHeader />
       <main className="finance-route-main">
         <Withdraw />
