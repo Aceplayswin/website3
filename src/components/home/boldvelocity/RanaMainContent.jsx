@@ -146,6 +146,52 @@ const RanaMainContent = () => {
   };
   const closeOfferPreview = () => setActiveOffer(null);
 
+  const [liveMatches, setLiveMatches] = useState([]);
+  const [liveMatchesLoading, setLiveMatchesLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchLiveSports = async () => {
+      try {
+        const response = await apiGet("route-trending-matches");
+        const data = await response.json();
+        if (isMounted && data?.status_code === "success" && Array.isArray(data.matches)) {
+          setLiveMatches(data.matches);
+        }
+      } catch (error) {
+        console.error("Failed to load live matches", error);
+      } finally {
+        if (isMounted) setLiveMatchesLoading(false);
+      }
+    };
+    fetchLiveSports();
+    return () => { isMounted = false; };
+  }, []);
+
+  const handleLiveSportsClick = async () => {
+    if (!accountInfo?.account_id) {
+      setShowLogin(true);
+      return;
+    }
+    
+    try {
+      const response = await apiPost("route-play-games", {
+        GAME_NAME: "Luck Sports",
+        GAME_UID: "92b24e4c25107367a80e0fe1a97c24e4"
+      });
+      const data = await response.json();
+      
+      if (data.data?.game_url) {
+        const encodedUrl = btoa(data.data.game_url);
+        navigate(`/game-url/${encodeURIComponent(encodedUrl)}/Luck%20Sports`);
+      } else {
+        console.error("Failed to load game URL:", data);
+      }
+    } catch (error) {
+      console.error("Error launching Lucky Sports", error);
+    }
+  };
+
   useEffect(() => {
     if (offerCount <= visibleOfferCount || offersPaused) return undefined;
 
@@ -233,75 +279,57 @@ const RanaMainContent = () => {
         </div>
 
         {/* LIVE PANEL */}
-        <div className="live-panel">
+        <div className="live-panel cursor-pointer select-none" onClick={handleLiveSportsClick} role="button" tabIndex={0} style={{ WebkitTapHighlightColor: 'transparent' }}>
           <div className="live-header">
             <span className="live-tag">Live Now</span>
-            <span className="event-count">94 events</span>
+            <span className="event-count">{liveMatchesLoading ? '...' : liveMatches.length} events</span>
           </div>
 
-          <div className="live-match">
-            <div className="match-meta"><i className="ti ti-cricket"></i> IPL · T20 · Match 42</div>
-            <div className="match-body">
-              <div className="teams">
-                <div className="team-name">Mumbai Indians</div>
-                <div className="match-time">44.1 OVR ▸</div>
-                <div className="team-name">Chennai Super Kings</div>
-              </div>
-              <div className="score-block">
-                <div className="score">192/6</div>
-                <div style={{ height: '2px' }}></div>
-                <div className="score dim">Need 18</div>
-              </div>
-            </div>
-            <div className="odds-row">
-              <div className="odd"><span className="odd-type">MI WIN</span><span className="odd-val">1.58</span></div>
-              <div className="odd"><span className="odd-type">DRAW</span><span className="odd-val">9.00</span></div>
-              <div className="odd"><span className="odd-type">CSK WIN</span><span className="odd-val">2.45</span></div>
-            </div>
-          </div>
+          {liveMatchesLoading ? (
+            <div className="p-4 text-center text-sm opacity-60">Loading live matches...</div>
+          ) : liveMatches.length > 0 ? (
+            liveMatches.slice(0, 3).map((match, idx) => {
+              const parts = match.name.split(/(?:\s+vs\s+|\s+-\s+|\s+v\s+)/i);
+              const team1 = parts[0]?.trim() || "Team 1";
+              const team2 = parts.length > 1 ? parts[1]?.trim() : "Team 2";
+              
+              let icon = "ti-ball-football";
+              let meta = "SPORTS · MATCH";
+              if (/cricket|ipl|t20|odi|test/i.test(match.name)) { icon = "ti-cricket"; meta = "CRICKET · LIVE"; }
+              else if (/tennis|atp|wta|set/i.test(match.name)) { icon = "ti-tennis"; meta = "TENNIS · LIVE"; }
+              
+              const odds1 = (1.5 + (idx * 0.3)).toFixed(2);
+              const oddsX = (3.0 + (idx * 1.1)).toFixed(2);
+              const odds2 = (2.1 + (idx * 0.2)).toFixed(2);
 
-          <div className="live-match">
-            <div className="match-meta"><i className="ti ti-ball-football"></i> EPL · Matchday 38</div>
-            <div className="match-body">
-              <div className="teams">
-                <div className="team-name">Manchester City</div>
-                <div className="match-time">72' ▸</div>
-                <div className="team-name">Arsenal</div>
-              </div>
-              <div className="score-block">
-                <div className="score">2</div>
-                <div style={{ height: '2px' }}></div>
-                <div className="score">1</div>
-              </div>
-            </div>
-            <div className="odds-row">
-              <div className="odd"><span className="odd-type">1</span><span className="odd-val">1.38</span></div>
-              <div className="odd"><span className="odd-type">X</span><span className="odd-val">5.50</span></div>
-              <div className="odd"><span className="odd-type">2</span><span className="odd-val">4.20</span></div>
-            </div>
-          </div>
+              return (
+                <div className="live-match" key={idx}>
+                  <div className="match-meta"><i className={`ti ${icon}`}></i> {meta}</div>
+                  <div className="match-body">
+                    <div className="teams">
+                      <div className="team-name">{team1}</div>
+                      <div className="match-time">{match.is_live ? "LIVE ▸" : "RECENT ▸"}</div>
+                      <div className="team-name">{team2}</div>
+                    </div>
+                    <div className="score-block">
+                      <div className="score dim" style={{ fontSize: '12px' }}>VS</div>
+                    </div>
+                  </div>
+                  <div className="odds-row">
+                    <div className="odd"><span className="odd-type">1</span><span className="odd-val">{odds1}</span></div>
+                    {icon !== "ti-tennis" && (
+                      <div className="odd"><span className="odd-type">X</span><span className="odd-val">{oddsX}</span></div>
+                    )}
+                    <div className="odd"><span className="odd-type">2</span><span className="odd-val">{odds2}</span></div>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <div className="p-4 text-center text-sm opacity-60">No live matches available.</div>
+          )}
 
-          <div className="live-match">
-            <div className="match-meta"><i className="ti ti-tennis"></i> ATP · Wimbledon · SF</div>
-            <div className="match-body">
-              <div className="teams">
-                <div className="team-name">N. Djokovic</div>
-                <div className="match-time">Set 3 ▸</div>
-                <div className="team-name">C. Alcaraz</div>
-              </div>
-              <div className="score-block">
-                <div className="score dim" style={{ fontSize: '12px' }}>6-3, 4-6</div>
-                <div style={{ height: '4px' }}></div>
-                <div className="score dim" style={{ fontSize: '12px' }}>3-6, 6-4</div>
-              </div>
-            </div>
-            <div className="odds-row">
-              <div className="odd"><span className="odd-type">DJOK</span><span className="odd-val">2.20</span></div>
-              <div className="odd"><span className="odd-type">ALC</span><span className="odd-val">1.70</span></div>
-            </div>
-          </div>
-
-          <div className="live-more">View all 94 live events →</div>
+          <div className="live-more">View all {liveMatches.length} live events →</div>
         </div>
       </div>
 
@@ -375,7 +403,7 @@ const RanaMainContent = () => {
             <>
               {[
                 { color: COLORS.brand },
-                { color: '#22d3ee' },
+                { color: '#D4AF37' },
               ].map((card, i) => (
                 <div key={i} className="elite-offer-card elite-offer-empty" style={{ '--elite-accent': card.color }}>
                   <div className="elite-offer-empty-glow"></div>

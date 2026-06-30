@@ -9319,3 +9319,15 @@ body.menu-open .es-chat-iconButton {
   color: #756f8f !important;
   -webkit-text-fill-color: #756f8f !important;
 }
+/* Custom Global Highlight & Selection Colors */
+::selection {
+  background-color: #D4AF37;
+  color: #fff;
+}
+::-moz-selection {
+  background-color: #D4AF37;
+  color: #fff;
+}
+* {
+  -webkit-tap-highlight-color: rgba(212, 175, 55, 0.2) !important;
+}

@@ -12,11 +12,11 @@ const C = {
   bg:       '#dde1e7',
   card:     '#ffffff',
   cardAlt:  '#f0f4f8',
-  brand:    '#0e2040',
-  brandMid: '#1a3668',
-  gold:     '#22d3ee',
-  goldDim:  'rgba(34,211,238,0.1)',
-  goldBorder:'rgba(34,211,238,0.3)',
+  brand:    '#C59124',
+  brandMid: '#D4AF37',
+  gold:     '#FDE68A',
+  goldDim:  'rgba(197,145,36,0.1)',
+  goldBorder:'rgba(197,145,36,0.3)',
   text:     '#111827',
   muted:    '#6b7280',
   border:   'rgba(0,0,0,0.08)',
@@ -187,7 +187,7 @@ const SupportHistory = ({ onBack }) => {
 
       {/* Header — home page section-title style */}
       <div style={{ display:'flex', alignItems:isMobile ? 'stretch' : 'center', justifyContent:'space-between', flexDirection:isMobile ? 'column' : 'row', marginBottom:14, flexWrap:'wrap', gap:10 }}>
-        <div style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'8px 14px', borderRadius:10, background:'linear-gradient(90deg, #172033 0%, #0e2040 56%, #22d3ee 100%)', border:'1px solid rgba(255,255,255,0.08)', boxShadow:'0 10px 24px rgba(14,32,64,0.22)' }}>
+        <div style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'8px 14px', borderRadius:10, background:'linear-gradient(90deg, #5C430A 0%, #C59124 56%, #FDE68A 100%)', border:'1px solid rgba(255,255,255,0.08)', boxShadow:'0 10px 24px rgba(197,145,36,0.22)' }}>
           <div style={{ width:4, height:14, borderRadius:99, background:'rgba(255,255,255,0.85)', boxShadow:'0 0 10px rgba(255,255,255,0.3)' }}/>
           <FaHistory style={{ color:'#fff', fontSize:12 }}/>
           <span style={{ fontFamily:FONTS.head, fontWeight:800, fontSize:13, letterSpacing:'1.2px', textTransform:'uppercase', color:'#fff' }}>My Support Tickets</span>
@@ -218,14 +218,14 @@ const SupportHistory = ({ onBack }) => {
           </div>
         ) : (
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', minHeight:300, textAlign:'center', padding:'0 20px' }}>
-            <div style={{ width:64, height:64, borderRadius:'50%', background:'rgba(14,32,64,0.07)', border:`1px solid rgba(14,32,64,0.12)`, display:'flex', alignItems:'center', justifyContent:'center', color:'rgba(14,32,64,0.25)', fontSize:26, marginBottom:18 }}>
+            <div style={{ width:64, height:64, borderRadius:'50%', background:'rgba(197,145,36,0.07)', border:`1px solid rgba(197,145,36,0.12)`, display:'flex', alignItems:'center', justifyContent:'center', color:'rgba(197,145,36,0.25)', fontSize:26, marginBottom:18 }}>
               <FaInbox/>
             </div>
             <h3 style={{ fontFamily:FONTS.head, fontSize:16, fontWeight:800, color:C.text, margin:'0 0 8px' }}>No Tickets Found</h3>
             <p style={{ fontSize:12, color:C.muted, margin:'0 0 20px', lineHeight:1.6 }}>You haven't submitted any support tickets yet.</p>
             <button
               onClick={onBack}
-              style={{ padding:'11px 24px', background:`linear-gradient(90deg, ${C.brand}, ${C.brandMid})`, border:'none', borderRadius:8, cursor:'pointer', color:'#fff', fontFamily:FONTS.head, fontWeight:700, fontSize:11, letterSpacing:'0.1em', textTransform:'uppercase', boxShadow:'0 4px 16px rgba(14,32,64,0.35)' }}
+              style={{ padding:'11px 24px', background:`linear-gradient(90deg, ${C.brand}, ${C.brandMid})`, border:'none', borderRadius:8, cursor:'pointer', color:'#fff', fontFamily:FONTS.head, fontWeight:700, fontSize:11, letterSpacing:'0.1em', textTransform:'uppercase', boxShadow:'0 4px 16px rgba(197,145,36,0.35)' }}
             >Submit a Ticket</button>
           </div>
         )}

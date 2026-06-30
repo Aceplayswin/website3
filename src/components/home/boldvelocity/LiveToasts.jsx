@@ -66,48 +66,83 @@ const LiveToasts = () => {
   }, [wins, createToast]);
 
   return (
-    <div className="toast-container" style={{ position: 'fixed', bottom: '20px', left: '20px', zIndex: 9999, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+    <div className="toast-container" style={{ position: 'fixed', bottom: '24px', left: '24px', zIndex: 9999, display: 'flex', flexDirection: 'column', gap: '12px' }}>
       {toasts.map((toast) => (
         <div key={toast.id} className="live-toast" style={{
-          animation: 'fadeSlideUp 0.4s ease-out forwards',
-          background: 'rgba(255, 255, 255, 0.95)',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(167, 119, 23, 0.2)',
+          animation: 'toastEntrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+          background: 'linear-gradient(145deg, rgba(255,255,255,0.98), rgba(249,250,251,0.95))',
+          backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(212, 175, 55, 0.3)',
+          borderLeft: '4px solid #D4AF37',
           borderRadius: '12px',
-          padding: '12px 16px',
+          padding: '14px 18px',
           display: 'flex',
           alignItems: 'center',
-          gap: '12px',
-          boxShadow: '0 10px 25px rgba(14, 11, 37, 0.1)',
-          minWidth: '240px',
-          color: '#040810',
+          gap: '14px',
+          boxShadow: '0 12px 30px -8px rgba(212, 175, 55, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+          minWidth: '260px',
           position: 'relative',
           overflow: 'hidden'
         }}>
+          {/* Subtle shine effect over the toast */}
           <div style={{
-             width: '36px', height: '36px', borderRadius: '50%',
-             background: 'linear-gradient(135deg, rgba(167, 119, 23, 0.15), rgba(167, 119, 23, 0.05))',
+            position: 'absolute', top: 0, left: '-100%', width: '50%', height: '100%',
+            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
+            transform: 'skewX(-20deg)',
+            animation: 'toastShine 3s infinite'
+          }}></div>
+
+          <div style={{
+             width: '42px', height: '42px', borderRadius: '50%',
+             background: 'linear-gradient(135deg, #FDE68A 0%, #D4AF37 100%)',
              display: 'flex', alignItems: 'center', justifyContent: 'center',
-             color: '#C59124', fontSize: '18px', border: '1px solid rgba(167, 119, 23, 0.3)'
+             color: '#fff', fontSize: '20px', 
+             boxShadow: '0 4px 10px rgba(212, 175, 55, 0.4)',
+             flexShrink: 0
           }}>
              <i className={toast.icon}>🎉</i>
           </div>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
-              <span style={{ fontSize: '12px', color: '#4B5563' }}><b style={{ color: '#111827' }}>{toast.name}</b> just won</span>
-              <span style={{ background: '#FEE2E2', color: '#DC2626', fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', textTransform: 'uppercase' }}>Live</span>
+          <div style={{ flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
+              <div style={{ fontSize: '13px', color: '#4B5563', whiteSpace: 'nowrap' }}>
+                <strong style={{ color: '#111827', fontWeight: '700' }}>{toast.name}</strong> won
+              </div>
+              <div style={{ 
+                display: 'flex', alignItems: 'center', gap: '4px',
+                background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)',
+                color: '#EF4444', fontSize: '9px', fontWeight: 800, 
+                padding: '2px 6px', borderRadius: '10px', textTransform: 'uppercase', letterSpacing: '0.5px'
+              }}>
+                <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#EF4444', animation: 'pulseDot 1.5s infinite' }}></span>
+                LIVE
+              </div>
             </div>
-            <div style={{ fontFamily: 'var(--font-mono, monospace)', fontSize: '16px', fontWeight: 800, color: '#059669', lineHeight: 1 }}>
-              ₹{toast.amount}
-            </div>
-            <div style={{ fontSize: '10px', color: '#6B7280', marginTop: '2px' }}>
-              {toast.game}
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+              <div style={{ 
+                fontFamily: 'var(--font-mono, "Inter", sans-serif)', fontSize: '18px', fontWeight: 900, 
+                background: 'linear-gradient(to right, #059669, #10B981)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                lineHeight: 1, letterSpacing: '-0.5px'
+              }}>
+                ₹{toast.amount}
+              </div>
+              <div style={{ fontSize: '11px', color: '#9CA3AF', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                in {toast.game}
+              </div>
             </div>
           </div>
           <style dangerouslySetInnerHTML={{__html: `
-            @keyframes fadeSlideUp {
-              from { opacity: 0; transform: translateY(20px) scale(0.95); }
-              to { opacity: 1; transform: translateY(0) scale(1); }
+            @keyframes toastEntrance {
+              0% { opacity: 0; transform: translateX(-40px) scale(0.9); }
+              100% { opacity: 1; transform: translateX(0) scale(1); }
+            }
+            @keyframes toastShine {
+              0% { left: -100% }
+              20% { left: 200% }
+              100% { left: 200% }
+            }
+            @keyframes pulseDot {
+              0%, 100% { opacity: 1; transform: scale(1); }
+              50% { opacity: 0.4; transform: scale(0.8); }
             }
           `}} />
         </div>
