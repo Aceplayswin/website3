@@ -18938,3 +18938,36 @@ body.category-page-scroll #root {
     font-size: 11px !important;
   }
 }
+
+/* Category rail separators: keep divider lines visible on every route */
+.rana-layout .sport-rail .cat-nav-inner {
+  align-items: stretch !important;
+}
+
+.rana-layout .sport-rail .sport-tab {
+  border-right: 1px solid rgba(79, 73, 101, 0.14) !important;
+  border-bottom-color: transparent !important;
+}
+
+.rana-layout .sport-rail .sport-tab:last-child {
+  border-right: 0 !important;
+}
+
+.rana-layout .sport-rail .sport-tab.active,
+.rana-layout .sport-rail .sport-tab[aria-current="page"] {
+  border-bottom-color: #a77717 !important;
+}
+
+@media (max-width: 820px) {
+  .rana-layout .sport-rail .cat-nav-inner {
+    align-items: stretch !important;
+  }
+
+  .rana-layout .sport-rail .sport-tab {
+    border-right: 1px solid rgba(79, 73, 101, 0.16) !important;
+  }
+
+  .rana-layout .sport-rail .sport-tab:last-child {
+    border-right: 0 !important;
+  }
+}
