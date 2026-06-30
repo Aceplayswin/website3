@@ -55,7 +55,7 @@ const RanaHeader = () => {
     }
 
     if (platform === 'android') {
-      window.open(accountInfo?.service_app_download_url || '/boldvelocity.apk', '_blank', 'noopener,noreferrer');
+      window.open(accountInfo?.service_app_download_url || '/velplay365.apk', '_blank', 'noopener,noreferrer');
       return;
     }
 
@@ -269,176 +269,176 @@ const RanaHeader = () => {
           <Link to="/promotion" className={navClass(isPathActive("/promotion"))}>Promotions</Link>
           <Link to="/support" className={navClass(isPathActive("/support"))}>Support</Link>
         </div>
-          <div className="mobile-header-actions">
-            {!isLoggedIn ? (
-              <div className="mobile-auth-actions">
-                {localStorage.getItem("auth_secret_key") === "guest" && (
-                  <div style={{ display: 'flex', alignItems: 'center', background: 'rgba(16, 185, 129, 0.1)', color: '#34d399', padding: '4px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 'bold', marginRight: '4px' }}>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse mr-1.5"></span>
-                    DEMO
+        <div className="mobile-header-actions">
+          {!isLoggedIn ? (
+            <div className="mobile-auth-actions">
+              {localStorage.getItem("auth_secret_key") === "guest" && (
+                <div style={{ display: 'flex', alignItems: 'center', background: 'rgba(16, 185, 129, 0.1)', color: '#34d399', padding: '4px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: 'bold', marginRight: '4px' }}>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse mr-1.5"></span>
+                  DEMO
+                </div>
+              )}
+              <button type="button" onClick={() => setShowLogin(true)}>Login</button>
+              <button type="button" onClick={() => setShowRegister(true)}>Sign Up</button>
+            </div>
+          ) : (
+            <div className="mobile-wallet-actions">
+              <button type="button" onClick={() => navigate("/deposit")}>Deposit</button>
+              <button type="button" onClick={() => navigate("/withdraw")}>Withdraw</button>
+              <button
+                type="button"
+                className="mobile-profile-open"
+                onTouchEnd={handleProfileClick}
+                onPointerUp={handleProfileClick}
+                onClick={handleProfileClick}
+                aria-label="Open profile"
+              >
+                <FaUserCircle />
+              </button>
+              {profileOpen && (
+                <div className="mobile-header-popover mobile-profile-popover">
+                  <div className="mobile-profile-popover-head">
+                    <strong>{accountInfo?.account_username || "User"}</strong>
+                    <span>My Profile</span>
                   </div>
-                )}
-                <button type="button" onClick={() => setShowLogin(true)}>Login</button>
-                <button type="button" onClick={() => setShowRegister(true)}>Sign Up</button>
+                  {profileLinks.map((item) => (
+                    <button type="button" key={item.path} onClick={() => openProfileLink(item.path)}>
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+          <button
+            type="button"
+            className="mobile-header-menu-btn"
+            onTouchEnd={handleMobileMenuClick}
+            onPointerUp={handleMobileMenuClick}
+            onClick={handleMobileMenuClick}
+            aria-label="Open quick links"
+          >
+            <FaBars />
+            <span>Menu</span>
+          </button>
+          {menuOpen && (
+            <div className="mobile-header-popover">
+              <button type="button" onClick={() => { setMenuOpen(false); navigate("/"); }}>Home</button>
+              <button type="button" onClick={() => { setMenuOpen(false); navigate("/casino"); }}>Casino</button>
+              <button type="button" onClick={() => { setMenuOpen(false); navigate("/promotion"); }}>Promotions</button>
+              <button type="button" onClick={() => { setMenuOpen(false); navigate("/support"); }}>Support</button>
+            </div>
+          )}
+        </div>
+        <div className="nav-right">
+          {isLoggedIn ? (
+            <>
+              <div className="balance-badge">
+                <i className="ti ti-wallet"></i>
+                ₹{formatBalance(accountInfo?.account_balance)}
               </div>
-            ) : (
-              <div className="mobile-wallet-actions">
-                <button type="button" onClick={() => navigate("/deposit")}>Deposit</button>
-                <button type="button" onClick={() => navigate("/withdraw")}>Withdraw</button>
-                <button
-                  type="button"
-                  className="mobile-profile-open"
-                  onTouchEnd={handleProfileClick}
-                  onPointerUp={handleProfileClick}
-                  onClick={handleProfileClick}
-                  aria-label="Open profile"
-                >
-                  <FaUserCircle />
-                </button>
-                {profileOpen && (
-                  <div className="mobile-header-popover mobile-profile-popover">
-                    <div className="mobile-profile-popover-head">
-                      <strong>{accountInfo?.account_username || "User"}</strong>
-                      <span>My Profile</span>
+              <button className="btn-ghost" onClick={() => navigate("/deposit")}>Deposit</button>
+              <div style={{ width: '1px', height: '24px', background: 'rgba(14,11,37,0.1)', margin: '0 4px' }}></div>
+              <div
+                style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'var(--gold-dim)', color: 'var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', cursor: 'pointer' }}
+                onClick={handleProfileClick}
+              >
+                <FaUserCircle />
+              </div>
+              {profileOpen && (
+                <div className="header-mini-popover header-profile-popover" style={{ top: '60px', right: '0' }}>
+                  <button type="button" className="header-mini-close" onClick={() => setProfileOpen(false)} aria-label="Close profile menu">
+                    <FaTimes />
+                  </button>
+                  <div className="header-profile-card-head">
+                    <div className="header-profile-avatar">
+                      {(accountInfo?.account_username || "U").slice(0, 1).toUpperCase()}
                     </div>
+                    <div>
+                      <div className="header-mini-name">{accountInfo?.account_username || "User"}</div>
+                      <div className="header-mini-sub">My Profile</div>
+                    </div>
+                  </div>
+                  <div className="header-profile-balance-grid">
+                    {profileBalances.map((item) => (
+                      <div className="header-profile-balance-tile" key={item.label}>
+                        <span>{item.label}</span>
+                        <strong>{"\u20B9"}{formatBalance(item.value)}</strong>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="header-profile-links">
                     {profileLinks.map((item) => (
                       <button type="button" key={item.path} onClick={() => openProfileLink(item.path)}>
                         {item.label}
                       </button>
                     ))}
                   </div>
-                )}
-              </div>
-            )}
-            <button
-              type="button"
-              className="mobile-header-menu-btn"
-              onTouchEnd={handleMobileMenuClick}
-              onPointerUp={handleMobileMenuClick}
-              onClick={handleMobileMenuClick}
-              aria-label="Open quick links"
-            >
-              <FaBars />
-              <span>Menu</span>
-            </button>
-            {menuOpen && (
-              <div className="mobile-header-popover">
-                <button type="button" onClick={() => { setMenuOpen(false); navigate("/"); }}>Home</button>
-                <button type="button" onClick={() => { setMenuOpen(false); navigate("/casino"); }}>Casino</button>
-                <button type="button" onClick={() => { setMenuOpen(false); navigate("/promotion"); }}>Promotions</button>
-                <button type="button" onClick={() => { setMenuOpen(false); navigate("/support"); }}>Support</button>
-              </div>
-            )}
-          </div>
-          <div className="nav-right">
-            {isLoggedIn ? (
-              <>
-                <div className="balance-badge">
-                  <i className="ti ti-wallet"></i>
-                  ₹{formatBalance(accountInfo?.account_balance)}
+                  <button type="button" className="header-profile-signout" onClick={handleSignOut}>
+                    Sign Out
+                  </button>
                 </div>
-                <button className="btn-ghost" onClick={() => navigate("/deposit")}>Deposit</button>
-                <div style={{ width: '1px', height: '24px', background: 'rgba(14,11,37,0.1)', margin: '0 4px' }}></div>
-                <div 
-                  style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'var(--gold-dim)', color: 'var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', cursor: 'pointer' }}
-                  onClick={handleProfileClick}
+              )}
+              <div className="header-menu-wrap">
+                <button
+                  type="button"
+                  className={`header-menu-trigger ${menuOpen ? "active" : ""}`}
+                  onClick={handleRightMenuClick}
+                  aria-label="Open menu"
+                  aria-expanded={menuOpen}
                 >
-                  <FaUserCircle />
-                </div>
-                {profileOpen && (
-                  <div className="header-mini-popover header-profile-popover" style={{ top: '60px', right: '0' }}>
-                    <button type="button" className="header-mini-close" onClick={() => setProfileOpen(false)} aria-label="Close profile menu">
+                  <FaBars />
+                </button>
+                {menuOpen && (
+                  <div className="header-mini-popover header-menu-popover right-menu-popover">
+                    <button type="button" className="header-mini-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">
                       <FaTimes />
                     </button>
-                    <div className="header-profile-card-head">
-                      <div className="header-profile-avatar">
-                        {(accountInfo?.account_username || "U").slice(0, 1).toUpperCase()}
-                      </div>
-                      <div>
-                        <div className="header-mini-name">{accountInfo?.account_username || "User"}</div>
-                        <div className="header-mini-sub">My Profile</div>
-                      </div>
-                    </div>
-                    <div className="header-profile-balance-grid">
-                      {profileBalances.map((item) => (
-                        <div className="header-profile-balance-tile" key={item.label}>
-                          <span>{item.label}</span>
-                          <strong>{"\u20B9"}{formatBalance(item.value)}</strong>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="header-profile-links">
-                      {profileLinks.map((item) => (
-                        <button type="button" key={item.path} onClick={() => openProfileLink(item.path)}>
+                    <div className="header-menu-title">Quick Menu</div>
+                    <button
+                      type="button"
+                      className="right-menu-get-app"
+                      onClick={(event) => {
+                        setMenuOpen(false);
+                        handleGetApp(event);
+                      }}
+                    >
+                      Get App
+                    </button>
+                    <div className="right-menu-actions">
+                      {rightMenuLinks.map((item) => (
+                        <button type="button" key={`${item.label}-${item.path}`} onClick={() => handleRightMenuNavigate(item.path)}>
                           {item.label}
                         </button>
                       ))}
                     </div>
-                    <button type="button" className="header-profile-signout" onClick={handleSignOut}>
-                      Sign Out
-                    </button>
                   </div>
                 )}
-                <div className="header-menu-wrap">
-                  <button
-                    type="button"
-                    className={`header-menu-trigger ${menuOpen ? "active" : ""}`}
-                    onClick={handleRightMenuClick}
-                    aria-label="Open menu"
-                    aria-expanded={menuOpen}
-                  >
-                    <FaBars />
-                  </button>
-                  {menuOpen && (
-                    <div className="header-mini-popover header-menu-popover right-menu-popover">
-                      <button type="button" className="header-mini-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">
-                        <FaTimes />
-                      </button>
-                      <div className="header-menu-title">Quick Menu</div>
-                      <button
-                        type="button"
-                        className="right-menu-get-app"
-                        onClick={(event) => {
-                          setMenuOpen(false);
-                          handleGetApp(event);
-                        }}
-                      >
-                        Get App
-                      </button>
-                      <div className="right-menu-actions">
-                        {rightMenuLinks.map((item) => (
-                          <button type="button" key={`${item.label}-${item.path}`} onClick={() => handleRightMenuNavigate(item.path)}>
-                            {item.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </>
-            ) : (
-              <>
-                <button className="btn-ghost" onClick={() => setShowLogin(true)}>Log In</button>
-                <button className="btn-primary" onClick={() => setShowRegister(true)}>Sign Up</button>
-              </>
-            )}
-          </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <button className="btn-ghost" onClick={() => setShowLogin(true)}>Log In</button>
+              <button className="btn-primary" onClick={() => setShowRegister(true)}>Sign Up</button>
+            </>
+          )}
+        </div>
       </nav>
 
       {/* SPORT RAIL */}
       <div className="sport-rail">
         <div className="cat-nav-inner">
-        {casinoCategoryLinks.map((item) => (
-          <a
-            key={item.path}
-            href="#"
-            className={`sport-tab ${isPathActive(item.path) ? "active" : ""}`}
-            onClick={(event) => goCategory(event, item.path)}
-          >
-            <span className="sport-tab-emoji" aria-hidden="true">{item.icon}</span>
-            <span>{item.label}</span>
-          </a>
-        ))}
+          {casinoCategoryLinks.map((item) => (
+            <a
+              key={item.path}
+              href="#"
+              className={`sport-tab ${isPathActive(item.path) ? "active" : ""}`}
+              onClick={(event) => goCategory(event, item.path)}
+            >
+              <span className="sport-tab-emoji" aria-hidden="true">{item.icon}</span>
+              <span>{item.label}</span>
+            </a>
+          ))}
         </div>
       </div>
       {mobilePanel && (

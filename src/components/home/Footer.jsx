@@ -21,7 +21,7 @@ const Footer = () => {
     } else if (isInstallable) {
       installApp();
     } else if (platform === 'android') {
-      window.open(accountInfo?.service_app_download_url || "/boldvelocity.apk", "_blank");
+      window.open(accountInfo?.service_app_download_url || "/velplay365.apk", "_blank");
     } else {
       window.open(window.location.origin, '_blank');
     }
@@ -67,7 +67,7 @@ const Footer = () => {
             })()}
           </div>
         </div>
-        
+
         <div>
           <div className="footer-col-title">Sports</div>
           <ul className="footer-links">
@@ -78,7 +78,7 @@ const Footer = () => {
             <li><a href="#">Horse Racing</a></li>
           </ul>
         </div>
-        
+
         <div>
           <div className="footer-col-title">Casino</div>
           <ul className="footer-links">
@@ -89,7 +89,7 @@ const Footer = () => {
             <li><a href="#">Blackjack</a></li>
           </ul>
         </div>
-        
+
         <div>
           <div className="footer-col-title">Support</div>
           <ul className="footer-links">
@@ -101,7 +101,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      
+
       <div className="footer-bottom">
         <div className="footer-copy">© Copyright 2026 {accountInfo?.service_site_name || 'NEXBET'}. All rights reserved.</div>
         <div className="footer-18">

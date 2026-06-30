@@ -413,7 +413,7 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   animation-play-state: paused !important;
 }
 
-/* Casino page: aligned with the boldvelocity home theme */
+/* Casino page: aligned with the velplay365 home theme */
 .casino-page-shell {
   background:
     radial-gradient(circle at 18% 0%, rgba(29, 78, 216, 0.16), transparent 28%),
@@ -1809,10 +1809,12 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   gap: 14px !important;
   text-align: left;
 }
-.finance-v2-empty-account > svg {
+
+.finance-v2-empty-account>svg {
   flex-shrink: 0;
 }
-.finance-v2-empty-account > div {
+
+.finance-v2-empty-account>div {
   flex: 1;
   min-width: 0;
 }
@@ -3682,7 +3684,7 @@ html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     flex-direction: column;
   }
 
-  .wallet-statement-title > span {
+  .wallet-statement-title>span {
     width: 30px;
     height: 30px;
     border-radius: 7px;
@@ -7936,8 +7938,8 @@ body.menu-open .es-chat-iconButton {
   background:
     radial-gradient(circle at 82% 12%, rgba(255, 217, 125, 0.22), transparent 34%),
     radial-gradient(circle at 10% 90%, rgba(109, 40, 217, 0.075), transparent 42%),
-    linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,249,235,0.92) 52%, rgba(246,242,255,0.90)) !important;
-  box-shadow: 0 20px 44px rgba(14, 11, 37, 0.08), inset 0 1px 0 rgba(255,255,255,0.98) !important;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 249, 235, 0.92) 52%, rgba(246, 242, 255, 0.90)) !important;
+  box-shadow: 0 20px 44px rgba(14, 11, 37, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.98) !important;
   position: relative;
   overflow: hidden;
 }
@@ -7947,7 +7949,7 @@ body.menu-open .es-chat-iconButton {
   position: absolute;
   right: 22px;
   bottom: -14px;
-  color: rgba(167,119,23,0.06);
+  color: rgba(167, 119, 23, 0.06);
   font-family: var(--font-head);
   font-size: clamp(48px, 8vw, 112px);
   font-weight: 900;
@@ -7993,8 +7995,8 @@ body.menu-open .es-chat-iconButton {
 .finance-v2-bank-grid div,
 .finance-v2-mini-balances div,
 .finance-v2-confirm-lines div {
-  border-color: rgba(167,119,23,0.14) !important;
-  background: rgba(255,255,255,0.72) !important;
+  border-color: rgba(167, 119, 23, 0.14) !important;
+  background: rgba(255, 255, 255, 0.72) !important;
   border-radius: 14px !important;
 }
 
@@ -8032,9 +8034,9 @@ body.menu-open .es-chat-iconButton {
 .finance-v2-notice,
 .finance-v2-popup {
   border-radius: 22px !important;
-  border: 1px solid rgba(255,255,255,0.78) !important;
-  background: rgba(255,255,255,0.72) !important;
-  box-shadow: 0 18px 42px rgba(14,11,37,0.07), inset 0 1px 0 rgba(255,255,255,0.94) !important;
+  border: 1px solid rgba(255, 255, 255, 0.78) !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  box-shadow: 0 18px 42px rgba(14, 11, 37, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.94) !important;
 }
 
 .finance-v2-panel,
@@ -8047,7 +8049,7 @@ body.menu-open .es-chat-iconButton {
   background: linear-gradient(135deg, #a77717, #c59124) !important;
   color: #fff !important;
   border-radius: 12px !important;
-  box-shadow: 0 12px 24px rgba(167,119,23,0.18);
+  box-shadow: 0 12px 24px rgba(167, 119, 23, 0.18);
 }
 
 .finance-v2-panel-head h2,
@@ -8077,8 +8079,8 @@ body.menu-open .es-chat-iconButton {
 .finance-v2-bank-select>button,
 .finance-v2-form-grid label,
 .finance-v2-bank-select {
-  border-color: rgba(14,11,37,0.08) !important;
-  background: rgba(255,255,255,0.78) !important;
+  border-color: rgba(14, 11, 37, 0.08) !important;
+  background: rgba(255, 255, 255, 0.78) !important;
   color: #17142d !important;
 }
 
@@ -8100,10 +8102,10 @@ body.menu-open .es-chat-iconButton {
 .finance-v2-chip-grid button.active,
 .finance-v2-filters button.active,
 .finance-v2-account-card.active {
-  border-color: rgba(167,119,23,0.28) !important;
-  background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(255,246,223,0.88)) !important;
+  border-color: rgba(167, 119, 23, 0.28) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(255, 246, 223, 0.88)) !important;
   color: #a77717 !important;
-  box-shadow: 0 12px 24px rgba(167,119,23,0.10) !important;
+  box-shadow: 0 12px 24px rgba(167, 119, 23, 0.10) !important;
 }
 
 .finance-v2-method-list button.active>svg:first-child,
@@ -8128,7 +8130,7 @@ body.menu-open .es-chat-iconButton {
   background: linear-gradient(135deg, #a77717 0%, #c59124 70%, #ffd97d 100%) !important;
   color: #201506 !important;
   -webkit-text-fill-color: #201506 !important;
-  box-shadow: 0 16px 30px rgba(167,119,23,0.22) !important;
+  box-shadow: 0 16px 30px rgba(167, 119, 23, 0.22) !important;
 }
 
 .finance-v2-primary svg,
@@ -8145,15 +8147,15 @@ body.menu-open .es-chat-iconButton {
 }
 
 .finance-v2-note {
-  border-color: rgba(167,119,23,0.14) !important;
-  background: rgba(255,249,235,0.82) !important;
+  border-color: rgba(167, 119, 23, 0.14) !important;
+  background: rgba(255, 249, 235, 0.82) !important;
   color: #5f5a75 !important;
 }
 
 .finance-v2-balance-strip {
   border-radius: 18px !important;
   background:
-    radial-gradient(circle at 85% 0%, rgba(255,217,125,0.24), transparent 36%),
+    radial-gradient(circle at 85% 0%, rgba(255, 217, 125, 0.24), transparent 36%),
     linear-gradient(135deg, #17142d 0%, #312955 100%) !important;
 }
 
@@ -8163,11 +8165,11 @@ body.menu-open .es-chat-iconButton {
 
 .finance-v2-balance-strip svg {
   color: #ffd97d !important;
-  background: rgba(255,255,255,0.12) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
 }
 
 .finance-v2-record em {
-  background: rgba(167,119,23,0.12) !important;
+  background: rgba(167, 119, 23, 0.12) !important;
   color: #a77717 !important;
 }
 
@@ -8204,8 +8206,8 @@ body.menu-open .es-chat-iconButton {
   padding: 18px !important;
   border-radius: 26px !important;
   background:
-    linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 56%, rgba(255,248,231,0.96) 100%) !important;
-  box-shadow: 0 18px 42px rgba(14,11,37,0.07), inset 0 1px 0 rgba(255,255,255,0.96) !important;
+    linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.92) 56%, rgba(255, 248, 231, 0.96) 100%) !important;
+  box-shadow: 0 18px 42px rgba(14, 11, 37, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.96) !important;
 }
 
 .finance-redesign .finance-v2-top::before {
@@ -8215,14 +8217,14 @@ body.menu-open .es-chat-iconButton {
   width: 5px;
   border-radius: 999px;
   background: linear-gradient(180deg, #ffd97d, #a77717);
-  box-shadow: 0 0 24px rgba(197,145,36,0.34);
+  box-shadow: 0 0 24px rgba(197, 145, 36, 0.34);
 }
 
 .finance-redesign .finance-v2-top::after {
   right: 18px;
   bottom: -18px;
   font-size: clamp(58px, 9vw, 136px);
-  color: rgba(167,119,23,0.045);
+  color: rgba(167, 119, 23, 0.045);
 }
 
 .finance-redesign .finance-v2-tag {
@@ -8238,7 +8240,7 @@ body.menu-open .es-chat-iconButton {
   height: 8px;
   border-radius: 50%;
   background: #c59124;
-  box-shadow: 0 0 0 6px rgba(197,145,36,0.12);
+  box-shadow: 0 0 0 6px rgba(197, 145, 36, 0.12);
 }
 
 .finance-redesign .finance-v2 h1 {
@@ -8265,8 +8267,8 @@ body.menu-open .es-chat-iconButton {
   padding: 14px !important;
   border-radius: 20px !important;
   background:
-    radial-gradient(circle at 86% 0%, rgba(255,217,125,0.24), transparent 42%),
-    rgba(255,255,255,0.72) !important;
+    radial-gradient(circle at 86% 0%, rgba(255, 217, 125, 0.24), transparent 42%),
+    rgba(255, 255, 255, 0.72) !important;
 }
 
 .finance-redesign .finance-v2-stats strong {
@@ -8300,14 +8302,14 @@ body.menu-open .es-chat-iconButton {
 .finance-redesign .finance-v2-history {
   border-radius: 28px !important;
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.90), rgba(255,255,255,0.68)) !important;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.68)) !important;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
 
 .finance-redesign .finance-v2-ticket {
   padding: 18px !important;
-  box-shadow: 0 24px 54px rgba(14,11,37,0.09), inset 0 1px 0 rgba(255,255,255,0.96) !important;
+  box-shadow: 0 24px 54px rgba(14, 11, 37, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.96) !important;
 }
 
 .finance-redesign .finance-v2-panel {
@@ -8316,7 +8318,7 @@ body.menu-open .es-chat-iconButton {
 
 .finance-redesign .finance-v2-panel-head {
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(167,119,23,0.12);
+  border-bottom: 1px solid rgba(167, 119, 23, 0.12);
 }
 
 .finance-redesign .finance-v2-panel-head>span {
@@ -8330,8 +8332,8 @@ body.menu-open .es-chat-iconButton {
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   padding: 8px;
   border-radius: 22px;
-  background: rgba(14,11,37,0.035);
-  border: 1px solid rgba(14,11,37,0.06);
+  background: rgba(14, 11, 37, 0.035);
+  border: 1px solid rgba(14, 11, 37, 0.06);
 }
 
 .finance-redesign-deposit .finance-v2-method-list button {
@@ -8343,7 +8345,7 @@ body.menu-open .es-chat-iconButton {
 
 .finance-redesign-deposit .finance-v2-method-list button.active {
   background: #fff !important;
-  border-color: rgba(167,119,23,0.20) !important;
+  border-color: rgba(167, 119, 23, 0.20) !important;
 }
 
 .finance-redesign .finance-v2-payment-card {
@@ -8351,15 +8353,15 @@ body.menu-open .es-chat-iconButton {
   min-height: 220px;
   border-radius: 24px !important;
   background:
-    radial-gradient(circle at 90% 10%, rgba(255,217,125,0.18), transparent 34%),
-    linear-gradient(135deg, rgba(255,255,255,0.88), rgba(255,249,235,0.74)) !important;
+    radial-gradient(circle at 90% 10%, rgba(255, 217, 125, 0.18), transparent 34%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 249, 235, 0.74)) !important;
 }
 
 .finance-redesign .finance-v2-qr-row {
   padding: 12px;
   border-radius: 20px;
-  background: rgba(255,255,255,0.62);
-  border: 1px solid rgba(167,119,23,0.10);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(167, 119, 23, 0.10);
 }
 
 .finance-redesign .finance-v2-qr {
@@ -8377,7 +8379,7 @@ body.menu-open .es-chat-iconButton {
   min-height: 66px !important;
   border-radius: 22px !important;
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,249,235,0.72)) !important;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 249, 235, 0.72)) !important;
 }
 
 .finance-redesign .finance-v2-money-input input {
@@ -8407,7 +8409,7 @@ body.menu-open .es-chat-iconButton {
 
 .finance-redesign .finance-v2-history-head {
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(167,119,23,0.12);
+  border-bottom: 1px solid rgba(167, 119, 23, 0.12);
 }
 
 .finance-redesign .finance-v2-records {
@@ -8417,7 +8419,7 @@ body.menu-open .es-chat-iconButton {
 
 .finance-redesign .finance-v2-record {
   border-radius: 18px !important;
-  background: rgba(255,255,255,0.78) !important;
+  background: rgba(255, 255, 255, 0.78) !important;
 }
 
 .finance-redesign-withdraw .finance-v2-balance-strip {
@@ -8441,6 +8443,7 @@ body.menu-open .es-chat-iconButton {
 }
 
 @media (max-width: 1100px) {
+
   .finance-redesign .finance-v2-top,
   .finance-redesign .finance-v2-workspace,
   .finance-redesign .finance-v2-workspace.withdraw {
@@ -8485,13 +8488,13 @@ body.menu-open .es-chat-iconButton {
   align-items: end !important;
   padding: 26px 30px !important;
   border-radius: 34px !important;
-  border: 1px solid rgba(255,255,255,0.34) !important;
+  border: 1px solid rgba(255, 255, 255, 0.34) !important;
   background:
-    radial-gradient(circle at 78% 16%, rgba(255,217,125,0.22), transparent 28%),
-    radial-gradient(circle at 4% 100%, rgba(197,145,36,0.18), transparent 36%),
+    radial-gradient(circle at 78% 16%, rgba(255, 217, 125, 0.22), transparent 28%),
+    radial-gradient(circle at 4% 100%, rgba(197, 145, 36, 0.18), transparent 36%),
     linear-gradient(135deg, #15112b 0%, #241c42 48%, #332957 100%) !important;
   color: #fff !important;
-  box-shadow: 0 30px 80px rgba(14,11,37,0.22), inset 0 1px 0 rgba(255,255,255,0.18) !important;
+  box-shadow: 0 30px 80px rgba(14, 11, 37, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
 }
 
 .finance-redesign .finance-v2-top::before {
@@ -8503,7 +8506,7 @@ body.menu-open .es-chat-iconButton {
 .finance-redesign .finance-v2-top::after {
   right: 24px;
   bottom: -22px;
-  color: rgba(255,255,255,0.05);
+  color: rgba(255, 255, 255, 0.05);
   font-size: clamp(72px, 10vw, 160px);
 }
 
@@ -8520,7 +8523,7 @@ body.menu-open .es-chat-iconButton {
 
 .finance-redesign .finance-v2-top p {
   max-width: 660px;
-  color: rgba(255,255,255,0.72) !important;
+  color: rgba(255, 255, 255, 0.72) !important;
   font-size: 14px !important;
 }
 
@@ -8528,15 +8531,15 @@ body.menu-open .es-chat-iconButton {
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   padding: 10px;
   border-radius: 26px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(18px);
 }
 
 .finance-redesign .finance-v2-stats div {
   min-height: 92px !important;
-  border: 1px solid rgba(255,255,255,0.10) !important;
-  background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.05)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.05)) !important;
 }
 
 .finance-redesign .finance-v2-stats strong {
@@ -8545,7 +8548,7 @@ body.menu-open .es-chat-iconButton {
 }
 
 .finance-redesign .finance-v2-stats span {
-  color: rgba(255,255,255,0.62) !important;
+  color: rgba(255, 255, 255, 0.62) !important;
 }
 
 .finance-redesign .finance-v2-workspace,
@@ -8578,16 +8581,16 @@ body.menu-open .es-chat-iconButton {
 .finance-redesign .finance-v2-ticket {
   border-radius: 30px !important;
   background:
-    radial-gradient(circle at 88% 0%, rgba(255,217,125,0.18), transparent 34%),
-    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,249,235,0.88)) !important;
-  box-shadow: 0 30px 70px rgba(14,11,37,0.16), inset 0 1px 0 rgba(255,255,255,0.98) !important;
+    radial-gradient(circle at 88% 0%, rgba(255, 217, 125, 0.18), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 249, 235, 0.88)) !important;
+  box-shadow: 0 30px 70px rgba(14, 11, 37, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.98) !important;
 }
 
 .finance-redesign .finance-v2-panel {
   border-radius: 30px !important;
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.95), rgba(244,242,255,0.80)) !important;
-  box-shadow: 0 22px 60px rgba(14,11,37,0.09), inset 0 1px 0 rgba(255,255,255,0.98) !important;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(244, 242, 255, 0.80)) !important;
+  box-shadow: 0 22px 60px rgba(14, 11, 37, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.98) !important;
 }
 
 .finance-redesign .finance-v2-panel-head {
@@ -8602,7 +8605,7 @@ body.menu-open .es-chat-iconButton {
   border-radius: 50% !important;
   background: #15112b !important;
   color: #ffd97d !important;
-  box-shadow: 0 12px 30px rgba(21,17,43,0.22);
+  box-shadow: 0 12px 30px rgba(21, 17, 43, 0.22);
 }
 
 .finance-redesign .finance-v2-method-list {
@@ -8617,10 +8620,10 @@ body.menu-open .es-chat-iconButton {
   min-height: 126px !important;
   border-radius: 26px !important;
   background:
-    radial-gradient(circle at 50% 18%, rgba(255,217,125,0.20), transparent 32%),
-    rgba(255,255,255,0.76) !important;
-  border: 1px solid rgba(167,119,23,0.12) !important;
-  box-shadow: 0 14px 34px rgba(14,11,37,0.07);
+    radial-gradient(circle at 50% 18%, rgba(255, 217, 125, 0.20), transparent 32%),
+    rgba(255, 255, 255, 0.76) !important;
+  border: 1px solid rgba(167, 119, 23, 0.12) !important;
+  box-shadow: 0 14px 34px rgba(14, 11, 37, 0.07);
 }
 
 .finance-redesign .finance-v2-method-list button>svg:first-child {
@@ -8629,14 +8632,14 @@ body.menu-open .es-chat-iconButton {
   height: 54px;
   padding: 14px;
   border-radius: 18px;
-  background: rgba(167,119,23,0.10);
+  background: rgba(167, 119, 23, 0.10);
 }
 
 .finance-redesign .finance-v2-method-list button.active {
   background:
-    radial-gradient(circle at 50% 18%, rgba(255,217,125,0.32), transparent 36%),
+    radial-gradient(circle at 50% 18%, rgba(255, 217, 125, 0.32), transparent 36%),
     #fffaf0 !important;
-  border-color: rgba(167,119,23,0.32) !important;
+  border-color: rgba(167, 119, 23, 0.32) !important;
   transform: translateY(-2px);
 }
 
@@ -8645,15 +8648,15 @@ body.menu-open .es-chat-iconButton {
   padding: 18px !important;
   border-radius: 28px !important;
   background:
-    linear-gradient(135deg, rgba(21,17,43,0.035), rgba(255,255,255,0.72)) !important;
-  border: 1px solid rgba(14,11,37,0.06) !important;
+    linear-gradient(135deg, rgba(21, 17, 43, 0.035), rgba(255, 255, 255, 0.72)) !important;
+  border: 1px solid rgba(14, 11, 37, 0.06) !important;
 }
 
 .finance-redesign .finance-v2-payline {
   padding: 12px 14px;
   border-radius: 18px;
-  background: rgba(255,255,255,0.72);
-  border: 1px solid rgba(167,119,23,0.10);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(167, 119, 23, 0.10);
 }
 
 .finance-redesign .finance-v2-upi-id,
@@ -8666,7 +8669,7 @@ body.menu-open .es-chat-iconButton {
 
 .finance-redesign .finance-v2-money-input {
   background: #15112b !important;
-  border-color: rgba(255,217,125,0.24) !important;
+  border-color: rgba(255, 217, 125, 0.24) !important;
 }
 
 .finance-redesign .finance-v2-money-input svg,
@@ -8675,12 +8678,12 @@ body.menu-open .es-chat-iconButton {
 }
 
 .finance-redesign .finance-v2-money-input input::placeholder {
-  color: rgba(255,217,125,0.38);
+  color: rgba(255, 217, 125, 0.38);
 }
 
 .finance-redesign .finance-v2-chip-grid button {
   background: #fff !important;
-  border-color: rgba(167,119,23,0.16) !important;
+  border-color: rgba(167, 119, 23, 0.16) !important;
 }
 
 .finance-redesign .finance-v2-chip-grid button.active {
@@ -8700,13 +8703,13 @@ body.menu-open .es-chat-iconButton {
 .finance-redesign .finance-v2-primary:enabled {
   border-radius: 999px !important;
   background: linear-gradient(135deg, #ffd97d 0%, #c59124 60%, #a77717 100%) !important;
-  box-shadow: 0 18px 42px rgba(167,119,23,0.28) !important;
+  box-shadow: 0 18px 42px rgba(167, 119, 23, 0.28) !important;
 }
 
 .finance-redesign .finance-v2-history {
   border-radius: 34px !important;
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.94), rgba(255,255,255,0.74)) !important;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.74)) !important;
 }
 
 .finance-redesign .finance-v2-history-head {
@@ -8722,14 +8725,14 @@ body.menu-open .es-chat-iconButton {
   align-items: flex-start !important;
   border-radius: 22px !important;
   background:
-    radial-gradient(circle at 88% 0%, rgba(255,217,125,0.16), transparent 36%),
+    radial-gradient(circle at 88% 0%, rgba(255, 217, 125, 0.16), transparent 36%),
     #fff !important;
 }
 
 .finance-redesign-withdraw .finance-v2-balance-strip {
   min-height: 154px;
   background:
-    radial-gradient(circle at 82% 0%, rgba(255,217,125,0.25), transparent 34%),
+    radial-gradient(circle at 82% 0%, rgba(255, 217, 125, 0.25), transparent 34%),
     linear-gradient(135deg, #15112b 0%, #332957 100%) !important;
 }
 
@@ -8747,6 +8750,7 @@ body.menu-open .es-chat-iconButton {
 }
 
 @media (max-width: 1180px) {
+
   .finance-redesign .finance-v2-top,
   .finance-redesign .finance-v2-workspace,
   .finance-redesign .finance-v2-workspace.withdraw {
@@ -8776,6 +8780,7 @@ body.menu-open .es-chat-iconButton {
 }
 
 @media (max-width: 640px) {
+
   .finance-redesign .finance-v2-method-list,
   .finance-redesign .finance-v2-records,
   .finance-redesign-withdraw .finance-v2-account-list,
@@ -8842,14 +8847,14 @@ body.menu-open .es-chat-iconButton {
   min-height: 128px !important;
   border-radius: 22px !important;
   background:
-    radial-gradient(circle at 82% 12%, rgba(255,217,125,0.24), transparent 34%),
+    radial-gradient(circle at 82% 12%, rgba(255, 217, 125, 0.24), transparent 34%),
     linear-gradient(135deg, #ffffff 0%, #fff8e8 58%, #f5f2ff 100%) !important;
   color: #17142d !important;
 }
 
 .finance-redesign-deposit .finance-v2-top::after {
   content: "DEPOSIT" !important;
-  color: rgba(167,119,23,0.055) !important;
+  color: rgba(167, 119, 23, 0.055) !important;
 }
 
 .finance-redesign-deposit .finance-v2 h1,
@@ -8866,13 +8871,13 @@ body.menu-open .es-chat-iconButton {
 }
 
 .finance-redesign-deposit .finance-v2-stats {
-  background: rgba(255,255,255,0.62) !important;
-  border-color: rgba(167,119,23,0.12) !important;
+  background: rgba(255, 255, 255, 0.62) !important;
+  border-color: rgba(167, 119, 23, 0.12) !important;
 }
 
 .finance-redesign-deposit .finance-v2-stats div {
   background: #fff !important;
-  border-color: rgba(167,119,23,0.14) !important;
+  border-color: rgba(167, 119, 23, 0.14) !important;
 }
 
 .finance-redesign-deposit .finance-v2-workspace {
@@ -8893,27 +8898,27 @@ body.menu-open .es-chat-iconButton {
 .finance-redesign-deposit .finance-v2-method-list {
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,248,231,0.72)) !important;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 231, 0.72)) !important;
   padding: 10px !important;
   border-radius: 26px !important;
-  border: 1px solid rgba(167,119,23,0.12) !important;
+  border: 1px solid rgba(167, 119, 23, 0.12) !important;
 }
 
 .finance-redesign-deposit .finance-v2-method-list button {
   min-height: 74px !important;
   border-radius: 18px !important;
-  background: rgba(255,255,255,0.84) !important;
+  background: rgba(255, 255, 255, 0.84) !important;
 }
 
 .finance-redesign-deposit .finance-v2-payment-card {
   background:
-    radial-gradient(circle at 88% 0%, rgba(255,217,125,0.18), transparent 36%),
+    radial-gradient(circle at 88% 0%, rgba(255, 217, 125, 0.18), transparent 36%),
     #ffffff !important;
 }
 
 .finance-redesign-deposit .finance-v2-money-input {
   background: #ffffff !important;
-  border-color: rgba(167,119,23,0.22) !important;
+  border-color: rgba(167, 119, 23, 0.22) !important;
 }
 
 .finance-redesign-deposit .finance-v2-money-input svg,
@@ -8930,7 +8935,7 @@ body.menu-open .es-chat-iconButton {
   min-height: 132px !important;
   border-radius: 22px !important;
   background:
-    radial-gradient(circle at 84% 10%, rgba(255,217,125,0.18), transparent 30%),
+    radial-gradient(circle at 84% 10%, rgba(255, 217, 125, 0.18), transparent 30%),
     linear-gradient(135deg, #0d1020 0%, #17142d 52%, #2b214d 100%) !important;
 }
 
@@ -8946,16 +8951,16 @@ body.menu-open .es-chat-iconButton {
 .finance-redesign-withdraw .finance-v2-ticket {
   grid-area: ticket !important;
   background:
-    radial-gradient(circle at 86% 0%, rgba(255,217,125,0.16), transparent 34%),
+    radial-gradient(circle at 86% 0%, rgba(255, 217, 125, 0.16), transparent 34%),
     linear-gradient(180deg, #17142d 0%, #241c42 100%) !important;
-  border-color: rgba(255,255,255,0.12) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
 }
 
 .finance-redesign-withdraw .finance-v2-ticket .finance-v2-panel-head h2,
 .finance-redesign-withdraw .finance-v2-ticket .finance-v2-panel-head p,
 .finance-redesign-withdraw .finance-v2-ticket .finance-v2-label,
 .finance-redesign-withdraw .finance-v2-ticket .finance-v2-note {
-  color: rgba(255,255,255,0.76) !important;
+  color: rgba(255, 255, 255, 0.76) !important;
 }
 
 .finance-redesign-withdraw .finance-v2-ticket h2 {
@@ -8965,18 +8970,18 @@ body.menu-open .es-chat-iconButton {
 .finance-redesign-withdraw .finance-v2-panel {
   grid-area: main !important;
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.95), rgba(244,242,255,0.80)) !important;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(244, 242, 255, 0.80)) !important;
 }
 
 .finance-redesign-withdraw .finance-v2-balance-strip {
   background:
-    radial-gradient(circle at 82% 0%, rgba(255,217,125,0.25), transparent 34%),
+    radial-gradient(circle at 82% 0%, rgba(255, 217, 125, 0.25), transparent 34%),
     linear-gradient(135deg, #0d1020 0%, #17142d 100%) !important;
 }
 
 .finance-redesign-withdraw .finance-v2-money-input {
-  background: rgba(255,255,255,0.10) !important;
-  border-color: rgba(255,217,125,0.24) !important;
+  background: rgba(255, 255, 255, 0.10) !important;
+  border-color: rgba(255, 217, 125, 0.24) !important;
 }
 
 .finance-redesign-withdraw .finance-v2-money-input svg,
@@ -8986,9 +8991,9 @@ body.menu-open .es-chat-iconButton {
 }
 
 .finance-redesign-withdraw .finance-v2-chip-grid button {
-  background: rgba(255,255,255,0.10) !important;
-  color: rgba(255,255,255,0.82) !important;
-  border-color: rgba(255,255,255,0.14) !important;
+  background: rgba(255, 255, 255, 0.10) !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
 }
 
 .finance-redesign-withdraw .finance-v2-chip-grid button.active {
@@ -9004,6 +9009,7 @@ body.menu-open .es-chat-iconButton {
 }
 
 @media (max-width: 1180px) {
+
   .finance-redesign-deposit .finance-v2-workspace,
   .finance-redesign-withdraw .finance-v2-workspace.withdraw {
     grid-template-columns: 1fr !important;
@@ -9049,12 +9055,12 @@ body.menu-open .es-chat-iconButton {
 .finance-redesign .finance-v2-top h1[style] {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
-  text-shadow: 0 16px 32px rgba(0,0,0,0.28);
+  text-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
 }
 
 .finance-redesign .finance-v2-top p {
-  color: rgba(255,255,255,0.78) !important;
-  -webkit-text-fill-color: rgba(255,255,255,0.78) !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.78) !important;
 }
 
 .finance-redesign .finance-v2-stats {
@@ -9074,7 +9080,7 @@ body.menu-open .es-chat-iconButton {
 
 .finance-redesign .finance-v2-panel,
 .finance-redesign .finance-v2-ticket {
-  box-shadow: 0 18px 48px rgba(14,11,37,0.10), inset 0 1px 0 rgba(255,255,255,0.98) !important;
+  box-shadow: 0 18px 48px rgba(14, 11, 37, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.98) !important;
 }
 
 .finance-redesign .finance-v2-money-input input {
@@ -9269,8 +9275,8 @@ body.menu-open .es-chat-iconButton {
     linear-gradient(135deg, #ffffff 0%, #fff8e8 58%, #f5f2ff 100%) !important;
 }
 
-.finance-redesign-deposit.finance-v2 .finance-v2-top > div:first-child,
-.finance-redesign-deposit .finance-v2-top > div:first-child {
+.finance-redesign-deposit.finance-v2 .finance-v2-top>div:first-child,
+.finance-redesign-deposit .finance-v2-top>div:first-child {
   opacity: 1 !important;
   filter: none !important;
 }
