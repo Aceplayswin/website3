@@ -27,7 +27,7 @@ const LiveToasts = () => {
 
   const createToast = useCallback(() => {
     if (wins.length === 0) return;
-    
+
     // Pick a random win
     const randomWin = wins[Math.floor(Math.random() * wins.length)];
     const randomIcon = icons[Math.floor(Math.random() * icons.length)];
@@ -53,12 +53,12 @@ const LiveToasts = () => {
     // Initial timeout before starting toasts
     const initialTimeout = setTimeout(() => {
       createToast();
-      
+
       // Random interval between 5-8 seconds
       const interval = setInterval(() => {
         createToast();
       }, Math.random() * 3000 + 5000);
-      
+
       return () => clearInterval(interval);
     }, 2000);
 
@@ -93,24 +93,24 @@ const LiveToasts = () => {
           }}></div>
 
           <div style={{
-             width: '42px', height: '42px', borderRadius: '50%',
-             background: 'linear-gradient(135deg, #FDE68A 0%, #D4AF37 100%)',
-             display: 'flex', alignItems: 'center', justifyContent: 'center',
-             color: '#fff', fontSize: '20px', 
-             boxShadow: '0 4px 10px rgba(212, 175, 55, 0.4)',
-             flexShrink: 0
+            width: '42px', height: '42px', borderRadius: '50%',
+            background: 'linear-gradient(135deg, #FDE68A 0%, #D4AF37 100%)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: '#fff', fontSize: '20px',
+            boxShadow: '0 4px 10px rgba(212, 175, 55, 0.4)',
+            flexShrink: 0
           }}>
-             <i className={toast.icon}>🎉</i>
+            <i className={toast.icon}>🎉</i>
           </div>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
               <div style={{ fontSize: '13px', color: '#4B5563', whiteSpace: 'nowrap' }}>
                 <strong style={{ color: '#111827', fontWeight: '700' }}>{toast.name}</strong> won
               </div>
-              <div style={{ 
+              <div style={{
                 display: 'flex', alignItems: 'center', gap: '4px',
                 background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)',
-                color: '#EF4444', fontSize: '9px', fontWeight: 800, 
+                color: '#EF4444', fontSize: '9px', fontWeight: 800,
                 padding: '2px 6px', borderRadius: '10px', textTransform: 'uppercase', letterSpacing: '0.5px'
               }}>
                 <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#EF4444', animation: 'pulseDot 1.5s infinite' }}></span>
@@ -118,8 +118,8 @@ const LiveToasts = () => {
               </div>
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-              <div style={{ 
-                fontFamily: 'var(--font-mono, "Inter", sans-serif)', fontSize: '18px', fontWeight: 900, 
+              <div style={{
+                fontFamily: 'var(--font-mono, "Inter", sans-serif)', fontSize: '18px', fontWeight: 900,
                 background: 'linear-gradient(to right, #059669, #10B981)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
                 lineHeight: 1, letterSpacing: '-0.5px'
               }}>
@@ -130,7 +130,8 @@ const LiveToasts = () => {
               </div>
             </div>
           </div>
-          <style dangerouslySetInnerHTML={{__html: `
+          <style dangerouslySetInnerHTML={{
+            __html: `
             @keyframes toastEntrance {
               0% { opacity: 0; transform: translateX(-40px) scale(0.9); }
               100% { opacity: 1; transform: translateX(0) scale(1); }
